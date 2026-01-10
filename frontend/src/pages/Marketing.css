@@ -1,0 +1,11 @@
+/* Marketing.css */
+
+.marketing-title {
+  background: linear-gradient(90deg, #8b00ff, #ff1493);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.marketing-btn {
+  background: linear-gradient(90deg, #8b00ff, #ff1493);
+}

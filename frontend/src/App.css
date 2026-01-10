@@ -1,0 +1,260 @@
+/* ===== VARIABLES ===== */
+:root {
+  --purple-600: #9333ea;
+  --pink-600: #db2777;
+  --gradient-indigo: linear-gradient(90deg, #6f00ffe1, #f017de);
+  --bg-light: linear-gradient(135deg, #fef3f9 0%, #f8f0ff 100%);
+  --bg-dark: linear-gradient(135deg, #1a0a15 0%, #0f0a15 100%);
+  --text-light: #111;
+  --text-dark: #fff;
+}
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff;
+}
+
+/* ===== APP CONTAINER ===== */
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ===== MODOS ===== */
+.app-container.light {
+  color: var(--text-light);
+}
+
+.app-container.dark {
+  color: var(--text-dark);
+  background: #000;
+}
+
+/* ⚠️ CLAVE: NO forzar color global en textos */
+.app-container.light p,
+.app-container.light h1,
+.app-container.light h2,
+.app-container.light h3,
+.app-container.light h4 {
+  color: inherit;
+}
+
+/* ===== HEADER ===== */
+.header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.header-scrolled {
+  backdrop-filter: blur(8px);
+}
+
+.app-container.light .header-scrolled {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.app-container.dark .header-scrolled {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+/* ===== HERO ===== */
+.hero-section {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  padding-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.hero-container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  z-index: 2;
+}
+
+.hero-text {
+  z-index: 3;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.hero-extra {
+  margin-top: 1rem;
+  opacity: 0.9;
+}
+
+/* ===== BOTÓN ===== */
+.btn-cta {
+  margin-top: 1.5rem;
+  background: var(--gradient-indigo);
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== SERVICIOS ===== */
+.servicios-section {
+  padding: 5rem 2rem;
+}
+
+.servicios-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.servicio-card {
+  background: rgba(255, 255, 255, 0.85);
+  color: #111;
+  padding: 2rem;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+
+.app-container.dark .servicio-card {
+  background: rgba(20, 20, 20, 0.9);
+  color: #fff;
+}
+
+.servicio-card:hover {
+  transform: translateY(-6px);
+}
+
+/* ===== STATS ===== */
+.stats-section {
+  padding: 5rem 2rem;
+}
+
+.stats-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.stats-title {
+  font-size: 2rem;
+}
+
+.stats-description {
+  margin-top: 1rem;
+}
+
+.stats-badge {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+/* ===== NAV ===== */
+.nav-item {
+  position: relative;
+  padding: 0.5rem 0.8rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 0;
+  background: var(--gradient-indigo);
+  z-index: -1;
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+.nav-item:hover::before {
+  width: 100%;
+}
+
+.nav-item:hover {
+  color: #fff;
+}
+
+/* ===== SOCIAL BAR ===== */
+.social-item {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  transition: transform .2s ease;
+}
+
+.social-item:hover {
+  transform: scale(1.08);
+}
+
+/* ===== SEARCH ===== */
+.search-highlight {
+  background: #ffe066;
+  color: #111;
+  padding: 0 2px;
+  border-radius: 3px;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8b00ff, #ff1493);
+  border-radius: 5px;
+}
+
+/* Fuerza color a los textos de los badges */
+.app-container.light .hero-badges span,
+.app-container.dark  .hero-badges span {
+  color: #ffffff !important;   /* violeta oscuro */
+}
+
+/* texto con emojis dentro de hero-extra */
+.hero-extra span {
+  color: #4c1d95 !important;   /* violeta oscuro */
+}
+
+.app-container.light .hero-badges span,
+.app-container.dark  .hero-badges span {
+  background-color: #ee67b3; /* rosa muy claro */
+color: #4c1d95;           /* letra violeta oscuro */
+}
+
+/* fuerza gradient morado-rosa */
+.cta-section .btn-cta {
+  background: linear-gradient(90deg, #a855f7, #ec4899) !important;
+  color: #ffffff !important;
+}
+
+/* violeta-azul SIN rosa para modo oscuro */
+.app-container.dark {
+  --gradient-indigo: linear-gradient(90deg, #2e1065 0%, #6d28d9 50%, #7c3aed 100%);
+}

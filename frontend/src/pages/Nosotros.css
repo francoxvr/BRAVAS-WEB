@@ -1,0 +1,11 @@
+/* Nosotros.css */
+
+.titulo-dominio .gradiente-bravas {
+  background: linear-gradient(90deg, #8b00ff, #ff1493);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-bravas-accion {
+  background: linear-gradient(90deg, #8b00ff, #ff1493);
+}
