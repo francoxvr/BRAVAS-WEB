@@ -15,7 +15,7 @@ export function initScrollAnimations() {
     }
   );
 
-  // Seleccionar todos los elementos que queremos animar
+  // Seleccionar elementos que queremos animar
   const elementsToAnimate = document.querySelectorAll(`
     .scroll-animate,
     .servicio-card,

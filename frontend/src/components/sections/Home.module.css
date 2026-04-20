@@ -1,0 +1,2070 @@
+:global(.app-container.light) {
+  color: #1e293b;
+}
+
+:global(.app-container.light) .serviceCard,
+:global(.app-container.light) .crecimientoCard,
+:global(.app-container.light) .innovacionFeature {
+  background: white;
+  color: #1e293b;
+}
+
+:global(.app-container.light) .cardDescription,
+:global(.app-container.light) .crecimientoCardDescription {
+  color: #475569;
+}
+
+
+
+/* ================= WRAPPER ================= */
+.heroWrapper {
+  position: relative;
+  margin-bottom: 60px;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ================= HERO ================= */
+.heroSection {
+  position: relative;
+  padding: 0 20px 40px;
+  overflow: visible;
+}
+
+/* Fondo diagonal */
+.heroSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 73%, 0 35%);
+  z-index: 1;
+}
+
+/* ================= CONTENEDOR ================= */
+.heroContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 20px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+/* ================= PLACEHOLDER ================= */
+.heroImagePlaceholder {
+  width: 100%;
+  min-height: 400px;
+}
+
+/* ================= TEXTO ================= */
+.heroText {
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 10px;
+  position: relative;
+  top: -20px;
+  left: 80px;
+}
+
+.heroTitleBox {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.9;
+}
+
+.heroBrand {
+  font-size: 5rem;
+  font-weight: 900;
+  letter-spacing: -4px;
+}
+
+.heroSubbrand {
+  font-size: 1.5rem;
+  letter-spacing: 14px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+.heroSubtitle {
+  font-size: 1.05rem;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+/* ================= BOTÓN CTA ================= */
+.btnCta {
+  margin-top: 20px;
+  padding: 18px 48px;
+  border-radius: 16px;
+  font-size: .95rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,.35);
+  cursor: pointer;
+  width: fit-content;
+  position: relative;
+  top: 28px;
+  overflow: hidden;
+  transition: transform .25s ease;
+}
+
+/* sheen */
+.btnCta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.45),
+    transparent
+  );
+  transform: skewX(-20deg);
+  opacity: 0;
+}
+
+/* hover CTA */
+.btnCta:hover {
+  transform: translateY(-2px);
+}
+
+.btnCta:hover::before {
+  animation: sheen 1.4s ease forwards;
+  opacity: 1;
+}
+
+/* ================= SERVICIOS HIGHLIGHT ================= */
+.heroServicesHighlight {
+  margin-top: 48px;
+  padding: 14px 30px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: .9rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: rgba(255,255,255,.95);
+  background: linear-gradient(
+    135deg,
+    rgba(124,58,237,.25) 0%,
+    rgba(219,39,119,.25) 100%
+  );
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  top:-12px;
+}
+
+/* sheen highlight */
+.heroServicesHighlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.25),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: sheen 7s ease-in-out infinite;
+}
+
+.heroServicesHighlight i {
+  font-style: normal;
+  opacity: .7;
+}
+
+/* ================= CARRUSEL DE IMÁGENES HERO ================= */
+.heroImageWrapper {
+  position: absolute;
+  top: 180px;
+  right: 80px;
+  max-width: 550px;
+  z-index: 50;
+  transform: translateY(-140px);
+}
+
+.heroImageCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: 0 30px 70px rgba(0,0,0,.3);
+  transition:
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.5s ease;
+}
+
+/* Brillo diagonal en hover */
+.heroImageCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.8s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.heroImageCard:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 40px 90px rgba(0,0,0,.45);
+}
+
+.heroImageCard:hover::before {
+  left: 140%;
+}
+
+.heroImage {
+  width: 100%;
+  border-radius: 16px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.heroImage.active {
+  opacity: 1;
+  position: relative;
+}
+
+.heroImageCard:hover .heroImage {
+  transform: scale(1.08);
+}
+
+/* Indicadores del carrusel */
+.carouselIndicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
+}
+
+.indicatorActive {
+  background: white;
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* ================= ANIMACIÓN ================= */
+@keyframes sheen {
+  0% {
+    left: -60%;
+    opacity: 0;
+  }
+  30% {
+    opacity: .6;
+  }
+  60% {
+    left: 120%;
+    opacity: 0;
+  }
+  100% {
+    left: 120%;
+    opacity: 0;
+  }
+}
+
+/* ================= LIGHT MODE ================= */
+:global(.app-container.light) .btnCta {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+}
+
+:global(.app-container.light) .heroServicesHighlight {
+  background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,.35);
+  backdrop-filter: none;
+}
+
+/* ================= DARK MODE ================= */
+:global(.app-container.dark) .heroSection::before {
+  background: linear-gradient(
+    90deg,
+    rgb(46, 16, 101) 0%,
+    rgb(109, 40, 217) 50%,
+    rgb(124, 58, 237) 100%
+  );
+}
+
+:global(.app-container.dark) .btnCta {
+  background: linear-gradient(
+    90deg,
+    #2e1065 0%,
+    #6d28d9 50%,
+    #7c3aed 100%
+  );
+}
+
+:global(.app-container.dark) .heroServicesHighlight {
+  background: linear-gradient(
+    135deg,
+    rgba(124,58,237,.25) 0%,
+    rgba(219,39,119,.25) 100%
+  );
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 900px) {
+  .heroWrapper {
+    margin-bottom: 80px;
+  }
+
+  .heroSection {
+    padding: 0 15px 60px;
+  }
+
+  .heroSection::before {
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 0 35%);
+  }
+
+  .heroContainer {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 50px;
+    padding-top: 20px;
+    padding-bottom: 80px;
+  }
+
+  .heroText {
+    align-items: center;
+    left: 0;
+    top: 0;
+  }
+
+  .heroBrand {
+    font-size: 3.5rem;
+  }
+
+  .heroSubbrand {
+    font-size: 1.2rem;
+    letter-spacing: 10px;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .btnCta {
+    top: 0;
+    font-size: 0.9rem;
+    padding: 16px 40px;
+  }
+
+  .heroServicesHighlight {
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: .8rem;
+    top: 0;
+  }
+
+  .heroImageWrapper {
+    position: static;
+    transform: none;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0 15px;
+  }
+  
+  .carouselIndicators {
+    bottom: 10px;
+    gap: 6px;
+    padding: 6px 10px;
+  }
+
+  .indicator {
+    width: 6px;
+    height: 6px;
+  }
+
+  .indicatorActive {
+    width: 18px;
+  }
+}
+
+/* ================= SECCIÓN ENFOQUE INTEGRAL ================= */
+.enfoqueSection {
+  padding: 60px 40px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #1e293b;
+  border-radius: 24px;
+  margin-top: 80px;
+  margin-bottom: 60px;
+}
+
+/* ================= HEADER ================= */
+.enfoqueHeader {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 12px 25px 10px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.enfoqueHeader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: sheen 7s ease-in-out infinite;
+}
+
+.enfoqueTitle {
+  font-size: 1.9rem;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  margin-bottom: 5px;
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+}
+
+.enfoqueSubtitle {
+  font-size: 0.82rem;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.95);
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ================= GRID DE CARDS ================= */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 15px;
+}
+
+/* ================= CARD ================= */
+.serviceCard {
+  padding: 18px 16px;
+  border-radius: 14px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.serviceCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(168, 85, 247, 0.15),
+    rgba(236, 72, 153, 0.15),
+    transparent
+  );
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.serviceCard:hover::before {
+  left: 100%;
+}
+
+.serviceCard:hover {
+  transform: translateY(-10px);
+}
+
+/* ================= ICON ================= */
+.cardIcon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  transition: all 0.4s ease;
+  font-size: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.serviceCard:hover .cardIcon {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+/* Colores diferentes para cada card */
+.card1 .cardIcon {
+  background: linear-gradient(135deg, #fef3c7, #fcd34d);
+  box-shadow: 0 8px 20px rgba(252, 211, 77, 0.3);
+}
+
+.card2 .cardIcon {
+  background: linear-gradient(135deg, #ddd6fe, #a78bfa);
+  box-shadow: 0 8px 20px rgba(167, 139, 250, 0.3);
+}
+
+.card3 .cardIcon {
+  background: linear-gradient(135deg, #fed7aa, #fb923c);
+  box-shadow: 0 8px 20px rgba(251, 146, 60, 0.3);
+}
+
+.card4 .cardIcon {
+  background: linear-gradient(135deg, #fecaca, #f87171);
+  box-shadow: 0 8px 20px rgba(248, 113, 113, 0.3);
+}
+
+.card5 .cardIcon {
+  background: linear-gradient(135deg, #bfdbfe, #60a5fa);
+  box-shadow: 0 8px 20px rgba(96, 165, 250, 0.3);
+}
+
+.card6 .cardIcon {
+  background: linear-gradient(135deg, #bbf7d0, #34d399);
+  box-shadow: 0 8px 20px rgba(52, 211, 153, 0.3);
+}
+
+/* ================= TEXT ================= */
+.cardTitle {
+  font-size: 0.98rem;
+  font-weight: 800;
+  margin-bottom: 7px;
+  letter-spacing: -0.3px;
+  position: relative;
+  z-index: 2;
+}
+
+.cardDescription {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= LIGHT MODE - ENFOQUE ================= */
+:global(.app-container.light) .enfoqueSection {
+  background: #f5f3ff;
+}
+
+:global(.app-container.light) .serviceCard {
+  background: white;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.08);
+}
+
+:global(.app-container.light) .serviceCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.15;
+  transition: opacity 0.4s ease;
+}
+
+:global(.app-container.light) .serviceCard:hover {
+  box-shadow: 0 25px 50px rgba(168, 85, 247, 0.18);
+}
+
+:global(.app-container.light) .serviceCard:hover::after {
+  opacity: 0.4;
+}
+
+:global(.app-container.light) .cardTitle {
+  color: #a855f7;
+}
+
+:global(.app-container.light) .cardDescription {
+  color: #64748b;
+}
+
+/* ================= DARK MODE - ENFOQUE ================= */
+:global(.app-container.dark) .enfoqueSection {
+  background: #1e293b;
+}
+
+:global(.app-container.dark) .enfoqueHeader {
+  background: linear-gradient(90deg, #2e1065 0%, #6d28d9 50%, #7c3aed 100%);
+}
+
+:global(.app-container.dark) .serviceCard {
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.1) 0%,
+    rgba(219, 39, 119, 0.1) 100%
+  );
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+:global(.app-container.dark) .serviceCard:hover {
+  box-shadow: 0 25px 50px rgba(124, 58, 237, 0.35);
+  border-color: rgba(236, 72, 153, 0.45);
+}
+
+:global(.app-container.dark) .cardTitle {
+  color: #c084fc;
+}
+
+:global(.app-container.dark) .cardDescription {
+  color: #cbd5e1;
+}
+
+/* ================= RESPONSIVE ENFOQUE ================= */
+@media (max-width: 1200px) {
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .enfoqueSection {
+    padding: 40px 15px 80px;
+  }
+
+  .enfoqueHeader {
+    padding: 35px 20px;
+    margin-bottom: 40px;
+  }
+
+  .enfoqueTitle {
+    font-size: 2.2rem;
+    letter-spacing: -1px;
+  }
+
+  .enfoqueSubtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    white-space: normal;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .serviceCard {
+    padding: 30px 24px;
+  }
+
+  .cardIcon {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .cardTitle {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+
+  .cardDescription {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 600px) {
+  .heroBrand {
+    font-size: 2.8rem;
+  }
+
+  .heroSubbrand {
+    font-size: 1rem;
+    letter-spacing: 8px;
+  }
+
+  .enfoqueTitle {
+    font-size: 1.8rem;
+  }
+
+  .enfoqueSubtitle {
+    font-size: 0.9rem;
+  }
+}
+
+/* ================= SECCIÓN CRECIMIENTO DIGITAL ================= */
+.crecimientoSection {
+  padding: 60px 40px 70px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #1e293b;
+  border-radius: 24px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+/* ================= HEADER CRECIMIENTO ================= */
+.crecimientoHeader {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 12px 25px 10px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.crecimientoHeader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: sheen 7s ease-in-out infinite;
+}
+
+.crecimientoTitle {
+  font-size: 1.9rem;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  margin-bottom: 5px;
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+}
+
+.crecimientoSubtitle {
+  font-size: 0.82rem;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.95);
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ================= GRID CRECIMIENTO ================= */
+.crecimientoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* ================= CARD CRECIMIENTO ================= */
+.crecimientoCard {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  background: white;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.08);
+}
+
+.crecimientoCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.15;
+  transition: opacity 0.4s ease;
+}
+
+.crecimientoCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(168, 85, 247, 0.18);
+}
+
+.crecimientoCard:hover::after {
+  opacity: 0.4;
+}
+
+/* ================= IMAGEN CARD CRECIMIENTO (CON SHINE EFFECT) ================= */
+.crecimientoCardImage {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Estilos para el carrusel de imágenes dentro de la card */
+.crecimientoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.crecimientoImage.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Para imágenes normales (sin carrusel) */
+.crecimientoCardImage img:not(.crecimientoImage) {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* Brillo diagonal - shine in/out */
+.crecimientoCardImage::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transform: skewX(-20deg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Hover IN → shine goes across */
+.crecimientoCard:hover .crecimientoCardImage::after {
+  animation: shineIn 0.9s ease forwards;
+}
+
+/* Hover OUT → shine returns */
+.crecimientoCard:not(:hover) .crecimientoCardImage::after {
+  animation: shineOut 0.9s ease forwards;
+}
+
+.crecimientoCardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Zoom en hover para imágenes normales */
+.crecimientoCard:hover .crecimientoCardImage img:not(.crecimientoImage) {
+  transform: scale(1.08);
+}
+
+/* Zoom en hover para imágenes del carrusel */
+.crecimientoCard:hover .crecimientoImage {
+  transform: scale(1.08);
+}
+
+/* ================= CONTENIDO CARD CRECIMIENTO ================= */
+.crecimientoCardContent {
+  padding: 24px 20px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Efecto de brillo en hover solo en el texto */
+.crecimientoCardContent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(168, 85, 247, 0.15),
+    rgba(236, 72, 153, 0.15),
+    transparent
+  );
+  transition: left 0.6s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.crecimientoCard:hover .crecimientoCardContent::before {
+  left: 100%;
+}
+
+.crecimientoCardTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #a855f7;
+  letter-spacing: -0.5px;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.crecimientoCard:hover .crecimientoCardTitle {
+  color: #ec4899;
+}
+
+.crecimientoCardDescription {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #64748b;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ================= LIGHT MODE - CRECIMIENTO ================= */
+:global(.app-container.light) .crecimientoSection {
+  background: #f5f3ff;
+}
+
+:global(.app-container.light) .crecimientoCard {
+  background: white;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.08);
+}
+
+:global(.app-container.light) .crecimientoCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.15;
+  transition: opacity 0.4s ease;
+}
+
+:global(.app-container.light) .crecimientoCard:hover {
+  box-shadow: 0 25px 50px rgba(168, 85, 247, 0.18);
+}
+
+:global(.app-container.light) .crecimientoCard:hover::after {
+  opacity: 0.4;
+}
+
+:global(.app-container.light) .crecimientoCardTitle {
+  color: #a855f7;
+}
+
+:global(.app-container.light) .crecimientoCardDescription {
+  color: #64748b;
+}
+
+/* ================= DARK MODE - CRECIMIENTO ================= */
+:global(.app-container.dark) .crecimientoSection {
+  background: #1e293b;
+}
+
+:global(.app-container.dark) .crecimientoHeader {
+  background: linear-gradient(90deg, #2e1065 0%, #6d28d9 50%, #7c3aed 100%);
+}
+
+:global(.app-container.dark) .crecimientoTitle {
+  color: #ffffff;
+}
+
+:global(.app-container.dark) .crecimientoSubtitle {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+:global(.app-container.dark) .crecimientoCard {
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.1) 0%,
+    rgba(219, 39, 119, 0.1) 100%
+  );
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+:global(.app-container.dark) .crecimientoCard:hover {
+  box-shadow: 0 25px 50px rgba(124, 58, 237, 0.35);
+  border-color: rgba(236, 72, 153, 0.45);
+}
+
+:global(.app-container.dark) .crecimientoCardTitle {
+  color: #c084fc;
+}
+
+:global(.app-container.dark) .crecimientoCard:hover .crecimientoCardTitle {
+  color: #ec4899;
+}
+
+:global(.app-container.dark) .crecimientoCardDescription {
+  color: #cbd5e1;
+}
+
+/* ================= RESPONSIVE CRECIMIENTO ================= */
+@media (max-width: 1200px) {
+  .crecimientoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .crecimientoCard:last-child {
+    grid-column: 1 / -1;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .crecimientoSection {
+    padding: 40px 20px;
+    margin-top: 40px;
+  }
+
+  .crecimientoHeader {
+    padding: 35px 20px;
+    margin-bottom: 35px;
+  }
+
+  .crecimientoTitle {
+    font-size: 2.2rem;
+    letter-spacing: -1px;
+  }
+
+  .crecimientoSubtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    white-space: normal;
+  }
+
+  .crecimientoGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .crecimientoCard:last-child {
+    grid-column: auto;
+    max-width: 100%;
+  }
+
+  .crecimientoCardImage {
+    height: 200px;
+  }
+
+  .crecimientoCardContent {
+    padding: 20px;
+  }
+}
+
+/* ================= SECCIÓN PROCESO DE TRABAJO ================= */
+.procesoSection {
+  padding: 60px 40px 80px;
+  max-width: 1400px;
+  margin: 60px auto;
+  background: #1e293b;
+  border-radius: 24px;
+}
+
+/* ================= HEADER PROCESO ================= */
+.procesoHeader {
+  text-align: center;
+  margin-bottom: 80px;
+  padding: 12px 25px 10px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.procesoHeader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: sheen 7s ease-in-out infinite;
+}
+
+.procesoTitle {
+  font-size: 1.9rem;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  margin-bottom: 5px;
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+}
+
+.procesoSubtitle {
+  font-size: 0.82rem;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.95);
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= TIMELINE HORIZONTAL ================= */
+.procesoTimeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  position: relative;
+  padding-top: 30px;
+  padding-bottom: 40px;
+}
+
+/* Línea horizontal conectora base */
+.procesoTimeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 60px;
+  height: 3px;
+  background: rgba(168, 85, 247, 0.2);
+  z-index: 0;
+}
+
+/* Línea animada que se carga progresivamente */
+.procesoTimeline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 60px;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, #a855f7 0%, #ec4899 50%, #f472b6 100%);
+  z-index: 0;
+  animation: fillLine 8s ease-in-out infinite;
+}
+
+/* ================= PASO ================= */
+.procesoStep {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+/* Número del paso */
+.procesoNumber {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 900;
+  margin: 0 auto 30px;
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+  position: relative;
+  z-index: 10;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.procesoStep:hover .procesoNumber {
+  transform: scale(1.15);
+  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.6);
+}
+
+/* Título del paso */
+.procesoStepTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #a855f7;
+  margin-bottom: 15px;
+  letter-spacing: -0.5px;
+  transition: color 0.3s ease;
+}
+
+.procesoStep:hover .procesoStepTitle {
+  color: #ec4899;
+}
+
+/* Descripción del paso */
+.procesoStepDescription {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* ================= ANIMACIÓN BARRA DE PROGRESO ================= */
+@keyframes fillLine {
+  0% { width: 0; }
+  12.5% { width: 12.5%; }
+  37.5% { width: 37.5%; }
+  62.5% { width: 62.5%; }
+  87.5% { width: 87.5%; }
+  100% { width: 100%; }
+}
+
+/* Animación de los números */
+.procesoStep:nth-child(1) .procesoNumber,
+.procesoStep:nth-child(2) .procesoNumber,
+.procesoStep:nth-child(3) .procesoNumber,
+.procesoStep:nth-child(4) .procesoNumber {
+  animation-duration: 8s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.procesoStep:nth-child(1) .procesoNumber { animation-name: pulseNumber1; }
+.procesoStep:nth-child(2) .procesoNumber { animation-name: pulseNumber2; }
+.procesoStep:nth-child(3) .procesoNumber { animation-name: pulseNumber3; }
+.procesoStep:nth-child(4) .procesoNumber { animation-name: pulseNumber4; }
+
+@keyframes pulseNumber1 {
+  0%, 11% { transform: scale(1); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4); }
+  12.5%, 14.5% { transform: scale(1.15); box-shadow: 0 8px 30px rgba(168, 85, 247, 0.6); }
+  15.5%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4); }
+}
+
+@keyframes pulseNumber2 {
+  0%, 36% { transform: scale(1); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4); }
+  37.5%, 39.5% { transform: scale(1.15); box-shadow: 0 8px 30px rgba(168, 85, 247, 0.6); }
+  40.5%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4); }
+}
+
+@keyframes pulseNumber3 {
+  0%, 61% { transform: scale(1); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4); }
+  62.5%, 64.5% { transform: scale(1.15); box-shadow: 0 8px 30px rgba(168, 85, 247, 0.6); }
+  65.5%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4); }
+}
+
+@keyframes pulseNumber4 {
+  0%, 86% { transform: scale(1); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4); }
+  87.5%, 89.5% { transform: scale(1.15); box-shadow: 0 8px 30px rgba(168, 85, 247, 0.6); }
+  90.5%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4); }
+}
+
+/* ================= LIGHT MODE - PROCESO ================= */
+:global(.app-container.light) .procesoSection {
+  background: #f5f3ff;
+}
+
+/* ================= DARK MODE - PROCESO ================= */
+:global(.app-container.dark) .procesoSection {
+  background: #1e293b;
+}
+
+:global(.app-container.dark) .procesoHeader {
+  background: linear-gradient(90deg, #2e1065 0%, #6d28d9 50%, #7c3aed 100%);
+}
+
+:global(.app-container.dark) .procesoNumber {
+  background: linear-gradient(90deg, #2e1065 0%, #6d28d9 50%, #7c3aed 100%);
+}
+
+:global(.app-container.dark) .procesoStepTitle {
+  color: #c084fc;
+}
+
+:global(.app-container.dark) .procesoStep:hover .procesoStepTitle {
+  color: #f472b6;
+}
+
+:global(.app-container.dark) .procesoStepDescription {
+  color: #cbd5e1;
+}
+
+/* ================= RESPONSIVE PROCESO ================= */
+@media (max-width: 1024px) {
+  .procesoTimeline {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 30px;
+  }
+
+  .procesoTimeline::before,
+  .procesoTimeline::after {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .procesoSection {
+    padding: 40px 20px;
+    margin: 40px auto;
+  }
+
+  .procesoHeader {
+    margin-bottom: 40px;
+    padding: 35px 20px;
+  }
+
+  .procesoTitle {
+    font-size: 2.2rem;
+    letter-spacing: -1px;
+  }
+
+  .procesoSubtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .procesoTimeline {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-top: 0;
+  }
+
+  .procesoNumber {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .procesoStepTitle {
+    font-size: 1rem;
+  }
+
+  .procesoStepDescription {
+    font-size: 0.8rem;
+  }
+}
+
+/* ================= SECCIÓN INNOVACIÓN CONSTANTE ================= */
+.innovacionSection {
+  padding: 60px 40px 80px;
+  max-width: 1400px;
+  margin: 60px auto;
+  background: #f5f3ff;
+  border-radius: 24px;
+}
+
+/* ================= HEADER INNOVACIÓN ================= */
+.innovacionHeader {
+  text-align: center;
+  margin-bottom: 37px;
+  padding: 12px 25px 10px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.innovacionHeader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: sheen 7s ease-in-out infinite;
+}
+
+.innovacionHeaderTitle {
+  font-size: 1.9rem;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  margin-bottom: 5px;
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+}
+
+.innovacionHeaderSubtitle {
+  font-size: 0.82rem;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.95);
+  position: relative;
+  z-index: 2;
+}
+
+.innovacionContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  align-items: start;
+}
+
+/* ================= FEATURES GRID (6 CARDS) ================= */
+.innovacionFeatures {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.innovacionFeature:first-child {
+  grid-column: span 2;
+}
+
+.innovacionFeature:last-child {
+  grid-column: span 2;
+}
+
+.innovacionFeature {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  cursor: pointer;
+}
+
+.innovacionFeature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(168, 85, 247, 0.15),
+    rgba(236, 72, 153, 0.15),
+    transparent
+  );
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.innovacionFeature:hover::before {
+  left: 100%;
+}
+
+.innovacionFeature:hover {
+  transform: translateY(-10px);
+}
+
+.featureIcon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  border-radius: 10px;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.innovacionFeature:hover .featureIcon {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.featureText {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.featureTitle {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #a855f7;
+  margin-bottom: 3px;
+  letter-spacing: -0.3px;
+}
+
+.featureDescription {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ================= GRID DE IMÁGENES (3 IMÁGENES) - CON SHINE EFFECT ================= */
+.innovacionImages {
+  position: relative;
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 12px;
+}
+
+.gridImage {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15);
+  transition: all 0.4s ease;
+  position: relative;
+  height: 143px; /* Altura fija */
+}
+
+.gridImage:first-child {
+  height: 190px; /* Altura fija para la imagen grande */
+}
+
+/* Shine effect - diagonal shine in/out */
+.gridImage::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transform: skewX(-20deg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.gridImage:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(168, 85, 247, 0.25);
+}
+
+/* Hover IN → shine goes across */
+.gridImage:hover::after {
+  animation: shineIn 0.9s ease forwards;
+}
+
+/* Hover OUT → shine returns */
+.gridImage:not(:hover)::after {
+  animation: shineOut 0.9s ease forwards;
+}
+
+/* Estilos para el carrusel de imágenes en el grid de Innovación */
+.gridCarouselImage {
+  width: 100%;
+  height: 143px;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 0.5s ease;
+  z-index: 1;
+  display: block;
+}
+
+.gridCarouselImage.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Primera imagen (más grande) */
+.gridImage:first-child .gridCarouselImage {
+  height: 190px;
+}
+
+.gridImage:first-child {
+  grid-column: span 2;
+}
+
+/* Zoom effect on hover para carrusel */
+.gridImage:hover .gridCarouselImage {
+  transform: scale(1.08);
+}
+
+/* ================= SHINE ANIMATIONS ================= */
+@keyframes shineIn {
+  from {
+    left: -120%;
+  }
+  to {
+    left: 140%;
+  }
+}
+
+@keyframes shineOut {
+  from {
+    left: 140%;
+    opacity: 1;
+  }
+  to {
+    left: -120%;
+    opacity: 1;
+  }
+}
+
+/* ================= LIGHT MODE - INNOVACIÓN ================= */
+:global(.app-container.light) .innovacionSection {
+  background: #f5f3ff;
+}
+
+:global(.app-container.light) .innovacionHeader {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+}
+
+:global(.app-container.light) .innovacionFeature {
+  background: white;
+}
+
+:global(.app-container.light) .innovacionFeature::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.15;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+:global(.app-container.light) .innovacionFeature:hover::after {
+  opacity: 0.4;
+}
+
+:global(.app-container.light) .innovacionFeature:hover {
+  box-shadow: 0 25px 50px rgba(168, 85, 247, 0.18);
+}
+
+:global(.app-container.light) .featureDescription {
+  color: #64748b;
+}
+
+/* ================= DARK MODE - INNOVACIÓN ================= */
+:global(.app-container.dark) .innovacionSection {
+  background: #1e293b;
+}
+
+:global(.app-container.dark) .innovacionHeader {
+  background: linear-gradient(90deg, #2e1065 0%, #6d28d9 50%, #7c3aed 100%);
+}
+
+:global(.app-container.dark) .innovacionFeature {
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.1) 0%,
+    rgba(219, 39, 119, 0.1) 100%
+  );
+  border: 2px solid rgba(168, 85, 247, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+:global(.app-container.dark) .featureTitle {
+  color: #c084fc;
+}
+
+:global(.app-container.dark) .featureDescription {
+  color: #cbd5e1;
+}
+
+/* ================= RESPONSIVE INNOVACIÓN ================= */
+@media (max-width: 1024px) {
+  .innovacionContainer {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .innovacionFeatures {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .innovacionSection {
+    padding: 60px 20px;
+  }
+
+  .imageGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .gridImage:first-child {
+    grid-row: auto;
+  }
+
+  .gridImage img,
+  .gridCarouselImage {
+    height: 200px;
+    min-height: 200px;
+  }
+}
+
+/* ================= RESPONSIVE ADICIONAL - MOBILE PEQUEÑO ================= */
+@media (max-width: 480px) {
+  /* Hero */
+  .heroBrand {
+    font-size: 2.5rem !important;
+  }
+
+  .heroSubbrand {
+    font-size: 0.85rem !important;
+    letter-spacing: 6px !important;
+  }
+
+  .heroSubtitle {
+    font-size: 0.9rem !important;
+  }
+
+  .btnCta {
+    font-size: 0.85rem !important;
+    padding: 14px 32px !important;
+  }
+
+  .heroServicesHighlight {
+    font-size: 0.7rem !important;
+    padding: 10px 20px !important;
+    gap: 8px !important;
+  }
+
+  /* Enfoque */
+  .enfoqueSection {
+    padding: 40px 15px 60px !important;
+  }
+
+  .enfoqueTitle {
+    font-size: 1.6rem !important;
+  }
+
+  .enfoqueSubtitle {
+    font-size: 0.85rem !important;
+  }
+
+  .serviceCard {
+    padding: 24px 18px !important;
+  }
+
+  .cardIcon {
+    width: 60px !important;
+    height: 60px !important;
+    font-size: 1.8rem !important;
+  }
+
+  .cardTitle {
+    font-size: 1.1rem !important;
+  }
+
+  .cardDescription {
+    font-size: 0.85rem !important;
+  }
+
+  /* Crecimiento */
+  .crecimientoSection {
+    padding: 40px 15px !important;
+  }
+
+  .crecimientoTitle {
+    font-size: 1.8rem !important;
+  }
+
+  .crecimientoSubtitle {
+    font-size: 0.85rem !important;
+  }
+
+  .crecimientoCardImage {
+    height: 180px !important;
+  }
+
+  .crecimientoCardContent {
+    padding: 18px 16px !important;
+  }
+
+  .crecimientoCardTitle {
+    font-size: 1rem !important;
+  }
+
+  .crecimientoCardDescription {
+    font-size: 0.82rem !important;
+  }
+
+  /* Proceso */
+  .procesoSection {
+    padding: 40px 15px !important;
+  }
+
+  .procesoTitle {
+    font-size: 1.8rem !important;
+  }
+
+  .procesoSubtitle {
+    font-size: 0.85rem !important;
+  }
+
+  .procesoNumber {
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 1.1rem !important;
+  }
+
+  .procesoStepTitle {
+    font-size: 0.95rem !important;
+  }
+
+  .procesoStepDescription {
+    font-size: 0.75rem !important;
+  }
+
+  /* Innovación */
+  .innovacionSection {
+    padding: 40px 15px !important;
+  }
+
+  .innovacionHeaderTitle {
+    font-size: 1.8rem !important;
+  }
+
+  .innovacionHeaderSubtitle {
+    font-size: 0.85rem !important;
+  }
+
+  .innovacionFeature {
+    padding: 10px !important;
+  }
+
+  .featureIcon {
+    width: 35px !important;
+    height: 35px !important;
+    font-size: 1.4rem !important;
+  }
+
+  .featureTitle {
+    font-size: 0.82rem !important;
+  }
+
+  .featureDescription {
+    font-size: 0.7rem !important;
+  }
+
+  .gridImage img,
+  .gridCarouselImage {
+    height: 180px !important;
+    min-height: 180px !important;
+  }
+}
+
+/* ================= RESPONSIVE TABLET ================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Hero */
+  .heroContainer {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 30px 40px 60px;
+  }
+
+  .heroText {
+    text-align: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+  }
+
+  .heroBrand {
+    font-size: 4rem;
+  }
+
+  .heroImageWrapper {
+    position: static;
+    transform: none;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Enfoque */
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* Crecimiento */
+  .crecimientoGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .crecimientoCard:last-child {
+    grid-column: 1 / -1;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Proceso */
+  .procesoTimeline {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 30px;
+  }
+
+  .procesoTimeline::before,
+  .procesoTimeline::after {
+    display: none;
+  }
+
+  /* Innovación */
+  .innovacionContainer {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .innovacionFeatures {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .innovacionFeature:first-child,
+  .innovacionFeature:last-child {
+    grid-column: span 2;
+  }
+
+  .imageGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gridImage:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ================= RESPONSIVE DESKTOP GRANDE ================= */
+@media (min-width: 1400px) {
+  .heroContainer {
+    max-width: 1600px;
+  }
+
+  .enfoqueSection,
+  .crecimientoSection,
+  .procesoSection,
+  .innovacionSection {
+    max-width: 1600px;
+  }
+
+  .heroBrand {
+    font-size: 5.5rem;
+  }
+
+  .heroSubbrand {
+    font-size: 1.7rem;
+  }
+}
+
+/* ================= FIX OVERFLOW EN MOBILE ================= */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .heroWrapper,
+  .enfoqueSection,
+  .crecimientoSection,
+  .procesoSection,
+  .innovacionSection {
+    overflow-x: hidden;
+  }
+
+  .heroImageWrapper {
+    max-width: 100vw;
+  }
+}
