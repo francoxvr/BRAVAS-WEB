@@ -9,7 +9,6 @@ import { ThemeProvider } from '@/context/ThemeContext'
 
 // layout
 import Header from '@/components/layout/Header'
-import SocialBarTop from '@/components/layout/SocialBarTop'
 import Footer from '@/components/layout/Footer'
 
 // ui
@@ -34,7 +33,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <ThemeProvider>
-        <SocialBarTop />
         <Header />
 
         <main>
