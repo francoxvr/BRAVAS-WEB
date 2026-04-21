@@ -39,7 +39,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </main>
 
-        {/* 👇 ACA estaba lo que te faltaba */}
         <Footer />
 
         <ScrollToTop />

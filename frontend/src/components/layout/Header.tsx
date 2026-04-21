@@ -6,11 +6,8 @@ import styles from './Header.module.css';
 
 const navItems = [
   { href: '/', label: 'Home' },
-  { href: '/marketing', label: 'Marketing' },
-  { href: '/diseno-web', label: 'Diseño Web' },
   { href: '/servicios', label: 'Servicios' },
   { href: '/nosotros', label: 'Nosotros' },
-  { href: '/blog', label: 'Blog' },
   { href: '/contacto', label: 'Contacto' },
 ];
 
