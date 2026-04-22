@@ -3,22 +3,22 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: linear-gradient(135deg, #fce7f3, #f3e8ff);
+  background: #e8dcc2;
   transition: all 0.3s ease;
 }
 
 .headerScrolled {
   backdrop-filter: blur(8px);
-  background: linear-gradient(135deg, #fce7f3, #f3e8ff);
+  background: #e8dcc2;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 :global(.app-container.dark) .headerSticky {
-  background: linear-gradient(135deg, #1a0d1f, #1e1430);
+  background: #1a0d1f;
 }
 
 :global(.app-container.dark) .headerScrolled {
-  background: linear-gradient(135deg, #1a0d1f, #1e1430);
+  background: #1a0d1f;
 }
 
 .headerContent {
@@ -48,7 +48,7 @@
   height: 70px;
   border-radius: 12px;
   filter: brightness(1.15) contrast(1.2);
-  box-shadow: 0 4px 12px rgba(139, 0, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(78, 26, 107, 0.2);
   transition: transform 0.3s ease;
 }
 
@@ -72,7 +72,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
-  color: rgb(168, 85, 247);
+  color: #4e1a6b;
   overflow: hidden;
   z-index: 0;
   white-space: nowrap;
@@ -80,12 +80,12 @@
   transition: color 0.3s ease, transform 0.25s ease;
 }
 
-/* ===== FILL ORIGINAL ===== */
+/* ===== FILL ===== */
 .navItem::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgb(139, 0, 255), rgb(255, 20, 147));
+  background: #4e1a6b;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.35s ease;
@@ -122,11 +122,11 @@
 
 /* ================= DARK MODE ================= */
 :global(.dark) .navItem::after {
-  background: linear-gradient(90deg, #7c3aed 0%, #6d28d9 50%, #2e1065 100%);
+  background: #4e1a6b;
 }
 
 :global(.dark) .navItem::before {
-  background: linear-gradient(120deg, transparent, rgba(124,58,237,.6), transparent);
+  background: linear-gradient(120deg, transparent, rgba(78,26,107,.6), transparent);
 }
 
 /* ================= ANIMACIÓN ================= */
@@ -155,21 +155,18 @@
   overflow: hidden;
 }
 
-/* SOL */
 .sunWrapper {
   background: linear-gradient(135deg, #7dd3fc, #38bdf8);
   box-shadow: 0 0 18px rgba(56, 189, 248, 0.7);
   color: #facc15;
 }
 
-/* LUNA */
 .moonWrapper {
   background: linear-gradient(135deg, #180169, #0b48a8);
   box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
   color: #facc15;
 }
 
-/* ESTRELLAS */
 .star {
   position: absolute;
   width: 2px;

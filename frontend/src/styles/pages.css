@@ -8,16 +8,16 @@
 .parrafo-nosotros,
 .hero-extra,
 .stats-description {
-  line-height: 1.8;          /* más espacio entre líneas */
-  margin-bottom: 30px;       /* más separación abajo */
+  line-height: 1.8;
+  margin-bottom: 30px;
 }
 
 .hero-extra {
-  margin-top: 50px;          /* más espacio arriba del extra */
+  margin-top: 50px;
 }
 
 .servicio-card {
-  padding: 30px 25px;        /* más espacio interno en tarjetas */
+  padding: 30px 25px;
 }
 
 /* ======  IMÁGENES IGUALES Y CENTRADAS  ====== */
@@ -29,14 +29,14 @@
 .contacto-image img,
 .contenedor-frame-derecha img {
   width: 100%;
-  max-width: 520px;          /* mismo ancho máximo */
-  height: 350px;             /* mismo alto */
-  object-fit: cover;         /* sin deformar */
+  max-width: 520px;
+  height: 350px;
+  object-fit: cover;
   border-radius: 24px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  display: block;            /* elimina espacio inferior */
-  margin: 0 auto;            /* centra horizontalmente */
+  display: block;
+  margin: 0 auto;
 }
 
 .page-image img:hover,
@@ -59,7 +59,7 @@
   .contacto-image img,
   .contenedor-frame-derecha img {
     max-width: 100%;
-    height: 280px;           /* un poco más pequeño en móvil */
+    height: 280px;
   }
 }
 
@@ -73,8 +73,8 @@
 .parrafo-nosotros,
 .hero-extra,
 .stats-description {
-  line-height: 1.9;          /* más alto entre líneas */
-  margin-bottom: 35px;       /* más separación del siguiente bloque */
+  line-height: 1.9;
+  margin-bottom: 35px;
 }
 
 /* ======  MÁS ESPACIO ARRIBA/ABAJO DE BOTONES  ====== */
@@ -86,29 +86,72 @@
 .blog-btn,
 .contacto-btn,
 .btn-bravas-accion {
-  margin-top: 30px;          /* más espacio antes del botón */
-  margin-bottom: 35px;       /* más espacio después del botón */
+  margin-top: 30px;
+  margin-bottom: 35px;
+  background: #4e1a6b !important;
+  color: #ffffff !important;
+}
+
+.btn-cta:hover,
+.page-btn:hover,
+.marketing-btn:hover,
+.diseno-btn:hover,
+.servicios-btn:hover,
+.blog-btn:hover,
+.contacto-btn:hover,
+.btn-bravas-accion:hover {
+  background: #3d1454 !important;
 }
 
 /* ======  MÁS ESPACIO ENTRE SECCIONES  ====== */
 .hero-section {
-  padding-top: 120px;        /* más espacio arriba de la sección */
-  padding-bottom: 120px;     /* más espacio abajo de la sección */
+  padding-top: 120px;
+  padding-bottom: 120px;
+  background: #e8dcc2;
 }
 
 .servicios-section {
-  padding-top: 80px;        /* espacio arriba de la sección */
-  padding-bottom: 80px;     /* espacio abajo de la sección */
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
 .stats-section {
-  padding-top: 100px;        /* más espacio arriba de la sección */
-  padding-bottom: 100px;     /* más espacio abajo de la sección */
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background: #f5f0e8;
 }
 
 /* ======  MÁS ESPACIO DENTRO DE TARJETAS  ====== */
 .servicio-card {
-  padding: 35px 30px;        /* más espacio interno */
-  gap: 20px;                 /* más separación entre emoji/título/texto */
+  padding: 35px 30px;
+  gap: 20px;
+  border-top: 3px solid #4e1a6b;
 }
 
+/* ======  ACENTOS DORADOS  ====== */
+.stats-number,
+.highlight,
+.accent {
+  color: #eecb7c;
+}
+
+/* ======  SECCIONES CON FONDO VIOLETA  ====== */
+.cta-section,
+.proceso-section,
+[class*="cta-"],
+[class*="proceso-"] {
+  background: #4e1a6b !important;
+  color: #ffffff !important;
+}
+
+.cta-section h2,
+.cta-section h3,
+.proceso-section h2,
+.proceso-section h3 {
+  color: #ffffff !important;
+}
+
+.cta-section p,
+.proceso-section p {
+  color: #e8dcc2 !important;
+}

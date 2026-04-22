@@ -18,25 +18,25 @@ html, body {
 
 /* ===== VARIABLES POR DEFECTO ===== */
 .app-container {
-  --gradient-violeta: linear-gradient(90deg, #8b00ff, #ff1493);
-  --bg-primary: #fdf2f8;
-  --bg-secondary: #fce7f3;
-  --text-primary: #8b00ff;
+  --gradient-violeta: #4e1a6b;
+  --bg-primary: #e8dcc2;
+  --bg-secondary: #ddd0b0;
+  --text-primary: #4e1a6b;
   --card-bg: #ffffff;
   --card-text: #1f1f1f;
 }
 
 /* ===== MODO CLARO ===== */
 .app-container.light {
-  background: #fdf2f8;
+  background: #f5f0e8;
 }
 
 /* ===== MODO OSCURO ===== */
 .app-container.dark {
-  --gradient-violeta: linear-gradient(90deg, #2e1065, #6d28d9, #7c3aed);
+  --gradient-violeta: #4e1a6b;
   --bg-primary: #0f0f14;
   --bg-secondary: #161622;
-  --text-primary: #c084fc;
+  --text-primary: #eecb7c;
   --card-bg: #1e1e2e;
   --card-text: #f5f5f5;
   background: #0f0f14;
@@ -82,14 +82,14 @@ html, body {
   position: absolute;
   width: 100%;
   height: 2px;
-  background: var(--gradient-violeta);
+  background: #4e1a6b;
   left: 0;
   bottom: -5px;
 }
 
 /* ===== HERO ===== */
 .hero-section {
-  background: var(--bg-secondary);
+  background: #e8dcc2;
   padding: 100px 20px;
 }
 
@@ -104,9 +104,7 @@ html, body {
 
 .hero-title {
   font-size: 3.5rem;
-  background: var(--gradient-violeta);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #4e1a6b;
   font-weight: 800;
 }
 
@@ -115,7 +113,7 @@ html, body {
   padding: 14px 35px;
   border-radius: 50px;
   border: none;
-  background: var(--gradient-violeta);
+  background: #4e1a6b;
   color: white;
   font-weight: bold;
   cursor: pointer;

@@ -1,10 +1,11 @@
 /* ===== VARIABLES ===== */
 :root {
-  --purple-600: #9333ea;
-  --pink-600: #db2777;
-  --gradient-indigo: linear-gradient(90deg, #6f00ffe1, #f017de);
-  --bg-light: linear-gradient(135deg, #fef3f9 0%, #f8f0ff 100%);
-  --bg-dark: linear-gradient(135deg, #1a0a15 0%, #0f0a15 100%);
+  --purple-600: #4e1a6b;
+  --gold-500: #eecb7c;
+  --cream-100: #e8dcc2;
+  --gradient-indigo: #4e1a6b;
+  --bg-light: #f5f0e8;
+  --bg-dark: #0f0a15;
   --text-light: #111;
   --text-dark: #fff;
 }
@@ -37,7 +38,6 @@ body {
   background: #000;
 }
 
-/* ⚠️ CLAVE: NO forzar color global en textos */
 .app-container.light p,
 .app-container.light h1,
 .app-container.light h2,
@@ -75,6 +75,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: visible;
+  background: #e8dcc2;
 }
 
 .hero-container {
@@ -94,6 +95,7 @@ body {
 .hero-title {
   font-size: 3rem;
   font-weight: 700;
+  color: #4e1a6b;
 }
 
 .hero-subtitle {
@@ -109,13 +111,17 @@ body {
 /* ===== BOTÓN ===== */
 .btn-cta {
   margin-top: 1.5rem;
-  background: var(--gradient-indigo);
+  background: #4e1a6b;
   color: #fff;
   padding: 1rem 2rem;
   border-radius: 8px;
   border: none;
   font-weight: 600;
   cursor: pointer;
+}
+
+.btn-cta:hover {
+  background: #3d1454;
 }
 
 /* ===== SERVICIOS ===== */
@@ -137,6 +143,7 @@ body {
   padding: 2rem;
   border-radius: 16px;
   transition: transform 0.3s ease;
+  border-top: 3px solid #4e1a6b;
 }
 
 .app-container.dark .servicio-card {
@@ -151,6 +158,7 @@ body {
 /* ===== STATS ===== */
 .stats-section {
   padding: 5rem 2rem;
+  background: #e8dcc2;
 }
 
 .stats-container {
@@ -163,6 +171,7 @@ body {
 
 .stats-title {
   font-size: 2rem;
+  color: #4e1a6b;
 }
 
 .stats-description {
@@ -172,6 +181,7 @@ body {
 .stats-badge {
   margin-top: 1rem;
   font-weight: 600;
+  color: #eecb7c;
 }
 
 /* ===== NAV ===== */
@@ -187,7 +197,7 @@ body {
   position: absolute;
   inset: 0;
   width: 0;
-  background: var(--gradient-indigo);
+  background: #4e1a6b;
   z-index: -1;
   transition: width 0.3s ease;
   border-radius: 4px;
@@ -215,7 +225,7 @@ body {
 
 /* ===== SEARCH ===== */
 .search-highlight {
-  background: #ffe066;
+  background: #eecb7c;
   color: #111;
   padding: 0 2px;
   border-radius: 3px;
@@ -227,34 +237,29 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #8b00ff, #ff1493);
+  background: #4e1a6b;
   border-radius: 5px;
 }
 
-/* Fuerza color a los textos de los badges */
+/* ===== BADGES ===== */
 .app-container.light .hero-badges span,
-.app-container.dark  .hero-badges span {
-  color: #ffffff !important;   /* violeta oscuro */
+.app-container.dark .hero-badges span {
+  background-color: #4e1a6b;
+  color: #ffffff !important;
 }
 
 /* texto con emojis dentro de hero-extra */
 .hero-extra span {
-  color: #4c1d95 !important;   /* violeta oscuro */
+  color: #4e1a6b !important;
 }
 
-.app-container.light .hero-badges span,
-.app-container.dark  .hero-badges span {
-  background-color: #ee67b3; /* rosa muy claro */
-color: #4c1d95;           /* letra violeta oscuro */
-}
-
-/* fuerza gradient morado-rosa */
+/* botón CTA en sección CTA */
 .cta-section .btn-cta {
-  background: linear-gradient(90deg, #a855f7, #ec4899) !important;
+  background: #4e1a6b !important;
   color: #ffffff !important;
 }
 
-/* violeta-azul SIN rosa para modo oscuro */
+/* modo oscuro */
 .app-container.dark {
-  --gradient-indigo: linear-gradient(90deg, #2e1065 0%, #6d28d9 50%, #7c3aed 100%);
+  --gradient-indigo: #4e1a6b;
 }

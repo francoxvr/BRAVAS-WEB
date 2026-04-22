@@ -10,26 +10,28 @@
 /* ================= VARIABLES CSS ================= */
 :root {
   /* Colores principales */
-  --purple-600: #9333ea;
-  --purple-700: #7c3aed;
-  --purple-800: #6d28d9;
-  --purple-900: #581c87;
-  --purple-950: #2e1065;
-  --pink-600: #db2777;
-  --pink-500: #ec4899;
-  --violet-dark: #4c1d95;
-  --indigo-600: #6366f1;
-  --indigo-700: #5b21b6;
+  --purple-600: #4e1a6b;
+  --purple-700: #3d1454;
+  --purple-800: #2e0f3f;
+  --purple-900: #200a2d;
+  --purple-950: #120618;
+  --gold-500: #eecb7c;
+  --gold-600: #e0b85a;
+  --cream-100: #e8dcc2;
+  --cream-200: #ddd0b0;
+  --violet-dark: #4e1a6b;
+  --indigo-600: #4e1a6b;
+  --indigo-700: #3d1454;
   
-  /* Gradientes */
-  --gradient-primary: linear-gradient(90deg, #8b00ff, #ff1493);
-  --gradient-violeta: linear-gradient(135deg, #7c3aed, #a855f7);
-  --gradient-indigo: linear-gradient(90deg, #6366f1, #8b5cf6);
+  /* Gradientes → reemplazados por colores sólidos */
+  --gradient-primary: #4e1a6b;
+  --gradient-violeta: #4e1a6b;
+  --gradient-indigo: #4e1a6b;
   
   /* Backgrounds */
   --bg-primary: #ffffff;
-  --bg-secondary: #f9fafb;
-  --bg-hero-light: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+  --bg-secondary: #e8dcc2;
+  --bg-hero-light: #f5f0e8;
   
   /* Textos */
   --text-primary: #1a1a1a;
@@ -87,14 +89,14 @@ body {
 .app-container.dark {
   --bg-primary: #0f0f14;
   --bg-secondary: #1a1a25;
-  --bg-hero-light: linear-gradient(135deg, #1e1b4b, #312e81);
+  --bg-hero-light: #1a1025;
   --text-primary: #ffffff;
   --text-secondary: #e0e0e0;
   --text-muted: #999;
   --card-bg: #1e1e2e;
   --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
   --header-bg: rgba(0, 0, 0, 0.95);
-  --gradient-primary: linear-gradient(90deg, #2e1065 0%, #6d28d9 50%, #7c3aed 100%);
+  --gradient-primary: #4e1a6b;
   background-color: #0f0f14;
   color: #ffffff;
 }
@@ -132,7 +134,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #8b00ff, #ff1493);
+  background: #4e1a6b;
   border-radius: 5px;
 }
 
@@ -192,7 +194,7 @@ button {
   right: 30px;
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #25d366, #128c7e);
+  background: #25d366;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -203,7 +205,6 @@ button {
   animation: pulse-whatsapp 2s infinite;
 }
 
-/* Ícono de WhatsApp SIN aro blanco - ícono real */
 .whatsapp-float img {
   width: 32px;
   height: 32px;
@@ -214,13 +215,11 @@ button {
   filter: brightness(0) invert(1);
 }
 
-/* Hover */
 .whatsapp-float:hover {
   transform: scale(1.1);
   box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
 }
 
-/* Tooltip */
 .whatsapp-tooltip {
   position: absolute;
   right: 70px;
@@ -252,7 +251,6 @@ button {
   opacity: 1;
 }
 
-/* Animación pulso */
 @keyframes pulse-whatsapp {
   0% {
     box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
@@ -267,7 +265,6 @@ button {
   }
 }
 
-/* Ícono SVG de WhatsApp */
 .whatsapp-float svg {
   width: 32px;
   height: 32px;
@@ -277,14 +274,12 @@ button {
 
 /* ================= RESPONSIVE GLOBAL ================= */
 
-/* TABLET */
 @media (max-width: 1024px) {
   html {
     font-size: 15px;
   }
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
   html {
     font-size: 14px;
@@ -317,7 +312,6 @@ button {
   }
 }
 
-/* MOBILE PEQUEÑO */
 @media (max-width: 480px) {
   html {
     font-size: 13px;
@@ -337,7 +331,6 @@ button {
   }
 }
 
-/* DESKTOP GRANDE */
 @media (min-width: 1400px) {
   html {
     font-size: 17px;

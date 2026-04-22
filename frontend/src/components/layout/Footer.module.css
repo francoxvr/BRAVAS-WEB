@@ -1,5 +1,5 @@
 .mainFooter {
-  background: linear-gradient(135deg, #fce7f3, #f3e8ff);
+  background: #e8dcc2;
   padding: 15px 20px 0;
   margin-top: 0;
 }
@@ -21,16 +21,16 @@
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
-  border: 1px solid rgba(139, 0, 255, 0.1);
+  border: 1px solid rgba(78, 26, 107, 0.1);
 }
 
 .footerCard:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(139, 0, 255, 0.12);
+  box-shadow: 0 8px 20px rgba(78, 26, 107, 0.12);
 }
 
 .footerHeader {
-  background: var(--gradient-primary);
+  background: #4e1a6b;
   padding: 6px 14px;
   border-radius: 8px;
   color: white;
@@ -38,7 +38,7 @@
   font-weight: 800;
   margin-bottom: 10px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(139, 0, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(78, 26, 107, 0.25);
   letter-spacing: 0.5px;
 }
 
@@ -73,12 +73,12 @@
   height: 2px;
   bottom: -2px;
   left: 0;
-  background: var(--gradient-primary);
+  background: #4e1a6b;
   transition: width 0.3s ease;
 }
 
 .footerCard ul li a:hover {
-  color: var(--purple-600);
+  color: #4e1a6b;
   transform: translateX(4px);
 }
 
@@ -106,17 +106,18 @@
 }
 
 .contactIcon.email {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #4e1a6b;
   color: white;
 }
 
 .contactIcon.phone {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: white;
+  background: #eecb7c;
+  color: #4e1a6b;
 }
 
 .contactIcon.location {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: #e8dcc2;
+  border: 1px solid #4e1a6b;
 }
 
 .contactIcon:hover {
@@ -134,7 +135,7 @@
 }
 
 .contactItem a:hover {
-  color: var(--purple-600);
+  color: #4e1a6b;
 }
 
 /* Logo */
@@ -148,7 +149,7 @@
   width: 70px;
   height: 63px;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(139, 0, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(78, 26, 107, 0.15);
   transition: transform 0.3s ease;
 }
 
@@ -189,7 +190,7 @@
 
 /* ================= LEGAL FOOTER ================= */
 .footerLegal {
-  background: var(--gradient-primary);
+  background: #4e1a6b;
   padding: 15px 20px;
   margin: 0 -20px;
 }
@@ -269,7 +270,7 @@
 
 /* ================= DARK MODE ================= */
 :global(.app-container.dark) .mainFooter {
-  background: linear-gradient(135deg, #1a0d1f, #1e1430);
+  background: #1a0d1f;
 }
 
 /* ================= RESPONSIVE - TABLET ================= */
