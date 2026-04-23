@@ -10,7 +10,7 @@
 .headerScrolled {
   backdrop-filter: blur(8px);
   background: #e8dcc2;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(78, 26, 107, 0.15);
 }
 
 :global(.app-container.dark) .headerSticky {
@@ -120,7 +120,7 @@
   animation: navSheenPingPong 1.8s ease-in-out;
 }
 
-/* ================= DARK MODE ================= */
+/* ================= DARK MODE NAV ================= */
 :global(.dark) .navItem::after {
   background: #4e1a6b;
 }
@@ -138,55 +138,35 @@
 
 /* ================= THEME TOGGLE ================= */
 .themeToggle {
-  background: none;
-  border: none;
+  background: #4e1a6b;
+  border: 1px solid #4e1a6b;
   cursor: pointer;
-  padding: 0;
-}
-
-.themeIconWrapper {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
+  padding: 7px 9px;
+  border-radius: 8px;
+  color: #eecb7c;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
+  transition: all 0.2s ease;
+  flex: 0 0 auto;
+  margin-left: 4px;
 }
 
-.sunWrapper {
-  background: linear-gradient(135deg, #7dd3fc, #38bdf8);
-  box-shadow: 0 0 18px rgba(56, 189, 248, 0.7);
-  color: #facc15;
+.themeToggle:hover {
+  background: #3d1454;
+  color: #eecb7c;
 }
 
-.moonWrapper {
-  background: linear-gradient(135deg, #180169, #0b48a8);
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
-  color: #facc15;
+:global(.app-container.dark) .themeToggle {
+  background: #eecb7c;
+  border-color: #eecb7c;
+  color: #4e1a6b;
 }
 
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  animation: twinkle 1.5s infinite;
+:global(.app-container.dark) .themeToggle:hover {
+  background: #e0b85a;
+  color: #4e1a6b;
 }
-
-@keyframes twinkle {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-.star1 { top: 6px; right: 10px; }
-.star2 { bottom: 8px; left: 8px; }
-.star3 { top: 18px; left: 12px; }
-.star4 { top: 10px; left: 6px; }
-.star5 { bottom: 6px; right: 12px; }
-.star6 { top: 4px; right: 6px; }
 
 /* ================= RESPONSIVE - TABLET ================= */
 @media (max-width: 1024px) {
@@ -209,9 +189,8 @@
     padding: 7px 12px;
   }
 
-  .themeIconWrapper {
-    width: 38px;
-    height: 38px;
+  .themeToggle {
+    padding: 6px 8px;
   }
 }
 
@@ -252,9 +231,9 @@
     padding: 6px 10px;
   }
 
-  .themeIconWrapper {
-    width: 36px;
-    height: 36px;
+  .themeToggle {
+    padding: 5px 7px;
+    margin-left: auto;
   }
 }
 
@@ -279,8 +258,7 @@
     padding: 5px 8px;
   }
 
-  .themeIconWrapper {
-    width: 32px;
-    height: 32px;
+  .themeToggle {
+    padding: 5px 6px;
   }
 }

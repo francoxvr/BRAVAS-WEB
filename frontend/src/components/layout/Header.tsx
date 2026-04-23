@@ -40,30 +40,6 @@ export default function Header() {
               className={styles.logoImg}
             />
           </Link>
-
-          <button
-            onClick={toggleTheme}
-            className={styles.themeToggle}
-            aria-label="Cambiar tema"
-          >
-            {darkMode ? (
-              <div className={`${styles.themeIconWrapper} ${styles.sunWrapper}`}>
-                <Sun size={22} />
-              </div>
-            ) : (
-              <div
-                className={`${styles.themeIconWrapper} ${styles.moonWrapper}`}
-              >
-                <Moon size={20} />
-                <span className={`${styles.star} ${styles.star1}`} />
-                <span className={`${styles.star} ${styles.star2}`} />
-                <span className={`${styles.star} ${styles.star3}`} />
-                <span className={`${styles.star} ${styles.star4}`} />
-                <span className={`${styles.star} ${styles.star5}`} />
-                <span className={`${styles.star} ${styles.star6}`} />
-              </div>
-            )}
-          </button>
         </div>
 
         <nav className={styles.navMenu} aria-label="Navegación principal">
@@ -72,6 +48,13 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
+          <button
+            onClick={toggleTheme}
+            className={styles.themeToggle}
+            aria-label="Cambiar tema"
+          >
+            {darkMode ? <Sun size={18} fill="#4e1a6b" stroke="#4e1a6b" /> : <Moon size={18} fill="#eecb7c" stroke="#eecb7c" />}
+          </button>
         </nav>
       </div>
     </header>

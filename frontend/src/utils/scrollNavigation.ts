@@ -1,13 +1,18 @@
 const SCROLL_MARGIN = 12;
-const VISUAL_OFFSET = -105;
 const HOME_SECTION_IDS = ['home', 'enfoque', 'crecimiento', 'proceso', 'innovacion'];
 
 export type ScrollAnchor = {
   id: string;
-  element: HTMLElement;
+  element: HTMLElement; 
 };
 
+function isBrowser() {
+  return typeof window !== 'undefined';
+}
+
 export function getHeaderOffset() {
+  if (!isBrowser()) return 0;
+
   const header = document.querySelector(
     '[data-app-header="true"]'
   ) as HTMLElement | null;
@@ -16,47 +21,36 @@ export function getHeaderOffset() {
 }
 
 function getScrollBehavior(): ScrollBehavior {
+  if (!isBrowser()) return 'auto';
+
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
     ? 'auto'
     : 'smooth';
 }
 
+function getTargetElement(element: HTMLElement) {
+  const target = element.querySelector('[id$="-target"]');
+  return target instanceof HTMLElement ? target : element;
+}
+
 function getAnchorTop(element: HTMLElement) {
-  return window.scrollY + element.getBoundingClientRect().top;
-}
+  if (!isBrowser()) return 0;
 
-function getHomeAnchors() {
-  return HOME_SECTION_IDS.map((id) => document.getElementById(id)).filter(
-    (element): element is HTMLElement => element instanceof HTMLElement
-  );
-}
-
-function getElementMarginTop(element: HTMLElement) {
-  const marginTop = window.getComputedStyle(element).marginTop;
-  return Number.parseFloat(marginTop || '0') || 0;
+  const target = getTargetElement(element);
+  return window.scrollY + target.getBoundingClientRect().top;
 }
 
 export function getScrollAnchors() {
-  const anchors: ScrollAnchor[] = [];
-  const homeAnchors = getHomeAnchors();
+  if (!isBrowser()) return [];
 
-  if (homeAnchors.length > 0) {
-    homeAnchors.forEach((element, index) => {
-      anchors.push({
-        id: element.id || `home-anchor-${index}`,
-        element,
-      });
-    });
-  } else {
-    document.querySelectorAll('main section[id]').forEach((section, index) => {
-      if (section instanceof HTMLElement) {
-        anchors.push({
-          id: section.id || `section-${index}`,
-          element: section,
-        });
-      }
-    });
-  }
+  const anchors: ScrollAnchor[] = [];
+
+  HOME_SECTION_IDS.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      anchors.push({ id, element: el });
+    }
+  });
 
   const footer = document.querySelector('footer') as HTMLElement | null;
   if (footer) {
@@ -70,16 +64,16 @@ export function getScrollAnchors() {
 }
 
 export function getCurrentAnchorIndex(anchors: ScrollAnchor[]) {
-  if (!anchors.length) return -1;
+  if (!isBrowser() || !anchors.length) return -1;
 
   const headerOffset = getHeaderOffset();
-  const viewportCenter = window.scrollY + headerOffset + (window.innerHeight - headerOffset) / 2;
+  const referenceTop = window.scrollY + headerOffset + 10;
 
   let currentIndex = 0;
 
   anchors.forEach((anchor, index) => {
-    const anchorTop = getAnchorTop(anchor.element) - getElementMarginTop(anchor.element);
-    if (anchorTop <= viewportCenter) {
+    const top = getAnchorTop(anchor.element);
+    if (top <= referenceTop) {
       currentIndex = index;
     }
   });
@@ -88,21 +82,32 @@ export function getCurrentAnchorIndex(anchors: ScrollAnchor[]) {
 }
 
 export function scrollToElement(element: HTMLElement) {
-  const isFooter = element.tagName.toLowerCase() === 'footer';
+  if (!isBrowser()) return;
 
-  if (isFooter) {
+  // 🔥 FIX: si es HOME, ir SIEMPRE arriba de todo
+  if (element.id === 'home') {
     window.scrollTo({
-      top: Math.max(0, getAnchorTop(element) - 24),
+      top: 0,
       behavior: getScrollBehavior(),
     });
     return;
   }
 
-  // Posicionar el top de la sección justo debajo del header
+  const isFooter = element.tagName.toLowerCase() === 'footer';
+
+  if (isFooter) {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: getScrollBehavior(),
+    });
+    return;
+  }
+
   const elementTop = getAnchorTop(element);
   const headerOffset = getHeaderOffset();
 
-  const targetTop = elementTop - headerOffset - VISUAL_OFFSET;
+  // 🔥 OFFSET FINAL AJUSTADO
+  const targetTop = elementTop - headerOffset + 45;
 
   window.scrollTo({
     top: Math.max(0, targetTop),

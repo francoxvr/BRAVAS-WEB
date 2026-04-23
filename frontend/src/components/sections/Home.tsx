@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { initScrollAnimations } from '@/utils/scrollAnimations';
 import styles from './Home.module.css';
 
 export default function Home() {
@@ -67,11 +66,6 @@ export default function Home() {
     '/assets/images/marketing/estadistica1.png',
     '/assets/images/marketing/innovamos.png',
   ];
-
-  useEffect(() => {
-    const cleanup = initScrollAnimations();
-    return cleanup;
-  }, []);
 
   // Carrusel automático hero - cambia cada 6 segundos
   useEffect(() => {
@@ -220,7 +214,7 @@ export default function Home() {
       </div>
 
       {/* SEGUNDA SECCIÓN - ENFOQUE INTEGRAL */}
-      <section id="enfoque" className={styles.enfoqueSection}>
+      <section id="enfoque" data-animate className={styles.enfoqueSection}>
         <div className={styles.enfoqueHeader} id="enfoque-target">
           <h2 className={styles.enfoqueTitle}>Nuestro Enfoque</h2>
           <p className={styles.enfoqueSubtitle}>

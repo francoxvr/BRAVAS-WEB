@@ -16,7 +16,7 @@ interface ServicioProps {
 
 function Servicio({ icon, title, children }: ServicioProps) {
   return (
-    <div className={styles.servicioCard}>
+    <div className={styles.servicioCard} data-animate>
       <div className={styles.servicioIcon}>{icon}</div>
       <h3>{title}</h3>
       <p>{children}</p>
@@ -28,7 +28,7 @@ export default function Servicios() {
   return (
     <>
       {/* HERO */}
-      <section className={styles.heroSection} id="servicios">
+      <section className={styles.heroSection} id="servicios" data-animate>
         <div className={styles.heroContainer}>
           <div className={styles.heroText}>
             <h1 className={styles.heroTitle}>Servicios</h1>
@@ -57,7 +57,7 @@ export default function Servicios() {
       </section>
 
       {/* LISTADO DE SERVICIOS */}
-      <section className={styles.serviciosSection}>
+      <section className={styles.serviciosSection} data-animate>
         <div className={styles.serviciosGrid}>
           <Servicio icon={<TrendingUp size={44} />} title="Marketing Digital">
             Estrategias personalizadas para aumentar ventas y visibilidad online.
@@ -86,7 +86,7 @@ export default function Servicios() {
       </section>
 
       {/* CTA FINAL */}
-      <section className={styles.statsSection}>
+      <section className={styles.statsSection} data-animate>
         <div className={styles.statsContainer}>
           <div className={styles.statsContent}>
             <h2 className={styles.statsTitle}>

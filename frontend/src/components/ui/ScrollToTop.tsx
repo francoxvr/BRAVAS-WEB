@@ -35,12 +35,11 @@ export default function ScrollToTop() {
 
   const handleClick = () => {
     const anchors = getScrollAnchors();
-    // Al subir siempre recalculamos desde el centro real — no usamos pendingIndex
-    // para no depender del índice adelantado por ScrollToBottom
     const current = getCurrentAnchorIndex(anchors);
     const prevIndex = current - 1;
 
     if (prevIndex < 0) {
+      // Scroll directo al top — el header es sticky así que queda visible
       window.scrollTo({ top: 0, behavior: 'smooth' });
       pendingIndexRef.current = 0;
       setVisible(false);

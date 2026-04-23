@@ -352,3 +352,13 @@ input, textarea, select {
     justify-content: center;
   }
 }
+
+[data-animate] {
+  opacity: 1;
+  transform: none;
+}
+
+[data-animate].animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}

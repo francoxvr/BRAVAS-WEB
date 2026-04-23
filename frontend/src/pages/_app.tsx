@@ -15,8 +15,10 @@ import Footer from '@/components/layout/Footer'
 import ScrollToTop from '@/components/ui/ScrollToTop'
 import ScrollToBottom from '@/components/ui/ScrollToBottom'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
+import { useScrollAnimation } from "@/utils/useScrollAnimation";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  useScrollAnimation();
   return (
     <>
       <Head>
