@@ -40,6 +40,49 @@
 .logoLink {
   display: inline-flex;
   align-items: center;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.logoLink:hover {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 18px rgba(255, 255, 255, 0.18);
+}
+
+.logoLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #4e1a6b;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  z-index: -1;
+}
+
+.logoLink::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.55), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.logoLink:hover::after {
+  transform: scaleX(1);
+}
+
+.logoLink:hover::before {
+  animation: navSheenPingPong 1.8s ease-in-out;
 }
 
 /* ================= LOGO ================= */
@@ -49,11 +92,17 @@
   border-radius: 12px;
   filter: brightness(1.15) contrast(1.2);
   box-shadow: 0 4px 12px rgba(78, 26, 107, 0.2);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 0;
 }
 
 .logoImg:hover {
   transform: scale(1.1);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 18px rgba(255, 255, 255, 0.18),
+    0 4px 12px rgba(78, 26, 107, 0.2);
 }
 
 /* ================= NAV ================= */
@@ -78,6 +127,10 @@
   white-space: nowrap;
   flex: 0 0 auto;
   transition: color 0.3s ease, transform 0.25s ease;
+}
+
+:global(.app-container.dark) .navItem {
+  color: #eecb7c;
 }
 
 /* ===== FILL ===== */
@@ -126,7 +179,14 @@
 }
 
 :global(.dark) .navItem::before {
-  background: linear-gradient(120deg, transparent, rgba(78,26,107,.6), transparent);
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.55), transparent);
+}
+
+:global(.app-container.dark) .navItem:hover {
+  color: #ffffff;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 18px rgba(255, 255, 255, 0.18);
 }
 
 /* ================= ANIMACIÓN ================= */

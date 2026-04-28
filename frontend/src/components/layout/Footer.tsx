@@ -3,8 +3,8 @@ import { Mail, Phone } from 'lucide-react';
 import styles from './Footer.module.css';
 
 const serviceLinks = [
-  { href: '/marketing', label: 'Marketing Digital' },
-  { href: '/diseno-web', label: 'Diseño Web' },
+  { href: '/servicios', label: 'Marketing Digital' },
+  { href: '/servicios', label: 'Diseño Web' },
   { href: '/servicios', label: 'Publicidad Digital' },
   { href: '/servicios', label: 'Redes Sociales' },
   { href: '/servicios', label: 'SEO & Analytics' },
@@ -12,7 +12,7 @@ const serviceLinks = [
 
 const companyLinks = [
   { href: '/nosotros', label: 'Nosotros' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/#enfoque', label: 'Nuestro Enfoque' },
   { href: '/contacto', label: 'Contacto' },
   { href: '/servicios', label: 'Portafolio' },
   { href: '/servicios', label: 'Casos de Éxito' },
@@ -138,9 +138,9 @@ export default function Footer() {
       <div className={styles.footerLegal}>
         <div className={styles.footerLegalContent}>
           <div className={styles.footerLinks}>
-            <a href="#privacidad">Política de Privacidad</a>
+            <Link href="/contacto">Política de Privacidad</Link>
             <span className={styles.separator}>•</span>
-            <a href="#cookies">Cookies</a>
+            <Link href="/contacto">Cookies</Link>
           </div>
 
           <div className={styles.copyrightSection}>
@@ -151,9 +151,9 @@ export default function Footer() {
           </div>
 
           <div className={styles.footerLinks}>
-            <a href="#terminos">Términos y Condiciones</a>
+            <Link href="/contacto">Términos y Condiciones</Link>
             <span className={styles.separator}>•</span>
-            <a href="#sitemap">Mapa del Sitio</a>
+            <Link href="/#home">Mapa del Sitio</Link>
           </div>
         </div>
       </div>

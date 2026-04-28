@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from './Home.module.css';
 
@@ -9,8 +10,7 @@ export default function Home() {
   const [currentInnovacion1Index, setCurrentInnovacion1Index] = useState(0);
   const [currentInnovacion2Index, setCurrentInnovacion2Index] = useState(0);
   const [currentInnovacion3Index, setCurrentInnovacion3Index] = useState(0);
-  
-  // Array de imágenes del carrusel hero
+
   const carouselImages = [
     '/assets/images/marketing/marketing1.png',
     '/assets/images/marketing/marketing3.png',
@@ -33,25 +33,21 @@ export default function Home() {
     '/assets/images/marketing/redes4.png',
   ];
 
-  // Array de imágenes para la card de Estrategia Digital
   const estrategiaImages = [
     '/assets/images/marketing/estadistica2.png',
     '/assets/images/marketing/estrategia.png',
   ];
 
-  // Array de imágenes para la card de Análisis de Datos
   const analisisImages = [
     '/assets/images/marketing/marketing1.png',
     '/assets/images/marketing/analisis.png',
   ];
 
-  // Array de imágenes para la card de Crecimiento Sostenible
   const crecimientoImages = [
     '/assets/images/marketing/crecimiento.png',
     '/assets/images/marketing/innovamos1.png',
   ];
 
-  // Arrays de imágenes para la sección de Innovación
   const innovacion1Images = [
     '/assets/images/marketing/marketing10.jpg',
     '/assets/images/marketing/marketing14.png',
@@ -67,78 +63,57 @@ export default function Home() {
     '/assets/images/marketing/innovamos.png',
   ];
 
-  // Carrusel automático hero - cambia cada 6 segundos
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
-        (prevIndex + 1) % carouselImages.length
-      );
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
     }, 6000);
 
     return () => clearInterval(interval);
   }, [carouselImages.length]);
 
-  // Carrusel automático para Estrategia Digital - cambia cada 5 segundos
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentEstrategiaIndex((prevIndex) => 
-        (prevIndex + 1) % estrategiaImages.length
-      );
+      setCurrentEstrategiaIndex((prevIndex) => (prevIndex + 1) % estrategiaImages.length);
     }, 5000);
 
     return () => clearInterval(interval);
   }, [estrategiaImages.length]);
 
-  // Carrusel automático para Análisis de Datos - cambia cada 5 segundos
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentAnalisisIndex((prevIndex) => 
-        (prevIndex + 1) % analisisImages.length
-      );
+      setCurrentAnalisisIndex((prevIndex) => (prevIndex + 1) % analisisImages.length);
     }, 5000);
 
     return () => clearInterval(interval);
   }, [analisisImages.length]);
 
-  // Carrusel automático para Crecimiento Sostenible - cambia cada 5 segundos
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentCrecimientoIndex((prevIndex) => 
-        (prevIndex + 1) % crecimientoImages.length
-      );
+      setCurrentCrecimientoIndex((prevIndex) => (prevIndex + 1) % crecimientoImages.length);
     }, 5000);
 
     return () => clearInterval(interval);
   }, [crecimientoImages.length]);
 
-  // Carrusel automático para Innovación Imagen 1 - cambia cada 5 segundos
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentInnovacion1Index((prevIndex) => 
-        (prevIndex + 1) % innovacion1Images.length
-      );
+      setCurrentInnovacion1Index((prevIndex) => (prevIndex + 1) % innovacion1Images.length);
     }, 5000);
 
     return () => clearInterval(interval);
   }, [innovacion1Images.length]);
 
-  // Carrusel automático para Innovación Imagen 2 - cambia cada 5 segundos
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentInnovacion2Index((prevIndex) => 
-        (prevIndex + 1) % innovacion2Images.length
-      );
+      setCurrentInnovacion2Index((prevIndex) => (prevIndex + 1) % innovacion2Images.length);
     }, 5000);
 
     return () => clearInterval(interval);
   }, [innovacion2Images.length]);
 
-  // Carrusel automático para Innovación Imagen 3 - cambia cada 5 segundos
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentInnovacion3Index((prevIndex) => 
-        (prevIndex + 1) % innovacion3Images.length
-      );
+      setCurrentInnovacion3Index((prevIndex) => (prevIndex + 1) % innovacion3Images.length);
     }, 5000);
 
     return () => clearInterval(interval);
@@ -146,11 +121,9 @@ export default function Home() {
 
   return (
     <>
-      {/* PRIMERA SECCIÓN - HERO */}
       <div className={styles.heroWrapper}>
         <section className={styles.heroSection} id="home">
           <div className={styles.heroContainer}>
-            {/* TEXTO */}
             <div className={styles.heroText} id="home-target">
               <div className={styles.heroTitleBox}>
                 <h1 className={styles.heroBrand}>BRAVAS</h1>
@@ -162,27 +135,23 @@ export default function Home() {
                 hacen brillar tu marca.
               </p>
 
-              {/* BOTÓN CTA */}
-              <button className={styles.btnCta}>
+              <Link href="/contacto" className={styles.btnCta}>
                 Impulsa tu Marca Ahora
-              </button>
+              </Link>
 
-              {/* SERVICIOS (HIGHLIGHT) */}
               <div className={styles.heroServicesHighlight}>
                 <span>Estrategia Digital</span>
-                <i>·</i>
+                <i>•</i>
                 <span>Branding</span>
-                <i>·</i>
+                <i>•</i>
                 <span>Performance Ads</span>
               </div>
             </div>
 
-            {/* Placeholder grid */}
             <div className={styles.heroImagePlaceholder}></div>
           </div>
         </section>
 
-        {/* CARRUSEL DE IMÁGENES */}
         <div className={styles.heroImageWrapper}>
           <div className={styles.heroImageCard}>
             {carouselImages.map((image, index) => (
@@ -195,8 +164,7 @@ export default function Home() {
                 }`}
               />
             ))}
-            
-            {/* Indicadores del carrusel */}
+
             <div className={styles.carouselIndicators}>
               {carouselImages.map((_, index) => (
                 <button
@@ -213,7 +181,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* SEGUNDA SECCIÓN - ENFOQUE INTEGRAL */}
       <section id="enfoque" data-animate className={styles.enfoqueSection}>
         <div className={styles.enfoqueHeader} id="enfoque-target">
           <h2 className={styles.enfoqueTitle}>Nuestro Enfoque</h2>
@@ -223,7 +190,6 @@ export default function Home() {
         </div>
 
         <div className={styles.cardsGrid}>
-          {/* Card 1 - Estrategia */}
           <div className={`${styles.serviceCard} ${styles.card1}`}>
             <div className={styles.cardIcon}>🎯</div>
             <h3 className={styles.cardTitle}>Estrategia Digital</h3>
@@ -232,7 +198,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Card 2 - Branding */}
           <div className={`${styles.serviceCard} ${styles.card2}`}>
             <div className={styles.cardIcon}>✨</div>
             <h3 className={styles.cardTitle}>Branding & Identidad</h3>
@@ -241,7 +206,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Card 3 - Performance */}
           <div className={`${styles.serviceCard} ${styles.card3}`}>
             <div className={styles.cardIcon}>🚀</div>
             <h3 className={styles.cardTitle}>Performance Ads</h3>
@@ -250,7 +214,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Card 4 - Contenido */}
           <div className={`${styles.serviceCard} ${styles.card4}`}>
             <div className={styles.cardIcon}>💡</div>
             <h3 className={styles.cardTitle}>Contenido Creativo</h3>
@@ -259,7 +222,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Card 5 - Analítica */}
           <div className={`${styles.serviceCard} ${styles.card5}`}>
             <div className={styles.cardIcon}>📊</div>
             <h3 className={styles.cardTitle}>Analítica & Métricas</h3>
@@ -268,7 +230,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Card 6 - Growth */}
           <div className={`${styles.serviceCard} ${styles.card6}`}>
             <div className={styles.cardIcon}>📈</div>
             <h3 className={styles.cardTitle}>Growth Marketing</h3>
@@ -279,9 +240,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TERCERA SECCIÓN - CRECIMIENTO DIGITAL */}
       <section id="crecimiento" className={styles.crecimientoSection}>
-        {/* Header */}
         <div className={styles.crecimientoHeader} id="crecimiento-target">
           <h2 className={styles.crecimientoTitle}>
             Impulsamos el crecimiento de tu negocio
@@ -291,9 +250,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Grid de Cards */}
         <div className={styles.crecimientoGrid}>
-          {/* Card 1 - Estrategia Digital con CARRUSEL */}
           <div className={styles.crecimientoCard}>
             <div className={styles.crecimientoCardImage}>
               {estrategiaImages.map((image, index) => (
@@ -315,7 +272,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 2 - Análisis de Datos con CARRUSEL */}
           <div className={styles.crecimientoCard}>
             <div className={styles.crecimientoCardImage}>
               {analisisImages.map((image, index) => (
@@ -337,7 +293,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Card 3 - Crecimiento Sostenible con CARRUSEL */}
           <div className={styles.crecimientoCard}>
             <div className={styles.crecimientoCardImage}>
               {crecimientoImages.map((image, index) => (
@@ -361,9 +316,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CUARTA SECCIÓN - PROCESO DE TRABAJO */}
       <section id="proceso" className={styles.procesoSection}>
-        {/* Header */}
         <div className={styles.procesoHeader} id="proceso-target">
           <h2 className={styles.procesoTitle}>
             Nuestro Proceso de Trabajo
@@ -373,9 +326,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Timeline horizontal */}
         <div className={styles.procesoTimeline}>
-          {/* Paso 1 */}
           <div className={styles.procesoStep}>
             <div className={styles.procesoNumber}>1</div>
             <h3 className={styles.procesoStepTitle}>Análisis & Estrategia</h3>
@@ -384,7 +335,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Paso 2 */}
           <div className={styles.procesoStep}>
             <div className={styles.procesoNumber}>2</div>
             <h3 className={styles.procesoStepTitle}>Diseño & Creatividad</h3>
@@ -393,7 +343,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Paso 3 */}
           <div className={styles.procesoStep}>
             <div className={styles.procesoNumber}>3</div>
             <h3 className={styles.procesoStepTitle}>Implementación</h3>
@@ -402,7 +351,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Paso 4 */}
           <div className={styles.procesoStep}>
             <div className={styles.procesoNumber}>4</div>
             <h3 className={styles.procesoStepTitle}>Optimización</h3>
@@ -413,9 +361,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* QUINTA SECCIÓN - INNOVACIÓN CONSTANTE */}
       <section id="innovacion" className={styles.innovacionSection}>
-        {/* Header */}
         <div className={styles.innovacionHeader} id="innovacion-target">
           <h2 className={styles.innovacionHeaderTitle}>
             Innovación Constante
@@ -426,11 +372,8 @@ export default function Home() {
         </div>
 
         <div className={styles.innovacionContainer}>
-          {/* Columna izquierda - Features */}
           <div className={styles.innovacionContent}>
-            {/* Grid de características (6 cards) */}
             <div className={styles.innovacionFeatures}>
-              {/* Feature 1 - Transformación Digital */}
               <div className={styles.innovacionFeature}>
                 <div className={styles.featureIcon}>🚀</div>
                 <div className={styles.featureText}>
@@ -441,7 +384,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Feature 2 */}
               <div className={styles.innovacionFeature}>
                 <div className={styles.featureIcon}>📊</div>
                 <div className={styles.featureText}>
@@ -452,7 +394,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Feature 3 */}
               <div className={styles.innovacionFeature}>
                 <div className={styles.featureIcon}>💡</div>
                 <div className={styles.featureText}>
@@ -463,7 +404,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Feature 4 */}
               <div className={styles.innovacionFeature}>
                 <div className={styles.featureIcon}>📈</div>
                 <div className={styles.featureText}>
@@ -474,7 +414,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Feature 5 */}
               <div className={styles.innovacionFeature}>
                 <div className={styles.featureIcon}>🎯</div>
                 <div className={styles.featureText}>
@@ -485,7 +424,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Feature 6 - Card a lo largo */}
               <div className={styles.innovacionFeature}>
                 <div className={styles.featureIcon}>⚡</div>
                 <div className={styles.featureText}>
@@ -498,10 +436,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Columna derecha - Grid de imágenes con CARRUSELES */}
           <div className={styles.innovacionImages}>
             <div className={styles.imageGrid}>
-              {/* Imagen 1 - Carrusel */}
               <div className={styles.gridImage}>
                 {innovacion1Images.map((image, index) => (
                   <img
@@ -514,8 +450,7 @@ export default function Home() {
                   />
                 ))}
               </div>
-              
-              {/* Imagen 2 - Carrusel */}
+
               <div className={styles.gridImage}>
                 {innovacion2Images.map((image, index) => (
                   <img
@@ -528,8 +463,7 @@ export default function Home() {
                   />
                 ))}
               </div>
-              
-              {/* Imagen 3 - Carrusel */}
+
               <div className={styles.gridImage}>
                 {innovacion3Images.map((image, index) => (
                   <img

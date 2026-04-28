@@ -11,14 +11,29 @@ export default function Contacto() {
   });
   const [enviado, setEnviado] = useState(false);
 
-  
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const subject = encodeURIComponent(
+      `Consulta de ${formData.nombre} sobre ${formData.servicio || 'Bravas Marketing'}`
+    );
+    const body = encodeURIComponent(
+      [
+        `Nombre: ${formData.nombre}`,
+        `Email: ${formData.email}`,
+        `Teléfono: ${formData.telefono || 'No informado'}`,
+        `Servicio: ${formData.servicio || 'No especificado'}`,
+        '',
+        'Mensaje:',
+        formData.mensaje,
+      ].join('\n')
+    );
+
+    window.location.href = `mailto:info@bravas.com?subject=${subject}&body=${body}`;
     setEnviado(true);
     setTimeout(() => setEnviado(false), 4000);
     setFormData({ nombre: '', email: '', telefono: '', servicio: '', mensaje: '' });
@@ -26,7 +41,6 @@ export default function Contacto() {
 
   return (
     <>
-      {/* HERO */}
       <section className={styles.heroSection}>
         <div className={styles.heroContainer}>
           <div className={styles.heroText}>
@@ -34,7 +48,7 @@ export default function Contacto() {
               Hablemos de tu <span className={styles.heroTitleAccent}>Proyecto</span>
             </h1>
             <p className={styles.heroSubtitle}>
-              Estamos listos para transformar tu presencia digital. Contanos qué necesitás y te respondemos en menos de 24hs.
+              Estamos listos para transformar tu presencia digital. Contanos qué necesitás y te respondemos en menos de 24 hs.
             </p>
             <div className={styles.heroStats}>
               <div className={styles.heroStat}>
@@ -54,7 +68,6 @@ export default function Contacto() {
         </div>
       </section>
 
-      {/* SECCIÓN FORMULARIO */}
       <section className={styles.contactoSection}>
         <div className={styles.contactoHeader}>
           <h2 className={styles.contactoTitle}>Contactanos</h2>
@@ -64,11 +77,10 @@ export default function Contacto() {
         </div>
 
         <div className={styles.contactoGrid}>
-          {/* FORMULARIO */}
           <div className={styles.formContainer}>
             {enviado && (
               <div className={styles.successMessage}>
-                ✅ ¡Mensaje enviado! Te contactamos pronto.
+                Abrimos tu app de correo para que envíes el mensaje.
               </div>
             )}
             <form onSubmit={handleSubmit} className={styles.form}>
@@ -145,12 +157,11 @@ export default function Contacto() {
               </div>
 
               <button type="submit" className={styles.submitBtn}>
-                Enviar mensaje 🚀
+                Enviar mensaje
               </button>
             </form>
           </div>
 
-          {/* INFO DE CONTACTO */}
           <div className={styles.infoContainer}>
             <div className={styles.infoCard}>
               <div className={styles.infoHeader}>
@@ -193,7 +204,6 @@ export default function Contacto() {
               </div>
             </div>
 
-            {/* CARDS DE SERVICIOS RÁPIDOS */}
             <div className={styles.quickServices}>
               <h4 className={styles.quickTitle}>¿Qué podemos hacer por vos?</h4>
               <div className={styles.quickGrid}>

@@ -53,7 +53,11 @@ export default function Header() {
             className={styles.themeToggle}
             aria-label="Cambiar tema"
           >
-            {darkMode ? <Sun size={18} fill="#4e1a6b" stroke="#4e1a6b" /> : <Moon size={18} fill="#eecb7c" stroke="#eecb7c" />}
+            {darkMode ? (
+              <Sun size={18} fill="#4e1a6b" stroke="#4e1a6b" />
+            ) : (
+              <Moon size={18} fill="#eecb7c" stroke="#eecb7c" />
+            )}
           </button>
         </nav>
       </div>

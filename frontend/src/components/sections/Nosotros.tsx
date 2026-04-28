@@ -1,10 +1,10 @@
+import Link from 'next/link';
 import { Target, TrendingUp, Lightbulb, Users, Crosshair, BarChart } from 'lucide-react';
 import styles from './Nosotros.module.css';
 
 export default function Nosotros() {
   return (
     <>
-      {/* HERO */}
       <section className={styles.heroSection} id="nosotros">
         <div className={styles.heroContainer}>
           <div className={styles.heroText}>
@@ -15,12 +15,12 @@ export default function Nosotros() {
               con hacer brillar tu marca y llevarla al siguiente nivel.
             </p>
 
-            <button className={styles.btnCta}>
+            <Link href="/contacto" className={styles.btnCta}>
               Conocer nuestro equipo
-            </button>
+            </Link>
 
             <p className={styles.heroExtra}>
-              🚀 Experiencia · 📈 Resultados · 👥 Compromiso
+              Experiencia • Resultados • Compromiso
             </p>
           </div>
 
@@ -34,7 +34,6 @@ export default function Nosotros() {
         </div>
       </section>
 
-      {/* VALORES */}
       <section className={styles.valoresSection}>
         <div className={styles.valoresHeader}>
           <h2 className={styles.valoresTitle}>Nuestros Valores</h2>
@@ -82,7 +81,6 @@ export default function Nosotros() {
         </div>
       </section>
 
-      {/* STATS */}
       <section className={styles.statsSection}>
         <div className={styles.statsContainer}>
           <div className={styles.statsImage}>
@@ -105,11 +103,11 @@ export default function Nosotros() {
             </p>
 
             <div className={styles.statsBadge}>
-              🚀 +92% de satisfacción de clientes
+              +92% de satisfacción de clientes
             </div>
 
             <div className={styles.statsBadge}>
-              📈 +150 proyectos exitosos
+              +150 proyectos exitosos
             </div>
           </div>
         </div>
