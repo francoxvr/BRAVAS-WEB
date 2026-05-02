@@ -13,10 +13,6 @@ const ThemeContext = createContext<ThemeContextType>({
 export const useTheme = () => useContext(ThemeContext);
 
 function getInitialTheme() {
-  if (typeof window === 'undefined') {
-    return false;
-  }
-
   const savedTheme = window.localStorage.getItem('theme');
   if (savedTheme) {
     return savedTheme === 'dark';
@@ -26,12 +22,26 @@ function getInitialTheme() {
 }
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [darkMode, setDarkMode] = useState(getInitialTheme);
+  const [darkMode, setDarkMode] = useState(false);
+  const [themeReady, setThemeReady] = useState(false);
 
   useEffect(() => {
+    const themeTimer = window.setTimeout(() => {
+      setDarkMode(getInitialTheme());
+      setThemeReady(true);
+    }, 0);
+
+    return () => window.clearTimeout(themeTimer);
+  }, []);
+
+  useEffect(() => {
+    if (!themeReady) {
+      return;
+    }
+
     window.localStorage.setItem('theme', darkMode ? 'dark' : 'light');
     document.documentElement.style.colorScheme = darkMode ? 'dark' : 'light';
-  }, [darkMode]);
+  }, [darkMode, themeReady]);
 
   const toggleTheme = () => {
     setDarkMode((prev) => !prev);

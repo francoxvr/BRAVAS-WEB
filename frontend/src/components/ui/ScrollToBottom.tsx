@@ -13,9 +13,8 @@ export default function ScrollToBottom() {
   const isScrollingRef = useRef(false);
 
   useEffect(() => {
-    const anchors = getScrollAnchors();
-
     const onScroll = () => {
+      const anchors = getScrollAnchors();
       if (!isScrollingRef.current) {
         pendingIndexRef.current = null;
       }

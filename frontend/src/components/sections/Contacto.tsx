@@ -1,32 +1,67 @@
 import { useState } from 'react';
-import styles from '@/components/sections/Contacto.module.css';
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Send } from 'lucide-react';
+import PageHero from './PageHero';
+import WhatsappIcon from '@/components/ui/WhatsappIcon';
+import { SOCIAL_URLS } from '@/constants/socialUrls';
+import homeStyles from './Home.module.css';
+import styles from './Contacto.module.css';
+
+const serviciosOpciones = [
+  { value: '', label: 'Seleccioná una opción' },
+  { value: 'estrategia', label: 'Estrategia digital integral' },
+  { value: 'ads', label: 'Publicidad & performance (Google, Meta…)' },
+  { value: 'branding', label: 'Branding e identidad' },
+  { value: 'contenido', label: 'Contenido y redes sociales' },
+  { value: 'analitica', label: 'Analítica, métricas y growth' },
+  { value: 'otro', label: 'Otro / aún no lo definí' },
+];
+
+const urgenciaOpciones = [
+  { value: '', label: '¿Cuándo te gustaría arrancar?' },
+  { value: 'ya', label: 'Lo antes posible' },
+  { value: 'mes', label: 'En las próximas semanas' },
+  { value: 'explorando', label: 'Solo estoy explorando' },
+];
 
 export default function Contacto() {
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
     telefono: '',
+    empresa: '',
     servicio: '',
+    urgencia: '',
     mensaje: '',
+    aceptaPrivacidad: false,
   });
   const [enviado, setEnviado] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value,
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.aceptaPrivacidad) return;
 
     const subject = encodeURIComponent(
-      `Consulta de ${formData.nombre} sobre ${formData.servicio || 'Bravas Marketing'}`
+      `Consulta web — ${formData.nombre || 'Cliente'} (${formData.servicio || 'sin servicio'})`
     );
     const body = encodeURIComponent(
       [
         `Nombre: ${formData.nombre}`,
         `Email: ${formData.email}`,
-        `Teléfono: ${formData.telefono || 'No informado'}`,
-        `Servicio: ${formData.servicio || 'No especificado'}`,
+        `Teléfono: ${formData.telefono || '—'}`,
+        `Empresa / marca: ${formData.empresa || '—'}`,
+        `Interés: ${serviciosOpciones.find((o) => o.value === formData.servicio)?.label || '—'}`,
+        `Plazo: ${urgenciaOpciones.find((o) => o.value === formData.urgencia)?.label || '—'}`,
         '',
         'Mensaje:',
         formData.mensaje,
@@ -35,96 +70,103 @@ export default function Contacto() {
 
     window.location.href = `mailto:info@bravas.com?subject=${subject}&body=${body}`;
     setEnviado(true);
-    setTimeout(() => setEnviado(false), 4000);
-    setFormData({ nombre: '', email: '', telefono: '', servicio: '', mensaje: '' });
+    setTimeout(() => setEnviado(false), 5000);
+    setFormData({
+      nombre: '',
+      email: '',
+      telefono: '',
+      empresa: '',
+      servicio: '',
+      urgencia: '',
+      mensaje: '',
+      aceptaPrivacidad: false,
+    });
   };
 
   return (
     <>
-      <section className={styles.heroSection}>
-        <div className={styles.heroContainer}>
-          <div className={styles.heroText}>
-            <h1 className={styles.heroTitle}>
-              Hablemos de tu <span className={styles.heroTitleAccent}>Proyecto</span>
-            </h1>
-            <p className={styles.heroSubtitle}>
-              Estamos listos para transformar tu presencia digital. Contanos qué necesitás y te respondemos en menos de 24 hs.
-            </p>
-            <div className={styles.heroStats}>
-              <div className={styles.heroStat}>
-                <span className={styles.heroStatNumber}>+100</span>
-                <span className={styles.heroStatLabel}>Clientes satisfechos</span>
-              </div>
-              <div className={styles.heroStat}>
-                <span className={styles.heroStatNumber}>24hs</span>
-                <span className={styles.heroStatLabel}>Tiempo de respuesta</span>
-              </div>
-              <div className={styles.heroStat}>
-                <span className={styles.heroStatNumber}>5★</span>
-                <span className={styles.heroStatLabel}>Calificación promedio</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero title="CONTACTO" sectionId="contacto" showSubbrand={false} />
 
-      <section className={styles.contactoSection}>
-        <div className={styles.contactoHeader}>
-          <h2 className={styles.contactoTitle}>Contactanos</h2>
-          <p className={styles.contactoSubtitle}>
-            Completá el formulario o usá nuestros canales directos.
+      <section className={`${homeStyles.enfoqueSection} ${styles.contactoFormSection}`} id="contacto-form">
+        <div className={homeStyles.enfoqueHeader} id="contacto-form-target">
+          <h2 className={homeStyles.enfoqueTitle}>Escribinos</h2>
+          <p className={`${homeStyles.enfoqueSubtitle} ${styles.enfoqueSubtitleWrap}`}>
+            Contanos tu idea o tu desafío. Respondemos por correo en menos de 24 horas hábiles.
           </p>
         </div>
 
-        <div className={styles.contactoGrid}>
-          <div className={styles.formContainer}>
-            {enviado && (
-              <div className={styles.successMessage}>
-                Abrimos tu app de correo para que envíes el mensaje.
-              </div>
-            )}
-            <form onSubmit={handleSubmit} className={styles.form}>
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Nombre completo</label>
+        <div className={styles.formShell}>
+          {enviado && (
+            <div className={styles.noticeOk} role="status">
+              Abrimos tu cliente de correo para que envíes el mensaje. Si no se abre, escribinos a{' '}
+              <a href="mailto:info@bravas.com">info@bravas.com</a>.
+            </div>
+          )}
+
+          <form className={styles.formModern} onSubmit={handleSubmit} noValidate>
+            <fieldset className={styles.fieldset}>
+              <legend className={styles.legend}>Tus datos</legend>
+              <div className={styles.fieldGrid}>
+                <label className={styles.field}>
+                  <span className={styles.label}>Nombre y apellido *</span>
                   <input
-                    type="text"
                     name="nombre"
+                    type="text"
+                    autoComplete="name"
                     value={formData.nombre}
                     onChange={handleChange}
-                    placeholder="Tu nombre"
                     className={styles.input}
+                    placeholder="Ej. María González"
                     required
                   />
-                </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Email</label>
+                </label>
+                <label className={styles.field}>
+                  <span className={styles.label}>Correo electrónico *</span>
                   <input
-                    type="email"
                     name="email"
+                    type="email"
+                    autoComplete="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="tu@email.com"
                     className={styles.input}
+                    placeholder="nombre@empresa.com"
                     required
                   />
-                </div>
+                </label>
               </div>
-
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Teléfono</label>
+              <div className={styles.fieldGrid}>
+                <label className={styles.field}>
+                  <span className={styles.label}>Teléfono / WhatsApp</span>
                   <input
-                    type="tel"
                     name="telefono"
+                    type="tel"
+                    autoComplete="tel"
                     value={formData.telefono}
                     onChange={handleChange}
-                    placeholder="+54 9 351 000 0000"
                     className={styles.input}
+                    placeholder="+54 9 …"
                   />
-                </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Servicio de interés</label>
+                </label>
+                <label className={styles.field}>
+                  <span className={styles.label}>Empresa o marca</span>
+                  <input
+                    name="empresa"
+                    type="text"
+                    autoComplete="organization"
+                    value={formData.empresa}
+                    onChange={handleChange}
+                    className={styles.input}
+                    placeholder="Opcional"
+                  />
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset className={styles.fieldset}>
+              <legend className={styles.legend}>Tu proyecto</legend>
+              <div className={styles.fieldGrid}>
+                <label className={styles.field}>
+                  <span className={styles.label}>¿Qué necesitás? *</span>
                   <select
                     name="servicio"
                     value={formData.servicio}
@@ -132,99 +174,118 @@ export default function Contacto() {
                     className={styles.select}
                     required
                   >
-                    <option value="">Seleccioná un servicio</option>
-                    <option value="estrategia">Estrategia Digital</option>
-                    <option value="branding">Branding & Identidad</option>
-                    <option value="performance">Performance Ads</option>
-                    <option value="contenido">Contenido Creativo</option>
-                    <option value="analitica">Analítica & Métricas</option>
-                    <option value="growth">Growth Marketing</option>
+                    {serviciosOpciones.map((o) => (
+                      <option key={o.value || 'empty'} value={o.value}>
+                        {o.label}
+                      </option>
+                    ))}
                   </select>
-                </div>
+                </label>
+                <label className={styles.field}>
+                  <span className={styles.label}>Plazo</span>
+                  <select
+                    name="urgencia"
+                    value={formData.urgencia}
+                    onChange={handleChange}
+                    className={styles.select}
+                  >
+                    {urgenciaOpciones.map((o) => (
+                      <option key={o.value || 'u-empty'} value={o.value}>
+                        {o.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
               </div>
 
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Mensaje</label>
+              <label className={styles.field}>
+                <span className={styles.label}>Contanos más *</span>
                 <textarea
                   name="mensaje"
                   value={formData.mensaje}
                   onChange={handleChange}
-                  placeholder="Contanos sobre tu proyecto..."
                   className={styles.textarea}
-                  rows={5}
+                  rows={6}
+                  placeholder="Objetivos, presupuesto aproximado, web actual, público al que apuntás…"
                   required
                 />
-              </div>
+                <span className={styles.hint}>Cuanto más contexto, mejor podemos orientarte.</span>
+              </label>
+            </fieldset>
 
-              <button type="submit" className={styles.submitBtn}>
-                Enviar mensaje
-              </button>
-            </form>
-          </div>
+            <label className={styles.checkRow}>
+              <input
+                type="checkbox"
+                name="aceptaPrivacidad"
+                checked={formData.aceptaPrivacidad}
+                onChange={handleChange}
+                className={styles.checkbox}
+                required
+              />
+              <span>
+                Acepto que mis datos se usen solo para responder esta consulta. *
+              </span>
+            </label>
 
-          <div className={styles.infoContainer}>
-            <div className={styles.infoCard}>
-              <div className={styles.infoHeader}>
-                <h3 className={styles.infoTitle}>Información de Contacto</h3>
-                <p className={styles.infoSubtitle}>También podés contactarnos directamente</p>
-              </div>
+            <button type="submit" className={styles.submitCta}>
+              <Send size={18} aria-hidden />
+              Enviar consulta
+            </button>
+          </form>
 
-              <div className={styles.infoItems}>
-                <div className={styles.infoItem}>
-                  <div className={styles.infoIcon}>📧</div>
-                  <div className={styles.infoText}>
-                    <span className={styles.infoLabel}>Email</span>
-                    <a href="mailto:info@bravas.com" className={styles.infoValue}>info@bravas.com</a>
-                  </div>
-                </div>
-
-                <div className={styles.infoItem}>
-                  <div className={styles.infoIcon}>📱</div>
-                  <div className={styles.infoText}>
-                    <span className={styles.infoLabel}>Teléfono</span>
-                    <a href="tel:+5493511234567" className={styles.infoValue}>+54 9 351 123 4567</a>
-                  </div>
-                </div>
-
-                <div className={styles.infoItem}>
-                  <div className={styles.infoIcon}>📍</div>
-                  <div className={styles.infoText}>
-                    <span className={styles.infoLabel}>Ubicación</span>
-                    <span className={styles.infoValue}>Córdoba, Argentina</span>
-                  </div>
-                </div>
-
-                <div className={styles.infoItem}>
-                  <div className={styles.infoIcon}>🕐</div>
-                  <div className={styles.infoText}>
-                    <span className={styles.infoLabel}>Horario</span>
-                    <span className={styles.infoValue}>Lun - Vie: 9:00 a 18:00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.quickServices}>
-              <h4 className={styles.quickTitle}>¿Qué podemos hacer por vos?</h4>
-              <div className={styles.quickGrid}>
-                <div className={styles.quickCard}>
-                  <span className={styles.quickIcon}>🎯</span>
-                  <span className={styles.quickLabel}>Estrategia Digital</span>
-                </div>
-                <div className={styles.quickCard}>
-                  <span className={styles.quickIcon}>✨</span>
-                  <span className={styles.quickLabel}>Branding</span>
-                </div>
-                <div className={styles.quickCard}>
-                  <span className={styles.quickIcon}>🚀</span>
-                  <span className={styles.quickLabel}>Performance Ads</span>
-                </div>
-                <div className={styles.quickCard}>
-                  <span className={styles.quickIcon}>📊</span>
-                  <span className={styles.quickLabel}>Analítica</span>
-                </div>
-              </div>
-            </div>
+          <div className={styles.contactStrip} aria-label="Datos de contacto Bravas">
+            <a href="mailto:info@bravas.com" className={styles.stripItem}>
+              <Mail size={18} strokeWidth={2} aria-hidden />
+              <span>info@bravas.com</span>
+            </a>
+            <a href="tel:+5493511234567" className={styles.stripItem}>
+              <Phone size={18} strokeWidth={2} aria-hidden />
+              <span>+54 9 351 123 4567</span>
+            </a>
+            <span className={styles.stripItem}>
+              <MapPin size={18} strokeWidth={2} aria-hidden />
+              <span>Córdoba, Argentina · Lun–Vie 9–18 hs</span>
+            </span>
+            <a
+              href={SOCIAL_URLS.facebook}
+              className={styles.stripItem}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <Facebook size={18} strokeWidth={2} aria-hidden />
+              <span>Facebook</span>
+            </a>
+            <a
+              href={SOCIAL_URLS.instagram}
+              className={styles.stripItem}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <Instagram size={18} strokeWidth={2} aria-hidden />
+              <span>Instagram</span>
+            </a>
+            <a
+              href={SOCIAL_URLS.whatsapp}
+              className={`${styles.stripItem} ${styles.stripWhatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+            >
+              <WhatsappIcon size={18} />
+              <span>WhatsApp</span>
+            </a>
+            <a
+              href={SOCIAL_URLS.linkedin}
+              className={styles.stripItem}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={18} strokeWidth={2} aria-hidden />
+              <span>LinkedIn</span>
+            </a>
           </div>
         </div>
       </section>

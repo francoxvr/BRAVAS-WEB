@@ -1,5 +1,17 @@
 const SCROLL_MARGIN = 12;
 const HOME_SECTION_IDS = ['home', 'enfoque', 'crecimiento', 'proceso', 'innovacion'];
+const SERVICES_SECTION_IDS = [
+  'servicios',
+  'servicios-nuestros',
+  'servicios-integrales',
+  'servicios-herramientas',
+  'servicios-contacto',
+];
+const NOSOTROS_SECTION_IDS = ['nosotros', 'nosotros-resultados'];
+const CONTACTO_SECTION_IDS = ['contacto', 'contacto-form'];
+
+/** Primer bloque hero por página: scroll al inicio del documento */
+const HERO_SECTION_IDS = ['home', 'servicios', 'nosotros', 'contacto'] as const;
 
 export type ScrollAnchor = {
   id: string;
@@ -28,7 +40,8 @@ function getScrollBehavior(): ScrollBehavior {
     : 'smooth';
 }
 
-function getTargetElement(element: HTMLElement) {
+/** Bloque visible de la sección (ej. cabecera morada), id *-target; si no hay, la propia sección/footer */
+function getScrollTarget(element: HTMLElement) {
   const target = element.querySelector('[id$="-target"]');
   return target instanceof HTMLElement ? target : element;
 }
@@ -36,16 +49,26 @@ function getTargetElement(element: HTMLElement) {
 function getAnchorTop(element: HTMLElement) {
   if (!isBrowser()) return 0;
 
-  const target = getTargetElement(element);
+  const target = getScrollTarget(element);
   return window.scrollY + target.getBoundingClientRect().top;
+}
+
+function getSectionIdsForPage(): string[] {
+  if (!isBrowser()) return HOME_SECTION_IDS;
+
+  if (document.getElementById('servicios-nuestros')) return SERVICES_SECTION_IDS;
+  if (document.getElementById('nosotros-resultados')) return NOSOTROS_SECTION_IDS;
+  if (document.getElementById('contacto-form')) return CONTACTO_SECTION_IDS;
+  return HOME_SECTION_IDS;
 }
 
 export function getScrollAnchors() {
   if (!isBrowser()) return [];
 
   const anchors: ScrollAnchor[] = [];
+  const sectionIds = getSectionIdsForPage();
 
-  HOME_SECTION_IDS.forEach((id) => {
+  sectionIds.forEach((id) => {
     const el = document.getElementById(id);
     if (el) {
       anchors.push({ id, element: el });
@@ -84,8 +107,7 @@ export function getCurrentAnchorIndex(anchors: ScrollAnchor[]) {
 export function scrollToElement(element: HTMLElement) {
   if (!isBrowser()) return;
 
-  // 🔥 FIX: si es HOME, ir SIEMPRE arriba de todo
-  if (element.id === 'home') {
+  if ((HERO_SECTION_IDS as readonly string[]).includes(element.id)) {
     window.scrollTo({
       top: 0,
       behavior: getScrollBehavior(),
@@ -106,11 +128,8 @@ export function scrollToElement(element: HTMLElement) {
   const elementTop = getAnchorTop(element);
   const headerOffset = getHeaderOffset();
 
-  // 🔥 OFFSET FINAL AJUSTADO
-  const targetTop = elementTop - headerOffset + 45;
-
   window.scrollTo({
-    top: Math.max(0, targetTop),
+    top: Math.max(0, elementTop - headerOffset),
     behavior: getScrollBehavior(),
   });
 }

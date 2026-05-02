@@ -1,37 +1,14 @@
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import PageHero from './PageHero';
 import styles from './Home.module.css';
 
 export default function Home() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentEstrategiaIndex, setCurrentEstrategiaIndex] = useState(0);
   const [currentAnalisisIndex, setCurrentAnalisisIndex] = useState(0);
   const [currentCrecimientoIndex, setCurrentCrecimientoIndex] = useState(0);
   const [currentInnovacion1Index, setCurrentInnovacion1Index] = useState(0);
   const [currentInnovacion2Index, setCurrentInnovacion2Index] = useState(0);
   const [currentInnovacion3Index, setCurrentInnovacion3Index] = useState(0);
-
-  const carouselImages = [
-    '/assets/images/marketing/marketing1.png',
-    '/assets/images/marketing/marketing3.png',
-    '/assets/images/marketing/marketing4.png',
-    '/assets/images/marketing/marketing7.png',
-    '/assets/images/marketing/marketing9.jpg',
-    '/assets/images/marketing/marketing10.jpg',
-    '/assets/images/marketing/marketing11.png',
-    '/assets/images/marketing/marketing12.png',
-    '/assets/images/marketing/marketing13.png',
-    '/assets/images/marketing/marketing14.png',
-    '/assets/images/marketing/analisis.png',
-    '/assets/images/marketing/crecimiento.png',
-    '/assets/images/marketing/estadistica1.png',
-    '/assets/images/marketing/estadistica2.png',
-    '/assets/images/marketing/estrategia.png',
-    '/assets/images/marketing/innovamos.png',
-    '/assets/images/marketing/innovamos1.png',
-    '/assets/images/marketing/redes2.png',
-    '/assets/images/marketing/redes4.png',
-  ];
 
   const estrategiaImages = [
     '/assets/images/marketing/estadistica2.png',
@@ -62,14 +39,6 @@ export default function Home() {
     '/assets/images/marketing/estadistica1.png',
     '/assets/images/marketing/innovamos.png',
   ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
-    }, 6000);
-
-    return () => clearInterval(interval);
-  }, [carouselImages.length]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -121,65 +90,7 @@ export default function Home() {
 
   return (
     <>
-      <div className={styles.heroWrapper}>
-        <section className={styles.heroSection} id="home">
-          <div className={styles.heroContainer}>
-            <div className={styles.heroText} id="home-target">
-              <div className={styles.heroTitleBox}>
-                <h1 className={styles.heroBrand}>BRAVAS</h1>
-                <span className={styles.heroSubbrand}>M A R K E T I N G</span>
-              </div>
-
-              <p className={styles.heroSubtitle}>
-                Transformamos tu presencia digital con estrategias innovadoras que
-                hacen brillar tu marca.
-              </p>
-
-              <Link href="/contacto" className={styles.btnCta}>
-                Impulsa tu Marca Ahora
-              </Link>
-
-              <div className={styles.heroServicesHighlight}>
-                <span>Estrategia Digital</span>
-                <i>•</i>
-                <span>Branding</span>
-                <i>•</i>
-                <span>Performance Ads</span>
-              </div>
-            </div>
-
-            <div className={styles.heroImagePlaceholder}></div>
-          </div>
-        </section>
-
-        <div className={styles.heroImageWrapper}>
-          <div className={styles.heroImageCard}>
-            {carouselImages.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`Marketing Digital ${index + 1}`}
-                className={`${styles.heroImage} ${
-                  index === currentImageIndex ? styles.active : ''
-                }`}
-              />
-            ))}
-
-            <div className={styles.carouselIndicators}>
-              {carouselImages.map((_, index) => (
-                <button
-                  key={index}
-                  className={`${styles.indicator} ${
-                    index === currentImageIndex ? styles.indicatorActive : ''
-                  }`}
-                  onClick={() => setCurrentImageIndex(index)}
-                  aria-label={`Ir a imagen ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      <PageHero title="BRAVAS" sectionId="home" />
 
       <section id="enfoque" data-animate className={styles.enfoqueSection}>
         <div className={styles.enfoqueHeader} id="enfoque-target">

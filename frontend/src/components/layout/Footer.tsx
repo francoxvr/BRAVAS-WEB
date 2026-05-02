@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { Mail, Phone } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
+import WhatsappIcon from '@/components/ui/WhatsappIcon';
+import { SOCIAL_URLS } from '@/constants/socialUrls';
 import styles from './Footer.module.css';
 
 const serviceLinks = [
@@ -98,37 +100,40 @@ export default function Footer() {
 
             <div className={styles.footerSocialMini}>
               <a
-                href="https://facebook.com"
+                href={SOCIAL_URLS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
+                className={styles.footerSocialBtn}
                 aria-label="Facebook"
               >
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
-                  alt="Facebook"
-                />
+                <Facebook size={20} strokeWidth={2} aria-hidden />
               </a>
               <a
-                href="https://instagram.com"
+                href={SOCIAL_URLS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
+                className={styles.footerSocialBtn}
                 aria-label="Instagram"
               >
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/733/733558.png"
-                  alt="Instagram"
-                />
+                <Instagram size={20} strokeWidth={2} aria-hidden />
               </a>
               <a
-                href="https://wa.me/5493511234567"
+                href={SOCIAL_URLS.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
+                className={`${styles.footerSocialBtn} ${styles.footerSocialBtnWhatsapp}`}
                 aria-label="WhatsApp"
               >
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
-                  alt="WhatsApp"
-                />
+                <WhatsappIcon size={20} />
+              </a>
+              <a
+                href={SOCIAL_URLS.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.footerSocialBtn}
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={20} strokeWidth={2} aria-hidden />
               </a>
             </div>
           </div>

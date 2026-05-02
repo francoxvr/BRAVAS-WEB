@@ -13,9 +13,8 @@ export default function ScrollToTop() {
   const isScrollingRef = useRef(false);
 
   useEffect(() => {
-    const anchors = getScrollAnchors();
-
     const onScroll = () => {
+      const anchors = getScrollAnchors();
       if (!isScrollingRef.current) {
         pendingIndexRef.current = null;
       }
@@ -35,7 +34,7 @@ export default function ScrollToTop() {
 
   const handleClick = () => {
     const anchors = getScrollAnchors();
-    const current = getCurrentAnchorIndex(anchors);
+    const current = pendingIndexRef.current ?? getCurrentAnchorIndex(anchors);
     const prevIndex = current - 1;
 
     if (prevIndex < 0) {
