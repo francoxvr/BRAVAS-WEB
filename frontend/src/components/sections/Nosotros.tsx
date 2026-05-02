@@ -8,7 +8,7 @@ export default function Nosotros() {
     <>
       <PageHero title="NOSOTROS" sectionId="nosotros" showSubbrand={false} />
 
-      <section className={homeStyles.enfoqueSection} data-animate id="nosotros-resultados">
+      <section className={styles.nosotrosSection} data-animate id="nosotros-resultados">
         <div className={homeStyles.enfoqueHeader} id="nosotros-resultados-target">
           <h2 className={homeStyles.enfoqueTitle}>Resultados que hablan por sí solos</h2>
           <p className={`${homeStyles.enfoqueSubtitle} ${styles.enfoqueSubtitleWrap}`}>

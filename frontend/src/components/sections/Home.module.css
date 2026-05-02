@@ -420,17 +420,33 @@
 }
 
 /* ================= SECCIÓN ENFOQUE INTEGRAL ================= */
-.enfoqueSection {
-  padding: 60px 40px 60px;
+.crecimientoSection,
+.procesoSection,
+.innovacionSection {
+  padding: 50px 40px;
   max-width: 1300px;
-  margin: 0 auto;
-  background:#a77200;
+  margin: 60px auto;
+  background: #e8dcc2;
   border-radius: 24px;
-  margin-top: 80px;
-  margin-bottom: 60px;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* ================= HEADER ================= */
+.enfoqueSection {
+  padding: 55px 40px;
+  max-width: 1300px;
+  margin: 60px auto;
+  background: #a77200;
+  border-radius: 24px;
+  min-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 80px;
+}
+
 .enfoqueHeader {
   text-align: center;
   margin-bottom: 30px;
@@ -721,14 +737,11 @@
 }
 
 /* ================= SECCIÓN CRECIMIENTO DIGITAL ================= */
-.crecimientoSection {
-  padding: 60px 40px 80px;
-  max-width: 1300px;
-  margin: 0 auto;
-  background: #e8dcc2;
-  border-radius: 24px;
-  margin-top: 60px;
-  margin-bottom: 70px;
+.crecimientoSection,
+.procesoSection,
+.innovacionSection {
+  min-height: 90vh;
+  padding: 70px 40px;
 }
 
 .crecimientoHeader {
@@ -1053,13 +1066,16 @@
 
 /* ================= SECCIÓN PROCESO DE TRABAJO ================= */
 .procesoSection {
-  padding: 60px 40px 120px;
+  min-height: 98vh;
+  padding: 90px 40px;
   max-width: 1300px;
   margin: 60px auto;
   background: #e8dcc2;
   border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-
 .procesoHeader {
   text-align: center;
   margin-bottom: 80px;
@@ -1376,11 +1392,15 @@
 
 /* ================= SECCIÓN INNOVACIÓN CONSTANTE ================= */
 .innovacionSection {
-  padding: 60px 40px 120px;
+  min-height: 85vh;
+  padding: 60px 40px;
   max-width: 1300px;
   margin: 60px auto;
   background: #e8dcc2;
   border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .innovacionHeader {

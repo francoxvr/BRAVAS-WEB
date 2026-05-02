@@ -20,7 +20,7 @@ export default function ScrollToBottom() {
       }
       const current = pendingIndexRef.current ?? getCurrentAnchorIndex(anchors);
       const atBottom =
-        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80;
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
       setVisible(anchors.length > 1 && current < anchors.length - 1 && !atBottom);
     };
 

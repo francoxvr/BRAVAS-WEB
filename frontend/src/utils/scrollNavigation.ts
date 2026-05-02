@@ -1,4 +1,4 @@
-const SCROLL_MARGIN = 12;
+const SCROLL_MARGIN = -40;
 const HOME_SECTION_IDS = ['home', 'enfoque', 'crecimiento', 'proceso', 'innovacion'];
 const SERVICES_SECTION_IDS = [
   'servicios',
@@ -29,7 +29,7 @@ export function getHeaderOffset() {
     '[data-app-header="true"]'
   ) as HTMLElement | null;
 
-  return header ? header.getBoundingClientRect().height + SCROLL_MARGIN : 80;
+  return header ? header.getBoundingClientRect().height + SCROLL_MARGIN : 120;
 }
 
 function getScrollBehavior(): ScrollBehavior {
@@ -59,6 +59,13 @@ function getSectionIdsForPage(): string[] {
   if (document.getElementById('servicios-nuestros')) return SERVICES_SECTION_IDS;
   if (document.getElementById('nosotros-resultados')) return NOSOTROS_SECTION_IDS;
   if (document.getElementById('contacto-form')) return CONTACTO_SECTION_IDS;
+  
+  // Fallback: detectar si estamos en una página específica por la URL
+  const path = window.location.pathname;
+  if (path.includes('servicios')) return SERVICES_SECTION_IDS;
+  if (path.includes('nosotros')) return NOSOTROS_SECTION_IDS;
+  if (path.includes('contacto')) return CONTACTO_SECTION_IDS;
+  
   return HOME_SECTION_IDS;
 }
 
@@ -90,18 +97,36 @@ export function getCurrentAnchorIndex(anchors: ScrollAnchor[]) {
   if (!isBrowser() || !anchors.length) return -1;
 
   const headerOffset = getHeaderOffset();
-  const referenceTop = window.scrollY + headerOffset + 10;
+  const scrollY = window.scrollY;
+  const viewportHeight = window.innerHeight;
+  const scrollCenter = scrollY + (viewportHeight / 2);
 
-  let currentIndex = 0;
+  // 1. Si estamos muy cerca del inicio, el índice es 0 (Hero)
+  if (scrollY < 100) return 0;
+
+  // 2. Si estamos muy cerca del final, el índice es el último (Footer)
+  if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 100) {
+    return anchors.length - 1;
+  }
+
+  // 3. Buscamos la sección cuyo centro esté más cerca del centro del viewport
+  // o que esté ocupando la mayor parte de la pantalla.
+  let bestIndex = 0;
+  let minDistance = Infinity;
 
   anchors.forEach((anchor, index) => {
     const top = getAnchorTop(anchor.element);
-    if (top <= referenceTop) {
-      currentIndex = index;
+    // Usamos el centro de la sección si es posible, o simplemente su top
+    const sectionCenter = top + (anchor.element.offsetHeight / 4); // Estimación rápida
+    const distance = Math.abs(scrollCenter - sectionCenter);
+
+    if (distance < minDistance) {
+      minDistance = distance;
+      bestIndex = index;
     }
   });
 
-  return currentIndex;
+  return bestIndex;
 }
 
 export function scrollToElement(element: HTMLElement) {
