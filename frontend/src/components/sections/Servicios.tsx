@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Activity, Sun, ArrowUpRight } from 'lucide-react';
@@ -309,9 +310,22 @@ export default function Servicios() {
     <>
       <PageHero title="SERVICIOS" sectionId="servicios" showSubbrand={false} />
 
+      {/* ── Intro partido ────────────────────────────────────────────── */}
+      <section id="servicios-intro" className={styles.introSection} data-animate>
+        <div className={styles.introLeft}>
+          <span className={styles.introTag}>Lo que hacemos</span>
+          <h2 className={styles.introTitle}>Estrategias digitales que mueven tu negocio.</h2>
+          <p className={styles.introDesc}>Combinamos creatividad, tecnología y datos para diseñar soluciones que generan resultados reales y medibles para tu marca.</p>
+        </div>
+        <div className={styles.introRight}>
+          <span className={styles.introTagDark}>Por qué Bravas</span>
+          <h2 className={styles.introTitleDark}>Marketing claro, efectivo y orientado a resultados.</h2>
+          <p className={styles.introDescDark}>No trabajamos con plantillas genéricas. Cada estrategia se diseña desde cero pensando en tu negocio, tu audiencia y tus objetivos.</p>
+        </div>
+      </section>
+
       {/* ── 4 bloques ────────────────────────────────────────────────── */}
       <section id="servicios-nuestros" className={styles.nuestrosSection} data-animate>
-        <div className={styles.nuestrosInner}>
           <div className={styles.nuestrosHeader} id="servicios-nuestros-target">
             <h2>Nuestros Servicios</h2>
             <p>Soluciones digitales completas diseñadas para hacer crecer tu negocio y alcanzar tus objetivos.</p>
@@ -323,7 +337,6 @@ export default function Servicios() {
                   {s.icon}
                 </div>
                 <h3>{s.titulo}</h3>
-                <p>{s.descripcion}</p>
                 <ul>
                   {s.items.map((item) => (
                     <li key={item}>{item}</li>
@@ -332,12 +345,10 @@ export default function Servicios() {
               </div>
             ))}
           </div>
-        </div>
       </section>
 
       {/* ── Soluciones Integrales ─────────────────────────────────────── */}
       <section id="servicios-integrales" className={styles.integralSection} data-animate>
-        <div className={styles.integralInner}>
           <div className={styles.integralHeader} id="servicios-integrales-target">
             <h2>Soluciones Integrales de Marketing</h2>
             <p>Todo lo que tu marca necesita en un solo lugar para crecer de forma sostenible.</p>
@@ -383,12 +394,10 @@ export default function Servicios() {
               </div>
             </div>
           </div>
-        </div>
       </section>
 
       {/* ── Herramientas ─────────────────────────────────────────────── */}
       <section id="servicios-herramientas" className={styles.herramientasSection} data-animate>
-        <div className={styles.herramientasInner}>
           <div className={styles.herramientasHeader} id="servicios-herramientas-target">
             <h2>Herramientas que potencian tu marca</h2>
             <p>Trabajamos con las plataformas líderes del mercado para garantizar resultados reales</p>
@@ -418,32 +427,65 @@ export default function Servicios() {
             ))}
           </div>
 
-          <div className={styles.herramientasBottom}>
-            <div className={styles.herramientasBottomText}>
-              <h3>+20 herramientas integradas en tu estrategia</h3>
-              <p>Seleccionamos las mejores herramientas según los objetivos de cada cliente</p>
-            </div>
-            <Link href="/contacto" className={styles.herramientasBottomBadge}>
-              Consultá sin costo
-            </Link>
-          </div>
-        </div>
       </section>
 
+      {/* ── FAQ ──────────────────────────────────────────────────────── */}
+      <FaqSection />
+
       {/* ── CTA final ────────────────────────────────────────────────── */}
-      <section id="servicios-contacto" className={styles.statsSection} data-animate>
-        <div className={styles.statsContainer}>
-          <div className={styles.statsContent} id="servicios-contacto-target">
-            <h2 className={styles.statsTitle}>¿Listo para llevar tu marca al siguiente nivel?</h2>
-            <p className={styles.statsDescription}>
-              Trabajamos con enfoque estratégico, resultados medibles y compromiso total con tu éxito.
-            </p>
-            <Link href="/contacto" className={styles.statsBadge}>
-              Contactar con Bravas
-            </Link>
-          </div>
-        </div>
-      </section>
     </>
+  );
+}
+
+const faqs = [
+  {
+    pregunta: '¿Cuánto tiempo tarda en verse resultados?',
+    respuesta: 'Depende de la estrategia, pero en campañas de publicidad paga los primeros resultados se ven entre 2 y 4 semanas. En SEO y contenido orgánico, el impacto significativo suele aparecer entre los 3 y 6 meses.',
+  },
+  {
+    pregunta: '¿Qué incluye el servicio de gestión de redes sociales?',
+    respuesta: 'Incluye creación de contenido (diseño + copywriting), programación de publicaciones, gestión de comentarios y mensajes, reportes mensuales de métricas y ajuste de estrategia según resultados.',
+  },
+  {
+    pregunta: '¿Tienen contratos mínimos de permanencia?',
+    respuesta: 'Manejamos contratos mensuales renovables. No exigimos permanencia mínima, aunque recomendamos al menos 3 meses para poder medir resultados reales y optimizar la estrategia.',
+  },
+  {
+    pregunta: '¿Cómo es el proceso para empezar a trabajar juntos?',
+    respuesta: 'Primero hacemos una consulta gratuita para entender tu negocio y objetivos. Luego preparamos una propuesta personalizada. Una vez aprobada, arrancamos con un onboarding donde definimos accesos, canales y el plan de acción.',
+  },
+  {
+    pregunta: '¿Puedo ver reportes del trabajo que hacen?',
+    respuesta: 'Sí, todos los clientes reciben reportes mensuales detallados con métricas clave, análisis de resultados y recomendaciones. También tenés acceso a dashboards en tiempo real según el servicio contratado.',
+  },
+];
+
+function FaqSection() {
+  const [abierto, setAbierto] = useState<number | null>(null);
+
+  return (
+    <section id="servicios-faq" className={styles.faqSection} data-animate>
+      <div className={styles.faqHeader} id="servicios-faq-target">
+        <h2>Preguntas Frecuentes</h2>
+        <p>Todo lo que necesitás saber antes de empezar a trabajar con nosotros.</p>
+      </div>
+      <div className={styles.faqList}>
+        {faqs.map((faq, i) => (
+          <div
+            key={i}
+            className={`${styles.faqItem} ${abierto === i ? styles.faqItemOpen : ''}`}
+            onClick={() => setAbierto(abierto === i ? null : i)}
+          >
+            <div className={styles.faqQuestion}>
+              <span>{faq.pregunta}</span>
+              <span className={styles.faqIcon}>{abierto === i ? '−' : '+'}</span>
+            </div>
+            {abierto === i && (
+              <div className={styles.faqAnswer}>{faq.respuesta}</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }

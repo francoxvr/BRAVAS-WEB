@@ -252,10 +252,18 @@
   color: #ffffff;
 }
 
-.footerSocialBtnWhatsapp:hover {
-  background: #25d366;
-  color: #ffffff;
-}
+/* Colores originales de cada red */
+.footerSocialBtnFacebook { color: #1877F2; }
+.footerSocialBtnFacebook:hover { background: #1877F2; color: #ffffff; }
+
+.footerSocialBtnInstagram { color: #E1306C; }
+.footerSocialBtnInstagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #ffffff; }
+
+.footerSocialBtnWhatsapp { color: #25d366; }
+.footerSocialBtnWhatsapp:hover { background: #25d366; color: #ffffff; }
+
+.footerSocialBtnLinkedin { color: #0A66C2; }
+.footerSocialBtnLinkedin:hover { background: #0A66C2; color: #ffffff; }
 
 /* ================= LEGAL FOOTER ================= */
 .footerLegal {

@@ -1,13 +1,14 @@
-const SCROLL_MARGIN = -40;
-const HOME_SECTION_IDS = ['home', 'enfoque', 'crecimiento', 'proceso', 'innovacion'];
+const SCROLL_MARGIN = -94;
+const HOME_SECTION_IDS = ['home', 'propuesta', 'enfoque', 'crecimiento', 'proceso', 'innovacion'];
 const SERVICES_SECTION_IDS = [
   'servicios',
+  'servicios-intro',
   'servicios-nuestros',
   'servicios-integrales',
   'servicios-herramientas',
-  'servicios-contacto',
+  'servicios-faq',
 ];
-const NOSOTROS_SECTION_IDS = ['nosotros', 'nosotros-resultados'];
+const NOSOTROS_SECTION_IDS = ['nosotros', 'nosotros-quienes', 'nosotros-mision', 'nosotros-equipo', 'nosotros-porque'];
 const CONTACTO_SECTION_IDS = ['contacto', 'contacto-form'];
 
 /** Primer bloque hero por página: scroll al inicio del documento */
@@ -49,8 +50,7 @@ function getScrollTarget(element: HTMLElement) {
 function getAnchorTop(element: HTMLElement) {
   if (!isBrowser()) return 0;
 
-  const target = getScrollTarget(element);
-  return window.scrollY + target.getBoundingClientRect().top;
+  return window.scrollY + element.getBoundingClientRect().top;
 }
 
 function getSectionIdsForPage(): string[] {
@@ -150,11 +150,10 @@ export function scrollToElement(element: HTMLElement) {
     return;
   }
 
-  const elementTop = getAnchorTop(element);
   const headerOffset = getHeaderOffset();
 
   window.scrollTo({
-    top: Math.max(0, elementTop - headerOffset),
+    top: Math.max(0, element.offsetTop - headerOffset),
     behavior: getScrollBehavior(),
   });
 }

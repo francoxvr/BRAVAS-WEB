@@ -92,6 +92,28 @@ export default function Home() {
     <>
       <PageHero title="BRAVAS" sectionId="home" />
 
+      {/* ── Propuesta de valor ── */}
+      <section id="propuesta" data-animate className={styles.propuestaSection}>
+        <span className={styles.propuestaTag}>¿Qué hacemos?</span>
+        <h2 className={styles.propuestaTitulo}>Estrategias digitales<br />que generan resultados.</h2>
+        <p className={styles.propuestaSubtitle}>No vendemos humo. Diseñamos, ejecutamos y medimos cada acción para que tu marca crezca de verdad.</p>
+        <div className={styles.propuestaGrid}>
+          {[
+            { num: '01', texto: 'Estrategia digital personalizada para tu negocio' },
+            { num: '02', texto: 'Publicidad paga con ROI comprobable' },
+            { num: '03', texto: 'Branding & identidad visual que conecta' },
+            { num: '04', texto: 'Contenido que genera comunidad' },
+            { num: '05', texto: 'Analítica y métricas en tiempo real' },
+            { num: '06', texto: 'Acompañamiento estratégico constante' },
+          ].map((item) => (
+            <div key={item.num} className={styles.propuestaItem}>
+              <span className={styles.propuestaNum}>{item.num}</span>
+              <span className={styles.propuestaTexto}>{item.texto}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section id="enfoque" data-animate className={styles.enfoqueSection}>
         <div className={styles.enfoqueHeader} id="enfoque-target">
           <h2 className={styles.enfoqueTitle}>Nuestro Enfoque</h2>

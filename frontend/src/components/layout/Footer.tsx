@@ -103,7 +103,7 @@ export default function Footer() {
                 href={SOCIAL_URLS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.footerSocialBtn}
+                className={`${styles.footerSocialBtn} ${styles.footerSocialBtnFacebook}`}
                 aria-label="Facebook"
               >
                 <Facebook size={20} strokeWidth={2} aria-hidden />
@@ -112,7 +112,7 @@ export default function Footer() {
                 href={SOCIAL_URLS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.footerSocialBtn}
+                className={`${styles.footerSocialBtn} ${styles.footerSocialBtnInstagram}`}
                 aria-label="Instagram"
               >
                 <Instagram size={20} strokeWidth={2} aria-hidden />
@@ -130,7 +130,7 @@ export default function Footer() {
                 href={SOCIAL_URLS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.footerSocialBtn}
+                className={`${styles.footerSocialBtn} ${styles.footerSocialBtnLinkedin}`}
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} strokeWidth={2} aria-hidden />
