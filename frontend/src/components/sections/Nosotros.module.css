@@ -221,7 +221,7 @@
   min-height: 82vh;
   margin: 80px auto 0;
   padding: 55px 40px;
-  background: #e8dcc2;
+  background: #4e1a6b;
   border-radius: 24px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -242,8 +242,8 @@
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #fff;
-  background: #4e1a6b;
+  color: #4e1a6b;
+  background: #eecb7c;
   padding: 5px 14px;
   border-radius: 999px;
   align-self: flex-start;
@@ -252,15 +252,16 @@
 .quienesTitle {
   font-size: 3rem;
   font-weight: 900;
-  color: #4e1a6b;
+  color: #fff;
   letter-spacing: -2px;
   line-height: 1.1;
   margin: 0;
+  transition: text-shadow 0.3s ease;
 }
 
 .quienesDesc {
   font-size: 0.92rem;
-  color: #3a2a4a;
+  color: rgba(255,255,255,0.75);
   line-height: 1.8;
   margin: 0;
 }
@@ -270,7 +271,7 @@
   gap: 32px;
   margin-top: 8px;
   padding-top: 24px;
-  border-top: 2px solid rgba(78,26,107,0.15);
+  border-top: 1px solid rgba(255,255,255,0.15);
 }
 
 .quienesStat {
@@ -282,13 +283,14 @@
 .quienesStatNum {
   font-size: 2rem;
   font-weight: 900;
-  color: #4e1a6b;
+  color: #eecb7c;
   line-height: 1;
+  animation: statPulse 3s ease-in-out infinite;
 }
 
 .quienesStatLabel {
   font-size: 0.72rem;
-  color: #888;
+  color: rgba(255,255,255,0.5);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -465,7 +467,7 @@
 
 /* Quiénes somos */
 :global(.app-container.dark) .quienesSection {
-  background: #1e293b;
+  background: #2d0f45;
 }
 :global(.app-container.dark) .quienesTitle {
   color: #eecb7c;
@@ -673,32 +675,10 @@
 
 /* ================= EFECTOS EXTRA QUIÉNES SOMOS ================= */
 
-/* Partículas flotantes en el fondo */
-.quienesSection::before {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 250px; height: 250px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(78,26,107,0.08) 0%, transparent 70%);
-  pointer-events: none;
-  animation: floatGlow 6s ease-in-out infinite;
-}
-
-.quienesSection::after {
-  content: '';
-  position: absolute;
-  bottom: -40px; left: -40px;
-  width: 180px; height: 180px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(238,203,124,0.1) 0%, transparent 70%);
-  pointer-events: none;
-  animation: floatGlow 8s ease-in-out infinite reverse;
-}
-
-@keyframes floatGlow {
-  0%, 100% { transform: translateY(0px) scale(1); opacity: 0.6; }
-  50% { transform: translateY(-20px) scale(1.1); opacity: 1; }
+@keyframes bgShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Glow pulsante en números de stats */
@@ -709,20 +689,6 @@
 
 .quienesStatNum {
   animation: statPulse 3s ease-in-out infinite;
-}
-
-/* Línea de stats con brillo */
-@keyframes lineShimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-.quienesStats {
-  background: linear-gradient(90deg, rgba(78,26,107,0.15) 0%, rgba(238,203,124,0.3) 50%, rgba(78,26,107,0.15) 100%);
-  background-size: 200% auto;
-  animation: lineShimmer 4s linear infinite;
-  border-radius: 2px;
-  padding-top: 24px;
 }
 
 /* Glow en título al hover */
@@ -742,4 +708,77 @@
 
 .quienesImgBadge {
   animation: badgeShine 3s ease-in-out infinite;
+}
+
+/* ── Orbes quiénes somos ── */
+@keyframes orbeFloatNos {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+
+.quienesOrbe1 {
+  position: absolute;
+  top: 20px; right: 20px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(180,80,200,0.5) 0%, rgba(140,40,180,0.2) 40%, transparent 70%);
+  pointer-events: none;
+  animation: orbeFloatNos 6s ease-in-out infinite;
+  z-index: 0;
+}
+
+.quienesOrbe2 {
+  position: absolute;
+  bottom: 20px; left: 20px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(180,80,200,0.3) 0%, transparent 65%);
+  pointer-events: none;
+  animation: orbeFloatNos 8s ease-in-out infinite reverse;
+  z-index: 0;
+}
+
+.quienesText, .quienesImage {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Sheen quiénes somos ── */
+@keyframes quienesSheenMove {
+  0% { left: -60%; opacity: 0; }
+  30% { opacity: 0.6; }
+  60% { left: 120%; opacity: 0; }
+  100% { left: 120%; opacity: 0; }
+}
+
+.quienesSheen {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: skewX(-20deg);
+  animation: quienesSheenMove 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Sheen por qué elegirnos ── */
+.porqueSheen {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: skewX(-20deg);
+  animation: quienesSheenMove 5s ease-in-out infinite 1s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.porqueTag, .porqueTitulo, .porqueSubtitle, .porqueGrid {
+  position: relative;
+  z-index: 1;
 }

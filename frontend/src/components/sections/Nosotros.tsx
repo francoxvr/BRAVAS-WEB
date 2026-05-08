@@ -10,6 +10,9 @@ export default function Nosotros() {
 
       {/* ── Quiénes somos ── */}
       <section className={styles.quienesSection} data-animate id="nosotros-quienes">
+        <div className={styles.quienesOrbe1} />
+        <div className={styles.quienesOrbe2} />
+        <div className={styles.quienesSheen} />
         <div className={styles.quienesText}>
           <span className={styles.quienesTag}>Quiénes somos</span>
           <h2 className={styles.quienesTitle}>Somos Bravas.<br />Y lo damos todo.</h2>
@@ -106,6 +109,7 @@ export default function Nosotros() {
       </section>
       {/* ── Por qué elegirnos ── */}
       <section className={styles.porqueSection} data-animate id="nosotros-porque">
+        <div className={styles.porqueSheen} />
         <span className={styles.porqueTag}>¿Por qué elegirnos?</span>
         <h2 className={styles.porqueTitulo}>Diferente desde<br />el primer día.</h2>
         <p className={styles.porqueSubtitle}>No somos una agencia más. Estas son las razones.</p>

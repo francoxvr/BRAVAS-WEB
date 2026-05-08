@@ -94,6 +94,9 @@ export default function Home() {
 
       {/* ── Propuesta de valor ── */}
       <section id="propuesta" data-animate className={styles.propuestaSection}>
+        <div className={styles.propuestaOrbe1} />
+        <div className={styles.propuestaOrbe2} />
+        <div className={styles.propuestaSheen} />
         <span className={styles.propuestaTag}>¿Qué hacemos?</span>
         <h2 className={styles.propuestaTitulo}>Estrategias digitales<br />que generan resultados.</h2>
         <p className={styles.propuestaSubtitle}>No vendemos humo. Diseñamos, ejecutamos y medimos cada acción para que tu marca crezca de verdad.</p>
