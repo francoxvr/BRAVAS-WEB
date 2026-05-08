@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from './Home.module.css';
 
-/** Mismas imágenes e intervalo que el hero del Home */
 export const PAGE_HERO_IMAGES = [
   '/assets/images/marketing/marketing1.png',
   '/assets/images/marketing/marketing3.png',
@@ -26,15 +25,22 @@ export const PAGE_HERO_IMAGES = [
 ];
 
 type PageHeroProps = {
-  /** Único texto que cambia entre páginas (ej. BRAVAS, SERVICIOS, NOSOTROS, CONTACTO) */
   title: string;
-  /** id del `<section>` y base para `id="{sectionId}-target"` en el bloque de texto */
   sectionId: string;
-  /** Línea "M A R K E T I N G" bajo el título (solo Home la muestra) */
   showSubbrand?: boolean;
+  subtitle?: string;
+  ctaText?: string;
+  pills?: string[];
 };
 
-export default function PageHero({ title, sectionId, showSubbrand = true }: PageHeroProps) {
+export default function PageHero({
+  title,
+  sectionId,
+  showSubbrand = true,
+  subtitle,
+  ctaText = 'Impulsa tu Marca Ahora',
+  pills = ['Estrategia Digital', 'Branding', 'Performance Ads'],
+}: PageHeroProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -53,25 +59,28 @@ export default function PageHero({ title, sectionId, showSubbrand = true }: Page
           <div className={styles.heroText} id={targetId}>
             <div className={styles.heroTitleBox}>
               <h1 className={styles.heroBrand}>{title}</h1>
-              {showSubbrand ? (
+              {showSubbrand && (
                 <span className={styles.heroSubbrand}>M A R K E T I N G</span>
-              ) : null}
+              )}
             </div>
 
-            <p className={styles.heroSubtitle}>
-              Transformamos tu presencia digital con estrategias innovadoras que hacen brillar tu marca.
-            </p>
+            {(showSubbrand || subtitle) && (
+              <p className={styles.heroSubtitle}>
+                {subtitle ?? 'Transformamos tu presencia digital con estrategias innovadoras que hacen brillar tu marca.'}
+              </p>
+            )}
 
-            <Link href="/contacto" className={styles.btnCta}>
-              Impulsa tu Marca Ahora
+            <Link href="/contacto" className={`${styles.btnCta} ${!showSubbrand ? styles.btnCtaPage : ''}`}>
+              {ctaText}
             </Link>
 
-            <div className={styles.heroServicesHighlight}>
-              <span>Estrategia Digital</span>
-              <i>•</i>
-              <span>Branding</span>
-              <i>•</i>
-              <span>Performance Ads</span>
+            <div className={`${styles.heroServicesHighlight} ${!showSubbrand ? styles.heroServicesHighlightPage : ''}`}>
+              {pills.map((pill, i) => (
+                <>
+                  {i > 0 && <i key={`dot-${i}`}>•</i>}
+                  <span key={pill}>{pill}</span>
+                </>
+              ))}
             </div>
           </div>
 
@@ -89,7 +98,6 @@ export default function PageHero({ title, sectionId, showSubbrand = true }: Page
               className={`${styles.heroImage} ${index === currentImageIndex ? styles.active : ''}`}
             />
           ))}
-
           <div className={styles.carouselIndicators}>
             {PAGE_HERO_IMAGES.map((_, index) => (
               <button

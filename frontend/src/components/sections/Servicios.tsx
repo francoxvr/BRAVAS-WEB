@@ -308,7 +308,14 @@ const herramientas = [
 export default function Servicios() {
   return (
     <>
-      <PageHero title="SERVICIOS" sectionId="servicios" showSubbrand={false} />
+      <PageHero
+        title="SERVICIOS"
+        sectionId="servicios"
+        showSubbrand={false}
+        subtitle="Soluciones digitales completas para hacer crecer tu negocio y alcanzar tus objetivos."
+        ctaText="Conocé nuestros servicios"
+        pills={['Marketing Digital', 'Publicidad Paga', 'Branding']}
+      />
 
       {/* ── Intro partido ────────────────────────────────────────────── */}
       <section id="servicios-intro" className={styles.introSection} data-animate>

@@ -6,7 +6,14 @@ import styles from './Nosotros.module.css';
 export default function Nosotros() {
   return (
     <>
-      <PageHero title="NOSOTROS" sectionId="nosotros" showSubbrand={false} />
+      <PageHero
+        title="NOSOTROS"
+        sectionId="nosotros"
+        showSubbrand={false}
+        subtitle="Conocé el equipo detrás de cada estrategia y por qué somos el partner ideal para tu marca."
+        ctaText="Hablemos de tu proyecto"
+        pills={['Equipo apasionado', 'Resultados reales', 'Compromiso total']}
+      />
 
       {/* ── Quiénes somos ── */}
       <section className={styles.quienesSection} data-animate id="nosotros-quienes">

@@ -1815,7 +1815,7 @@
 .propuestaSection {
   box-sizing: border-box;
   max-width: 1300px;
-  min-height: 82vh;
+  min-height: 100vh;
   margin: 80px auto 0;
   padding: 70px 60px;
   background: #4e1a6b;
