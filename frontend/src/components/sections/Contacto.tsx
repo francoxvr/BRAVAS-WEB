@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PageHero from './PageHero';
 import styles from './Contacto.module.css';
+import { getContactoData } from '@/lib/queries';
 
 const serviciosOpciones = [
   { value: '', label: 'Seleccioná una opción' },
@@ -12,16 +13,30 @@ const serviciosOpciones = [
   { value: 'otro', label: 'Otro / aún no lo definí' },
 ];
 
+interface ContactoData {
+  email?: string;
+  whatsapp?: string;
+  instagram?: string;
+  linkedin?: string;
+  direccion?: string;
+}
+
+const DEFAULT_CONTACTO: ContactoData = {
+  email: 'info@bravas.com',
+  whatsapp: '5493511234567',
+  instagram: 'bravasmarketing',
+  linkedin: 'https://www.linkedin.com/company/bravas-marketing',
+  direccion: 'Córdoba, Argentina',
+};
+
 export default function Contacto() {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    telefono: '',
-    empresa: '',
-    servicio: '',
-    mensaje: '',
-  });
+  const [contacto, setContacto] = useState<ContactoData>(DEFAULT_CONTACTO);
+  const [formData, setFormData] = useState({ nombre: '', email: '', telefono: '', empresa: '', servicio: '', mensaje: '' });
   const [enviado, setEnviado] = useState(false);
+
+  useEffect(() => {
+    getContactoData().then((d: ContactoData | null) => { if (d) setContacto({ ...DEFAULT_CONTACTO, ...d }); });
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -35,7 +50,7 @@ export default function Contacto() {
   return (
     <>
       <PageHero
-        title="CONTACTO"
+        title="CONTACTO" page="contacto"
         sectionId="contacto"
         showSubbrand={false}
         subtitle="¿Listo para llevar tu marca al siguiente nivel? Contanos tu proyecto y arrancamos juntos."
@@ -50,20 +65,39 @@ export default function Contacto() {
           <h2 className={styles.leftTitle}>Contanos sobre tu proyecto.</h2>
           <p className={styles.leftDesc}>Completá el formulario y nos ponemos en contacto en menos de 24 horas para arrancar juntos.</p>
           <div className={styles.leftItems}>
-            <div className={styles.leftItem}>
-              <span className={styles.leftItemDot} />
-              <span>Respuesta en menos de 24hs</span>
-            </div>
-            <div className={styles.leftItem}>
-              <span className={styles.leftItemDot} />
-              <span>Primera consulta sin costo</span>
-            </div>
-            <div className={styles.leftItem}>
-              <span className={styles.leftItemDot} />
-              <span>Estrategia personalizada para tu negocio</span>
-            </div>
+            <div className={styles.leftItem}><span className={styles.leftItemDot} /><span>Respuesta en menos de 24hs</span></div>
+            <div className={styles.leftItem}><span className={styles.leftItemDot} /><span>Primera consulta sin costo</span></div>
+            <div className={styles.leftItem}><span className={styles.leftItemDot} /><span>Estrategia personalizada para tu negocio</span></div>
+          </div>
+          {/* Datos de contacto desde Sanity */}
+          <div className={styles.leftItems} style={{ marginTop: '1.5rem' }}>
+            {contacto.email && (
+              <div className={styles.leftItem}>
+                <span className={styles.leftItemDot} />
+                <a href={`mailto:${contacto.email}`} style={{ color: 'inherit', textDecoration: 'none' }}>{contacto.email}</a>
+              </div>
+            )}
+            {contacto.whatsapp && (
+              <div className={styles.leftItem}>
+                <span className={styles.leftItemDot} />
+                <a href={`https://wa.me/${contacto.whatsapp}`} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>WhatsApp</a>
+              </div>
+            )}
+            {contacto.instagram && (
+              <div className={styles.leftItem}>
+                <span className={styles.leftItemDot} />
+                <a href={`https://instagram.com/${contacto.instagram}`} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>@{contacto.instagram}</a>
+              </div>
+            )}
+            {contacto.direccion && (
+              <div className={styles.leftItem}>
+                <span className={styles.leftItemDot} />
+                <span>{contacto.direccion}</span>
+              </div>
+            )}
           </div>
         </div>
+
         <div className={styles.rightPanel}>
           {enviado ? (
             <div className={styles.successMsg}>

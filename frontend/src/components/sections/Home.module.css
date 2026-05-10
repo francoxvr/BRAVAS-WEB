@@ -1495,16 +1495,16 @@
 
 .innovacionFeatures {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 10px;
 }
 
 .innovacionFeature:first-child {
-  grid-column: span 2;
+  grid-column: span 1;
 }
 
 .innovacionFeature:last-child {
-  grid-column: span 2;
+  grid-column: span 1;
 }
 
 .innovacionFeature {
