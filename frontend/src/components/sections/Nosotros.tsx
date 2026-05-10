@@ -14,8 +14,6 @@ export default function Nosotros() {
         ctaText="Hablemos de tu proyecto"
         pills={['Equipo apasionado', 'Resultados reales', 'Compromiso total']}
       />
-
-      {/* ── Quiénes somos ── */}
       <section className={styles.quienesSection} data-animate id="nosotros-quienes">
         <div className={styles.quienesOrbe1} />
         <div className={styles.quienesOrbe2} />
@@ -51,8 +49,6 @@ export default function Nosotros() {
           <div className={styles.quienesImgBadge}>Marketing que transforma</div>
         </div>
       </section>
-
-      {/* ── Misión y Visión ── */}
       <section className={styles.misionSection} data-animate id="nosotros-mision">
         <div className={styles.misionBlock}>
           <span className={styles.misionTag}>Misión</span>
@@ -114,7 +110,6 @@ export default function Nosotros() {
           </div>
         </div>
       </section>
-      {/* ── Por qué elegirnos ── */}
       <section className={styles.porqueSection} data-animate id="nosotros-porque">
         <div className={styles.porqueSheen} />
         <span className={styles.porqueTag}>¿Por qué elegirnos?</span>

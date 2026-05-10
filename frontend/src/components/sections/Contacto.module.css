@@ -5,7 +5,6 @@
   100% { left: 120%; opacity: 0; }
 }
 
-/* ── Sección principal ── */
 .contactoSection {
   box-sizing: border-box;
   max-width: 1300px;
@@ -29,7 +28,6 @@
   z-index: 2;
 }
 
-/* ── Panel izquierdo morado ── */
 .leftPanel {
   background: #4e1a6b;
   padding: 70px 50px;
@@ -102,7 +100,6 @@
   flex-shrink: 0;
 }
 
-/* ── Panel derecho violeta ── */
 .rightPanel {
   background: #6b2490;
   padding: 60px 50px;
@@ -111,7 +108,6 @@
   justify-content: center;
 }
 
-/* ── Formulario ── */
 .form {
   display: flex;
   flex-direction: column;
@@ -205,7 +201,6 @@
   100% { left: -60%; }
 }
 
-/* ── Éxito ── */
 .successMsg {
   display: flex;
   flex-direction: column;
@@ -230,7 +225,6 @@
 .successMsg h3 { color: #4e1a6b; font-size: 1.4rem; font-weight: 900; margin: 0; }
 .successMsg p { color: rgba(78,26,107,0.75); margin: 0; }
 
-/* ── Dark mode ── */
 :global(.app-container.dark) .leftPanel { background: #2d0f45; }
 :global(.app-container.dark) .rightPanel { background: #3d1254; }
 :global(.app-container.dark) .input {
@@ -241,11 +235,20 @@
 :global(.app-container.dark) .input::placeholder { color: rgba(255,255,255,0.35); }
 :global(.app-container.dark) .input:focus { border-color: #eecb7c; }
 
-/* ── Responsive ── */
 @media (max-width: 768px) {
   .contactoSection { grid-template-columns: 1fr; }
   .leftPanel, .rightPanel { padding: 50px 28px; }
-  .leftTitle { font-size: 1.8rem; }
+  .leftTitle {
+    font-size: clamp(1.45rem, 7.5vw, 1.75rem);
+    max-width: 310px;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+  }
+  .leftDesc,
+  .leftItem {
+    max-width: 310px;
+    overflow-wrap: break-word;
+  }
   .formRow { grid-template-columns: 1fr; }
   .submitBtn { align-self: stretch; text-align: center; }
 }

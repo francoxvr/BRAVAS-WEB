@@ -1,4 +1,3 @@
-/** Logo WhatsApp (SVG), color vía `currentColor` o clase en el padre */
 export default function WhatsappIcon({ size = 18 }: { size?: number }) {
   return (
     <svg

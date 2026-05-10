@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import styles from './ScrollToBottom.module.css';
+import styles from './ScrollButton.module.css';
 import {
   getScrollAnchors,
   getCurrentAnchorIndex,
@@ -51,10 +51,10 @@ export default function ScrollToBottom() {
   if (!visible) return null;
 
   return (
-    <div className={styles.scrollToBottomWrapper}>
+    <div className={`${styles.wrapper} ${styles.left}`}>
       <button
         onClick={handleClick}
-        className={styles.scrollToBottom}
+        className={styles.button}
         aria-label="Ir a la siguiente sección"
       >
         <ChevronDown size={22} />

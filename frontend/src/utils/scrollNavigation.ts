@@ -11,7 +11,6 @@ const SERVICES_SECTION_IDS = [
 const NOSOTROS_SECTION_IDS = ['nosotros', 'nosotros-quienes', 'nosotros-mision', 'nosotros-equipo', 'nosotros-porque'];
 const CONTACTO_SECTION_IDS = ['contacto', 'contacto-form'];
 
-/** Primer bloque hero por página: scroll al inicio del documento */
 const HERO_SECTION_IDS = ['home', 'servicios', 'nosotros', 'contacto'] as const;
 
 export type ScrollAnchor = {
@@ -41,12 +40,6 @@ function getScrollBehavior(): ScrollBehavior {
     : 'smooth';
 }
 
-/** Bloque visible de la sección (ej. cabecera morada), id *-target; si no hay, la propia sección/footer */
-function getScrollTarget(element: HTMLElement) {
-  const target = element.querySelector('[id$="-target"]');
-  return target instanceof HTMLElement ? target : element;
-}
-
 function getAnchorTop(element: HTMLElement) {
   if (!isBrowser()) return 0;
 
@@ -60,7 +53,6 @@ function getSectionIdsForPage(): string[] {
   if (document.getElementById('nosotros-resultados')) return NOSOTROS_SECTION_IDS;
   if (document.getElementById('contacto-form')) return CONTACTO_SECTION_IDS;
   
-  // Fallback: detectar si estamos en una página específica por la URL
   const path = window.location.pathname;
   if (path.includes('servicios')) return SERVICES_SECTION_IDS;
   if (path.includes('nosotros')) return NOSOTROS_SECTION_IDS;
@@ -96,28 +88,22 @@ export function getScrollAnchors() {
 export function getCurrentAnchorIndex(anchors: ScrollAnchor[]) {
   if (!isBrowser() || !anchors.length) return -1;
 
-  const headerOffset = getHeaderOffset();
   const scrollY = window.scrollY;
   const viewportHeight = window.innerHeight;
   const scrollCenter = scrollY + (viewportHeight / 2);
 
-  // 1. Si estamos muy cerca del inicio, el índice es 0 (Hero)
   if (scrollY < 100) return 0;
 
-  // 2. Si estamos muy cerca del final, el índice es el último (Footer)
   if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 100) {
     return anchors.length - 1;
   }
 
-  // 3. Buscamos la sección cuyo centro esté más cerca del centro del viewport
-  // o que esté ocupando la mayor parte de la pantalla.
   let bestIndex = 0;
   let minDistance = Infinity;
 
   anchors.forEach((anchor, index) => {
     const top = getAnchorTop(anchor.element);
-    // Usamos el centro de la sección si es posible, o simplemente su top
-    const sectionCenter = top + (anchor.element.offsetHeight / 4); // Estimación rápida
+    const sectionCenter = top + (anchor.element.offsetHeight / 4);
     const distance = Math.abs(scrollCenter - sectionCenter);
 
     if (distance < minDistance) {

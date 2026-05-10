@@ -8,7 +8,7 @@
 .nosSection {
   box-sizing: border-box;
   max-width: 1300px;
-  min-height: 82vh;
+  min-height: 100vh;
   margin: 80px auto 0;
   padding: 55px 40px;
   background: #e8dcc2;
@@ -98,7 +98,6 @@
   .teamGrid { grid-template-columns: 1fr; }
 }
 
-/* ── Por qué elegirnos ── */
 .porqueSection {
   box-sizing: border-box;
   max-width: 1300px;
@@ -214,7 +213,6 @@
   .porqueGrid { grid-template-columns: 1fr; }
 }
 
-/* ── Quiénes somos ── */
 .quienesSection {
   box-sizing: border-box;
   max-width: 1300px;
@@ -349,7 +347,6 @@
   .quienesImgBadge { bottom: -10px; right: 10px; }
 }
 
-/* ── Misión y Visión ── */
 .misionSection {
   box-sizing: border-box;
   max-width: 1300px;
@@ -463,9 +460,6 @@
   .misionTitle, .visionTitle { font-size: 1.8rem; }
 }
 
-/* ================= DARK MODE ================= */
-
-/* Quiénes somos */
 :global(.app-container.dark) .quienesSection {
   background: #2d0f45;
 }
@@ -488,7 +482,6 @@
   background: #3d1454;
 }
 
-/* Misión y Visión */
 :global(.app-container.dark) .misionBlock {
   background: #2d0f45;
 }
@@ -502,7 +495,6 @@
   color: rgba(238,203,124,0.65);
 }
 
-/* Equipo */
 :global(.app-container.dark) .nosSection {
   background: #1e293b;
 }
@@ -520,7 +512,6 @@
   color: rgba(255,255,255,0.65);
 }
 
-/* Por qué elegirnos */
 :global(.app-container.dark) .porqueSection {
   background: #2d0f45;
 }
@@ -533,9 +524,6 @@
   border-color: rgba(238,203,124,0.25);
 }
 
-/* ================= EFECTOS GLOW / SHEEN ================= */
-
-/* Sheen en misionBlock y visionBlock */
 .misionBlock::after {
   content: '';
   position: absolute;
@@ -543,7 +531,7 @@
   width: 40%; height: 100%;
   background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
   transform: skewX(-20deg);
-  animation: sheen 7s ease-in-out infinite;
+  animation: sheen 3s ease-in-out infinite;
 }
 
 .visionBlock::after {
@@ -553,16 +541,14 @@
   width: 40%; height: 100%;
   background: linear-gradient(120deg, transparent, rgba(78,26,107,0.12), transparent);
   transform: skewX(-20deg);
-  animation: sheen 7s ease-in-out infinite 1.5s;
+  animation: sheen 3s ease-in-out infinite 1.5s;
 }
 
-/* Hover glow en quienesSection imagen */
 .quienesImage:hover .quienesImg {
   transform: scale(1.03);
   box-shadow: 0 30px 70px rgba(78,26,107,0.3);
 }
 
-/* Shimmer en teamCards */
 .teamCard::after {
   content: '';
   position: absolute;
@@ -579,12 +565,10 @@
   opacity: 1;
 }
 
-/* Glow ring en teamCard hover */
 .teamCard:hover {
   box-shadow: 0 20px 50px rgba(78,26,107,0.2), 0 0 0 1px rgba(238,203,124,0.2);
 }
 
-/* Shimmer en porqueItems */
 .porqueItem::after {
   content: '';
   position: absolute;
@@ -605,7 +589,6 @@
   opacity: 1;
 }
 
-/* Glow en stats de quiénes somos */
 .quienesStat:hover .quienesStatNum {
   text-shadow: 0 0 20px rgba(78,26,107,0.4);
   transform: scale(1.05);
@@ -613,7 +596,6 @@
   transition: all 0.3s ease;
 }
 
-/* Pulsing glow en badge */
 @keyframes badgePulse {
   0%, 100% { box-shadow: 0 8px 24px rgba(78,26,107,0.3); }
   50% { box-shadow: 0 8px 32px rgba(78,26,107,0.5), 0 0 0 4px rgba(78,26,107,0.1); }
@@ -623,7 +605,6 @@
   animation: badgePulse 3s ease-in-out infinite;
 }
 
-/* Hover lift en misionBlock y visionBlock */
 .misionBlock:hover, .visionBlock:hover {
   filter: brightness(1.05);
 }
@@ -632,7 +613,6 @@
   transition: filter 0.3s ease;
 }
 
-/* ── Shine hover en imagen de Quiénes somos ── */
 @keyframes shineIn {
   from { left: -120%; }
   to { left: 140%; }
@@ -673,15 +653,12 @@
   transform: scale(1.03);
 }
 
-/* ================= EFECTOS EXTRA QUIÉNES SOMOS ================= */
-
 @keyframes bgShimmer {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Glow pulsante en números de stats */
 @keyframes statPulse {
   0%, 100% { text-shadow: 0 0 0px rgba(78,26,107,0); }
   50% { text-shadow: 0 0 20px rgba(78,26,107,0.35), 0 0 40px rgba(78,26,107,0.15); }
@@ -691,7 +668,6 @@
   animation: statPulse 3s ease-in-out infinite;
 }
 
-/* Glow en título al hover */
 .quienesTitle {
   transition: text-shadow 0.3s ease;
 }
@@ -700,7 +676,6 @@
   text-shadow: 0 0 30px rgba(78,26,107,0.2);
 }
 
-/* Badge con brillo extra */
 @keyframes badgeShine {
   0%, 100% { box-shadow: 0 8px 24px rgba(78,26,107,0.3); }
   50% { box-shadow: 0 8px 32px rgba(78,26,107,0.6), 0 0 0 4px rgba(238,203,124,0.15), 0 0 20px rgba(238,203,124,0.1); }
@@ -710,7 +685,6 @@
   animation: badgeShine 3s ease-in-out infinite;
 }
 
-/* ── Orbes quiénes somos ── */
 @keyframes orbeFloatNos {
   0%, 100% { transform: scale(1); opacity: 0.7; }
   50% { transform: scale(1.25); opacity: 1; }
@@ -743,7 +717,6 @@
   z-index: 1;
 }
 
-/* ── Sheen quiénes somos ── */
 @keyframes quienesSheenMove {
   0% { left: -60%; opacity: 0; }
   30% { opacity: 0.6; }
@@ -764,7 +737,6 @@
   z-index: 0;
 }
 
-/* ── Sheen por qué elegirnos ── */
 .porqueSheen {
   position: absolute;
   top: 0;

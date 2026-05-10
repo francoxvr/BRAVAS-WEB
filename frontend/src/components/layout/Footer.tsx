@@ -5,19 +5,19 @@ import { SOCIAL_URLS } from '@/constants/socialUrls';
 import styles from './Footer.module.css';
 
 const serviceLinks = [
-  { href: '/servicios', label: 'Marketing Digital' },
-  { href: '/servicios', label: 'Diseño Web' },
-  { href: '/servicios', label: 'Publicidad Digital' },
-  { href: '/servicios', label: 'Redes Sociales' },
-  { href: '/servicios', label: 'SEO & Analytics' },
+  { href: '/servicios#servicios-intro', label: 'Lo que hacemos' },
+  { href: '/servicios#servicios-nuestros', label: 'Nuestros Servicios' },
+  { href: '/servicios#servicios-integrales', label: 'Soluciones Integrales' },
+  { href: '/servicios#servicios-herramientas', label: 'Herramientas' },
+  { href: '/servicios#servicios-faq', label: 'Preguntas Frecuentes' },
 ];
 
 const companyLinks = [
-  { href: '/nosotros', label: 'Nosotros' },
-  { href: '/#enfoque', label: 'Nuestro Enfoque' },
+  { href: '/nosotros#nosotros-quienes', label: 'Quiénes Somos' },
+  { href: '/nosotros#nosotros-mision', label: 'Misión y Visión' },
+  { href: '/nosotros#nosotros-equipo', label: 'Nuestro Equipo' },
+  { href: '/nosotros#nosotros-porque', label: 'Por Qué Elegirnos' },
   { href: '/contacto', label: 'Contacto' },
-  { href: '/servicios', label: 'Portafolio' },
-  { href: '/servicios', label: 'Casos de Éxito' },
 ];
 
 const MapPinIcon = () => (

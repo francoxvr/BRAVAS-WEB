@@ -56,7 +56,7 @@ export default function PageHero({
     <div className={styles.heroWrapper}>
       <section className={styles.heroSection} id={sectionId}>
         <div className={styles.heroContainer}>
-          <div className={styles.heroText} id={targetId}>
+          <div className={styles.heroText} id={targetId} data-animate="fade-right">
             <div className={styles.heroTitleBox}>
               <h1 className={styles.heroBrand}>{title}</h1>
               {showSubbrand && (
@@ -88,7 +88,7 @@ export default function PageHero({
         </div>
       </section>
 
-      <div className={styles.heroImageWrapper}>
+      <div className={styles.heroImageWrapper} data-animate="fade-left" data-animate-delay="1">
         <div className={styles.heroImageCard}>
           {PAGE_HERO_IMAGES.map((image, index) => (
             <img
@@ -98,17 +98,6 @@ export default function PageHero({
               className={`${styles.heroImage} ${index === currentImageIndex ? styles.active : ''}`}
             />
           ))}
-          <div className={styles.carouselIndicators}>
-            {PAGE_HERO_IMAGES.map((_, index) => (
-              <button
-                key={index}
-                type="button"
-                className={`${styles.indicator} ${index === currentImageIndex ? styles.indicatorActive : ''}`}
-                onClick={() => setCurrentImageIndex(index)}
-                aria-label={`Ir a imagen ${index + 1}`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </div>

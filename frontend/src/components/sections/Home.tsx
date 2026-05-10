@@ -91,8 +91,6 @@ export default function Home() {
   return (
     <>
       <PageHero title="BRAVAS" sectionId="home" />
-
-      {/* ── Propuesta de valor ── */}
       <section id="propuesta" data-animate className={styles.propuestaSection}>
         <div className={styles.propuestaOrbe1} />
         <div className={styles.propuestaOrbe2} />
@@ -176,7 +174,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="crecimiento" className={styles.crecimientoSection}>
+      <section id="crecimiento" className={styles.crecimientoSection} data-animate>
         <div className={styles.crecimientoHeader} id="crecimiento-target">
           <h2 className={styles.crecimientoTitle}>
             Impulsamos el crecimiento de tu negocio
@@ -252,7 +250,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="proceso" className={styles.procesoSection}>
+      <section id="proceso" className={styles.procesoSection} data-animate>
         <div className={styles.procesoHeader} id="proceso-target">
           <h2 className={styles.procesoTitle}>
             Nuestro Proceso de Trabajo
@@ -297,7 +295,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="innovacion" className={styles.innovacionSection}>
+      <section id="innovacion" className={styles.innovacionSection} data-animate>
         <div className={styles.innovacionHeader} id="innovacion-target">
           <h2 className={styles.innovacionHeaderTitle}>
             Innovación Constante

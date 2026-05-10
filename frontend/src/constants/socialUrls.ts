@@ -1,4 +1,3 @@
-/** URLs públicas de redes — ajustá si tu marca usa otros perfiles */
 export const SOCIAL_URLS = {
   facebook: 'https://www.facebook.com/bravasmarketing',
   instagram: 'https://www.instagram.com/bravasmarketing',

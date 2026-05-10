@@ -45,8 +45,6 @@ export default function Contacto() {
 
       <section className={styles.contactoSection} data-animate id="contacto-form">
         <div className={styles.sheen} />
-
-        {/* Lado izquierdo — morado */}
         <div className={styles.leftPanel}>
           <span className={styles.leftTag}>Hablemos</span>
           <h2 className={styles.leftTitle}>Contanos sobre tu proyecto.</h2>
@@ -66,8 +64,6 @@ export default function Contacto() {
             </div>
           </div>
         </div>
-
-        {/* Lado derecho — dorado con formulario */}
         <div className={styles.rightPanel}>
           {enviado ? (
             <div className={styles.successMsg}>

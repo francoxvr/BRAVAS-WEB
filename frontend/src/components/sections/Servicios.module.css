@@ -38,7 +38,6 @@
 
 .iconArrow svg { animation: arrowDiagonal 1.5s ease-in-out infinite; transform-origin: center; }
 
-/* ================= LIGHT / DARK ================= */
 :global(.app-container.dark) .nuestrosSection,
 :global(.app-container.dark) .integralSection,
 :global(.app-container.dark) .herramientasSection {
@@ -90,7 +89,6 @@
   background: rgba(255,255,255,0.12);
 }
 
-/* ================= NUESTROS SERVICIOS ================= */
 .nuestrosSection,
 .integralSection,
 .herramientasSection {
@@ -136,7 +134,7 @@
   height: 100%;
   background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
   transform: skewX(-20deg);
-  animation: sheen 7s ease-in-out infinite;
+  animation: sheen 3s ease-in-out infinite;
 }
 
 .nuestrosHeader h2 {
@@ -300,7 +298,6 @@
   margin-right: 7px;
 }
 
-/* ================= SOLUCIONES INTEGRALES ================= */
 .integralSection {
   min-height: 100vh;
 }
@@ -433,7 +430,6 @@
   cursor: pointer;
 }
 
-/* ================= HERRAMIENTAS ================= */
 .herramientasSection {
   min-height: 10px;
   padding-bottom: 15px;
@@ -575,7 +571,6 @@
 
 .herramientasBottomBadge:hover { opacity: 0.88; }
 
-/* ================= CTA FINAL ================= */
 .statsSection {
   padding: 34px 40px;
   max-width: 1300px;
@@ -613,7 +608,6 @@
 
 .statsBadge:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(238,203,124,0.5); }
 
-/* ================= RESPONSIVE ================= */
 @media (max-width: 1024px) {
   .nuestrosGrid { grid-template-columns: repeat(2, 1fr); }
   .nuestroCard:nth-child(4) { grid-column: auto; }
@@ -658,7 +652,6 @@
   .statsBadge { font-size: 0.9rem; padding: 11px 24px; }
 }
 
-/* ================= FAQ ================= */
 .faqSection {
   box-sizing: border-box;
   max-width: 1300px;
@@ -748,9 +741,6 @@
   padding-top: 12px;
 }
 
-/* ================= EFECTOS GLOW / SHEEN ================= */
-
-/* Keyframes */
 @keyframes sheen {
   0% { left: -60%; opacity: 0; }
   30% { opacity: .6; }
@@ -758,7 +748,6 @@
   100% { left: 120%; opacity: 0; }
 }
 
-/* Sheen en headers de herramientas y FAQ */
 .herramientasHeader::before,
 .faqHeader::before {
   content: '';
@@ -774,10 +763,9 @@
     transparent
   );
   transform: skewX(-20deg);
-  animation: sheen 7s ease-in-out infinite;
+  animation: sheen 3s ease-in-out infinite;
 }
 
-/* Glow + shimmer en cards de herramientas al hover */
 .herCat {
   position: relative;
   overflow: hidden;
@@ -811,7 +799,6 @@
   border-color: rgba(78, 26, 107, 0.3);
 }
 
-/* Glow + shimmer en items FAQ al hover */
 .faqItem {
   position: relative;
   overflow: hidden;
@@ -851,7 +838,6 @@
   z-index: 1;
 }
 
-/* ── Dark mode FAQ ── */
 :global(.app-container.dark) .faqSection {
   background: #1e293b;
 }
@@ -877,7 +863,6 @@
   border-top-color: rgba(255,255,255,0.1);
 }
 
-/* ================= INTRO PARTIDO ================= */
 .introSection {
   box-sizing: border-box;
   max-width: 1300px;
@@ -919,7 +904,7 @@
   width: 40%; height: 100%;
   background: linear-gradient(120deg, transparent, rgba(255,255,255,0.07), transparent);
   transform: skewX(-20deg);
-  animation: sheen 7s ease-in-out infinite;
+  animation: sheen 3s ease-in-out infinite;
 }
 
 .introTag {
@@ -980,7 +965,7 @@
   width: 40%; height: 100%;
   background: linear-gradient(120deg, transparent, rgba(78,26,107,0.08), transparent);
   transform: skewX(-20deg);
-  animation: sheen 7s ease-in-out infinite 1.5s;
+  animation: sheen 3s ease-in-out infinite 1.5s;
 }
 
 .introTagDark {
@@ -1011,7 +996,6 @@
   margin: 0;
 }
 
-/* Dark mode */
 :global(.app-container.dark) .introLeft { background: #2d0f45; }
 :global(.app-container.dark) .introRight { background: #3d2a00; }
 :global(.app-container.dark) .introTitleDark { color: #eecb7c; }
@@ -1020,5 +1004,15 @@
 @media (max-width: 768px) {
   .introSection { grid-template-columns: 1fr; }
   .introLeft, .introRight { padding: 50px 28px; }
-  .introTitle, .introTitleDark { font-size: 1.8rem; }
+  .introTitle, .introTitleDark {
+    font-size: clamp(1.45rem, 7.5vw, 1.75rem);
+    max-width: 310px;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+  }
+  .introDesc,
+  .introDescDark {
+    max-width: 310px;
+    overflow-wrap: break-word;
+  }
 }

@@ -1,14 +1,19 @@
-/* ===== WRAPPER (para el anillo de pulso) ===== */
-.scrollToBottomWrapper {
+.wrapper {
   position: fixed;
   bottom: 100px;
-  left: 30px;
   z-index: 999;
   animation: fadeInUp 0.5s ease, floatY 2.8s ease-in-out infinite;
 }
 
-/* ===== ANILLO DE PULSO (en el wrapper) ===== */
-.scrollToBottomWrapper::before {
+.left {
+  left: 30px;
+}
+
+.right {
+  right: 30px;
+}
+
+.wrapper::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -24,12 +29,11 @@
   pointer-events: none;
 }
 
-.scrollToBottomWrapper:hover::before {
+.wrapper:hover::before {
   animation-play-state: paused;
 }
 
-/* ===== BOTÓN ===== */
-.scrollToBottom {
+.button {
   position: relative;
   width: 50px;
   height: 50px;
@@ -46,20 +50,17 @@
   overflow: hidden;
 }
 
-/* Hover */
-.scrollToBottomWrapper:hover .scrollToBottom {
+.wrapper:hover .button {
   transform: translateY(-3px) scale(1.1);
   box-shadow: 0 10px 30px rgba(139, 0, 255, 0.6);
 }
 
-/* Click */
-.scrollToBottom:active {
+.button:active {
   transform: translateY(-1px) scale(1.05);
   animation: clickPulse 0.3s ease;
 }
 
-/* ===== EFECTO BRILLO TIPO NAV ===== */
-.scrollToBottom::before {
+.button::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -71,11 +72,10 @@
   pointer-events: none;
 }
 
-.scrollToBottomWrapper:hover .scrollToBottom::before {
+.wrapper:hover .button::before {
   transform: translateX(100%);
 }
 
-/* ===== ANIMACIONES ===== */
 @keyframes floatY {
   0% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
@@ -110,55 +110,61 @@
   100% { box-shadow: 0 6px 20px rgba(139, 0, 255, 0.4); }
 }
 
-/* ================= RESPONSIVE - TABLET ================= */
 @media (max-width: 1024px) {
-  .scrollToBottomWrapper {
+  .wrapper {
     bottom: 95px;
+  }
+
+  .left {
     left: 25px;
   }
 
-  .scrollToBottom {
-    width: 48px;
-    height: 48px;
+  .right {
+    right: 25px;
   }
 
-  .scrollToBottomWrapper::before {
+  .button,
+  .wrapper::before {
     width: 48px;
     height: 48px;
   }
 }
 
-/* ================= RESPONSIVE - MOBILE ================= */
 @media (max-width: 768px) {
-  .scrollToBottomWrapper {
+  .wrapper {
     bottom: 90px;
+  }
+
+  .left {
     left: 20px;
   }
-  
-  .scrollToBottom {
-    width: 45px;
-    height: 45px;
+
+  .right {
+    right: 20px;
   }
 
-  .scrollToBottomWrapper::before {
+  .button,
+  .wrapper::before {
     width: 45px;
     height: 45px;
   }
 }
 
-/* ================= RESPONSIVE - MOBILE SMALL ================= */
 @media (max-width: 480px) {
-  .scrollToBottomWrapper {
+  .wrapper {
     bottom: 85px;
+  }
+
+  .left {
     left: 15px;
   }
 
-  .scrollToBottom {
-    width: 42px;
-    height: 42px;
+  .right {
+    right: 15px;
   }
 
-  .scrollToBottomWrapper::before {
+  .button,
+  .wrapper::before {
     width: 42px;
     height: 42px;
   }

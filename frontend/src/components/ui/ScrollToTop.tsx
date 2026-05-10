@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ChevronUp } from 'lucide-react';
-import styles from './ScrollToTop.module.css';
+import styles from './ScrollButton.module.css';
 import {
   getScrollAnchors,
   getCurrentAnchorIndex,
@@ -38,7 +38,6 @@ export default function ScrollToTop() {
     const prevIndex = current - 1;
 
     if (prevIndex < 0) {
-      // Scroll directo al top — el header es sticky así que queda visible
       window.scrollTo({ top: 0, behavior: 'smooth' });
       pendingIndexRef.current = 0;
       setVisible(false);
@@ -56,10 +55,10 @@ export default function ScrollToTop() {
   if (!visible) return null;
 
   return (
-    <div className={styles.scrollToTopWrapper}>
+    <div className={`${styles.wrapper} ${styles.right}`}>
       <button
         onClick={handleClick}
-        className={styles.scrollToTop}
+        className={styles.button}
         aria-label="Ir a la sección anterior"
       >
         <ChevronUp size={22} />

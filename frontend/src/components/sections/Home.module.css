@@ -14,7 +14,6 @@
   color: #475569;
 }
 
-/* ================= WRAPPER ================= */
 .heroWrapper {
   position: relative;
   margin-bottom: 60px;
@@ -23,14 +22,12 @@
   margin-right: auto;
 }
 
-/* ================= HERO ================= */
 .heroSection {
   position: relative;
   padding: 0 20px 40px;
   overflow: visible;
 }
 
-/* Fondo diagonal */
 .heroSection::before {
   content: '';
   position: absolute;
@@ -40,7 +37,6 @@
   z-index: 1;
 }
 
-/* ================= CONTENEDOR ================= */
 .heroContainer {
   max-width: 1400px;
   margin: 0 auto;
@@ -54,13 +50,11 @@
   padding-bottom: 60px;
 }
 
-/* ================= PLACEHOLDER ================= */
 .heroImagePlaceholder {
   width: 100%;
   min-height: 400px;
 }
 
-/* ================= TEXTO ================= */
 .heroText {
   color: #ffffff;
   display: flex;
@@ -97,9 +91,18 @@
   line-height: 1.6;
 }
 
-/* ================= BOTÓN CTA ================= */
+.btnCtaPage {
+  top: 0 !important;
+  position: relative !important;
+  margin-top: 20px !important;
+}
+
+.heroServicesHighlightPage {
+  margin-top: 16px !important;
+}
+
 .btnCta {
-  margin-top: 20px;
+  margin-top: -35px;
   padding: 18px 48px;
   border-radius: 16px;
   font-size: .95rem;
@@ -147,7 +150,6 @@
   animation: btnSheenPingPong 1.8s ease-in-out;
 }
 
-/* ================= SERVICIOS HIGHLIGHT ================= */
 .heroServicesHighlight {
   margin-top: 48px;
   padding: 14px 30px;
@@ -191,7 +193,6 @@
   opacity: .7;
 }
 
-/* ================= CARRUSEL DE IMÁGENES HERO ================= */
 .heroImageWrapper {
   position: absolute;
   top: 180px;
@@ -199,6 +200,14 @@
   max-width: 550px;
   z-index: 50;
   transform: translateY(-140px);
+}
+
+:global(body.scroll-animations-ready) .heroImageWrapper[data-animate="fade-left"] {
+  transform: translate3d(34px, -140px, 0);
+}
+
+:global(body.scroll-animations-ready) .heroImageWrapper[data-animate="fade-left"].animate-in {
+  transform: translate3d(0, -140px, 0);
 }
 
 .heroImageCard {
@@ -299,10 +308,9 @@
   border-radius: 4px;
 }
 
-/* ================= ANIMACIÓN ================= */
 @keyframes sheen {
   0% { left: -60%; opacity: 0; }
-  30% { opacity: .6; }
+  30% { opacity: 1; }
   60% { left: 120%; opacity: 0; }
   100% { left: 120%; opacity: 0; }
 }
@@ -313,7 +321,6 @@
   100% { left: -60%; }
 }
 
-/* ================= LIGHT MODE ================= */
 :global(.app-container.light) .btnCta {
   background: #eecb7c;
   color: #4e1a6b;
@@ -326,7 +333,6 @@
   backdrop-filter: none;
 }
 
-/* ================= DARK MODE ================= */
 :global(.app-container.dark) .heroSection::before {
   background: #2e0f3f;
 }
@@ -340,14 +346,16 @@
   background: rgba(78, 26, 107, 0.4);
 }
 
-/* ================= MOBILE ================= */
 @media (max-width: 900px) {
   .heroWrapper {
-    margin-bottom: 80px;
+    margin-bottom: 44px;
+    width: 100%;
+    overflow: hidden;
   }
 
   .heroSection {
-    padding: 0 15px 60px;
+    padding: 0 15px 24px;
+    overflow: hidden;
   }
 
   .heroSection::before {
@@ -357,15 +365,20 @@
   .heroContainer {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 50px;
+    gap: 24px;
     padding-top: 20px;
-    padding-bottom: 80px;
+    padding-bottom: 32px;
+    width: 100%;
   }
 
   .heroText {
     align-items: center;
     left: 0;
     top: 0;
+    width: 100%;
+    min-width: 0;
+    max-width: min(100%, 340px);
+    margin: 0 auto;
   }
 
   .heroBrand {
@@ -379,11 +392,16 @@
 
   .heroSubtitle {
     font-size: 1rem;
-    max-width: 100%;
+    max-width: min(100%, 320px);
+    width: 100%;
+    overflow-wrap: break-word;
+    white-space: normal;
+    text-wrap: balance;
   }
 
   .btnCta {
     top: 0;
+    margin-top: 4px;
     font-size: 0.9rem;
     padding: 16px 40px;
   }
@@ -393,14 +411,54 @@
     flex-wrap: wrap;
     font-size: .8rem;
     top: 0;
+    width: 100%;
+    max-width: min(100%, 340px);
+    box-sizing: border-box;
+    white-space: normal;
+    line-height: 1.45;
+  }
+
+  .heroServicesHighlight span,
+  .heroServicesHighlight i {
+    flex: 0 1 auto;
+  }
+
+  .heroServicesHighlight i {
+    display: none;
+  }
+
+  .heroServicesHighlight span {
+    padding: 2px 4px;
+    overflow-wrap: break-word;
+    white-space: normal;
+    min-width: 0;
+  }
+
+  .heroImagePlaceholder {
+    display: none;
   }
 
   .heroImageWrapper {
     position: static;
     transform: none;
-    margin: 0 auto;
+    margin: -8px auto 0;
     max-width: 100%;
     padding: 0 15px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  :global(body.scroll-animations-ready) .heroImageWrapper[data-animate="fade-left"] {
+    transform: translate3d(0, 28px, 0);
+  }
+
+  :global(body.scroll-animations-ready) .heroImageWrapper[data-animate="fade-left"].animate-in {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .heroImageCard {
+    max-width: 340px;
+    margin: 0 auto;
   }
 
   .carouselIndicators {
@@ -419,7 +477,6 @@
   }
 }
 
-/* ================= SECCIÓN ENFOQUE INTEGRAL ================= */
 .crecimientoSection,
 .procesoSection,
 .innovacionSection {
@@ -471,7 +528,7 @@
     transparent
   );
   transform: skewX(-20deg);
-  animation: sheen 7s ease-in-out infinite;
+  animation: sheen 3s ease-in-out infinite;
 }
 
 .enfoqueTitle {
@@ -497,7 +554,6 @@
   text-overflow: ellipsis;
 }
 
-/* ================= GRID DE CARDS ================= */
 .cardsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -505,7 +561,6 @@
   margin-top: 15px;
 }
 
-/* ================= CARD ================= */
 .serviceCard {
   padding: 18px 16px;
   border-radius: 14px;
@@ -546,7 +601,6 @@
   transform: translateY(-10px);
 }
 
-/* ================= ICON ================= */
 .cardIcon {
   width: 50px;
   height: 50px;
@@ -572,7 +626,6 @@
 .card5 .cardIcon { background: linear-gradient(135deg, #bfdbfe, #60a5fa); box-shadow: 0 8px 20px rgba(96, 165, 250, 0.3); }
 .card6 .cardIcon { background: linear-gradient(135deg, #bbf7d0, #34d399); box-shadow: 0 8px 20px rgba(52, 211, 153, 0.3); }
 
-/* ================= TEXT ================= */
 .cardTitle {
   font-size: 0.98rem;
   font-weight: 800;
@@ -590,7 +643,6 @@
   z-index: 2;
 }
 
-/* ================= LIGHT MODE - ENFOQUE ================= */
 :global(.app-container.light) .enfoqueSection {
   background: #e8dcc2;
 }
@@ -633,7 +685,6 @@
   color: #64748b;
 }
 
-/* ================= DARK MODE - ENFOQUE ================= */
 :global(.app-container.dark) .enfoqueSection {
   background: #1e293b;
 }
@@ -661,7 +712,6 @@
   color: #cbd5e1;
 }
 
-/* ================= RESPONSIVE ENFOQUE ================= */
 @media (max-width: 1200px) {
   .cardsGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -736,7 +786,6 @@
   }
 }
 
-/* ================= SECCIÓN CRECIMIENTO DIGITAL ================= */
 .crecimientoSection,
 .procesoSection,
 .innovacionSection {
@@ -763,7 +812,7 @@
   height: 100%;
   background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transform: skewX(-20deg);
-  animation: sheen 7s ease-in-out infinite;
+  animation: sheen 3s ease-in-out infinite;
 }
 
 .crecimientoTitle {
@@ -956,7 +1005,6 @@
   z-index: 1;
 }
 
-/* ================= LIGHT MODE - CRECIMIENTO ================= */
 :global(.app-container.light) .crecimientoSection {
   background: #e8dcc2;
 }
@@ -978,7 +1026,6 @@
   color: #64748b;
 }
 
-/* ================= DARK MODE - CRECIMIENTO ================= */
 :global(.app-container.dark) .crecimientoSection {
   background: #1e293b;
 }
@@ -1010,7 +1057,6 @@
   color: #cbd5e1;
 }
 
-/* ================= RESPONSIVE CRECIMIENTO ================= */
 @media (max-width: 1200px) {
   .crecimientoGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -1064,7 +1110,6 @@
   }
 }
 
-/* ================= SECCIÓN PROCESO DE TRABAJO ================= */
 .procesoSection {
   min-height: 98vh;
   padding: 90px 40px;
@@ -1095,7 +1140,7 @@
   height: 100%;
   background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transform: skewX(-20deg);
-  animation: sheen 7s ease-in-out infinite;
+  animation: sheen 3s ease-in-out infinite;
 }
 
 .procesoTitle {
@@ -1305,12 +1350,10 @@
   }
 }
 
-/* ================= LIGHT MODE - PROCESO ================= */
 :global(.app-container.light) .procesoSection {
   background: #e8dcc2;
 }
 
-/* ================= DARK MODE - PROCESO ================= */
 :global(.app-container.dark) .procesoSection {
   background: #1e293b;
 }
@@ -1335,7 +1378,6 @@
   color: #cbd5e1;
 }
 
-/* ================= RESPONSIVE PROCESO ================= */
 @media (max-width: 1024px) {
   .procesoTimeline {
     grid-template-columns: repeat(2, 1fr);
@@ -1390,7 +1432,6 @@
   }
 }
 
-/* ================= SECCIÓN INNOVACIÓN CONSTANTE ================= */
 .innovacionSection {
   min-height: 85vh;
   padding: 60px 40px;
@@ -1422,7 +1463,7 @@
   height: 100%;
   background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transform: skewX(-20deg);
-  animation: sheen 7s ease-in-out infinite;
+  animation: sheen 3s ease-in-out infinite;
 }
 
 .innovacionHeaderTitle {
@@ -1640,7 +1681,6 @@
   to { left: -120%; opacity: 1; }
 }
 
-/* ================= LIGHT MODE - INNOVACIÓN ================= */
 :global(.app-container.light) .innovacionSection {
   background: #e8dcc2;
 }
@@ -1661,7 +1701,6 @@
   color: #64748b;
 }
 
-/* ================= DARK MODE - INNOVACIÓN ================= */
 :global(.app-container.dark) .innovacionSection {
   background: #1e293b;
 }
@@ -1684,7 +1723,6 @@
   color: #cbd5e1;
 }
 
-/* ================= RESPONSIVE INNOVACIÓN ================= */
 @media (max-width: 1024px) {
   .innovacionContainer {
     grid-template-columns: 1fr;
@@ -1716,13 +1754,14 @@
   }
 }
 
-/* ================= RESPONSIVE ADICIONAL - MOBILE PEQUEÑO ================= */
 @media (max-width: 480px) {
   .heroBrand { font-size: 2.5rem !important; }
   .heroSubbrand { font-size: 0.85rem !important; letter-spacing: 6px !important; }
-  .heroSubtitle { font-size: 0.9rem !important; }
+  .heroText { max-width: min(100%, 318px) !important; }
+  .heroSubtitle { font-size: 0.9rem !important; max-width: 300px !important; padding: 0 6px !important; }
   .btnCta { font-size: 0.85rem !important; padding: 14px 32px !important; }
-  .heroServicesHighlight { font-size: 0.7rem !important; padding: 10px 20px !important; gap: 8px !important; }
+  .heroServicesHighlight { font-size: 0.7rem !important; max-width: 318px !important; padding: 10px 14px !important; gap: 8px !important; }
+  .heroImageCard { max-width: 300px !important; }
   .enfoqueSection { padding: 40px 15px 60px !important; }
   .enfoqueTitle { font-size: 1.6rem !important; }
   .enfoqueSubtitle { font-size: 0.85rem !important; }
@@ -1731,7 +1770,7 @@
   .cardTitle { font-size: 1.1rem !important; }
   .cardDescription { font-size: 0.85rem !important; }
   .crecimientoSection { padding: 40px 15px !important; }
-  .crecimientoTitle { font-size: 1.8rem !important; }
+  .crecimientoTitle { font-size: 1.65rem !important; }
   .crecimientoSubtitle { font-size: 0.85rem !important; }
   .crecimientoCardImage { height: 180px !important; }
   .crecimientoCardContent { padding: 18px 16px !important; }
@@ -1744,7 +1783,7 @@
   .procesoStepTitle { font-size: 0.95rem !important; }
   .procesoStepDescription { font-size: 0.75rem !important; }
   .innovacionSection { padding: 40px 15px !important; }
-  .innovacionHeaderTitle { font-size: 1.8rem !important; }
+  .innovacionHeaderTitle { font-size: 1.65rem !important; }
   .innovacionHeaderSubtitle { font-size: 0.85rem !important; }
   .innovacionFeature { padding: 10px !important; }
   .featureIcon { width: 35px !important; height: 35px !important; font-size: 1.4rem !important; }
@@ -1753,7 +1792,6 @@
   .gridImage img, .gridCarouselImage { height: 180px !important; min-height: 180px !important; }
 }
 
-/* ================= RESPONSIVE TABLET ================= */
 @media (min-width: 769px) and (max-width: 1024px) {
   .heroContainer {
     grid-template-columns: 1fr;
@@ -1796,7 +1834,6 @@
   .gridImage:first-child { grid-column: 1 / -1; }
 }
 
-/* ================= RESPONSIVE DESKTOP GRANDE ================= */
 @media (min-width: 1400px) {
   .heroContainer { max-width: 1600px; }
   .enfoqueSection, .crecimientoSection, .procesoSection, .innovacionSection { max-width: 1600px; }
@@ -1804,14 +1841,12 @@
   .heroSubbrand { font-size: 1.7rem; }
 }
 
-/* ================= FIX OVERFLOW EN MOBILE ================= */
 @media (max-width: 768px) {
   body { overflow-x: hidden; }
   .heroWrapper, .enfoqueSection, .crecimientoSection, .procesoSection, .innovacionSection { overflow-x: hidden; }
   .heroImageWrapper { max-width: 100vw; }
 }
 
-/* ================= PROPUESTA DE VALOR ================= */
 .propuestaSection {
   box-sizing: border-box;
   max-width: 1300px;
@@ -1944,24 +1979,31 @@
   line-height: 1.4;
 }
 
-/* Dark mode */
 :global(.app-container.dark) .propuestaSection {
   background: #2d0f45;
 }
 
 @media (max-width: 768px) {
   .propuestaSection { padding: 50px 24px; }
-  .propuestaTitulo { font-size: 2.2rem; }
+  .propuestaTitulo {
+    font-size: clamp(1.55rem, 9vw, 2rem);
+    max-width: 310px;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+  }
+  .propuestaSubtitle {
+    max-width: 310px;
+    overflow-wrap: break-word;
+  }
   .propuestaGrid { grid-template-columns: 1fr; }
 }
 
-/* ── Orbes propuesta ── */
 .propuestaOrbe1 {
   position: absolute;
   top: 20px; right: 40px;
-  width: 300px; height: 300px;
+  width: 400px; height: 400px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(238,203,124,0.25) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(180, 80, 200, 0.5) 0%, rgba(140, 40, 180, 0.2) 40%, transparent 70%);
   pointer-events: none;
   animation: orbeFloat 6s ease-in-out infinite;
   z-index: 0;
@@ -1970,9 +2012,9 @@
 .propuestaOrbe2 {
   position: absolute;
   bottom: 20px; left: 40px;
-  width: 250px; height: 250px;
+  width: 300px; height: 300px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(238,203,124,0.2) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(180, 80, 200, 0.3) 0%, transparent 65%);
   pointer-events: none;
   animation: orbeFloat 8s ease-in-out infinite reverse;
   z-index: 0;
@@ -1987,7 +2029,6 @@
   animation: propuestaTitleGlow 4s ease-in-out infinite;
 }
 
-/* ── Sheen propuesta ── */
 @keyframes sheenMove {
   0% { left: -60%; opacity: 0; }
   30% { opacity: 0.6; }

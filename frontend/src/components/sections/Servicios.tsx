@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { Activity, Sun, ArrowUpRight } from 'lucide-react';
 import PageHero from './PageHero';
@@ -316,8 +315,6 @@ export default function Servicios() {
         ctaText="Conocé nuestros servicios"
         pills={['Marketing Digital', 'Publicidad Paga', 'Branding']}
       />
-
-      {/* ── Intro partido ────────────────────────────────────────────── */}
       <section id="servicios-intro" className={styles.introSection} data-animate>
         <div className={styles.introLeft}>
           <span className={styles.introTag}>Lo que hacemos</span>
@@ -330,8 +327,6 @@ export default function Servicios() {
           <p className={styles.introDescDark}>No trabajamos con plantillas genéricas. Cada estrategia se diseña desde cero pensando en tu negocio, tu audiencia y tus objetivos.</p>
         </div>
       </section>
-
-      {/* ── 4 bloques ────────────────────────────────────────────────── */}
       <section id="servicios-nuestros" className={styles.nuestrosSection} data-animate>
           <div className={styles.nuestrosHeader} id="servicios-nuestros-target">
             <h2>Nuestros Servicios</h2>
@@ -353,8 +348,6 @@ export default function Servicios() {
             ))}
           </div>
       </section>
-
-      {/* ── Soluciones Integrales ─────────────────────────────────────── */}
       <section id="servicios-integrales" className={styles.integralSection} data-animate>
           <div className={styles.integralHeader} id="servicios-integrales-target">
             <h2>Soluciones Integrales de Marketing</h2>
@@ -402,8 +395,6 @@ export default function Servicios() {
             </div>
           </div>
       </section>
-
-      {/* ── Herramientas ─────────────────────────────────────────────── */}
       <section id="servicios-herramientas" className={styles.herramientasSection} data-animate>
           <div className={styles.herramientasHeader} id="servicios-herramientas-target">
             <h2>Herramientas que potencian tu marca</h2>
@@ -435,11 +426,7 @@ export default function Servicios() {
           </div>
 
       </section>
-
-      {/* ── FAQ ──────────────────────────────────────────────────────── */}
       <FaqSection />
-
-      {/* ── CTA final ────────────────────────────────────────────────── */}
     </>
   );
 }

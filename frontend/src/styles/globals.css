@@ -1,4 +1,3 @@
-/* ================= RESET GLOBAL ================= */
 *,
 *::before,
 *::after {
@@ -7,9 +6,7 @@
   padding: 0;
 }
 
-/* ================= VARIABLES CSS ================= */
 :root {
-  /* Colores principales */
   --purple-600: #4e1a6b;
   --purple-700: #3d1454;
   --purple-800: #2e0f3f;
@@ -23,34 +20,27 @@
   --indigo-600: #4e1a6b;
   --indigo-700: #3d1454;
   
-  /* Gradientes → reemplazados por colores sólidos */
   --gradient-primary: #4e1a6b;
   --gradient-violeta: #4e1a6b;
   --gradient-indigo: #4e1a6b;
   
-  /* Backgrounds */
   --bg-primary: #ffffff;
   --bg-secondary: #e8dcc2;
   --bg-hero-light: #f5f0e8;
   
-  /* Textos */
   --text-primary: #1a1a1a;
   --text-secondary: #444;
   --text-muted: #888;
   
-  /* Cards */
   --card-bg: #ffffff;
   --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   
-  /* Header */
   --header-bg: rgba(255, 255, 255, 0.95);
   
-  /* Transiciones */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
 }
 
-/* ================= HTML / BODY ================= */
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -73,7 +63,6 @@ body {
   position: relative;
 }
 
-/* ================= APP CONTAINER ================= */
 .app-container {
   min-height: 100vh;
   display: flex;
@@ -85,7 +74,6 @@ body {
   max-width: 100vw;
 }
 
-/* ================= DARK MODE ================= */
 .app-container.dark {
   --bg-primary: #0f0f14;
   --bg-secondary: #1a1a25;
@@ -101,7 +89,6 @@ body {
   color: #ffffff;
 }
 
-/* ================= SECCIONES ================= */
 section {
   scroll-snap-align: start;
   scroll-snap-stop: normal;
@@ -110,7 +97,6 @@ section {
   scroll-margin-top: 0;
 }
 
-/* ================= ELEMENTOS GENERALES ================= */
 img {
   max-width: 100%;
   height: auto;
@@ -129,7 +115,6 @@ button {
   background: none;
 }
 
-/* ================= SCROLLBAR ================= */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -143,7 +128,6 @@ button {
   background: var(--bg-secondary);
 }
 
-/* En móvil, ocultar scrollbar pero mantener funcionalidad */
 @media (max-width: 768px) {
   ::-webkit-scrollbar {
     width: 0px;
@@ -154,7 +138,6 @@ button {
   }
 }
 
-/* ================= UTILIDADES ================= */
 .hidden {
   display: none !important;
 }
@@ -165,7 +148,6 @@ button {
   justify-content: center;
 }
 
-/* ================= ANIMACIONES SCROLL ================= */
 .scroll-animate {
   opacity: 0;
   transform: translateY(30px);
@@ -188,7 +170,6 @@ button {
   }
 }
 
-/* ================= WHATSAPP FLOAT BUTTON ================= */
 .whatsapp-float {
   position: fixed;
   bottom: 30px;
@@ -204,6 +185,28 @@ button {
   box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
   transition: all 0.3s ease;
   animation: pulse-whatsapp 2s infinite;
+  overflow: hidden;
+}
+
+.whatsapp-float::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+  transform: skewX(-20deg);
+  animation: whatsappSheen 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes whatsappSheen {
+  0% { left: -60%; opacity: 0; }
+  30% { opacity: 1; }
+  60% { left: 140%; opacity: 0; }
+  100% { left: 140%; opacity: 0; }
 }
 
 .whatsapp-float img {
@@ -273,8 +276,6 @@ button {
   fill: white;
 }
 
-/* ================= RESPONSIVE GLOBAL ================= */
-
 @media (max-width: 1024px) {
   html {
     font-size: 15px;
@@ -338,12 +339,10 @@ button {
   }
 }
 
-/* ================= PREVENIR ZOOM EN IOS ================= */
 input, textarea, select {
   font-size: 16px !important;
 }
 
-/* ================= MEJORAS TOUCH ================= */
 @media (hover: none) and (pointer: coarse) {
   button, a {
     min-height: 44px;
@@ -354,13 +353,104 @@ input, textarea, select {
   }
 }
 
-[data-animate] {
-  opacity: 1;
+body.scroll-animations-ready [data-animate] {
+  opacity: 0;
+  transform: translate3d(0, 34px, 0);
+  transition:
+    opacity 0.72s ease,
+    transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+body.scroll-animations-ready [data-animate="fade"] {
   transform: none;
 }
 
-[data-animate].animate-in {
-  opacity: 1;
-  transform: translateY(0);
+body.scroll-animations-ready [data-animate="fade-left"] {
+  transform: translate3d(34px, 0, 0);
 }
 
+body.scroll-animations-ready [data-animate="fade-right"] {
+  transform: translate3d(-34px, 0, 0);
+}
+
+body.scroll-animations-ready [data-animate].animate-in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+body.scroll-animations-ready section[data-animate] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+body.scroll-animations-ready section[data-animate] > :not([class*="Orbe"]):not([class*="orbe"]):not([class*="Sheen"]):not([class*="sheen"]) {
+  opacity: 0;
+  transform: translate3d(0, 42px, 0);
+  transition:
+    opacity 0.78s ease,
+    transform 0.78s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+body.scroll-animations-ready section[data-animate] > :not([class*="Orbe"]):not([class*="orbe"]):not([class*="Sheen"]):not([class*="sheen"]):nth-child(odd) {
+  transform: translate3d(-34px, 0, 0);
+}
+
+body.scroll-animations-ready section[data-animate] > :not([class*="Orbe"]):not([class*="orbe"]):not([class*="Sheen"]):not([class*="sheen"]):nth-child(even) {
+  transform: translate3d(34px, 0, 0);
+}
+
+body.scroll-animations-ready section[data-animate].animate-in > :not([class*="Orbe"]):not([class*="orbe"]):not([class*="Sheen"]):not([class*="sheen"]) {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+body.scroll-animations-ready section[data-animate].animate-in > :not([class*="Orbe"]):not([class*="orbe"]):not([class*="Sheen"]):not([class*="sheen"]):nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+body.scroll-animations-ready section[data-animate].animate-in > :not([class*="Orbe"]):not([class*="orbe"]):not([class*="Sheen"]):not([class*="sheen"]):nth-child(3) {
+  transition-delay: 0.18s;
+}
+
+body.scroll-animations-ready section[data-animate].animate-in > :not([class*="Orbe"]):not([class*="orbe"]):not([class*="Sheen"]):not([class*="sheen"]):nth-child(4),
+body.scroll-animations-ready section[data-animate].animate-in > :not([class*="Orbe"]):not([class*="orbe"]):not([class*="Sheen"]):not([class*="sheen"]):nth-child(n + 5) {
+  transition-delay: 0.26s;
+}
+
+[data-animate-delay="1"] {
+  transition-delay: 0.1s;
+}
+
+[data-animate-delay="2"] {
+  transition-delay: 0.2s;
+}
+
+[data-animate-delay="3"] {
+  transition-delay: 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-animate],
+  section[data-animate] > :not([class*="Orbe"]):not([class*="orbe"]):not([class*="Sheen"]):not([class*="sheen"]) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 768px) {
+  body.scroll-animations-ready [data-animate="fade-left"],
+  body.scroll-animations-ready [data-animate="fade-right"],
+  body.scroll-animations-ready section[data-animate] > :not([class*="Orbe"]):not([class*="orbe"]):not([class*="Sheen"]):not([class*="sheen"]):nth-child(odd),
+  body.scroll-animations-ready section[data-animate] > :not([class*="Orbe"]):not([class*="orbe"]):not([class*="Sheen"]):not([class*="sheen"]):nth-child(even) {
+    transform: translate3d(0, 28px, 0);
+  }
+
+  body.scroll-animations-ready [data-animate].animate-in,
+  body.scroll-animations-ready section[data-animate].animate-in > :not([class*="Orbe"]):not([class*="orbe"]):not([class*="Sheen"]):not([class*="sheen"]) {
+    transform: translate3d(0, 0, 0);
+  }
+}
