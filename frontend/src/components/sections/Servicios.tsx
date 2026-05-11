@@ -51,6 +51,16 @@ const herramientas = [
     { nombre: 'Adobe Creative', desc: 'Photoshop, Illustrator, Premiere', bg: '#fdf4ff', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#ff7262" /><path d="M8 8h8M8 12h8M8 16h5" stroke="white" strokeWidth="2" strokeLinecap="round" /></svg> },
     { nombre: 'Later / Buffer', desc: 'Programación de contenido', bg: '#f0fdf4', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#00c875" /><path d="M7 12l3 3 7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg> },
   ]},
+  { categoria: 'Gestión & Redes', color: '#a78bfa', tools: [
+    { nombre: 'Meta Business Suite', desc: 'Gestión de Facebook e Instagram', bg: '#f0f0ff', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#1877f2" /><path d="M16 8h-2a1 1 0 00-1 1v2h3l-.5 3H13v7h-3v-7H8v-3h2V9a4 4 0 014-4h2v3z" fill="white" /></svg> },
+    { nombre: 'Later', desc: 'Programación de contenido', bg: '#f5f0ff', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#7c3aed" /><circle cx="12" cy="12" r="4" stroke="white" strokeWidth="2" /><path d="M12 8v4l2 2" stroke="white" strokeWidth="1.5" strokeLinecap="round" /></svg> },
+    { nombre: 'Hootsuite', desc: 'Gestión multi-plataforma', bg: '#fff0f0', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#ef4444" /><path d="M7 12h10M7 8h10M7 16h6" stroke="white" strokeWidth="2" strokeLinecap="round" /></svg> },
+  ]},
+  { categoria: 'Automatización', color: '#34d399', tools: [
+    { nombre: 'Zapier', desc: 'Automatización entre apps', bg: '#fff7f0', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#ff4a00" /><path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z" fill="white" /></svg> },
+    { nombre: 'Make (Integromat)', desc: 'Flujos de trabajo automáticos', bg: '#f0fff8', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#00c9a7" /><circle cx="8" cy="12" r="2" fill="white" /><circle cx="16" cy="12" r="2" fill="white" /><path d="M10 12h4" stroke="white" strokeWidth="2" /></svg> },
+    { nombre: 'n8n', desc: 'Automatización open source', bg: '#f5fff0', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#22c55e" /><path d="M8 12h8M12 8v8" stroke="white" strokeWidth="2" strokeLinecap="round" /></svg> },
+  ]},
   { categoria: 'Email & CRM', color: '#fb923c', tools: [
     { nombre: 'Mailchimp', desc: 'Email marketing y automatización', bg: '#fff8e1', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#ffe01b" /><path d="M4 8l8 5 8-5M4 8v10h16V8M4 8h16" stroke="#1f1f1f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg> },
     { nombre: 'HubSpot', desc: 'CRM y automatización de marketing', bg: '#fff5f0', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#ff7a59" /><circle cx="12" cy="12" r="4" fill="white" /><circle cx="12" cy="12" r="2" fill="#ff7a59" /></svg> },
