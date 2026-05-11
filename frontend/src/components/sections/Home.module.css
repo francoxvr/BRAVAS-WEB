@@ -567,7 +567,7 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  cursor: pointer;
+  cursor: default;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -848,7 +848,7 @@
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
+  cursor: default;
   position: relative;
   background: white;
   border: 2px solid transparent;
@@ -1520,7 +1520,7 @@
   border: 2px solid transparent;
   border-left: 3px solid #4e1a6b;
   background-clip: padding-box;
-  cursor: pointer;
+  cursor: default;
 }
 
 .innovacionFeature::before {
