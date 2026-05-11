@@ -7,7 +7,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MySQL
 const sequelize = new Sequelize(
   process.env.DB_NAME || 'miweb',
   process.env.DB_USER || 'miwebuser',
@@ -18,12 +17,10 @@ const sequelize = new Sequelize(
   }
 );
 
-// Probar conexión
 sequelize.authenticate()
   .then(() => console.log('✅ Conectado a MySQL'))
   .catch(err => console.error('❌ Error al conectar a MySQL:', err));
 
-// Ruta de prueba
 app.get('/', (req, res) => {
   res.send('Backend con MySQL funcionando 🚀');
 });
@@ -32,7 +29,6 @@ const PORT = process.env.PORT || 5000;
 
 
 
-// Modelo de Usuario
 const Usuario = sequelize.define('usuarios', {
   nombre: Sequelize.STRING,
   email: Sequelize.STRING,
@@ -40,7 +36,6 @@ const Usuario = sequelize.define('usuarios', {
   timestamps: false,
 });
 
-// Ruta para obtener usuarios
 app.get('/api/usuarios', async (req, res) => {
   try {
     const usuarios = await Usuario.findAll();
