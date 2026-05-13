@@ -2,39 +2,39 @@ import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'contacto',
-  title: 'Contacto',
+  title: '📞 Contacto',
   type: 'document',
   fields: [
     defineField({
       name: 'email',
       title: '📧 Email de contacto',
       type: 'string',
-      initialValue: 'hola@bravas.com',
+      description: 'El email que aparece en la página de contacto y footer. Ej: "hola@bravas.com"',
     }),
     defineField({
       name: 'whatsapp',
-      title: '📱 Número de WhatsApp (con código de país, ej: 5491123456789)',
+      title: '📱 Número de WhatsApp',
       type: 'string',
-      initialValue: '5491123456789',
+      description: 'Con código de país, sin espacios ni símbolos. Ej: "5493511234567" (Argentina +54, Córdoba 351)',
     }),
     defineField({
       name: 'instagram',
-      title: '📸 Instagram (usuario sin @)',
+      title: '📸 Usuario de Instagram',
       type: 'string',
-      initialValue: 'bravasmarketing',
+      description: 'Solo el usuario, sin el @. Ej: "bravasmarketing"',
     }),
     defineField({
       name: 'linkedin',
-      title: '💼 LinkedIn URL',
+      title: '💼 URL de LinkedIn',
       type: 'url',
+      description: 'La URL completa. Ej: "https://www.linkedin.com/company/bravas-marketing"',
     }),
     defineField({
       name: 'direccion',
-      title: '📍 Dirección (opcional)',
+      title: '📍 Dirección o ciudad',
       type: 'string',
+      description: 'Ej: "Córdoba, Argentina"',
     }),
   ],
-  preview: {
-    prepare: () => ({ title: 'Datos de Contacto' }),
-  },
+  preview: { prepare: () => ({ title: '📞 Contacto' }) },
 })

@@ -2,109 +2,110 @@ import { defineType, defineField } from 'sanity'
 
 export default defineType({
   name: 'siteConfig',
-  title: 'Configuración del Sitio',
+  title: '⚙️ Configuración General',
   type: 'document',
+  groups: [
+    { name: 'logo', title: '🏷️ Logo & Navegación' },
+    { name: 'heroHome', title: '🏠 Hero — Inicio' },
+    { name: 'heroServicios', title: '⚙️ Hero — Servicios' },
+    { name: 'heroNosotros', title: '👥 Hero — Nosotros' },
+    { name: 'heroContacto', title: '📞 Hero — Contacto' },
+    { name: 'footer', title: '🦶 Footer' },
+  ],
   fields: [
-    // LOGO
+    // ─── LOGO & NAVEGACIÓN ───────────────────────────────────────
     defineField({
       name: 'logo',
-      title: '🏷️ Logo',
+      title: 'Logo del sitio',
       type: 'image',
       options: { hotspot: true },
-      description: 'Logo principal del sitio (recomendado: cuadrado, PNG con fondo transparente)',
+      group: 'logo',
+      description: '🏷️ El logo que aparece en el header y footer. Recomendado: cuadrado, PNG con fondo transparente.',
     }),
-
-    // NAVEGACIÓN
     defineField({
       name: 'navItems',
-      title: '🧭 Menú de navegación',
+      title: 'Menú de navegación',
       type: 'array',
       of: [{
         type: 'object',
         fields: [
-          { name: 'label', title: 'Texto', type: 'string' },
-          { name: 'href', title: 'Enlace (ej: /servicios)', type: 'string' },
+          { name: 'label', title: 'Texto del menú', type: 'string', description: 'Ej: "Home", "Servicios"' },
+          { name: 'href', title: 'Enlace', type: 'string', description: 'Ej: "/", "/servicios", "/nosotros"' },
         ],
         preview: { select: { title: 'label', subtitle: 'href' } },
       }],
-      initialValue: [
-        { label: 'Home', href: '/' },
-        { label: 'Servicios', href: '/servicios' },
-        { label: 'Nosotros', href: '/nosotros' },
-        { label: 'Contacto', href: '/contacto' },
-      ],
+      group: 'logo',
+      description: 'Los links del menú superior. El orden acá es el orden que aparece en el sitio.',
     }),
 
-    // HEROES
+    // ─── HERO HOME ───────────────────────────────────────────────
     defineField({
       name: 'heroHome',
-      title: '🏠 Hero — Inicio',
+      title: 'Textos del Hero — Inicio',
       type: 'object',
+      group: 'heroHome',
       fields: [
-        { name: 'subtitulo', title: 'Subtítulo', type: 'text', rows: 2 },
-        { name: 'ctaTexto', title: 'Texto del botón', type: 'string' },
-        { name: 'pills', title: 'Pills (etiquetas)', type: 'array', of: [{ type: 'string' }] },
+        { name: 'subtitulo', title: 'Subtítulo', type: 'text', rows: 2, description: 'El texto que aparece debajo de "BRAVAS MARKETING".' },
+        { name: 'ctaTexto', title: 'Texto del botón principal', type: 'string', description: 'Ej: "Impulsa tu Marca Ahora"' },
+        { name: 'pills', title: 'Etiquetas (pills)', type: 'array', of: [{ type: 'string' }], description: 'Las 3 etiquetas debajo del botón. Ej: "Estrategia Digital"' },
       ],
-      initialValue: {
-        subtitulo: 'Transformamos tu presencia digital con estrategias innovadoras que hacen brillar tu marca.',
-        ctaTexto: 'Impulsa tu Marca Ahora',
-        pills: ['Estrategia Digital', 'Branding', 'Performance Ads'],
-      },
-    }),
-    defineField({
-      name: 'heroServicios',
-      title: '⚙️ Hero — Servicios',
-      type: 'object',
-      fields: [
-        { name: 'subtitulo', title: 'Subtítulo', type: 'text', rows: 2 },
-        { name: 'ctaTexto', title: 'Texto del botón', type: 'string' },
-        { name: 'pills', title: 'Pills (etiquetas)', type: 'array', of: [{ type: 'string' }] },
-      ],
-      initialValue: {
-        subtitulo: 'Soluciones digitales completas para hacer crecer tu negocio y alcanzar tus objetivos.',
-        ctaTexto: 'Conocé nuestros servicios',
-        pills: ['Marketing Digital', 'Publicidad Paga', 'Branding'],
-      },
-    }),
-    defineField({
-      name: 'heroNosotros',
-      title: '👥 Hero — Nosotros',
-      type: 'object',
-      fields: [
-        { name: 'subtitulo', title: 'Subtítulo', type: 'text', rows: 2 },
-        { name: 'ctaTexto', title: 'Texto del botón', type: 'string' },
-        { name: 'pills', title: 'Pills (etiquetas)', type: 'array', of: [{ type: 'string' }] },
-      ],
-      initialValue: {
-        subtitulo: 'Conocé el equipo detrás de cada estrategia y por qué somos el partner ideal para tu marca.',
-        ctaTexto: 'Hablemos de tu proyecto',
-        pills: ['Equipo apasionado', 'Resultados reales', 'Compromiso total'],
-      },
-    }),
-    defineField({
-      name: 'heroContacto',
-      title: '📞 Hero — Contacto',
-      type: 'object',
-      fields: [
-        { name: 'subtitulo', title: 'Subtítulo', type: 'text', rows: 2 },
-        { name: 'ctaTexto', title: 'Texto del botón', type: 'string' },
-        { name: 'pills', title: 'Pills (etiquetas)', type: 'array', of: [{ type: 'string' }] },
-      ],
-      initialValue: {
-        subtitulo: '¿Listo para llevar tu marca al siguiente nivel? Contanos tu proyecto y arrancamos juntos.',
-        ctaTexto: 'Escribinos ahora',
-        pills: ['Respuesta en 24hs', 'Consulta sin costo', 'Sin compromiso'],
-      },
     }),
 
-    // FOOTER
+    // ─── HERO SERVICIOS ──────────────────────────────────────────
+    defineField({
+      name: 'heroServicios',
+      title: 'Textos del Hero — Servicios',
+      type: 'object',
+      group: 'heroServicios',
+      fields: [
+        { name: 'subtitulo', title: 'Subtítulo', type: 'text', rows: 2 },
+        { name: 'ctaTexto', title: 'Texto del botón', type: 'string' },
+        { name: 'pills', title: 'Etiquetas (pills)', type: 'array', of: [{ type: 'string' }] },
+      ],
+    }),
+
+    // ─── HERO NOSOTROS ───────────────────────────────────────────
+    defineField({
+      name: 'heroNosotros',
+      title: 'Textos del Hero — Nosotros',
+      type: 'object',
+      group: 'heroNosotros',
+      fields: [
+        { name: 'subtitulo', title: 'Subtítulo', type: 'text', rows: 2 },
+        { name: 'ctaTexto', title: 'Texto del botón', type: 'string' },
+        { name: 'pills', title: 'Etiquetas (pills)', type: 'array', of: [{ type: 'string' }] },
+      ],
+    }),
+
+    // ─── HERO CONTACTO ───────────────────────────────────────────
+    defineField({
+      name: 'heroContacto',
+      title: 'Textos del Hero — Contacto',
+      type: 'object',
+      group: 'heroContacto',
+      fields: [
+        { name: 'subtitulo', title: 'Subtítulo', type: 'text', rows: 2 },
+        { name: 'ctaTexto', title: 'Texto del botón', type: 'string' },
+        { name: 'pills', title: 'Etiquetas (pills)', type: 'array', of: [{ type: 'string' }] },
+      ],
+    }),
+
+    // ─── FOOTER ──────────────────────────────────────────────────
     defineField({
       name: 'footerDescripcion',
-      title: '🦶 Footer — Descripción',
+      title: 'Descripción del footer',
       type: 'text',
       rows: 2,
-      initialValue: 'Transformamos tu presencia digital con estrategias innovadoras que hacen brillar tu marca en el mundo online.',
+      group: 'footer',
+      description: 'El texto que aparece debajo del logo en el footer.',
+    }),
+    defineField({
+      name: 'footerCopyright',
+      title: 'Copyright — Texto del pie de página',
+      type: 'string',
+      group: 'footer',
+      description: 'Ej: "BRAVAS MARKETING • Innovación Digital • Resultados Reales"',
     }),
   ],
-  preview: { prepare: () => ({ title: 'Configuración del Sitio' }) },
+  preview: { prepare: () => ({ title: '⚙️ Configuración General' }) },
 })

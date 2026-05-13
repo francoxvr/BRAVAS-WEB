@@ -1,0 +1,688 @@
+[
+  {
+    "fields": [
+      {
+        "initialValue": "Estrategias digitales que generan resultados.",
+        "name": "propuestaTitulo",
+        "type": "string",
+        "title": "📌 Propuesta — Título"
+      },
+      {
+        "rows": 2,
+        "name": "propuestaSubtitulo",
+        "type": "text",
+        "title": "📌 Propuesta — Subtítulo"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "propuestaItems",
+        "type": "array",
+        "title": "📌 Propuesta — Lista de ítems"
+      },
+      {
+        "rows": 2,
+        "name": "enfoqueSubtitulo",
+        "type": "text",
+        "title": "🎯 Enfoque — Subtítulo"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "emoji",
+                "type": "string"
+              },
+              {
+                "name": "titulo",
+                "type": "string",
+                "title": "Título"
+              },
+              {
+                "rows": 2,
+                "name": "descripcion",
+                "type": "text",
+                "title": "Descripción"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "enfoqueCards",
+        "type": "array",
+        "title": "🎯 Enfoque — Cards"
+      },
+      {
+        "name": "crecimientoTitulo",
+        "type": "string",
+        "title": "📈 Crecimiento — Título"
+      },
+      {
+        "rows": 2,
+        "name": "crecimientoSubtitulo",
+        "type": "text",
+        "title": "📈 Crecimiento — Subtítulo"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 3
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "titulo",
+                "type": "string",
+                "title": "Título"
+              },
+              {
+                "rows": 2,
+                "name": "descripcion",
+                "type": "text",
+                "title": "Descripción"
+              },
+              {
+                "of": [
+                  {
+                    "options": {
+                      "hotspot": true
+                    },
+                    "type": "image"
+                  }
+                ],
+                "name": "imagenes",
+                "type": "array",
+                "title": "Imágenes (máx 2)"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "crecimientoCards",
+        "type": "array",
+        "title": "📈 Crecimiento — Cards (3)"
+      },
+      {
+        "name": "procesoSubtitulo",
+        "type": "string",
+        "title": "⚙️ Proceso — Subtítulo"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "titulo",
+                "type": "string",
+                "title": "Título"
+              },
+              {
+                "rows": 2,
+                "name": "descripcion",
+                "type": "text",
+                "title": "Descripción"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "procesoSteps",
+        "type": "array",
+        "title": "⚙️ Proceso — Pasos (4)"
+      },
+      {
+        "rows": 2,
+        "name": "innovacionSubtitulo",
+        "type": "text",
+        "title": "💡 Innovación — Subtítulo"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "emoji",
+                "type": "string"
+              },
+              {
+                "name": "titulo",
+                "type": "string",
+                "title": "Título"
+              },
+              {
+                "rows": 2,
+                "name": "descripcion",
+                "type": "text",
+                "title": "Descripción"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "innovacionFeatures",
+        "type": "array",
+        "title": "💡 Innovación — Features (4 cards)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 3
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Subí exactamente 3 imágenes para la grilla de innovación",
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "type": "image"
+          }
+        ],
+        "name": "innovacionImagenes",
+        "type": "array",
+        "title": "💡 Innovación — Imágenes (3)"
+      },
+      {
+        "description": "Imágenes que rotan en el hero de todas las páginas. Recomendado: mínimo 5 imágenes.",
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "type": "image"
+          }
+        ],
+        "name": "heroImagenes",
+        "type": "array",
+        "title": "🖼️ Hero — Imágenes del carrusel principal"
+      }
+    ],
+    "name": "home",
+    "type": "document",
+    "title": "Página de Inicio"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Somos Bravas. Y lo damos todo.",
+        "name": "quienesTitulo",
+        "type": "string",
+        "title": "👥 Quiénes somos — Título"
+      },
+      {
+        "rows": 3,
+        "initialValue": "Una agencia digital nacida con la misión de transformar marcas a través de estrategias creativas, datos y tecnología. Creemos que el marketing debe ser claro, medible y sobre todo, efectivo.",
+        "name": "quienesDesc1",
+        "type": "text",
+        "title": "👥 Quiénes somos — Párrafo 1"
+      },
+      {
+        "rows": 3,
+        "initialValue": "Trabajamos junto a cada cliente como si el negocio fuera nuestro. Con compromiso total y orientación a resultados desde el primer día.",
+        "name": "quienesDesc2",
+        "type": "text",
+        "title": "👥 Quiénes somos — Párrafo 2"
+      },
+      {
+        "initialValue": "+150",
+        "name": "statProyectos",
+        "type": "string",
+        "title": "📊 Estadística — Proyectos (ej: +150)"
+      },
+      {
+        "initialValue": "92%",
+        "name": "statSatisfaccion",
+        "type": "string",
+        "title": "📊 Estadística — Satisfacción (ej: 92%)"
+      },
+      {
+        "initialValue": "5+",
+        "name": "statAnios",
+        "type": "string",
+        "title": "📊 Estadística — Años (ej: 5+)"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "quienesImagen",
+        "type": "image",
+        "title": "👥 Quiénes somos — Imagen"
+      },
+      {
+        "initialValue": "Potenciar marcas que dejan huella.",
+        "name": "misionTitulo",
+        "type": "string",
+        "title": "🎯 Misión — Título"
+      },
+      {
+        "rows": 3,
+        "initialValue": "Diseñamos estrategias digitales claras, creativas y medibles que generan resultados reales y sostenibles para cada negocio que acompaña a Bravas.",
+        "name": "misionDesc",
+        "type": "text",
+        "title": "🎯 Misión — Descripción"
+      },
+      {
+        "initialValue": "Ser el partner que toda marca necesita.",
+        "name": "visionTitulo",
+        "type": "string",
+        "title": "🔭 Visión — Título"
+      },
+      {
+        "rows": 3,
+        "initialValue": "Convertirnos en el referente estratégico de PyMEs y emprendedores en Latinoamérica que buscan transformar su presencia digital con resultados reales.",
+        "name": "visionDesc",
+        "type": "text",
+        "title": "🔭 Visión — Descripción"
+      },
+      {
+        "initialValue": [
+          "Resultados medibles desde la primera semana",
+          "Transparencia total en cada reporte",
+          "Estrategia personalizada, no genérica",
+          "Equipo ágil sin burocracia",
+          "Comunicación directa y constante",
+          "Foco en el largo plazo de tu negocio"
+        ],
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "porqueItems",
+        "type": "array",
+        "title": "✅ ¿Por qué elegirnos? — Lista"
+      }
+    ],
+    "name": "nosotros",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "titulo",
+                "type": "string",
+                "title": "Título"
+              },
+              {
+                "rows": 2,
+                "name": "descripcion",
+                "type": "text",
+                "title": "Descripción"
+              },
+              {
+                "of": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "name": "items",
+                "type": "array",
+                "title": "Ítems"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "servicios",
+        "type": "array",
+        "title": "⚙️ Nuestros Servicios"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Imagen grande de la sección \"Gestión de Contenidos & Redes\"",
+        "name": "integralImagenPrincipal",
+        "type": "image",
+        "title": "🖼️ Soluciones Integrales — Imagen principal"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "pregunta",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "name": "respuesta",
+                "type": "text"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "faqItems",
+        "type": "array",
+        "title": "❓ Preguntas Frecuentes"
+      }
+    ],
+    "name": "servicios",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "hola@bravas.com",
+        "name": "email",
+        "type": "string",
+        "title": "📧 Email de contacto"
+      },
+      {
+        "initialValue": "5491123456789",
+        "name": "whatsapp",
+        "type": "string",
+        "title": "📱 Número de WhatsApp (con código de país, ej: 5491123456789)"
+      },
+      {
+        "initialValue": "bravasmarketing",
+        "name": "instagram",
+        "type": "string",
+        "title": "📸 Instagram (usuario sin @)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "linkedin",
+        "type": "url",
+        "title": "💼 LinkedIn URL"
+      },
+      {
+        "name": "direccion",
+        "type": "string",
+        "title": "📍 Dirección (opcional)"
+      }
+    ],
+    "name": "contacto",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "name": "nombre",
+        "type": "string"
+      },
+      {
+        "name": "rol",
+        "type": "string",
+        "title": "Rol / Cargo"
+      },
+      {
+        "rows": 3,
+        "name": "descripcion",
+        "type": "text",
+        "title": "Descripción"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "foto",
+        "type": "image"
+      },
+      {
+        "initialValue": 1,
+        "name": "orden",
+        "type": "number",
+        "title": "Orden de aparición"
+      }
+    ],
+    "name": "teamMember",
+    "type": "document",
+    "title": "Miembro del Equipo"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Logo principal del sitio (recomendado: cuadrado, PNG con fondo transparente)",
+        "name": "logo",
+        "type": "image",
+        "title": "🏷️ Logo"
+      },
+      {
+        "initialValue": [
+          {
+            "label": "Home",
+            "href": "/"
+          },
+          {
+            "label": "Servicios",
+            "href": "/servicios"
+          },
+          {
+            "label": "Nosotros",
+            "href": "/nosotros"
+          },
+          {
+            "label": "Contacto",
+            "href": "/contacto"
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "label",
+                "type": "string",
+                "title": "Texto"
+              },
+              {
+                "name": "href",
+                "type": "string",
+                "title": "Enlace (ej: /servicios)"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "navItems",
+        "type": "array",
+        "title": "🧭 Menú de navegación"
+      },
+      {
+        "initialValue": {
+          "subtitulo": "Transformamos tu presencia digital con estrategias innovadoras que hacen brillar tu marca.",
+          "ctaTexto": "Impulsa tu Marca Ahora",
+          "pills": [
+            "Estrategia Digital",
+            "Branding",
+            "Performance Ads"
+          ]
+        },
+        "fields": [
+          {
+            "rows": 2,
+            "name": "subtitulo",
+            "type": "text",
+            "title": "Subtítulo"
+          },
+          {
+            "name": "ctaTexto",
+            "type": "string",
+            "title": "Texto del botón"
+          },
+          {
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "pills",
+            "type": "array",
+            "title": "Pills (etiquetas)"
+          }
+        ],
+        "name": "heroHome",
+        "type": "object",
+        "title": "🏠 Hero — Inicio"
+      },
+      {
+        "initialValue": {
+          "subtitulo": "Soluciones digitales completas para hacer crecer tu negocio y alcanzar tus objetivos.",
+          "ctaTexto": "Conocé nuestros servicios",
+          "pills": [
+            "Marketing Digital",
+            "Publicidad Paga",
+            "Branding"
+          ]
+        },
+        "fields": [
+          {
+            "rows": 2,
+            "name": "subtitulo",
+            "type": "text",
+            "title": "Subtítulo"
+          },
+          {
+            "name": "ctaTexto",
+            "type": "string",
+            "title": "Texto del botón"
+          },
+          {
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "pills",
+            "type": "array",
+            "title": "Pills (etiquetas)"
+          }
+        ],
+        "name": "heroServicios",
+        "type": "object",
+        "title": "⚙️ Hero — Servicios"
+      },
+      {
+        "initialValue": {
+          "subtitulo": "Conocé el equipo detrás de cada estrategia y por qué somos el partner ideal para tu marca.",
+          "ctaTexto": "Hablemos de tu proyecto",
+          "pills": [
+            "Equipo apasionado",
+            "Resultados reales",
+            "Compromiso total"
+          ]
+        },
+        "fields": [
+          {
+            "rows": 2,
+            "name": "subtitulo",
+            "type": "text",
+            "title": "Subtítulo"
+          },
+          {
+            "name": "ctaTexto",
+            "type": "string",
+            "title": "Texto del botón"
+          },
+          {
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "pills",
+            "type": "array",
+            "title": "Pills (etiquetas)"
+          }
+        ],
+        "name": "heroNosotros",
+        "type": "object",
+        "title": "👥 Hero — Nosotros"
+      },
+      {
+        "initialValue": {
+          "subtitulo": "¿Listo para llevar tu marca al siguiente nivel? Contanos tu proyecto y arrancamos juntos.",
+          "ctaTexto": "Escribinos ahora",
+          "pills": [
+            "Respuesta en 24hs",
+            "Consulta sin costo",
+            "Sin compromiso"
+          ]
+        },
+        "fields": [
+          {
+            "rows": 2,
+            "name": "subtitulo",
+            "type": "text",
+            "title": "Subtítulo"
+          },
+          {
+            "name": "ctaTexto",
+            "type": "string",
+            "title": "Texto del botón"
+          },
+          {
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "pills",
+            "type": "array",
+            "title": "Pills (etiquetas)"
+          }
+        ],
+        "name": "heroContacto",
+        "type": "object",
+        "title": "📞 Hero — Contacto"
+      },
+      {
+        "rows": 2,
+        "initialValue": "Transformamos tu presencia digital con estrategias innovadoras que hacen brillar tu marca en el mundo online.",
+        "name": "footerDescripcion",
+        "type": "text",
+        "title": "🦶 Footer — Descripción"
+      }
+    ],
+    "name": "siteConfig",
+    "type": "document",
+    "title": "Configuración del Sitio"
+  }
+]

@@ -7,41 +7,44 @@ export default defineType({
   fields: [
     defineField({
       name: 'nombre',
-      title: 'Nombre',
+      title: '👤 Nombre completo',
       type: 'string',
+      description: 'Ej: "Valentina Cruz"',
     }),
     defineField({
       name: 'rol',
-      title: 'Rol / Cargo',
+      title: '💼 Rol o cargo',
       type: 'string',
+      description: 'Ej: "Directora Creativa"',
     }),
     defineField({
       name: 'descripcion',
-      title: 'Descripción',
+      title: '📝 Descripción',
       type: 'text',
       rows: 3,
+      description: 'Breve descripción del integrante. Máximo 2-3 líneas.',
     }),
     defineField({
       name: 'foto',
-      title: 'Foto',
+      title: '📷 Foto',
       type: 'image',
       options: { hotspot: true },
+      description: 'Foto del integrante. Recomendado: cuadrada o vertical, 400x400px.',
     }),
     defineField({
       name: 'orden',
-      title: 'Orden de aparición',
+      title: '🔢 Orden de aparición',
       type: 'number',
+      description: 'Número que define el orden. 1 aparece primero, 2 segundo, etc.',
       initialValue: 1,
     }),
   ],
   preview: {
     select: { title: 'nombre', subtitle: 'rol', media: 'foto' },
   },
-  orderings: [
-    {
-      title: 'Orden',
-      name: 'ordenAsc',
-      by: [{ field: 'orden', direction: 'asc' }],
-    },
-  ],
+  orderings: [{
+    title: 'Orden de aparición',
+    name: 'ordenAsc',
+    by: [{ field: 'orden', direction: 'asc' }],
+  }],
 })
