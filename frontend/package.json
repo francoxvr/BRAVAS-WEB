@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
-    "@sanity/client": "^7.22.0",
-    "@sanity/image-url": "^2.1.1",
+    "@tinacms/cli": "latest",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "tinacms": "latest"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

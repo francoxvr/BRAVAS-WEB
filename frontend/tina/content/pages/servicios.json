@@ -1,0 +1,39 @@
+{
+  "servicios": [
+    {
+      "titulo": "Marketing Digital",
+      "descripcion": "Estrategias digitales personalizadas para hacer crecer tu marca.",
+      "items": ["SEO & SEM", "Email Marketing", "Automatización", "Analítica web"]
+    },
+    {
+      "titulo": "Publicidad Paga",
+      "descripcion": "Campañas rentables en Google, Meta y más plataformas.",
+      "items": ["Google Ads", "Meta Ads", "TikTok Ads", "Retargeting"]
+    },
+    {
+      "titulo": "Branding & Identidad",
+      "descripcion": "Creamos la personalidad visual única de tu marca.",
+      "items": ["Diseño de logo", "Manual de marca", "Identidad visual", "Naming"]
+    },
+    {
+      "titulo": "Contenido Creativo",
+      "descripcion": "Contenido que conecta y genera comunidad.",
+      "items": ["Redes sociales", "Copywriting", "Diseño gráfico", "Video marketing"]
+    }
+  ],
+  "integralImagenPrincipal": "",
+  "faqItems": [
+    {
+      "pregunta": "¿Cuánto tiempo tarda en verse resultados?",
+      "respuesta": "Depende de la estrategia. Las campañas pagas generan resultados desde la primera semana, mientras que el SEO y el branding requieren entre 3 y 6 meses para consolidarse."
+    },
+    {
+      "pregunta": "¿Trabajan con empresas de cualquier tamaño?",
+      "respuesta": "Sí, trabajamos con emprendedores, PyMEs y empresas medianas. Adaptamos las estrategias al presupuesto y objetivos de cada cliente."
+    },
+    {
+      "pregunta": "¿Cómo miden los resultados?",
+      "respuesta": "Usamos herramientas de analítica como Google Analytics, Meta Business Suite y reportes semanales personalizados para cada cliente."
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+fragment ConfigParts on Config {
+  __typename
+  logo
+  nav {
+    __typename
+    label
+    href
+  }
+  footerDescripcion
+  footerCopyright
+  heroHome {
+    __typename
+    subtitulo
+    ctaTexto
+    pills
+  }
+  heroServicios {
+    __typename
+    subtitulo
+    ctaTexto
+    pills
+  }
+  heroNosotros {
+    __typename
+    subtitulo
+    ctaTexto
+    pills
+  }
+  heroContacto {
+    __typename
+    subtitulo
+    ctaTexto
+    pills
+  }
+  heroImagenes
+}
+
+fragment HomeParts on Home {
+  __typename
+  propuestaTitulo
+  propuestaSubtitulo
+  propuestaItems
+  enfoqueSubtitulo
+  enfoqueCards {
+    __typename
+    emoji
+    titulo
+    descripcion
+  }
+  crecimientoTitulo
+  crecimientoSubtitulo
+  crecimientoCards {
+    __typename
+    titulo
+    descripcion
+    imagenes
+  }
+  procesoSubtitulo
+  procesoSteps {
+    __typename
+    titulo
+    descripcion
+  }
+  innovacionSubtitulo
+  innovacionFeatures {
+    __typename
+    emoji
+    titulo
+    descripcion
+  }
+  innovacionImagenes
+}
+
+fragment ServiciosParts on Servicios {
+  __typename
+  servicios {
+    __typename
+    titulo
+    descripcion
+    items
+  }
+  integralImagenPrincipal
+  faqItems {
+    __typename
+    pregunta
+    respuesta
+  }
+}
+
+fragment NosotrosParts on Nosotros {
+  __typename
+  quienesTitulo
+  quienesDesc1
+  quienesDesc2
+  quienesImagen
+  statProyectos
+  statSatisfaccion
+  statAnios
+  misionTitulo
+  misionDesc
+  visionTitulo
+  visionDesc
+  porqueItems
+}
+
+fragment ContactoParts on Contacto {
+  __typename
+  email
+  whatsapp
+  direccion
+  instagram
+  linkedin
+}
+
+fragment EquipoParts on Equipo {
+  __typename
+  nombre
+  rol
+  descripcion
+  foto
+  orden
+}

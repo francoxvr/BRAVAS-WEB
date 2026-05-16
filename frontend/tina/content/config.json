@@ -1,0 +1,32 @@
+{
+  "logo": "",
+  "nav": [
+    { "label": "Home", "href": "/" },
+    { "label": "Servicios", "href": "/servicios" },
+    { "label": "Nosotros", "href": "/nosotros" },
+    { "label": "Contacto", "href": "/contacto" }
+  ],
+  "footerDescripcion": "Agencia de marketing digital enfocada en resultados reales para tu negocio.",
+  "footerCopyright": "BRAVAS MARKETING • Innovación Digital • Resultados Reales",
+  "heroHome": {
+    "subtitulo": "Agencia de marketing digital en Córdoba.",
+    "ctaTexto": "Impulsa tu Marca Ahora",
+    "pills": ["Marketing Digital", "Publicidad Paga", "Branding"]
+  },
+  "heroServicios": {
+    "subtitulo": "Soluciones digitales diseñadas para hacer crecer tu negocio.",
+    "ctaTexto": "Conocé nuestros servicios",
+    "pills": ["Marketing Digital", "Publicidad Paga", "Branding"]
+  },
+  "heroNosotros": {
+    "subtitulo": "Un equipo apasionado por el marketing digital y los resultados reales.",
+    "ctaTexto": "Conocé al equipo",
+    "pills": ["Marketing Digital", "Publicidad Paga", "Branding"]
+  },
+  "heroContacto": {
+    "subtitulo": "Hablemos y encontremos juntos la mejor estrategia para tu marca.",
+    "ctaTexto": "Hablemos",
+    "pills": ["Marketing Digital", "Publicidad Paga", "Branding"]
+  },
+  "heroImagenes": []
+}

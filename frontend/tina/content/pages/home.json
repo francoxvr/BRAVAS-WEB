@@ -1,0 +1,43 @@
+{
+  "propuestaTitulo": "Estrategias digitales que generan resultados.",
+  "propuestaSubtitulo": "No vendemos humo. Diseñamos, ejecutamos y medimos cada acción para que tu marca crezca de verdad.",
+  "propuestaItems": [
+    "Estrategia digital personalizada para tu negocio",
+    "Publicidad paga con ROI comprobable",
+    "Branding & identidad visual que conecta",
+    "Contenido que genera comunidad",
+    "Analítica y métricas en tiempo real",
+    "Acompañamiento estratégico constante"
+  ],
+  "enfoqueSubtitulo": "Combinamos estrategia, creatividad y tecnología para impulsar tu marca con soluciones digitales.",
+  "enfoqueCards": [
+    { "emoji": "🎯", "titulo": "Estrategia Digital", "descripcion": "Planificación integral basada en objetivos medibles y análisis profundo de tu mercado para resultados sostenibles." },
+    { "emoji": "✨", "titulo": "Branding & Identidad", "descripcion": "Creamos y fortalecemos la personalidad única de tu marca para destacar y conectar emocionalmente con tu audiencia." },
+    { "emoji": "🚀", "titulo": "Performance Ads", "descripcion": "Campañas publicitarias optimizadas en Google, Meta y más plataformas con ROI comprobable y mejora continua." },
+    { "emoji": "💡", "titulo": "Contenido Creativo", "descripcion": "Social media, copywriting y diseño que capta la atención y construye relaciones auténticas con tus clientes." },
+    { "emoji": "📊", "titulo": "Analítica & Métricas", "descripcion": "Seguimiento continuo y reportes detallados para tomar decisiones inteligentes basadas en datos reales." },
+    { "emoji": "📈", "titulo": "Growth Marketing", "descripcion": "Estrategias de crecimiento acelerado y optimización constante para escalar tu negocio de manera sostenible." }
+  ],
+  "crecimientoTitulo": "Impulsamos el crecimiento de tu negocio",
+  "crecimientoSubtitulo": "Estrategias digitales claras y creativas que generan resultados reales para tu marca.",
+  "crecimientoCards": [
+    { "titulo": "Estrategia Digital", "descripcion": "Diseñamos planes personalizados que conectan tu marca con tu audiencia objetivo.", "imagenes": [] },
+    { "titulo": "Análisis de Datos", "descripcion": "Medimos y optimizamos cada acción para maximizar tu inversión.", "imagenes": [] },
+    { "titulo": "Crecimiento Sostenible", "descripcion": "Construimos presencia digital que genera valor a largo plazo.", "imagenes": [] }
+  ],
+  "procesoSubtitulo": "Metodología probada en 4 fases para maximizar resultados.",
+  "procesoSteps": [
+    { "titulo": "Análisis & Estrategia", "descripcion": "Investigación profunda y definición de objetivos claros." },
+    { "titulo": "Diseño & Creatividad", "descripcion": "Desarrollo de identidad visual y contenido estratégico." },
+    { "titulo": "Implementación", "descripcion": "Ejecución de campañas en múltiples canales digitales." },
+    { "titulo": "Optimización", "descripcion": "Medición continua y mejora basada en datos reales." }
+  ],
+  "innovacionSubtitulo": "Combinamos creatividad, tecnología y análisis de datos para crear estrategias que generan resultados.",
+  "innovacionFeatures": [
+    { "emoji": "🚀", "titulo": "Transformación Digital", "descripcion": "Combinamos creatividad, tecnología y análisis de datos para estrategias efectivas" },
+    { "emoji": "📊", "titulo": "Estrategia 360°", "descripcion": "Integramos todos los canales digitales para maximizar tu alcance" },
+    { "emoji": "📈", "titulo": "Resultados Medibles", "descripcion": "Cada acción está respaldada por datos y métricas concretas" },
+    { "emoji": "⚡", "titulo": "Soporte Continuo", "descripcion": "Acompañamiento permanente y optimización constante para garantizar el éxito de tu proyecto" }
+  ],
+  "innovacionImagenes": []
+}
