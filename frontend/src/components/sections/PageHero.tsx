@@ -4,23 +4,8 @@ import styles from './Home.module.css';
 import { getSiteConfig } from '@/lib/queries';
 
 export const LOCAL_HERO_IMAGES = [
-  '/assets/images/marketing/marketing1.png',
-  '/assets/images/marketing/marketing3.png',
-  '/assets/images/marketing/marketing4.png',
-  '/assets/images/marketing/marketing7.png',
-  '/assets/images/marketing/marketing9.jpg',
-  '/assets/images/marketing/marketing10.jpg',
-  '/assets/images/marketing/marketing11.png',
-  '/assets/images/marketing/marketing12.png',
-  '/assets/images/marketing/marketing13.png',
-  '/assets/images/marketing/marketing14.png',
-  '/assets/images/marketing/analisis.png',
-  '/assets/images/marketing/crecimiento.png',
-  '/assets/images/marketing/estadistica1.png',
   '/assets/images/marketing/estadistica2.png',
-  '/assets/images/marketing/estrategia.png',
-  '/assets/images/marketing/innovamos.png',
-  '/assets/images/marketing/innovamos1.png',
+  '/assets/images/marketing/marketing13.png',
   '/assets/images/marketing/redes2.png',
   '/assets/images/marketing/redes4.png',
 ];
