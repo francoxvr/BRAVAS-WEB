@@ -4,10 +4,6 @@ import styles from './Home.module.css';
 import { getSiteConfig } from '@/lib/queries';
 
 export const LOCAL_HERO_IMAGES = [
-  '/assets/images/marketing/estadistica2.png',
-  '/assets/images/marketing/marketing13.png',
-  '/assets/images/marketing/redes2.png',
-  '/assets/images/marketing/redes4.png',
 ];
 
 type HeroPage = 'home' | 'servicios' | 'nosotros' | 'contacto';
