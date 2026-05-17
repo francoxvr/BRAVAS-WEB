@@ -92,8 +92,6 @@ export type Query = {
   nosotrosConnection: NosotrosConnection;
   contacto: Contacto;
   contactoConnection: ContactoConnection;
-  equipo: Equipo;
-  equipoConnection: EquipoConnection;
 };
 
 
@@ -192,28 +190,12 @@ export type QueryContactoConnectionArgs = {
   filter?: InputMaybe<ContactoFilter>;
 };
 
-
-export type QueryEquipoArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryEquipoConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<EquipoFilter>;
-};
-
 export type DocumentFilter = {
   config?: InputMaybe<ConfigFilter>;
   home?: InputMaybe<HomeFilter>;
   servicios?: InputMaybe<ServiciosFilter>;
   nosotros?: InputMaybe<NosotrosFilter>;
   contacto?: InputMaybe<ContactoFilter>;
-  equipo?: InputMaybe<EquipoFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -253,7 +235,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Config | Home | Servicios | Nosotros | Contacto | Equipo | Folder;
+export type DocumentNode = Config | Home | Servicios | Nosotros | Contacto | Folder;
 
 export type ConfigNav = {
   __typename?: 'ConfigNav';
@@ -525,6 +507,14 @@ export type ServiciosConnection = Connection & {
   edges?: Maybe<Array<Maybe<ServiciosConnectionEdges>>>;
 };
 
+export type NosotrosTeamMembers = {
+  __typename?: 'NosotrosTeamMembers';
+  nombre?: Maybe<Scalars['String']['output']>;
+  rol?: Maybe<Scalars['String']['output']>;
+  descripcion?: Maybe<Scalars['String']['output']>;
+  foto?: Maybe<Scalars['String']['output']>;
+};
+
 export type Nosotros = Node & Document & {
   __typename?: 'Nosotros';
   quienesTitulo?: Maybe<Scalars['String']['output']>;
@@ -539,9 +529,17 @@ export type Nosotros = Node & Document & {
   visionTitulo?: Maybe<Scalars['String']['output']>;
   visionDesc?: Maybe<Scalars['String']['output']>;
   porqueItems?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  teamMembers?: Maybe<Array<Maybe<NosotrosTeamMembers>>>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
+};
+
+export type NosotrosTeamMembersFilter = {
+  nombre?: InputMaybe<StringFilter>;
+  rol?: InputMaybe<StringFilter>;
+  descripcion?: InputMaybe<StringFilter>;
+  foto?: InputMaybe<ImageFilter>;
 };
 
 export type NosotrosFilter = {
@@ -557,6 +555,7 @@ export type NosotrosFilter = {
   visionTitulo?: InputMaybe<StringFilter>;
   visionDesc?: InputMaybe<StringFilter>;
   porqueItems?: InputMaybe<StringFilter>;
+  teamMembers?: InputMaybe<NosotrosTeamMembersFilter>;
 };
 
 export type NosotrosConnectionEdges = {
@@ -605,49 +604,6 @@ export type ContactoConnection = Connection & {
   edges?: Maybe<Array<Maybe<ContactoConnectionEdges>>>;
 };
 
-export type Equipo = Node & Document & {
-  __typename?: 'Equipo';
-  nombre?: Maybe<Scalars['String']['output']>;
-  rol?: Maybe<Scalars['String']['output']>;
-  descripcion?: Maybe<Scalars['String']['output']>;
-  foto?: Maybe<Scalars['String']['output']>;
-  orden?: Maybe<Scalars['Float']['output']>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type NumberFilter = {
-  lt?: InputMaybe<Scalars['Float']['input']>;
-  lte?: InputMaybe<Scalars['Float']['input']>;
-  gte?: InputMaybe<Scalars['Float']['input']>;
-  gt?: InputMaybe<Scalars['Float']['input']>;
-  eq?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
-};
-
-export type EquipoFilter = {
-  nombre?: InputMaybe<StringFilter>;
-  rol?: InputMaybe<StringFilter>;
-  descripcion?: InputMaybe<StringFilter>;
-  foto?: InputMaybe<ImageFilter>;
-  orden?: InputMaybe<NumberFilter>;
-};
-
-export type EquipoConnectionEdges = {
-  __typename?: 'EquipoConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Equipo>;
-};
-
-export type EquipoConnection = Connection & {
-  __typename?: 'EquipoConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<EquipoConnectionEdges>>>;
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -665,8 +621,6 @@ export type Mutation = {
   createNosotros: Nosotros;
   updateContacto: Contacto;
   createContacto: Contacto;
-  updateEquipo: Equipo;
-  createEquipo: Equipo;
 };
 
 
@@ -762,25 +716,12 @@ export type MutationCreateContactoArgs = {
   params: ContactoMutation;
 };
 
-
-export type MutationUpdateEquipoArgs = {
-  relativePath: Scalars['String']['input'];
-  params: EquipoMutation;
-};
-
-
-export type MutationCreateEquipoArgs = {
-  relativePath: Scalars['String']['input'];
-  params: EquipoMutation;
-};
-
 export type DocumentUpdateMutation = {
   config?: InputMaybe<ConfigMutation>;
   home?: InputMaybe<HomeMutation>;
   servicios?: InputMaybe<ServiciosMutation>;
   nosotros?: InputMaybe<NosotrosMutation>;
   contacto?: InputMaybe<ContactoMutation>;
-  equipo?: InputMaybe<EquipoMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -790,7 +731,6 @@ export type DocumentMutation = {
   servicios?: InputMaybe<ServiciosMutation>;
   nosotros?: InputMaybe<NosotrosMutation>;
   contacto?: InputMaybe<ContactoMutation>;
-  equipo?: InputMaybe<EquipoMutation>;
 };
 
 export type ConfigNavMutation = {
@@ -890,6 +830,13 @@ export type ServiciosMutation = {
   faqItems?: InputMaybe<Array<InputMaybe<ServiciosFaqItemsMutation>>>;
 };
 
+export type NosotrosTeamMembersMutation = {
+  nombre?: InputMaybe<Scalars['String']['input']>;
+  rol?: InputMaybe<Scalars['String']['input']>;
+  descripcion?: InputMaybe<Scalars['String']['input']>;
+  foto?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type NosotrosMutation = {
   quienesTitulo?: InputMaybe<Scalars['String']['input']>;
   quienesDesc1?: InputMaybe<Scalars['String']['input']>;
@@ -903,6 +850,7 @@ export type NosotrosMutation = {
   visionTitulo?: InputMaybe<Scalars['String']['input']>;
   visionDesc?: InputMaybe<Scalars['String']['input']>;
   porqueItems?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  teamMembers?: InputMaybe<Array<InputMaybe<NosotrosTeamMembersMutation>>>;
 };
 
 export type ContactoMutation = {
@@ -913,25 +861,15 @@ export type ContactoMutation = {
   linkedin?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type EquipoMutation = {
-  nombre?: InputMaybe<Scalars['String']['input']>;
-  rol?: InputMaybe<Scalars['String']['input']>;
-  descripcion?: InputMaybe<Scalars['String']['input']>;
-  foto?: InputMaybe<Scalars['String']['input']>;
-  orden?: InputMaybe<Scalars['Float']['input']>;
-};
-
 export type ConfigPartsFragment = { __typename: 'Config', logo?: string | null, footerDescripcion?: string | null, footerCopyright?: string | null, heroImagenes?: Array<string | null> | null, nav?: Array<{ __typename: 'ConfigNav', label?: string | null, href?: string | null } | null> | null, heroHome?: { __typename: 'ConfigHeroHome', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroServicios?: { __typename: 'ConfigHeroServicios', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroNosotros?: { __typename: 'ConfigHeroNosotros', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroContacto?: { __typename: 'ConfigHeroContacto', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null };
 
 export type HomePartsFragment = { __typename: 'Home', propuestaTitulo?: string | null, propuestaSubtitulo?: string | null, propuestaItems?: Array<string | null> | null, enfoqueSubtitulo?: string | null, crecimientoTitulo?: string | null, crecimientoSubtitulo?: string | null, procesoSubtitulo?: string | null, innovacionSubtitulo?: string | null, innovacionImagenes?: Array<string | null> | null, enfoqueCards?: Array<{ __typename: 'HomeEnfoqueCards', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null, crecimientoCards?: Array<{ __typename: 'HomeCrecimientoCards', titulo?: string | null, descripcion?: string | null, imagenes?: Array<string | null> | null } | null> | null, procesoSteps?: Array<{ __typename: 'HomeProcesoSteps', titulo?: string | null, descripcion?: string | null } | null> | null, innovacionFeatures?: Array<{ __typename: 'HomeInnovacionFeatures', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null };
 
 export type ServiciosPartsFragment = { __typename: 'Servicios', integralImagenPrincipal?: string | null, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null };
 
-export type NosotrosPartsFragment = { __typename: 'Nosotros', quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null };
+export type NosotrosPartsFragment = { __typename: 'Nosotros', quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null } | null> | null };
 
 export type ContactoPartsFragment = { __typename: 'Contacto', email?: string | null, whatsapp?: string | null, direccion?: string | null, instagram?: string | null, linkedin?: string | null };
-
-export type EquipoPartsFragment = { __typename: 'Equipo', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null, orden?: number | null };
 
 export type ConfigQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -995,7 +933,7 @@ export type NosotrosQueryVariables = Exact<{
 }>;
 
 
-export type NosotrosQuery = { __typename?: 'Query', nosotros: { __typename: 'Nosotros', id: string, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type NosotrosQuery = { __typename?: 'Query', nosotros: { __typename: 'Nosotros', id: string, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null } | null> | null } };
 
 export type NosotrosConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1007,7 +945,7 @@ export type NosotrosConnectionQueryVariables = Exact<{
 }>;
 
 
-export type NosotrosConnectionQuery = { __typename?: 'Query', nosotrosConnection: { __typename?: 'NosotrosConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'NosotrosConnectionEdges', cursor: string, node?: { __typename: 'Nosotros', id: string, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type NosotrosConnectionQuery = { __typename?: 'Query', nosotrosConnection: { __typename?: 'NosotrosConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'NosotrosConnectionEdges', cursor: string, node?: { __typename: 'Nosotros', id: string, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null } | null> | null } | null } | null> | null } };
 
 export type ContactoQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1027,25 +965,6 @@ export type ContactoConnectionQueryVariables = Exact<{
 
 
 export type ContactoConnectionQuery = { __typename?: 'Query', contactoConnection: { __typename?: 'ContactoConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ContactoConnectionEdges', cursor: string, node?: { __typename: 'Contacto', id: string, email?: string | null, whatsapp?: string | null, direccion?: string | null, instagram?: string | null, linkedin?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
-
-export type EquipoQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type EquipoQuery = { __typename?: 'Query', equipo: { __typename: 'Equipo', id: string, nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null, orden?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type EquipoConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<EquipoFilter>;
-}>;
-
-
-export type EquipoConnectionQuery = { __typename?: 'Query', equipoConnection: { __typename?: 'EquipoConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'EquipoConnectionEdges', cursor: string, node?: { __typename: 'Equipo', id: string, nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null, orden?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const ConfigPartsFragmentDoc = gql`
     fragment ConfigParts on Config {
@@ -1154,6 +1073,13 @@ export const NosotrosPartsFragmentDoc = gql`
   visionTitulo
   visionDesc
   porqueItems
+  teamMembers {
+    __typename
+    nombre
+    rol
+    descripcion
+    foto
+  }
 }
     `;
 export const ContactoPartsFragmentDoc = gql`
@@ -1164,16 +1090,6 @@ export const ContactoPartsFragmentDoc = gql`
   direccion
   instagram
   linkedin
-}
-    `;
-export const EquipoPartsFragmentDoc = gql`
-    fragment EquipoParts on Equipo {
-  __typename
-  nombre
-  rol
-  descripcion
-  foto
-  orden
 }
     `;
 export const ConfigDocument = gql`
@@ -1461,63 +1377,6 @@ export const ContactoConnectionDocument = gql`
   }
 }
     ${ContactoPartsFragmentDoc}`;
-export const EquipoDocument = gql`
-    query equipo($relativePath: String!) {
-  equipo(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...EquipoParts
-  }
-}
-    ${EquipoPartsFragmentDoc}`;
-export const EquipoConnectionDocument = gql`
-    query equipoConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: EquipoFilter) {
-  equipoConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...EquipoParts
-      }
-    }
-  }
-}
-    ${EquipoPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -1550,12 +1409,6 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     contactoConnection(variables?: ContactoConnectionQueryVariables, options?: C): Promise<{data: ContactoConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactoConnectionQueryVariables, query: string}> {
         return requester<{data: ContactoConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactoConnectionQueryVariables, query: string}, ContactoConnectionQueryVariables>(ContactoConnectionDocument, variables, options);
-      },
-    equipo(variables: EquipoQueryVariables, options?: C): Promise<{data: EquipoQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: EquipoQueryVariables, query: string}> {
-        return requester<{data: EquipoQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: EquipoQueryVariables, query: string}, EquipoQueryVariables>(EquipoDocument, variables, options);
-      },
-    equipoConnection(variables?: EquipoConnectionQueryVariables, options?: C): Promise<{data: EquipoConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: EquipoConnectionQueryVariables, query: string}> {
-        return requester<{data: EquipoConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: EquipoConnectionQueryVariables, query: string}, EquipoConnectionQueryVariables>(EquipoConnectionDocument, variables, options);
       }
     };
   }
@@ -1604,7 +1457,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "http://localhost:4001/graphql",
+        url: "https://content.tinajs.io/2.4/content/9d19bec7-8aea-435a-8adb-a081ce91aab9/github/main",
         queries,
       })
     )

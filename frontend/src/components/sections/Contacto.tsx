@@ -78,7 +78,7 @@ export default function Contacto() {
             <div className={styles.leftItem}><span className={styles.leftItemDot} /><span>Primera consulta sin costo</span></div>
             <div className={styles.leftItem}><span className={styles.leftItemDot} /><span>Estrategia personalizada para tu negocio</span></div>
           </div>
-          {/* Datos de contacto desde Sanity */}
+          {/* Datos de contacto editables desde Tina */}
           <div className={styles.leftItems} style={{ marginTop: '1.5rem' }}>
             {contacto.email && (
               <div className={styles.leftItem}>

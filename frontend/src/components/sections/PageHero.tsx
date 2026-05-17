@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from './Home.module.css';
-import { getHomeData, getSiteConfig } from '@/lib/queries';
+import { getSiteConfig } from '@/lib/queries';
 
 export const LOCAL_HERO_IMAGES = [
   '/assets/images/marketing/marketing1.png',
@@ -49,17 +49,14 @@ export default function PageHero({
   const [heroConfig, setHeroConfig] = useState<HeroConfig>({});
 
   useEffect(() => {
-    getHomeData().then((d: { heroImagenes?: string[] } | null) => {
-      if (d?.heroImagenes?.length) setImages(d.heroImagenes);
+    getSiteConfig().then((d: (Record<string, HeroConfig> & { heroImagenes?: string[] }) | null) => {
+      if (!d) return;
+      if (d.heroImagenes?.length) setImages(d.heroImagenes);
+      if (page) {
+        const key = `hero${page.charAt(0).toUpperCase() + page.slice(1)}` as string;
+        if (d[key]) setHeroConfig(d[key]);
+      }
     });
-    if (page) {
-      getSiteConfig().then((d: Record<string, HeroConfig> | null) => {
-        if (d) {
-          const key = `hero${page.charAt(0).toUpperCase() + page.slice(1)}` as string;
-          if (d[key]) setHeroConfig(d[key]);
-        }
-      });
-    }
   }, [page]);
 
   useEffect(() => {

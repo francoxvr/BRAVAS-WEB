@@ -101,6 +101,13 @@ fragment NosotrosParts on Nosotros {
   visionTitulo
   visionDesc
   porqueItems
+  teamMembers {
+    __typename
+    nombre
+    rol
+    descripcion
+    foto
+  }
 }
 
 fragment ContactoParts on Contacto {
@@ -110,13 +117,4 @@ fragment ContactoParts on Contacto {
   direccion
   instagram
   linkedin
-}
-
-fragment EquipoParts on Equipo {
-  __typename
-  nombre
-  rol
-  descripcion
-  foto
-  orden
 }

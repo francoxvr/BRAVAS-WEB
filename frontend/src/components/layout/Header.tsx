@@ -27,8 +27,8 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    getSiteConfig().then((d: { navItems?: NavItem[]; logo?: string } | null) => {
-      if (d?.navItems?.length) setNavItems(d.navItems);
+    getSiteConfig().then((d: { nav?: NavItem[]; logo?: string } | null) => {
+      if (d?.nav?.length) setNavItems(d.nav);
       if (d?.logo) setLogo(d.logo);
     });
   }, []);

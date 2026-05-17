@@ -189,6 +189,16 @@ export default defineConfig({
           { type: 'string', name: 'visionTitulo', label: '2️⃣ Título de la Visión' },
           { type: 'string', name: 'visionDesc', label: '2️⃣ Descripción de la Visión', ui: { component: 'textarea' } },
           { type: 'string', name: 'porqueItems', label: '3️⃣ Razones para elegirnos', list: true },
+          {
+            type: 'object', name: 'teamMembers', label: '4️⃣ Equipo', list: true,
+            ui: { itemProps: (item) => ({ label: item?.nombre }) },
+            fields: [
+              { type: 'string', name: 'nombre', label: 'Nombre completo' },
+              { type: 'string', name: 'rol', label: 'Rol o cargo' },
+              { type: 'string', name: 'descripcion', label: 'Descripción', ui: { component: 'textarea' } },
+              { type: 'image', name: 'foto', label: 'Foto' },
+            ],
+          },
         ],
       },
 
@@ -206,22 +216,6 @@ export default defineConfig({
           { type: 'string', name: 'direccion', label: '📍 Dirección o ciudad' },
           { type: 'string', name: 'instagram', label: '📸 Usuario de Instagram (sin @)' },
           { type: 'string', name: 'linkedin', label: '💼 URL de LinkedIn' },
-        ],
-      },
-
-      // ─── EQUIPO ──────────────────────────────────────────────────
-      {
-        name: 'equipo',
-        label: '🧑‍🤝‍🧑 Equipo',
-        path: 'tina/content/equipo',
-        format: 'json',
-        ui: { itemProps: (item) => ({ label: item?.nombre }) },
-        fields: [
-          { type: 'string', name: 'nombre', label: 'Nombre completo' },
-          { type: 'string', name: 'rol', label: 'Rol o cargo' },
-          { type: 'string', name: 'descripcion', label: 'Descripción', ui: { component: 'textarea' } },
-          { type: 'image', name: 'foto', label: 'Foto' },
-          { type: 'number', name: 'orden', label: 'Orden de aparición' },
         ],
       },
 

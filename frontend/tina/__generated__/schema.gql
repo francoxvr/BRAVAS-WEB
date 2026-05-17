@@ -64,8 +64,6 @@ type Query {
   nosotrosConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: NosotrosFilter): NosotrosConnection!
   contacto(relativePath: String): Contacto!
   contactoConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ContactoFilter): ContactoConnection!
-  equipo(relativePath: String): Equipo!
-  equipoConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: EquipoFilter): EquipoConnection!
 }
 
 input DocumentFilter {
@@ -74,7 +72,6 @@ input DocumentFilter {
   servicios: ServiciosFilter
   nosotros: NosotrosFilter
   contacto: ContactoFilter
-  equipo: EquipoFilter
 }
 
 type DocumentConnectionEdges {
@@ -100,7 +97,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Config | Home | Servicios | Nosotros | Contacto | Equipo | Folder
+union DocumentNode = Config | Home | Servicios | Nosotros | Contacto | Folder
 
 type ConfigNav {
   label: String
@@ -352,6 +349,13 @@ type ServiciosConnection implements Connection {
   edges: [ServiciosConnectionEdges]
 }
 
+type NosotrosTeamMembers {
+  nombre: String
+  rol: String
+  descripcion: String
+  foto: String
+}
+
 type Nosotros implements Node & Document {
   quienesTitulo: String
   quienesDesc1: String
@@ -365,9 +369,17 @@ type Nosotros implements Node & Document {
   visionTitulo: String
   visionDesc: String
   porqueItems: [String]
+  teamMembers: [NosotrosTeamMembers]
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
+}
+
+input NosotrosTeamMembersFilter {
+  nombre: StringFilter
+  rol: StringFilter
+  descripcion: StringFilter
+  foto: ImageFilter
 }
 
 input NosotrosFilter {
@@ -383,6 +395,7 @@ input NosotrosFilter {
   visionTitulo: StringFilter
   visionDesc: StringFilter
   porqueItems: StringFilter
+  teamMembers: NosotrosTeamMembersFilter
 }
 
 type NosotrosConnectionEdges {
@@ -426,46 +439,6 @@ type ContactoConnection implements Connection {
   edges: [ContactoConnectionEdges]
 }
 
-type Equipo implements Node & Document {
-  nombre: String
-  rol: String
-  descripcion: String
-  foto: String
-  orden: Float
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input NumberFilter {
-  lt: Float
-  lte: Float
-  gte: Float
-  gt: Float
-  eq: Float
-  exists: Boolean
-  in: [Float]
-}
-
-input EquipoFilter {
-  nombre: StringFilter
-  rol: StringFilter
-  descripcion: StringFilter
-  foto: ImageFilter
-  orden: NumberFilter
-}
-
-type EquipoConnectionEdges {
-  cursor: String!
-  node: Equipo
-}
-
-type EquipoConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [EquipoConnectionEdges]
-}
-
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -482,8 +455,6 @@ type Mutation {
   createNosotros(relativePath: String!, params: NosotrosMutation!): Nosotros!
   updateContacto(relativePath: String!, params: ContactoMutation!): Contacto!
   createContacto(relativePath: String!, params: ContactoMutation!): Contacto!
-  updateEquipo(relativePath: String!, params: EquipoMutation!): Equipo!
-  createEquipo(relativePath: String!, params: EquipoMutation!): Equipo!
 }
 
 input DocumentUpdateMutation {
@@ -492,7 +463,6 @@ input DocumentUpdateMutation {
   servicios: ServiciosMutation
   nosotros: NosotrosMutation
   contacto: ContactoMutation
-  equipo: EquipoMutation
   relativePath: String
 }
 
@@ -502,7 +472,6 @@ input DocumentMutation {
   servicios: ServiciosMutation
   nosotros: NosotrosMutation
   contacto: ContactoMutation
-  equipo: EquipoMutation
 }
 
 input ConfigNavMutation {
@@ -602,6 +571,13 @@ input ServiciosMutation {
   faqItems: [ServiciosFaqItemsMutation]
 }
 
+input NosotrosTeamMembersMutation {
+  nombre: String
+  rol: String
+  descripcion: String
+  foto: String
+}
+
 input NosotrosMutation {
   quienesTitulo: String
   quienesDesc1: String
@@ -615,6 +591,7 @@ input NosotrosMutation {
   visionTitulo: String
   visionDesc: String
   porqueItems: [String]
+  teamMembers: [NosotrosTeamMembersMutation]
 }
 
 input ContactoMutation {
@@ -623,14 +600,6 @@ input ContactoMutation {
   direccion: String
   instagram: String
   linkedin: String
-}
-
-input EquipoMutation {
-  nombre: String
-  rol: String
-  descripcion: String
-  foto: String
-  orden: Float
 }
 
 schema {

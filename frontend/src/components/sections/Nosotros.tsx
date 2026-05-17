@@ -3,7 +3,7 @@ import Image from 'next/image';
 import PageHero from './PageHero';
 import homeStyles from './Home.module.css';
 import styles from './Nosotros.module.css';
-import { getNosotrosData, getTeamData } from '@/lib/queries';
+import { getNosotrosData } from '@/lib/queries';
 
 interface NosotrosData {
   quienesTitulo?: string;
@@ -18,6 +18,7 @@ interface NosotrosData {
   visionTitulo?: string;
   visionDesc?: string;
   porqueItems?: string[];
+  teamMembers?: TeamMember[];
 }
 
 interface TeamMember {
@@ -60,8 +61,11 @@ export default function Nosotros() {
   const [team, setTeam] = useState<TeamMember[]>(DEFAULT_TEAM);
 
   useEffect(() => {
-    getNosotrosData().then((d: NosotrosData | null) => { if (d) setData({ ...DEFAULT_NOSOTROS, ...d }); });
-    getTeamData().then((t: TeamMember[] | null) => { if (t && t.length > 0) setTeam(t); });
+    getNosotrosData().then((d: NosotrosData | null) => {
+      if (!d) return;
+      setData({ ...DEFAULT_NOSOTROS, ...d });
+      if (d.teamMembers?.length) setTeam(d.teamMembers);
+    });
   }, []);
 
   const tituloLines = (data.quienesTitulo ?? '').split('\n');

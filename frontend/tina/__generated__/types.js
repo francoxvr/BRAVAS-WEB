@@ -112,6 +112,13 @@ export const NosotrosPartsFragmentDoc = gql`
   visionTitulo
   visionDesc
   porqueItems
+  teamMembers {
+    __typename
+    nombre
+    rol
+    descripcion
+    foto
+  }
 }
     `;
 export const ContactoPartsFragmentDoc = gql`
@@ -122,16 +129,6 @@ export const ContactoPartsFragmentDoc = gql`
   direccion
   instagram
   linkedin
-}
-    `;
-export const EquipoPartsFragmentDoc = gql`
-    fragment EquipoParts on Equipo {
-  __typename
-  nombre
-  rol
-  descripcion
-  foto
-  orden
 }
     `;
 export const ConfigDocument = gql`
@@ -419,63 +416,6 @@ export const ContactoConnectionDocument = gql`
   }
 }
     ${ContactoPartsFragmentDoc}`;
-export const EquipoDocument = gql`
-    query equipo($relativePath: String!) {
-  equipo(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...EquipoParts
-  }
-}
-    ${EquipoPartsFragmentDoc}`;
-export const EquipoConnectionDocument = gql`
-    query equipoConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: EquipoFilter) {
-  equipoConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...EquipoParts
-      }
-    }
-  }
-}
-    ${EquipoPartsFragmentDoc}`;
 export function getSdk(requester) {
   return {
     config(variables, options) {
@@ -507,12 +447,6 @@ export function getSdk(requester) {
     },
     contactoConnection(variables, options) {
       return requester(ContactoConnectionDocument, variables, options);
-    },
-    equipo(variables, options) {
-      return requester(EquipoDocument, variables, options);
-    },
-    equipoConnection(variables, options) {
-      return requester(EquipoConnectionDocument, variables, options);
     }
   };
 }
@@ -536,7 +470,7 @@ const generateRequester = (client) => {
 export const ExperimentalGetTinaClient = () => getSdk(
   generateRequester(
     createClient({
-      url: "http://localhost:4001/graphql",
+      url: "https://content.tinajs.io/2.4/content/9d19bec7-8aea-435a-8adb-a081ce91aab9/github/main",
       queries
     })
   )

@@ -1,7 +1,7 @@
 /**
  * queries.ts
  * Lee el contenido desde los archivos JSON de Tina
- * en vez de hacer llamadas a Sanity.
+ * para que la web use lo mismo que edita el cliente en el panel.
  */
 
 export async function getHomeData() {
@@ -16,11 +16,6 @@ export async function getNosotrosData() {
     const data = await import('../../tina/content/pages/nosotros.json')
     return data.default
   } catch { return null }
-}
-
-export async function getTeamData() {
-  // El equipo se agrega desde el panel de Tina — Equipo
-  return []
 }
 
 export async function getServiciosData() {

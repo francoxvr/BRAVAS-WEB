@@ -4,7 +4,7 @@ import styles from './Home.module.css';
 import { getHomeData } from '@/lib/queries';
 
 interface EnfoqueCard { emoji: string; titulo: string; descripcion: string; }
-interface CrecimientoCard { titulo: string; descripcion: string; imagen?: string; }
+interface CrecimientoCard { titulo: string; descripcion: string; imagenes?: string[]; }
 interface ProcesoStep { titulo: string; descripcion: string; }
 interface InnovacionFeature { emoji: string; titulo: string; descripcion: string; }
 interface HomeData {
@@ -127,8 +127,8 @@ export default function Home() {
         </div>
         <div className={styles.crecimientoGrid}>
           {crecimientoCards.map((card, i) => {
-            const sanityImgs = (data.crecimientoCards?.[i] as any)?.imagenes as string[] | undefined;
-            const images = sanityImgs?.length ? sanityImgs : localCrecimientoImages[i] ?? [];
+            const tinaImages = data.crecimientoCards?.[i]?.imagenes;
+            const images = tinaImages?.length ? tinaImages : localCrecimientoImages[i] ?? [];
             return (
               <div key={i} className={styles.crecimientoCard}>
                 <div className={styles.crecimientoCardImage}>

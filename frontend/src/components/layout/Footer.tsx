@@ -47,11 +47,15 @@ const MapPinIcon = () => (
 export default function Footer() {
   const [contacto, setContacto] = useState<ContactoData>(DEFAULT_CONTACTO);
   const [footerDesc, setFooterDesc] = useState("{footerDesc}");
+  const [footerCopyright, setFooterCopyright] = useState("BRAVAS MARKETING • Innovación Digital • Resultados Reales");
   const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     getContactoData().then((d: ContactoData | null) => { if (d) setContacto({ ...DEFAULT_CONTACTO, ...d }); });
-    getSiteConfig().then((d: { footerDescripcion?: string } | null) => { if (d?.footerDescripcion) setFooterDesc(d.footerDescripcion); });
+    getSiteConfig().then((d: { footerDescripcion?: string; footerCopyright?: string } | null) => {
+      if (d?.footerDescripcion) setFooterDesc(d.footerDescripcion);
+      if (d?.footerCopyright) setFooterCopyright(d.footerCopyright);
+    });
   }, []);
 
   const instagramUrl = `https://www.instagram.com/${contacto.instagram ?? 'bravasmarketing'}`;
@@ -134,7 +138,7 @@ export default function Footer() {
             <Link href="/contacto">Cookies</Link>
           </div>
           <div className={styles.copyrightSection}>
-            <p className={styles.copyright}>&copy; {currentYear} <strong>BRAVAS MARKETING</strong> • Innovación Digital • Resultados Reales</p>
+            <p className={styles.copyright}>&copy; {currentYear} <strong>{footerCopyright}</strong></p>
           </div>
           <div className={styles.footerLinks}>
             <Link href="/contacto">Términos y Condiciones</Link>

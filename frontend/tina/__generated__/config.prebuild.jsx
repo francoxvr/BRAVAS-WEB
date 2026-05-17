@@ -212,7 +212,20 @@ var config_default = defineConfig({
           { type: "string", name: "misionDesc", label: "2\uFE0F\u20E3 Descripci\xF3n de la Misi\xF3n", ui: { component: "textarea" } },
           { type: "string", name: "visionTitulo", label: "2\uFE0F\u20E3 T\xEDtulo de la Visi\xF3n" },
           { type: "string", name: "visionDesc", label: "2\uFE0F\u20E3 Descripci\xF3n de la Visi\xF3n", ui: { component: "textarea" } },
-          { type: "string", name: "porqueItems", label: "3\uFE0F\u20E3 Razones para elegirnos", list: true }
+          { type: "string", name: "porqueItems", label: "3\uFE0F\u20E3 Razones para elegirnos", list: true },
+          {
+            type: "object",
+            name: "teamMembers",
+            label: "4\uFE0F\u20E3 Equipo",
+            list: true,
+            ui: { itemProps: (item) => ({ label: item?.nombre }) },
+            fields: [
+              { type: "string", name: "nombre", label: "Nombre completo" },
+              { type: "string", name: "rol", label: "Rol o cargo" },
+              { type: "string", name: "descripcion", label: "Descripci\xF3n", ui: { component: "textarea" } },
+              { type: "image", name: "foto", label: "Foto" }
+            ]
+          }
         ]
       },
       // ─── CONTACTO ────────────────────────────────────────────────
@@ -229,21 +242,6 @@ var config_default = defineConfig({
           { type: "string", name: "direccion", label: "\u{1F4CD} Direcci\xF3n o ciudad" },
           { type: "string", name: "instagram", label: "\u{1F4F8} Usuario de Instagram (sin @)" },
           { type: "string", name: "linkedin", label: "\u{1F4BC} URL de LinkedIn" }
-        ]
-      },
-      // ─── EQUIPO ──────────────────────────────────────────────────
-      {
-        name: "equipo",
-        label: "\u{1F9D1}\u200D\u{1F91D}\u200D\u{1F9D1} Equipo",
-        path: "tina/content/equipo",
-        format: "json",
-        ui: { itemProps: (item) => ({ label: item?.nombre }) },
-        fields: [
-          { type: "string", name: "nombre", label: "Nombre completo" },
-          { type: "string", name: "rol", label: "Rol o cargo" },
-          { type: "string", name: "descripcion", label: "Descripci\xF3n", ui: { component: "textarea" } },
-          { type: "image", name: "foto", label: "Foto" },
-          { type: "number", name: "orden", label: "Orden de aparici\xF3n" }
         ]
       }
     ]

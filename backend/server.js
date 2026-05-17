@@ -4,91 +4,239 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
-app.use(express.json());
+const PORT = process.env.PORT || 5000;
+const isProduction = process.env.NODE_ENV === 'production';
+const siteUrl = process.env.SITE_URL || process.env.FRONTEND_URL || 'https://bravas-web.vercel.app';
+const allowedOrigins = (process.env.CORS_ORIGINS || process.env.FRONTEND_URL || siteUrl)
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
-// Health check
-app.get('/', (req, res) => {
-  res.send('Backend Bravas funcionando 🚀');
+const requiredEmailEnv = ['EMAIL_USER', 'EMAIL_PASS', 'EMAIL_DESTINO'];
+const rateLimitStore = new Map();
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = Number(process.env.RATE_LIMIT_MAX_REQUESTS || 5);
+
+app.set('trust proxy', 1);
+
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
 });
 
-// Ruta formulario de contacto
-app.post('/api/contacto', async (req, res) => {
-  const { nombre, email, telefono, empresa, servicio, mensaje } = req.body;
+app.use(cors({
+  origin(origin, callback) {
+    if (!origin) return callback(null, true);
 
-  if (!nombre || !email || !mensaje) {
-    return res.status(400).json({ error: 'Faltan campos obligatorios' });
+    const isLocalhost = !isProduction && /^https?:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origin);
+    if (allowedOrigins.includes(origin) || isLocalhost) {
+      return callback(null, true);
+    }
+
+    return callback(new Error('Origen no permitido por CORS'));
+  },
+  methods: ['GET', 'POST', 'OPTIONS'],
+}));
+
+app.use(express.json({ limit: '20kb' }));
+
+function getClientIp(req) {
+  return req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+}
+
+function contactRateLimit(req, res, next) {
+  const now = Date.now();
+  const ip = getClientIp(req);
+  const current = rateLimitStore.get(ip);
+
+  if (!current || current.resetAt <= now) {
+    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return next();
+  }
+
+  if (current.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return res.status(429).json({
+      error: 'Demasiados intentos. Probá nuevamente en unos minutos.',
+    });
+  }
+
+  current.count += 1;
+  return next();
+}
+
+function cleanText(value, maxLength) {
+  return String(value || '')
+    .replace(/[\r\n\t]+/g, ' ')
+    .replace(/\s{2,}/g, ' ')
+    .trim()
+    .slice(0, maxLength);
+}
+
+function cleanMultilineText(value, maxLength) {
+  return String(value || '')
+    .replace(/\r/g, '')
+    .replace(/\n{4,}/g, '\n\n\n')
+    .trim()
+    .slice(0, maxLength);
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .replace(/\n/g, '<br>');
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+}
+
+function validateContactPayload(body) {
+  const payload = {
+    nombre: cleanText(body.nombre, 90),
+    email: cleanText(body.email, 120).toLowerCase(),
+    telefono: cleanText(body.telefono, 40),
+    empresa: cleanText(body.empresa, 90),
+    servicio: cleanText(body.servicio, 80),
+    mensaje: cleanMultilineText(body.mensaje, 1600),
+  };
+
+  if (!payload.nombre || !payload.email || !payload.mensaje) {
+    return { error: 'Completá nombre, email y mensaje.', payload };
+  }
+
+  if (!isValidEmail(payload.email)) {
+    return { error: 'Ingresá un email válido.', payload };
+  }
+
+  if (payload.mensaje.length < 10) {
+    return { error: 'El mensaje es demasiado corto.', payload };
+  }
+
+  return { payload };
+}
+
+function ensureEmailConfig() {
+  return requiredEmailEnv.filter((key) => !process.env[key]);
+}
+
+function createTransporter() {
+  return nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+}
+
+function contactEmailHtml(payload) {
+  const safe = Object.fromEntries(
+    Object.entries(payload).map(([key, value]) => [key, escapeHtml(value || 'No especificado')])
+  );
+
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <div style="background: #4e1a6b; padding: 24px; border-radius: 8px 8px 0 0;">
+        <h1 style="color: white; margin: 0; font-size: 22px;">Nueva consulta desde el sitio</h1>
+        <p style="color: #e0c4f4; margin: 4px 0 0;">Bravas Marketing</p>
+      </div>
+      <div style="background: #f9f9f9; padding: 24px; border-radius: 0 0 8px 8px; border: 1px solid #eee;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr><td style="padding: 8px 0; color: #666; width: 140px;">Nombre:</td><td style="padding: 8px 0; font-weight: bold;">${safe.nombre}</td></tr>
+          <tr><td style="padding: 8px 0; color: #666;">Email:</td><td style="padding: 8px 0;"><a href="mailto:${safe.email}">${safe.email}</a></td></tr>
+          <tr><td style="padding: 8px 0; color: #666;">Teléfono:</td><td style="padding: 8px 0;">${safe.telefono}</td></tr>
+          <tr><td style="padding: 8px 0; color: #666;">Empresa:</td><td style="padding: 8px 0;">${safe.empresa}</td></tr>
+          <tr><td style="padding: 8px 0; color: #666;">Servicio:</td><td style="padding: 8px 0;">${safe.servicio}</td></tr>
+        </table>
+        <div style="margin-top: 16px; padding: 16px; background: white; border-radius: 6px; border-left: 4px solid #4e1a6b;">
+          <p style="color: #666; margin: 0 0 8px; font-size: 13px;">MENSAJE:</p>
+          <p style="margin: 0;">${safe.mensaje}</p>
+        </div>
+        <p style="margin-top: 20px; font-size: 12px; color: #999;">Este mensaje fue enviado desde el formulario de contacto de ${escapeHtml(siteUrl)}.</p>
+      </div>
+    </div>
+  `;
+}
+
+function confirmationEmailHtml(payload) {
+  const firstName = escapeHtml(payload.nombre.split(' ')[0]);
+
+  return `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <div style="background: #4e1a6b; padding: 24px; border-radius: 8px 8px 0 0;">
+        <h1 style="color: white; margin: 0; font-size: 22px;">¡Recibimos tu mensaje!</h1>
+        <p style="color: #e0c4f4; margin: 4px 0 0;">Bravas Marketing</p>
+      </div>
+      <div style="background: #f9f9f9; padding: 24px; border-radius: 0 0 8px 8px; border: 1px solid #eee;">
+        <p>Hola <strong>${firstName}</strong>,</p>
+        <p>Gracias por contactarnos. Recibimos tu consulta y nos pondremos en contacto en menos de <strong>24 horas</strong>.</p>
+        <p>Mientras tanto, podés seguirnos en nuestras redes sociales o visitar nuestro sitio web.</p>
+        <div style="margin-top: 24px; text-align: center;">
+          <a href="${escapeHtml(siteUrl)}" style="background: #4e1a6b; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold;">Visitar sitio web</a>
+        </div>
+        <p style="margin-top: 24px; font-size: 12px; color: #999;">Bravas Marketing — Estrategias digitales que generan resultados.</p>
+      </div>
+    </div>
+  `;
+}
+
+app.get('/', (req, res) => {
+  res.json({ ok: true, service: 'bravas-backend' });
+});
+
+app.post('/api/contacto', contactRateLimit, async (req, res) => {
+  const missingEnv = ensureEmailConfig();
+  if (missingEnv.length) {
+    console.error(`Faltan variables de email: ${missingEnv.join(', ')}`);
+    return res.status(500).json({ error: 'El formulario no está configurado todavía.' });
+  }
+
+  const { error, payload } = validateContactPayload(req.body);
+  if (error) {
+    return res.status(400).json({ error });
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+    const transporter = createTransporter();
+    const from = `"Bravas Web" <${process.env.EMAIL_USER}>`;
 
-    // Email que le llega a Bravas
     await transporter.sendMail({
-      from: `"Bravas Web" <${process.env.EMAIL_USER}>`,
+      from,
       to: process.env.EMAIL_DESTINO,
-      subject: `Nueva consulta de ${nombre} — Bravas Marketing`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: #4e1a6b; padding: 24px; border-radius: 8px 8px 0 0;">
-            <h1 style="color: white; margin: 0; font-size: 22px;">Nueva consulta desde el sitio</h1>
-            <p style="color: #e0c4f4; margin: 4px 0 0;">Bravas Marketing</p>
-          </div>
-          <div style="background: #f9f9f9; padding: 24px; border-radius: 0 0 8px 8px; border: 1px solid #eee;">
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr><td style="padding: 8px 0; color: #666; width: 140px;">Nombre:</td><td style="padding: 8px 0; font-weight: bold;">${nombre}</td></tr>
-              <tr><td style="padding: 8px 0; color: #666;">Email:</td><td style="padding: 8px 0;"><a href="mailto:${email}">${email}</a></td></tr>
-              <tr><td style="padding: 8px 0; color: #666;">Teléfono:</td><td style="padding: 8px 0;">${telefono || 'No especificado'}</td></tr>
-              <tr><td style="padding: 8px 0; color: #666;">Empresa:</td><td style="padding: 8px 0;">${empresa || 'No especificada'}</td></tr>
-              <tr><td style="padding: 8px 0; color: #666;">Servicio:</td><td style="padding: 8px 0;">${servicio || 'No especificado'}</td></tr>
-            </table>
-            <div style="margin-top: 16px; padding: 16px; background: white; border-radius: 6px; border-left: 4px solid #4e1a6b;">
-              <p style="color: #666; margin: 0 0 8px; font-size: 13px;">MENSAJE:</p>
-              <p style="margin: 0;">${mensaje}</p>
-            </div>
-            <p style="margin-top: 20px; font-size: 12px; color: #999;">Este mensaje fue enviado desde el formulario de contacto de bravas-web.vercel.app</p>
-          </div>
-        </div>
-      `,
+      replyTo: payload.email,
+      subject: `Nueva consulta de ${payload.nombre} - Bravas Marketing`,
+      html: contactEmailHtml(payload),
     });
 
-    // Email de confirmación al cliente
     await transporter.sendMail({
       from: `"Bravas Marketing" <${process.env.EMAIL_USER}>`,
-      to: email,
-      subject: `Recibimos tu consulta, ${nombre.split(' ')[0]}! — Bravas Marketing`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: #4e1a6b; padding: 24px; border-radius: 8px 8px 0 0;">
-            <h1 style="color: white; margin: 0; font-size: 22px;">¡Recibimos tu mensaje!</h1>
-            <p style="color: #e0c4f4; margin: 4px 0 0;">Bravas Marketing</p>
-          </div>
-          <div style="background: #f9f9f9; padding: 24px; border-radius: 0 0 8px 8px; border: 1px solid #eee;">
-            <p>Hola <strong>${nombre.split(' ')[0]}</strong>,</p>
-            <p>Gracias por contactarnos. Recibimos tu consulta y nos pondremos en contacto en menos de <strong>24 horas</strong>.</p>
-            <p>Mientras tanto, podés seguirnos en nuestras redes sociales o visitar nuestro sitio web.</p>
-            <div style="margin-top: 24px; text-align: center;">
-              <a href="https://bravas-web.vercel.app" style="background: #4e1a6b; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold;">Visitar sitio web</a>
-            </div>
-            <p style="margin-top: 24px; font-size: 12px; color: #999;">Bravas Marketing — Estrategias digitales que generan resultados.</p>
-          </div>
-        </div>
-      `,
+      to: payload.email,
+      subject: `Recibimos tu consulta, ${payload.nombre.split(' ')[0]} - Bravas Marketing`,
+      html: confirmationEmailHtml(payload),
     });
 
-    res.json({ ok: true, message: 'Mensaje enviado correctamente' });
-
+    return res.json({ ok: true, message: 'Mensaje enviado correctamente' });
   } catch (err) {
     console.error('Error al enviar email:', err);
-    res.status(500).json({ error: 'Error al enviar el mensaje' });
+    return res.status(500).json({ error: 'Error al enviar el mensaje' });
   }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
+app.use((err, req, res, next) => {
+  if (err.message === 'Origen no permitido por CORS') {
+    return res.status(403).json({ error: 'Origen no permitido' });
+  }
+
+  console.error('Error inesperado:', err);
+  return res.status(500).json({ error: 'Error interno del servidor' });
+});
+
+app.listen(PORT, () => {
+  console.log(`Servidor Bravas corriendo en puerto ${PORT}`);
+});
