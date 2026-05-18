@@ -51,9 +51,7 @@ const DEFAULT_NOSOTROS: NosotrosData = {
 
 const DEFAULT_TEAM: TeamMember[] = [
   { nombre: 'Valentina Cruz', rol: 'Directora Creativa', descripcion: 'Lidera la visión creativa de cada proyecto con más de 8 años de experiencia en branding y comunicación digital.', foto: '/assets/images/marketing/marketing13.png' },
-  { nombre: 'Matías Romero', rol: 'Especialista en Ads', descripcion: 'Experto en Google y Meta Ads con foco en maximizar el ROI de cada campaña publicitaria.', foto: '/assets/images/marketing/marketing12.png' },
-  { nombre: 'Lucía Fernández', rol: 'Estratega de Contenido', descripcion: 'Crea contenido que conecta marcas con audiencias de forma auténtica y construye comunidades activas.', foto: '/assets/images/marketing/redes2.png' },
-  { nombre: 'Tomás Quiroga', rol: 'Analista de Datos', descripcion: 'Convierte métricas en decisiones estratégicas que impulsan el crecimiento de cada marca.', foto: '/assets/images/marketing/analisis.png' },
+  { nombre: 'Matías Romero', rol: 'Especialista en Ads', descripcion: 'Experto en Google y Meta Ads con foco en maximizar el ROI de cada campaña publicitaria.', foto: '/assets/images/marketing/redes2.png' },
 ];
 
 export default function Nosotros() {
@@ -112,7 +110,7 @@ export default function Nosotros() {
         <div className={styles.quienesImage}>
           <div className={styles.quienesImageInner}>
             <img
-              src={data.quienesImagen ?? '/assets/images/marketing/marketing12.png'}
+              src={data.quienesImagen ?? '/assets/images/marketing/redes4.png'}
               alt="Bravas Marketing"
               className={styles.quienesImg}
             />
@@ -144,7 +142,7 @@ export default function Nosotros() {
             <div key={i} className={styles.teamCard}>
               <div className={styles.teamPhoto}>
                 <Image
-                  src={member.foto ?? '/assets/images/marketing/marketing12.png'}
+                  src={member.foto ?? '/assets/images/marketing/redes4.png'}
                   alt={member.rol}
                   fill
                   style={{ objectFit: 'cover' }}
