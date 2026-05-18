@@ -20,9 +20,10 @@
 
 .teamGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 340px));
   gap: 20px;
   margin-top: 8px;
+  justify-content: center;
 }
 
 .teamCard {
