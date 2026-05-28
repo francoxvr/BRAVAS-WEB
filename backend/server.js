@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
@@ -12,7 +11,6 @@ const allowedOrigins = (process.env.CORS_ORIGINS || process.env.FRONTEND_URL || 
   .map((origin) => origin.trim())
   .filter(Boolean);
 
-const requiredEmailEnv = ['EMAIL_USER', 'EMAIL_PASS', 'EMAIL_DESTINO'];
 const rateLimitStore = new Map();
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = Number(process.env.RATE_LIMIT_MAX_REQUESTS || 5);
@@ -121,18 +119,29 @@ function validateContactPayload(body) {
   return { payload };
 }
 
-function ensureEmailConfig() {
-  return requiredEmailEnv.filter((key) => !process.env[key]);
-}
-
-function createTransporter() {
-  return nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+async function sendEmailViaBrevo({ senderName, senderEmail, to, replyTo, subject, htmlContent }) {
+  const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: {
+      'api-key': process.env.BREVO_API_KEY,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
     },
+    body: JSON.stringify({
+      sender: { name: senderName, email: senderEmail },
+      to: [{ email: to }],
+      replyTo: { email: replyTo },
+      subject,
+      htmlContent,
+    }),
   });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({}));
+    throw new Error(`Brevo error ${response.status}: ${JSON.stringify(error)}`);
+  }
+
+  return response.json();
 }
 
 function contactEmailHtml(payload) {
@@ -191,9 +200,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/contacto', contactRateLimit, async (req, res) => {
-  const missingEnv = ensureEmailConfig();
-  if (missingEnv.length) {
-    console.error(`Faltan variables de email: ${missingEnv.join(', ')}`);
+  if (!process.env.BREVO_API_KEY || !process.env.EMAIL_DESTINO) {
+    console.error('Faltan variables: BREVO_API_KEY o EMAIL_DESTINO');
     return res.status(500).json({ error: 'El formulario no está configurado todavía.' });
   }
 
@@ -202,23 +210,26 @@ app.post('/api/contacto', contactRateLimit, async (req, res) => {
     return res.status(400).json({ error });
   }
 
-  try {
-    const transporter = createTransporter();
-    const from = `"Bravas Web" <${process.env.EMAIL_USER}>`;
+  const senderEmail = process.env.EMAIL_FROM || 'noreply@bravasmarketing.com';
+  const senderName = 'Bravas Marketing';
 
-    await transporter.sendMail({
-      from,
+  try {
+    await sendEmailViaBrevo({
+      senderName,
+      senderEmail,
       to: process.env.EMAIL_DESTINO,
       replyTo: payload.email,
       subject: `Nueva consulta de ${payload.nombre} - Bravas Marketing`,
-      html: contactEmailHtml(payload),
+      htmlContent: contactEmailHtml(payload),
     });
 
-    await transporter.sendMail({
-      from: `"Bravas Marketing" <${process.env.EMAIL_USER}>`,
+    await sendEmailViaBrevo({
+      senderName,
+      senderEmail,
       to: payload.email,
+      replyTo: senderEmail,
       subject: `Recibimos tu consulta, ${payload.nombre.split(' ')[0]} - Bravas Marketing`,
-      html: confirmationEmailHtml(payload),
+      htmlContent: confirmationEmailHtml(payload),
     });
 
     return res.json({ ok: true, message: 'Mensaje enviado correctamente' });
