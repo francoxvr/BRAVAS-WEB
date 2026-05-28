@@ -33,6 +33,8 @@ export default function Contacto() {
   const [contacto, setContacto] = useState<ContactoData>(DEFAULT_CONTACTO);
   const [formData, setFormData] = useState({ nombre: '', email: '', telefono: '', empresa: '', servicio: '', mensaje: '' });
   const [enviado, setEnviado] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     getContactoData().then((d: ContactoData | null) => { if (d) setContacto({ ...DEFAULT_CONTACTO, ...d }); });
@@ -44,15 +46,24 @@ export default function Contacto() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setEnviando(true);
+    setErrorMsg('');
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contacto`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      if (res.ok) setEnviado(true);
-    } catch (err) {
-      console.error('Error al enviar:', err);
+      if (res.ok) {
+        setEnviado(true);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setErrorMsg(data.error || 'Ocurrió un error al enviar. Intentá nuevamente.');
+      }
+    } catch {
+      setErrorMsg('No se pudo conectar con el servidor. Verificá tu conexión e intentá nuevamente.');
+    } finally {
+      setEnviando(false);
     }
   };
 
@@ -146,7 +157,12 @@ export default function Contacto() {
                 <label className={styles.label}>Contanos más *</label>
                 <textarea className={`${styles.input} ${styles.textarea}`} name="mensaje" placeholder="Objetivos, presupuesto aproximado, web actual, público al que apuntás..." value={formData.mensaje} onChange={handleChange} required rows={4} />
               </div>
-              <button className={styles.submitBtn} type="submit">Enviar mensaje →</button>
+              {errorMsg && (
+                <p style={{ color: '#e05c5c', fontSize: '0.9rem', marginBottom: '0.5rem' }}>{errorMsg}</p>
+              )}
+              <button className={styles.submitBtn} type="submit" disabled={enviando}>
+                {enviando ? 'Enviando...' : 'Enviar mensaje →'}
+              </button>
             </form>
           )}
         </div>
