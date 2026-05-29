@@ -26,6 +26,7 @@ interface TeamMember {
   rol: string;
   descripcion: string;
   foto?: string;
+  linkedin?: string;
 }
 
 const DEFAULT_NOSOTROS: NosotrosData = {
@@ -140,14 +141,21 @@ export default function Nosotros() {
         <div className={styles.teamGrid}>
           {team.map((member, i) => (
             <div key={i} className={styles.teamCard}>
-              <div className={styles.teamPhoto}>
-                <Image
-                  src={member.foto ?? '/assets/images/marketing/redes4.png'}
-                  alt={member.rol}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
+              <a
+                href={member.linkedin ?? '#'}
+                target={member.linkedin ? '_blank' : undefined}
+                rel="noopener noreferrer"
+                style={{ display: 'block', textDecoration: 'none' }}
+              >
+                <div className={styles.teamPhoto}>
+                  <Image
+                    src={member.foto ?? '/assets/images/marketing/redes4.png'}
+                    alt={member.rol}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+              </a>
               <div className={styles.teamBody}>
                 <span className={styles.teamRole}>{member.rol}</span>
                 <h3 className={styles.teamName}>{member.nombre}</h3>

@@ -197,6 +197,7 @@ export default defineConfig({
               { type: 'string', name: 'rol', label: 'Rol o cargo' },
               { type: 'string', name: 'descripcion', label: 'Descripción', ui: { component: 'textarea' } },
               { type: 'image', name: 'foto', label: 'Foto' },
+              { type: 'string', name: 'linkedin', label: 'URL de LinkedIn (ej: https://linkedin.com/in/usuario)' },
             ],
           },
         ],
