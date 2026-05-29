@@ -321,8 +321,9 @@
 
 .quienesImgBadge {
   position: absolute;
-  bottom: -16px;
-  right: -16px;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
   background: #4e1a6b;
   color: #eecb7c;
   font-size: 0.8rem;
