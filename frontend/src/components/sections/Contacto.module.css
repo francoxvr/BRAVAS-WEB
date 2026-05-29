@@ -234,6 +234,7 @@
 }
 :global(.app-container.dark) .input::placeholder { color: rgba(255,255,255,0.35); }
 :global(.app-container.dark) .input:focus { border-color: #eecb7c; }
+:global(.app-container.dark) .input option { background-color: #3d1254; color: #fff; }
 
 @media (max-width: 768px) {
   .contactoSection { grid-template-columns: 1fr; }
