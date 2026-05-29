@@ -29,18 +29,6 @@
       "rol": "Especialista en Ads",
       "descripcion": "Experto en Google y Meta Ads con foco en maximizar el ROI de cada campaña publicitaria.",
       "foto": "/assets/images/marketing/marketing12.png"
-    },
-    {
-      "nombre": "Lucía Fernández",
-      "rol": "Estratega de Contenido",
-      "descripcion": "Crea contenido que conecta marcas con audiencias de forma auténtica y construye comunidades activas.",
-      "foto": "/assets/images/marketing/redes2.png"
-    },
-    {
-      "nombre": "Tomás Quiroga",
-      "rol": "Analista de Datos",
-      "descripcion": "Convierte métricas en decisiones estratégicas que impulsan el crecimiento de cada marca.",
-      "foto": "/assets/images/marketing/analisis.png"
     }
   ]
 }

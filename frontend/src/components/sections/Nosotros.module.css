@@ -20,7 +20,7 @@
 
 .teamGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 340px));
+  grid-template-columns: repeat(2, minmax(0, 500px));
   gap: 20px;
   margin-top: 8px;
   justify-content: center;
