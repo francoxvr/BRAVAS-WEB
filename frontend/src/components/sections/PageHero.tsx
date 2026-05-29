@@ -63,7 +63,7 @@ export default function PageHero({
             {(showSubbrand || subtitle || heroConfig.subtitulo) && (
               <p className={styles.heroSubtitle}>{finalSubtitle}</p>
             )}
-            <Link href="/contacto" className={`${styles.btnCta} ${!showSubbrand ? styles.btnCtaPage : ''}`}>
+            <Link href="/contacto#contacto-form" className={`${styles.btnCta} ${!showSubbrand ? styles.btnCtaPage : ''}`}>
               {finalCta}
             </Link>
             <div className={`${styles.heroServicesHighlight} ${!showSubbrand ? styles.heroServicesHighlightPage : ''}`}>
