@@ -34,7 +34,7 @@ const companyLinks = [
   { href: '/nosotros#nosotros-mision', label: 'Misión y Visión' },
   { href: '/nosotros#nosotros-equipo', label: 'Nuestro Equipo' },
   { href: '/nosotros#nosotros-porque', label: 'Por Qué Elegirnos' },
-  { href: '/contacto', label: 'Contacto' },
+  { href: '/contacto#contacto-form', label: 'Contacto' },
 ];
 
 const MapPinIcon = () => (
