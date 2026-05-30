@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import { Mail, Instagram, MapPin } from 'lucide-react';
 import PageHero from './PageHero';
+import WhatsappIcon from '@/components/ui/WhatsappIcon';
 import styles from './Contacto.module.css';
 import { getContactoData } from '@/lib/queries';
 
@@ -92,28 +94,28 @@ export default function Contacto() {
           {/* Datos de contacto editables desde Tina */}
           <div className={styles.leftItems} style={{ marginTop: '1.5rem' }}>
             {contacto.email && (
-              <div className={styles.leftItem}>
-                <span className={styles.leftItemDot} />
-                <a href={`mailto:${contacto.email}`} style={{ color: 'inherit', textDecoration: 'none' }}>{contacto.email}</a>
-              </div>
+              <a href={`mailto:${contacto.email}`} className={styles.leftContactLink}>
+                <span className={styles.leftContactIcon}><Mail size={15} /></span>
+                {contacto.email}
+              </a>
             )}
             {contacto.whatsapp && (
-              <div className={styles.leftItem}>
-                <span className={styles.leftItemDot} />
-                <a href={`https://wa.me/${contacto.whatsapp}`} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>WhatsApp</a>
-              </div>
+              <a href={`https://wa.me/${contacto.whatsapp}`} target="_blank" rel="noopener noreferrer" className={styles.leftContactLink}>
+                <span className={styles.leftContactIcon}><WhatsappIcon size={15} /></span>
+                WhatsApp
+              </a>
             )}
             {contacto.instagram && (
-              <div className={styles.leftItem}>
-                <span className={styles.leftItemDot} />
-                <a href={`https://instagram.com/${contacto.instagram}`} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>@{contacto.instagram}</a>
-              </div>
+              <a href={`https://instagram.com/${contacto.instagram}`} target="_blank" rel="noopener noreferrer" className={styles.leftContactLink}>
+                <span className={styles.leftContactIcon}><Instagram size={15} /></span>
+                @{contacto.instagram}
+              </a>
             )}
             {contacto.direccion && (
-              <div className={styles.leftItem}>
-                <span className={styles.leftItemDot} />
-                <a href="https://maps.app.goo.gl/WA3gTMN16Wxp2jRJ9?g_st=ac" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>{contacto.direccion}</a>
-              </div>
+              <a href="https://maps.app.goo.gl/WA3gTMN16Wxp2jRJ9?g_st=ac" target="_blank" rel="noopener noreferrer" className={styles.leftContactLink}>
+                <span className={styles.leftContactIcon}><MapPin size={15} /></span>
+                {contacto.direccion}
+              </a>
             )}
           </div>
         </div>
