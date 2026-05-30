@@ -164,12 +164,11 @@
 .contactIcon.email {
   background: #4e1a6b;
   color: white;
-  border-radius: 50%;
 }
 
 .contactIcon.phone {
-  background: #eecb7c;
-  color: #4e1a6b;
+  background: #25D366;
+  color: white;
 }
 
 .contactIcon.location {

@@ -154,7 +154,7 @@ export default function Footer() {
             <div className={`${styles.contactIcon} ${styles.location}`}>
               <MapPinIcon />
             </div>
-            <span>{contacto.direccion}</span>
+            <a href="https://maps.app.goo.gl/WA3gTMN16Wxp2jRJ9?g_st=ac" target="_blank" rel="noopener noreferrer">Córdoba, Argentina</a>
           </div>
 
           <div className={styles.footerSocialSection}>
