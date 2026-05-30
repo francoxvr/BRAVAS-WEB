@@ -49,21 +49,21 @@
   "legalLinksIzquierda": [
     {
       "label": "Política de Privacidad",
-      "href": "/contacto"
+      "href": "/legal#privacidad"
     },
     {
       "label": "Cookies",
-      "href": "/contacto"
+      "href": "/legal#cookies"
     }
   ],
   "legalLinksDerecha": [
     {
       "label": "Términos y Condiciones",
-      "href": "/contacto"
+      "href": "/legal#terminos"
     },
     {
       "label": "Mapa del Sitio",
-      "href": "/#home"
+      "href": "/legal#mapa"
     }
   ]
 }
