@@ -1257,7 +1257,7 @@
 .procesoStep:nth-child(2) .procesoNumber,
 .procesoStep:nth-child(3) .procesoNumber,
 .procesoStep:nth-child(4) .procesoNumber {
-  animation-duration: 8s;
+  animation-duration: 16s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
@@ -1267,88 +1267,66 @@
 .procesoStep:nth-child(3) .procesoNumber { animation-name: pulseNumber3; }
 .procesoStep:nth-child(4) .procesoNumber { animation-name: pulseNumber4; }
 
+.procesoStep:nth-child(1) .procesoStepTitle,
+.procesoStep:nth-child(2) .procesoStepTitle,
+.procesoStep:nth-child(3) .procesoStepTitle,
+.procesoStep:nth-child(4) .procesoStepTitle {
+  animation-duration: 16s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.procesoStep:nth-child(1) .procesoStepTitle { animation-name: pulseTitle1; }
+.procesoStep:nth-child(2) .procesoStepTitle { animation-name: pulseTitle2; }
+.procesoStep:nth-child(3) .procesoStepTitle { animation-name: pulseTitle3; }
+.procesoStep:nth-child(4) .procesoStepTitle { animation-name: pulseTitle4; }
+
 @keyframes pulseNumber1 {
-  0%, 11% {
-    transform: scale(1);
-    background: #4e1a6b;
-    color: #ffffff;
-    box-shadow: 0 4px 20px rgba(78, 26, 107, 0.4);
-  }
-  12.5%, 14.5% {
-    transform: scale(1.15);
-    background: #eecb7c;
-    color: #4e1a6b;
-    box-shadow: 0 8px 30px rgba(238, 203, 124, 0.6);
-  }
-  15.5%, 100% {
-    transform: scale(1);
-    background: #4e1a6b;
-    color: #ffffff;
-    box-shadow: 0 4px 20px rgba(78, 26, 107, 0.4);
-  }
+  0%, 4% { transform: scale(1); background: #4e1a6b; color: #ffffff; box-shadow: 0 4px 20px rgba(78,26,107,0.4); }
+  6%, 23% { transform: scale(1.15); background: #eecb7c; color: #4e1a6b; box-shadow: 0 8px 30px rgba(238,203,124,0.6); }
+  25%, 100% { transform: scale(1); background: #4e1a6b; color: #ffffff; box-shadow: 0 4px 20px rgba(78,26,107,0.4); }
 }
 
 @keyframes pulseNumber2 {
-  0%, 36% {
-    transform: scale(1);
-    background: #4e1a6b;
-    color: #ffffff;
-    box-shadow: 0 4px 20px rgba(78, 26, 107, 0.4);
-  }
-  37.5%, 39.5% {
-    transform: scale(1.15);
-    background: #eecb7c;
-    color: #4e1a6b;
-    box-shadow: 0 8px 30px rgba(238, 203, 124, 0.6);
-  }
-  40.5%, 100% {
-    transform: scale(1);
-    background: #4e1a6b;
-    color: #ffffff;
-    box-shadow: 0 4px 20px rgba(78, 26, 107, 0.4);
-  }
+  0%, 29% { transform: scale(1); background: #4e1a6b; color: #ffffff; box-shadow: 0 4px 20px rgba(78,26,107,0.4); }
+  31%, 48% { transform: scale(1.15); background: #eecb7c; color: #4e1a6b; box-shadow: 0 8px 30px rgba(238,203,124,0.6); }
+  50%, 100% { transform: scale(1); background: #4e1a6b; color: #ffffff; box-shadow: 0 4px 20px rgba(78,26,107,0.4); }
 }
 
 @keyframes pulseNumber3 {
-  0%, 61% {
-    transform: scale(1);
-    background: #4e1a6b;
-    color: #ffffff;
-    box-shadow: 0 4px 20px rgba(78, 26, 107, 0.4);
-  }
-  62.5%, 64.5% {
-    transform: scale(1.15);
-    background: #eecb7c;
-    color: #4e1a6b;
-    box-shadow: 0 8px 30px rgba(238, 203, 124, 0.6);
-  }
-  65.5%, 100% {
-    transform: scale(1);
-    background: #4e1a6b;
-    color: #ffffff;
-    box-shadow: 0 4px 20px rgba(78, 26, 107, 0.4);
-  }
+  0%, 54% { transform: scale(1); background: #4e1a6b; color: #ffffff; box-shadow: 0 4px 20px rgba(78,26,107,0.4); }
+  56%, 73% { transform: scale(1.15); background: #eecb7c; color: #4e1a6b; box-shadow: 0 8px 30px rgba(238,203,124,0.6); }
+  75%, 100% { transform: scale(1); background: #4e1a6b; color: #ffffff; box-shadow: 0 4px 20px rgba(78,26,107,0.4); }
 }
 
 @keyframes pulseNumber4 {
-  0%, 86% {
-    transform: scale(1);
-    background: #4e1a6b;
-    color: #ffffff;
-    box-shadow: 0 4px 20px rgba(78, 26, 107, 0.4);
-  }
-  87.5%, 89.5% {
-    transform: scale(1.15);
-    background: #eecb7c;
-    color: #4e1a6b;
-    box-shadow: 0 8px 30px rgba(238, 203, 124, 0.6);
-  }
-  90.5%, 100% {
-    transform: scale(1);
-    background: #4e1a6b;
-    color: #ffffff;
-    box-shadow: 0 4px 20px rgba(78, 26, 107, 0.4);
-  }
+  0%, 79% { transform: scale(1); background: #4e1a6b; color: #ffffff; box-shadow: 0 4px 20px rgba(78,26,107,0.4); }
+  81%, 98% { transform: scale(1.15); background: #eecb7c; color: #4e1a6b; box-shadow: 0 8px 30px rgba(238,203,124,0.6); }
+  100% { transform: scale(1); background: #4e1a6b; color: #ffffff; box-shadow: 0 4px 20px rgba(78,26,107,0.4); }
+}
+
+@keyframes pulseTitle1 {
+  0%, 4% { color: #4e1a6b; }
+  6%, 23% { color: #eecb7c; }
+  25%, 100% { color: #4e1a6b; }
+}
+
+@keyframes pulseTitle2 {
+  0%, 29% { color: #4e1a6b; }
+  31%, 48% { color: #eecb7c; }
+  50%, 100% { color: #4e1a6b; }
+}
+
+@keyframes pulseTitle3 {
+  0%, 54% { color: #4e1a6b; }
+  56%, 73% { color: #eecb7c; }
+  75%, 100% { color: #4e1a6b; }
+}
+
+@keyframes pulseTitle4 {
+  0%, 79% { color: #4e1a6b; }
+  81%, 98% { color: #eecb7c; }
+  100% { color: #4e1a6b; }
 }
 
 :global(.app-container.light) .procesoSection {
