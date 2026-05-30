@@ -2,7 +2,7 @@
   "quienesTitulo": "Somos BRAVAS",
   "quienesDesc1": "Somos una agencia de marketing digital nacida en Córdoba con una misión clara: ayudar a las marcas a crecer de verdad en el mundo digital.",
   "quienesDesc2": "Combinamos estrategia, creatividad y tecnología para crear soluciones que generan resultados medibles y sostenibles.",
-  "quienesImagen": "/assets/images/marketing/estrategia.png",
+  "quienesImagen": "/uploads/assets/images/marketing/estrategia.png",
   "statProyectos": "+150",
   "statSatisfaccion": "92%",
   "statAnios": "5+",
@@ -23,14 +23,14 @@
       "nombre": "Valentina Cruz",
       "rol": "Directora Creativa",
       "descripcion": "Lidera la visión creativa de cada proyecto con más de 8 años de experiencia en branding y comunicación digital.",
-      "foto": "/assets/images/marketing/marketing13.png",
-      "linkedin": ""
+      "foto": "/uploads/assets/images/marketing/marketing13.png",
+      "linkedin": "www.linkedin.com/in/franco-scarlata-204b162a2"
     },
     {
       "nombre": "Matías Romero",
       "rol": "Especialista en Ads",
       "descripcion": "Experto en Google y Meta Ads con foco en maximizar el ROI de cada campaña publicitaria.",
-      "foto": "/assets/images/marketing/marketing12.png",
+      "foto": "/uploads/assets/images/marketing/marketing12.png",
       "linkedin": ""
     }
   ]
