@@ -112,7 +112,7 @@ export default function Contacto() {
             {contacto.direccion && (
               <div className={styles.leftItem}>
                 <span className={styles.leftItemDot} />
-                <span>{contacto.direccion}</span>
+                <a href="https://maps.app.goo.gl/WA3gTMN16Wxp2jRJ9?g_st=ac" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>{contacto.direccion}</a>
               </div>
             )}
           </div>

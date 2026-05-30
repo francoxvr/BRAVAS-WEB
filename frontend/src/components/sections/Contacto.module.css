@@ -93,6 +93,11 @@
   font-weight: 500;
 }
 
+.leftItem a:hover {
+  color: #eecb7c;
+  transition: color 0.2s ease;
+}
+
 .leftItemDot {
   width: 8px; height: 8px;
   border-radius: 50%;
