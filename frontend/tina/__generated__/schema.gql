@@ -354,6 +354,7 @@ type NosotrosTeamMembers {
   rol: String
   descripcion: String
   foto: String
+  linkedin: String
 }
 
 type Nosotros implements Node & Document {
@@ -380,6 +381,7 @@ input NosotrosTeamMembersFilter {
   rol: StringFilter
   descripcion: StringFilter
   foto: ImageFilter
+  linkedin: StringFilter
 }
 
 input NosotrosFilter {
@@ -576,6 +578,7 @@ input NosotrosTeamMembersMutation {
   rol: String
   descripcion: String
   foto: String
+  linkedin: String
 }
 
 input NosotrosMutation {

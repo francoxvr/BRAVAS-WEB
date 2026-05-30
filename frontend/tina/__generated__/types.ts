@@ -513,6 +513,7 @@ export type NosotrosTeamMembers = {
   rol?: Maybe<Scalars['String']['output']>;
   descripcion?: Maybe<Scalars['String']['output']>;
   foto?: Maybe<Scalars['String']['output']>;
+  linkedin?: Maybe<Scalars['String']['output']>;
 };
 
 export type Nosotros = Node & Document & {
@@ -540,6 +541,7 @@ export type NosotrosTeamMembersFilter = {
   rol?: InputMaybe<StringFilter>;
   descripcion?: InputMaybe<StringFilter>;
   foto?: InputMaybe<ImageFilter>;
+  linkedin?: InputMaybe<StringFilter>;
 };
 
 export type NosotrosFilter = {
@@ -835,6 +837,7 @@ export type NosotrosTeamMembersMutation = {
   rol?: InputMaybe<Scalars['String']['input']>;
   descripcion?: InputMaybe<Scalars['String']['input']>;
   foto?: InputMaybe<Scalars['String']['input']>;
+  linkedin?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type NosotrosMutation = {
@@ -867,7 +870,7 @@ export type HomePartsFragment = { __typename: 'Home', propuestaTitulo?: string |
 
 export type ServiciosPartsFragment = { __typename: 'Servicios', integralImagenPrincipal?: string | null, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null };
 
-export type NosotrosPartsFragment = { __typename: 'Nosotros', quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null } | null> | null };
+export type NosotrosPartsFragment = { __typename: 'Nosotros', quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null, linkedin?: string | null } | null> | null };
 
 export type ContactoPartsFragment = { __typename: 'Contacto', email?: string | null, whatsapp?: string | null, direccion?: string | null, instagram?: string | null, linkedin?: string | null };
 
@@ -933,7 +936,7 @@ export type NosotrosQueryVariables = Exact<{
 }>;
 
 
-export type NosotrosQuery = { __typename?: 'Query', nosotros: { __typename: 'Nosotros', id: string, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null } | null> | null } };
+export type NosotrosQuery = { __typename?: 'Query', nosotros: { __typename: 'Nosotros', id: string, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null, linkedin?: string | null } | null> | null } };
 
 export type NosotrosConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -945,7 +948,7 @@ export type NosotrosConnectionQueryVariables = Exact<{
 }>;
 
 
-export type NosotrosConnectionQuery = { __typename?: 'Query', nosotrosConnection: { __typename?: 'NosotrosConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'NosotrosConnectionEdges', cursor: string, node?: { __typename: 'Nosotros', id: string, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null } | null> | null } | null } | null> | null } };
+export type NosotrosConnectionQuery = { __typename?: 'Query', nosotrosConnection: { __typename?: 'NosotrosConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'NosotrosConnectionEdges', cursor: string, node?: { __typename: 'Nosotros', id: string, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null, linkedin?: string | null } | null> | null } | null } | null> | null } };
 
 export type ContactoQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1079,6 +1082,7 @@ export const NosotrosPartsFragmentDoc = gql`
     rol
     descripcion
     foto
+    linkedin
   }
 }
     `;
@@ -1457,7 +1461,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "http://localhost:4001/graphql",
+        url: "https://content.tinajs.io/2.4/content/9d19bec7-8aea-435a-8adb-a081ce91aab9/github/main",
         queries,
       })
     )

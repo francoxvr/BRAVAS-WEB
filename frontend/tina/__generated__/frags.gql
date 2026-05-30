@@ -107,6 +107,7 @@ fragment NosotrosParts on Nosotros {
     rol
     descripcion
     foto
+    linkedin
   }
 }
 

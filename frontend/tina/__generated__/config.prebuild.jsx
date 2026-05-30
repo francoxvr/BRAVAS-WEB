@@ -223,7 +223,8 @@ var config_default = defineConfig({
               { type: "string", name: "nombre", label: "Nombre completo" },
               { type: "string", name: "rol", label: "Rol o cargo" },
               { type: "string", name: "descripcion", label: "Descripci\xF3n", ui: { component: "textarea" } },
-              { type: "image", name: "foto", label: "Foto" }
+              { type: "image", name: "foto", label: "Foto" },
+              { type: "string", name: "linkedin", label: "URL de LinkedIn (ej: https://linkedin.com/in/usuario)" }
             ]
           }
         ]
