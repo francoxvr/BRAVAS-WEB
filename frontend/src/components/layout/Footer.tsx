@@ -55,12 +55,12 @@ const DEFAULT_FOOTER: Required<FooterData> = {
     { href: '/contacto#contacto-form', label: 'Contacto' },
   ],
   legalLinksIzquierda: [
-    { href: '/contacto', label: 'Política de Privacidad' },
-    { href: '/contacto', label: 'Cookies' },
+    { href: '/legal#privacidad', label: 'Política de Privacidad' },
+    { href: '/legal#cookies', label: 'Cookies' },
   ],
   legalLinksDerecha: [
-    { href: '/contacto', label: 'Términos y Condiciones' },
-    { href: '/#home', label: 'Mapa del Sitio' },
+    { href: '/legal#terminos', label: 'Términos y Condiciones' },
+    { href: '/legal#mapa', label: 'Mapa del Sitio' },
   ],
 };
 
