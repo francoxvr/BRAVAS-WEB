@@ -51,16 +51,6 @@ export default function Legal() {
 
       <div className={styles.legalHero}>
         <h1 className={styles.legalHeroTitle}>Información Legal</h1>
-        <p className={styles.legalHeroSub}>Política de Privacidad · Cookies · Términos y Condiciones · Mapa del Sitio</p>
-        <nav className={styles.legalNav}>
-          <a href="#privacidad">Política de Privacidad</a>
-          <span>·</span>
-          <a href="#cookies">Cookies</a>
-          <span>·</span>
-          <a href="#terminos">Términos y Condiciones</a>
-          <span>·</span>
-          <a href="#mapa">Mapa del Sitio</a>
-        </nav>
       </div>
 
       <div className={styles.legalContent}>
