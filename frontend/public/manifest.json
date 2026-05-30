@@ -9,7 +9,7 @@
       "purpose": "any"
     },
     {
-      "src": "/assets/icons/pwa/logo192.png",
+      "src": "/assets/icons/pwa/logo512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
