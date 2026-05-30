@@ -144,7 +144,7 @@ export default function Footer() {
           </div>
           <div className={styles.contactItem}>
             <div className={`${styles.contactIcon} ${styles.phone}`}>
-              <Phone size={18} />
+              <WhatsappIcon size={18} />
             </div>
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
               WhatsApp

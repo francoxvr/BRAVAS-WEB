@@ -164,6 +164,7 @@
 .contactIcon.email {
   background: #4e1a6b;
   color: white;
+  border-radius: 50%;
 }
 
 .contactIcon.phone {
