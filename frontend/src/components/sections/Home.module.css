@@ -1193,7 +1193,7 @@
   width: 0;
   background: #eecb7c;
   z-index: 0;
-  animation: fillLine 8s ease-in-out infinite;
+  animation: fillLine 16s ease-in-out infinite;
 }
 
 .procesoStep {
@@ -1246,11 +1246,15 @@
 
 @keyframes fillLine {
   0% { width: 0; }
-  12.5% { width: 12.5%; }
-  37.5% { width: 37.5%; }
-  62.5% { width: 62.5%; }
-  87.5% { width: 87.5%; }
-  100% { width: 100%; }
+  6% { width: 12.5%; }
+  25% { width: 12.5%; }
+  31% { width: 37.5%; }
+  50% { width: 37.5%; }
+  56% { width: 62.5%; }
+  75% { width: 62.5%; }
+  81% { width: 87.5%; }
+  98% { width: 87.5%; }
+  100% { width: 0; }
 }
 
 .procesoStep:nth-child(1) .procesoNumber,
