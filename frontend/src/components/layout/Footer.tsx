@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Facebook, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 import WhatsappIcon from '@/components/ui/WhatsappIcon';
 import styles from './Footer.module.css';
-import { getContactoData, getSiteConfig } from '@/lib/queries';
+import { getContactoData, getFooterData } from '@/lib/queries';
 
 interface ContactoData {
   email?: string;
@@ -11,6 +11,21 @@ interface ContactoData {
   instagram?: string;
   linkedin?: string;
   direccion?: string;
+}
+
+interface FooterLink {
+  label: string;
+  href: string;
+}
+
+interface FooterData {
+  descripcion?: string;
+  copyright?: string;
+  facebook?: string;
+  serviciosLinks?: FooterLink[];
+  empresaLinks?: FooterLink[];
+  legalLinksIzquierda?: FooterLink[];
+  legalLinksDerecha?: FooterLink[];
 }
 
 const DEFAULT_CONTACTO: ContactoData = {
@@ -21,21 +36,33 @@ const DEFAULT_CONTACTO: ContactoData = {
   direccion: 'Córdoba, Argentina',
 };
 
-const serviceLinks = [
-  { href: '/servicios#servicios-intro', label: 'Lo que hacemos' },
-  { href: '/servicios#servicios-nuestros', label: 'Nuestros Servicios' },
-  { href: '/servicios#servicios-integrales', label: 'Soluciones Integrales' },
-  { href: '/servicios#servicios-herramientas', label: 'Herramientas' },
-  { href: '/servicios#servicios-faq', label: 'Preguntas Frecuentes' },
-];
-
-const companyLinks = [
-  { href: '/nosotros#nosotros-quienes', label: 'Quiénes Somos' },
-  { href: '/nosotros#nosotros-mision', label: 'Misión y Visión' },
-  { href: '/nosotros#nosotros-equipo', label: 'Nuestro Equipo' },
-  { href: '/nosotros#nosotros-porque', label: 'Por Qué Elegirnos' },
-  { href: '/contacto#contacto-form', label: 'Contacto' },
-];
+const DEFAULT_FOOTER: Required<FooterData> = {
+  descripcion: 'Agencia de marketing digital enfocada en resultados reales para tu negocio.',
+  copyright: 'BRAVAS MARKETING • Innovación Digital • Resultados Reales',
+  facebook: 'https://www.facebook.com/bravasmarketing',
+  serviciosLinks: [
+    { href: '/servicios#servicios-intro', label: 'Lo que hacemos' },
+    { href: '/servicios#servicios-nuestros', label: 'Nuestros Servicios' },
+    { href: '/servicios#servicios-integrales', label: 'Soluciones Integrales' },
+    { href: '/servicios#servicios-herramientas', label: 'Herramientas' },
+    { href: '/servicios#servicios-faq', label: 'Preguntas Frecuentes' },
+  ],
+  empresaLinks: [
+    { href: '/nosotros#nosotros-quienes', label: 'Quiénes Somos' },
+    { href: '/nosotros#nosotros-mision', label: 'Misión y Visión' },
+    { href: '/nosotros#nosotros-equipo', label: 'Nuestro Equipo' },
+    { href: '/nosotros#nosotros-porque', label: 'Por Qué Elegirnos' },
+    { href: '/contacto#contacto-form', label: 'Contacto' },
+  ],
+  legalLinksIzquierda: [
+    { href: '/contacto', label: 'Política de Privacidad' },
+    { href: '/contacto', label: 'Cookies' },
+  ],
+  legalLinksDerecha: [
+    { href: '/contacto', label: 'Términos y Condiciones' },
+    { href: '/#home', label: 'Mapa del Sitio' },
+  ],
+};
 
 const MapPinIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
@@ -46,15 +73,27 @@ const MapPinIcon = () => (
 
 export default function Footer() {
   const [contacto, setContacto] = useState<ContactoData>(DEFAULT_CONTACTO);
-  const [footerDesc, setFooterDesc] = useState("{footerDesc}");
-  const [footerCopyright, setFooterCopyright] = useState("BRAVAS MARKETING • Innovación Digital • Resultados Reales");
+  const [footer, setFooter] = useState<Required<FooterData>>(DEFAULT_FOOTER);
   const currentYear = new Date().getFullYear();
 
   useEffect(() => {
-    getContactoData().then((d: ContactoData | null) => { if (d) setContacto({ ...DEFAULT_CONTACTO, ...d }); });
-    getSiteConfig().then((d: { footerDescripcion?: string; footerCopyright?: string } | null) => {
-      if (d?.footerDescripcion) setFooterDesc(d.footerDescripcion);
-      if (d?.footerCopyright) setFooterCopyright(d.footerCopyright);
+    getContactoData().then((d: ContactoData | null) => {
+      if (d) setContacto({ ...DEFAULT_CONTACTO, ...d });
+    });
+
+    getFooterData().then((d: FooterData | null) => {
+      if (!d) return;
+
+      setFooter({
+        ...DEFAULT_FOOTER,
+        ...d,
+        serviciosLinks: d.serviciosLinks?.length ? d.serviciosLinks : DEFAULT_FOOTER.serviciosLinks,
+        empresaLinks: d.empresaLinks?.length ? d.empresaLinks : DEFAULT_FOOTER.empresaLinks,
+        legalLinksIzquierda: d.legalLinksIzquierda?.length
+          ? d.legalLinksIzquierda
+          : DEFAULT_FOOTER.legalLinksIzquierda,
+        legalLinksDerecha: d.legalLinksDerecha?.length ? d.legalLinksDerecha : DEFAULT_FOOTER.legalLinksDerecha,
+      });
     });
   }, []);
 
@@ -67,7 +106,7 @@ export default function Footer() {
       <div className={styles.footerGrid}>
         <div className={styles.footerCard}>
           <h4 className={styles.footerHeader}>Bravas Marketing</h4>
-          <p>{footerDesc}</p>
+          <p>{footer.descripcion}</p>
           <div className={styles.footerLogoSmall}>
             <img src="/assets/icons/pwa/logo192.png" alt="Bravas" className={styles.logoImg} />
           </div>
@@ -76,8 +115,10 @@ export default function Footer() {
         <div className={styles.footerCard}>
           <h4 className={styles.footerHeader}>Servicios</h4>
           <ul>
-            {serviceLinks.map((link) => (
-              <li key={link.label}><Link href={link.href}>{link.label}</Link></li>
+            {footer.serviciosLinks.map((link) => (
+              <li key={link.label}>
+                <Link href={link.href}>{link.label}</Link>
+              </li>
             ))}
           </ul>
         </div>
@@ -85,8 +126,10 @@ export default function Footer() {
         <div className={styles.footerCard}>
           <h4 className={styles.footerHeader}>Empresa</h4>
           <ul>
-            {companyLinks.map((link) => (
-              <li key={link.label}><Link href={link.href}>{link.label}</Link></li>
+            {footer.empresaLinks.map((link) => (
+              <li key={link.label}>
+                <Link href={link.href}>{link.label}</Link>
+              </li>
             ))}
           </ul>
         </div>
@@ -94,35 +137,63 @@ export default function Footer() {
         <div className={styles.footerCard}>
           <h4 className={styles.footerHeader}>Contacto</h4>
           <div className={styles.contactItem}>
-            <div className={`${styles.contactIcon} ${styles.email}`}><Mail size={18} /></div>
+            <div className={`${styles.contactIcon} ${styles.email}`}>
+              <Mail size={18} />
+            </div>
             <a href={`mailto:${contacto.email}`}>{contacto.email}</a>
           </div>
           <div className={styles.contactItem}>
-            <div className={`${styles.contactIcon} ${styles.phone}`}><Phone size={18} /></div>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <div className={`${styles.contactIcon} ${styles.phone}`}>
+              <Phone size={18} />
+            </div>
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              WhatsApp
+            </a>
           </div>
           <div className={styles.contactItem}>
-            <div className={`${styles.contactIcon} ${styles.location}`}><MapPinIcon /></div>
+            <div className={`${styles.contactIcon} ${styles.location}`}>
+              <MapPinIcon />
+            </div>
             <span>{contacto.direccion}</span>
           </div>
 
           <div className={styles.footerSocialSection}>
             <h4 className={`${styles.footerHeader} ${styles.socialHeader}`}>Síguenos</h4>
             <div className={styles.footerSocialMini}>
-              <a href="https://www.facebook.com/bravasmarketing" target="_blank" rel="noopener noreferrer"
-                className={`${styles.footerSocialBtn} ${styles.footerSocialBtnFacebook}`} aria-label="Facebook">
+              <a
+                href={footer.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.footerSocialBtn} ${styles.footerSocialBtnFacebook}`}
+                aria-label="Facebook"
+              >
                 <Facebook size={20} strokeWidth={2} aria-hidden />
               </a>
-              <a href={instagramUrl} target="_blank" rel="noopener noreferrer"
-                className={`${styles.footerSocialBtn} ${styles.footerSocialBtnInstagram}`} aria-label="Instagram">
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.footerSocialBtn} ${styles.footerSocialBtnInstagram}`}
+                aria-label="Instagram"
+              >
                 <Instagram size={20} strokeWidth={2} aria-hidden />
               </a>
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer"
-                className={`${styles.footerSocialBtn} ${styles.footerSocialBtnWhatsapp}`} aria-label="WhatsApp">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.footerSocialBtn} ${styles.footerSocialBtnWhatsapp}`}
+                aria-label="WhatsApp"
+              >
                 <WhatsappIcon size={20} />
               </a>
-              <a href={linkedinUrl} target="_blank" rel="noopener noreferrer"
-                className={`${styles.footerSocialBtn} ${styles.footerSocialBtnLinkedin}`} aria-label="LinkedIn">
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.footerSocialBtn} ${styles.footerSocialBtnLinkedin}`}
+                aria-label="LinkedIn"
+              >
                 <Linkedin size={20} strokeWidth={2} aria-hidden />
               </a>
             </div>
@@ -133,17 +204,25 @@ export default function Footer() {
       <div className={styles.footerLegal}>
         <div className={styles.footerLegalContent}>
           <div className={styles.footerLinks}>
-            <Link href="/contacto">Política de Privacidad</Link>
-            <span className={styles.separator}>•</span>
-            <Link href="/contacto">Cookies</Link>
+            {footer.legalLinksIzquierda.map((link, index) => (
+              <Fragment key={link.label}>
+                {index > 0 && <span className={styles.separator}>•</span>}
+                <Link href={link.href}>{link.label}</Link>
+              </Fragment>
+            ))}
           </div>
           <div className={styles.copyrightSection}>
-            <p className={styles.copyright}>&copy; {currentYear} <strong>{footerCopyright}</strong></p>
+            <p className={styles.copyright}>
+              &copy; {currentYear} <strong>{footer.copyright}</strong>
+            </p>
           </div>
           <div className={styles.footerLinks}>
-            <Link href="/contacto">Términos y Condiciones</Link>
-            <span className={styles.separator}>•</span>
-            <Link href="/#home">Mapa del Sitio</Link>
+            {footer.legalLinksDerecha.map((link, index) => (
+              <Fragment key={link.label}>
+                {index > 0 && <span className={styles.separator}>•</span>}
+                <Link href={link.href}>{link.label}</Link>
+              </Fragment>
+            ))}
           </div>
         </div>
       </div>

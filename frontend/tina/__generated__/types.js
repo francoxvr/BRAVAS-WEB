@@ -14,8 +14,6 @@ export const ConfigPartsFragmentDoc = gql`
     label
     href
   }
-  footerDescripcion
-  footerCopyright
   heroHome {
     __typename
     subtitulo
@@ -41,6 +39,34 @@ export const ConfigPartsFragmentDoc = gql`
     pills
   }
   heroImagenes
+}
+    `;
+export const FooterPartsFragmentDoc = gql`
+    fragment FooterParts on Footer {
+  __typename
+  descripcion
+  copyright
+  facebook
+  serviciosLinks {
+    __typename
+    label
+    href
+  }
+  empresaLinks {
+    __typename
+    label
+    href
+  }
+  legalLinksIzquierda {
+    __typename
+    label
+    href
+  }
+  legalLinksDerecha {
+    __typename
+    label
+    href
+  }
 }
     `;
 export const HomePartsFragmentDoc = gql`
@@ -189,6 +215,63 @@ export const ConfigConnectionDocument = gql`
   }
 }
     ${ConfigPartsFragmentDoc}`;
+export const FooterDocument = gql`
+    query footer($relativePath: String!) {
+  footer(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...FooterParts
+  }
+}
+    ${FooterPartsFragmentDoc}`;
+export const FooterConnectionDocument = gql`
+    query footerConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: FooterFilter) {
+  footerConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...FooterParts
+      }
+    }
+  }
+}
+    ${FooterPartsFragmentDoc}`;
 export const HomeDocument = gql`
     query home($relativePath: String!) {
   home(relativePath: $relativePath) {
@@ -424,6 +507,12 @@ export function getSdk(requester) {
     },
     configConnection(variables, options) {
       return requester(ConfigConnectionDocument, variables, options);
+    },
+    footer(variables, options) {
+      return requester(FooterDocument, variables, options);
+    },
+    footerConnection(variables, options) {
+      return requester(FooterConnectionDocument, variables, options);
     },
     home(variables, options) {
       return requester(HomeDocument, variables, options);

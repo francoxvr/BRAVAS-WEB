@@ -84,6 +84,8 @@ export type Query = {
   document: DocumentNode;
   config: Config;
   configConnection: ConfigConnection;
+  footer: Footer;
+  footerConnection: FooterConnection;
   home: Home;
   homeConnection: HomeConnection;
   servicios: Servicios;
@@ -128,6 +130,21 @@ export type QueryConfigConnectionArgs = {
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<ConfigFilter>;
+};
+
+
+export type QueryFooterArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryFooterConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<FooterFilter>;
 };
 
 
@@ -192,6 +209,7 @@ export type QueryContactoConnectionArgs = {
 
 export type DocumentFilter = {
   config?: InputMaybe<ConfigFilter>;
+  footer?: InputMaybe<FooterFilter>;
   home?: InputMaybe<HomeFilter>;
   servicios?: InputMaybe<ServiciosFilter>;
   nosotros?: InputMaybe<NosotrosFilter>;
@@ -235,7 +253,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Config | Home | Servicios | Nosotros | Contacto | Folder;
+export type DocumentNode = Config | Footer | Home | Servicios | Nosotros | Contacto | Folder;
 
 export type ConfigNav = {
   __typename?: 'ConfigNav';
@@ -275,8 +293,6 @@ export type Config = Node & Document & {
   __typename?: 'Config';
   logo?: Maybe<Scalars['String']['output']>;
   nav?: Maybe<Array<Maybe<ConfigNav>>>;
-  footerDescripcion?: Maybe<Scalars['String']['output']>;
-  footerCopyright?: Maybe<Scalars['String']['output']>;
   heroHome?: Maybe<ConfigHeroHome>;
   heroServicios?: Maybe<ConfigHeroServicios>;
   heroNosotros?: Maybe<ConfigHeroNosotros>;
@@ -333,8 +349,6 @@ export type ConfigHeroContactoFilter = {
 export type ConfigFilter = {
   logo?: InputMaybe<ImageFilter>;
   nav?: InputMaybe<ConfigNavFilter>;
-  footerDescripcion?: InputMaybe<StringFilter>;
-  footerCopyright?: InputMaybe<StringFilter>;
   heroHome?: InputMaybe<ConfigHeroHomeFilter>;
   heroServicios?: InputMaybe<ConfigHeroServiciosFilter>;
   heroNosotros?: InputMaybe<ConfigHeroNosotrosFilter>;
@@ -353,6 +367,87 @@ export type ConfigConnection = Connection & {
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
   edges?: Maybe<Array<Maybe<ConfigConnectionEdges>>>;
+};
+
+export type FooterServiciosLinks = {
+  __typename?: 'FooterServiciosLinks';
+  label?: Maybe<Scalars['String']['output']>;
+  href?: Maybe<Scalars['String']['output']>;
+};
+
+export type FooterEmpresaLinks = {
+  __typename?: 'FooterEmpresaLinks';
+  label?: Maybe<Scalars['String']['output']>;
+  href?: Maybe<Scalars['String']['output']>;
+};
+
+export type FooterLegalLinksIzquierda = {
+  __typename?: 'FooterLegalLinksIzquierda';
+  label?: Maybe<Scalars['String']['output']>;
+  href?: Maybe<Scalars['String']['output']>;
+};
+
+export type FooterLegalLinksDerecha = {
+  __typename?: 'FooterLegalLinksDerecha';
+  label?: Maybe<Scalars['String']['output']>;
+  href?: Maybe<Scalars['String']['output']>;
+};
+
+export type Footer = Node & Document & {
+  __typename?: 'Footer';
+  descripcion?: Maybe<Scalars['String']['output']>;
+  copyright?: Maybe<Scalars['String']['output']>;
+  facebook?: Maybe<Scalars['String']['output']>;
+  serviciosLinks?: Maybe<Array<Maybe<FooterServiciosLinks>>>;
+  empresaLinks?: Maybe<Array<Maybe<FooterEmpresaLinks>>>;
+  legalLinksIzquierda?: Maybe<Array<Maybe<FooterLegalLinksIzquierda>>>;
+  legalLinksDerecha?: Maybe<Array<Maybe<FooterLegalLinksDerecha>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type FooterServiciosLinksFilter = {
+  label?: InputMaybe<StringFilter>;
+  href?: InputMaybe<StringFilter>;
+};
+
+export type FooterEmpresaLinksFilter = {
+  label?: InputMaybe<StringFilter>;
+  href?: InputMaybe<StringFilter>;
+};
+
+export type FooterLegalLinksIzquierdaFilter = {
+  label?: InputMaybe<StringFilter>;
+  href?: InputMaybe<StringFilter>;
+};
+
+export type FooterLegalLinksDerechaFilter = {
+  label?: InputMaybe<StringFilter>;
+  href?: InputMaybe<StringFilter>;
+};
+
+export type FooterFilter = {
+  descripcion?: InputMaybe<StringFilter>;
+  copyright?: InputMaybe<StringFilter>;
+  facebook?: InputMaybe<StringFilter>;
+  serviciosLinks?: InputMaybe<FooterServiciosLinksFilter>;
+  empresaLinks?: InputMaybe<FooterEmpresaLinksFilter>;
+  legalLinksIzquierda?: InputMaybe<FooterLegalLinksIzquierdaFilter>;
+  legalLinksDerecha?: InputMaybe<FooterLegalLinksDerechaFilter>;
+};
+
+export type FooterConnectionEdges = {
+  __typename?: 'FooterConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Footer>;
+};
+
+export type FooterConnection = Connection & {
+  __typename?: 'FooterConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<FooterConnectionEdges>>>;
 };
 
 export type HomeEnfoqueCards = {
@@ -615,6 +710,8 @@ export type Mutation = {
   createFolder: DocumentNode;
   updateConfig: Config;
   createConfig: Config;
+  updateFooter: Footer;
+  createFooter: Footer;
   updateHome: Home;
   createHome: Home;
   updateServicios: Servicios;
@@ -671,6 +768,18 @@ export type MutationCreateConfigArgs = {
 };
 
 
+export type MutationUpdateFooterArgs = {
+  relativePath: Scalars['String']['input'];
+  params: FooterMutation;
+};
+
+
+export type MutationCreateFooterArgs = {
+  relativePath: Scalars['String']['input'];
+  params: FooterMutation;
+};
+
+
 export type MutationUpdateHomeArgs = {
   relativePath: Scalars['String']['input'];
   params: HomeMutation;
@@ -720,6 +829,7 @@ export type MutationCreateContactoArgs = {
 
 export type DocumentUpdateMutation = {
   config?: InputMaybe<ConfigMutation>;
+  footer?: InputMaybe<FooterMutation>;
   home?: InputMaybe<HomeMutation>;
   servicios?: InputMaybe<ServiciosMutation>;
   nosotros?: InputMaybe<NosotrosMutation>;
@@ -729,6 +839,7 @@ export type DocumentUpdateMutation = {
 
 export type DocumentMutation = {
   config?: InputMaybe<ConfigMutation>;
+  footer?: InputMaybe<FooterMutation>;
   home?: InputMaybe<HomeMutation>;
   servicios?: InputMaybe<ServiciosMutation>;
   nosotros?: InputMaybe<NosotrosMutation>;
@@ -767,13 +878,41 @@ export type ConfigHeroContactoMutation = {
 export type ConfigMutation = {
   logo?: InputMaybe<Scalars['String']['input']>;
   nav?: InputMaybe<Array<InputMaybe<ConfigNavMutation>>>;
-  footerDescripcion?: InputMaybe<Scalars['String']['input']>;
-  footerCopyright?: InputMaybe<Scalars['String']['input']>;
   heroHome?: InputMaybe<ConfigHeroHomeMutation>;
   heroServicios?: InputMaybe<ConfigHeroServiciosMutation>;
   heroNosotros?: InputMaybe<ConfigHeroNosotrosMutation>;
   heroContacto?: InputMaybe<ConfigHeroContactoMutation>;
   heroImagenes?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type FooterServiciosLinksMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  href?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FooterEmpresaLinksMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  href?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FooterLegalLinksIzquierdaMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  href?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FooterLegalLinksDerechaMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  href?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FooterMutation = {
+  descripcion?: InputMaybe<Scalars['String']['input']>;
+  copyright?: InputMaybe<Scalars['String']['input']>;
+  facebook?: InputMaybe<Scalars['String']['input']>;
+  serviciosLinks?: InputMaybe<Array<InputMaybe<FooterServiciosLinksMutation>>>;
+  empresaLinks?: InputMaybe<Array<InputMaybe<FooterEmpresaLinksMutation>>>;
+  legalLinksIzquierda?: InputMaybe<Array<InputMaybe<FooterLegalLinksIzquierdaMutation>>>;
+  legalLinksDerecha?: InputMaybe<Array<InputMaybe<FooterLegalLinksDerechaMutation>>>;
 };
 
 export type HomeEnfoqueCardsMutation = {
@@ -864,7 +1003,9 @@ export type ContactoMutation = {
   linkedin?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type ConfigPartsFragment = { __typename: 'Config', logo?: string | null, footerDescripcion?: string | null, footerCopyright?: string | null, heroImagenes?: Array<string | null> | null, nav?: Array<{ __typename: 'ConfigNav', label?: string | null, href?: string | null } | null> | null, heroHome?: { __typename: 'ConfigHeroHome', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroServicios?: { __typename: 'ConfigHeroServicios', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroNosotros?: { __typename: 'ConfigHeroNosotros', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroContacto?: { __typename: 'ConfigHeroContacto', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null };
+export type ConfigPartsFragment = { __typename: 'Config', logo?: string | null, heroImagenes?: Array<string | null> | null, nav?: Array<{ __typename: 'ConfigNav', label?: string | null, href?: string | null } | null> | null, heroHome?: { __typename: 'ConfigHeroHome', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroServicios?: { __typename: 'ConfigHeroServicios', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroNosotros?: { __typename: 'ConfigHeroNosotros', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroContacto?: { __typename: 'ConfigHeroContacto', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null };
+
+export type FooterPartsFragment = { __typename: 'Footer', descripcion?: string | null, copyright?: string | null, facebook?: string | null, serviciosLinks?: Array<{ __typename: 'FooterServiciosLinks', label?: string | null, href?: string | null } | null> | null, empresaLinks?: Array<{ __typename: 'FooterEmpresaLinks', label?: string | null, href?: string | null } | null> | null, legalLinksIzquierda?: Array<{ __typename: 'FooterLegalLinksIzquierda', label?: string | null, href?: string | null } | null> | null, legalLinksDerecha?: Array<{ __typename: 'FooterLegalLinksDerecha', label?: string | null, href?: string | null } | null> | null };
 
 export type HomePartsFragment = { __typename: 'Home', propuestaTitulo?: string | null, propuestaSubtitulo?: string | null, propuestaItems?: Array<string | null> | null, enfoqueSubtitulo?: string | null, crecimientoTitulo?: string | null, crecimientoSubtitulo?: string | null, procesoSubtitulo?: string | null, innovacionSubtitulo?: string | null, innovacionImagenes?: Array<string | null> | null, enfoqueCards?: Array<{ __typename: 'HomeEnfoqueCards', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null, crecimientoCards?: Array<{ __typename: 'HomeCrecimientoCards', titulo?: string | null, descripcion?: string | null, imagenes?: Array<string | null> | null } | null> | null, procesoSteps?: Array<{ __typename: 'HomeProcesoSteps', titulo?: string | null, descripcion?: string | null } | null> | null, innovacionFeatures?: Array<{ __typename: 'HomeInnovacionFeatures', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null };
 
@@ -879,7 +1020,7 @@ export type ConfigQueryVariables = Exact<{
 }>;
 
 
-export type ConfigQuery = { __typename?: 'Query', config: { __typename: 'Config', id: string, logo?: string | null, footerDescripcion?: string | null, footerCopyright?: string | null, heroImagenes?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: Array<{ __typename: 'ConfigNav', label?: string | null, href?: string | null } | null> | null, heroHome?: { __typename: 'ConfigHeroHome', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroServicios?: { __typename: 'ConfigHeroServicios', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroNosotros?: { __typename: 'ConfigHeroNosotros', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroContacto?: { __typename: 'ConfigHeroContacto', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null } };
+export type ConfigQuery = { __typename?: 'Query', config: { __typename: 'Config', id: string, logo?: string | null, heroImagenes?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: Array<{ __typename: 'ConfigNav', label?: string | null, href?: string | null } | null> | null, heroHome?: { __typename: 'ConfigHeroHome', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroServicios?: { __typename: 'ConfigHeroServicios', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroNosotros?: { __typename: 'ConfigHeroNosotros', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroContacto?: { __typename: 'ConfigHeroContacto', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null } };
 
 export type ConfigConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -891,7 +1032,26 @@ export type ConfigConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ConfigConnectionQuery = { __typename?: 'Query', configConnection: { __typename?: 'ConfigConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ConfigConnectionEdges', cursor: string, node?: { __typename: 'Config', id: string, logo?: string | null, footerDescripcion?: string | null, footerCopyright?: string | null, heroImagenes?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: Array<{ __typename: 'ConfigNav', label?: string | null, href?: string | null } | null> | null, heroHome?: { __typename: 'ConfigHeroHome', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroServicios?: { __typename: 'ConfigHeroServicios', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroNosotros?: { __typename: 'ConfigHeroNosotros', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroContacto?: { __typename: 'ConfigHeroContacto', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null } | null } | null> | null } };
+export type ConfigConnectionQuery = { __typename?: 'Query', configConnection: { __typename?: 'ConfigConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ConfigConnectionEdges', cursor: string, node?: { __typename: 'Config', id: string, logo?: string | null, heroImagenes?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: Array<{ __typename: 'ConfigNav', label?: string | null, href?: string | null } | null> | null, heroHome?: { __typename: 'ConfigHeroHome', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroServicios?: { __typename: 'ConfigHeroServicios', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroNosotros?: { __typename: 'ConfigHeroNosotros', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null, heroContacto?: { __typename: 'ConfigHeroContacto', subtitulo?: string | null, ctaTexto?: string | null, pills?: Array<string | null> | null } | null } | null } | null> | null } };
+
+export type FooterQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type FooterQuery = { __typename?: 'Query', footer: { __typename: 'Footer', id: string, descripcion?: string | null, copyright?: string | null, facebook?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, serviciosLinks?: Array<{ __typename: 'FooterServiciosLinks', label?: string | null, href?: string | null } | null> | null, empresaLinks?: Array<{ __typename: 'FooterEmpresaLinks', label?: string | null, href?: string | null } | null> | null, legalLinksIzquierda?: Array<{ __typename: 'FooterLegalLinksIzquierda', label?: string | null, href?: string | null } | null> | null, legalLinksDerecha?: Array<{ __typename: 'FooterLegalLinksDerecha', label?: string | null, href?: string | null } | null> | null } };
+
+export type FooterConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<FooterFilter>;
+}>;
+
+
+export type FooterConnectionQuery = { __typename?: 'Query', footerConnection: { __typename?: 'FooterConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'FooterConnectionEdges', cursor: string, node?: { __typename: 'Footer', id: string, descripcion?: string | null, copyright?: string | null, facebook?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, serviciosLinks?: Array<{ __typename: 'FooterServiciosLinks', label?: string | null, href?: string | null } | null> | null, empresaLinks?: Array<{ __typename: 'FooterEmpresaLinks', label?: string | null, href?: string | null } | null> | null, legalLinksIzquierda?: Array<{ __typename: 'FooterLegalLinksIzquierda', label?: string | null, href?: string | null } | null> | null, legalLinksDerecha?: Array<{ __typename: 'FooterLegalLinksDerecha', label?: string | null, href?: string | null } | null> | null } | null } | null> | null } };
 
 export type HomeQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -978,8 +1138,6 @@ export const ConfigPartsFragmentDoc = gql`
     label
     href
   }
-  footerDescripcion
-  footerCopyright
   heroHome {
     __typename
     subtitulo
@@ -1005,6 +1163,34 @@ export const ConfigPartsFragmentDoc = gql`
     pills
   }
   heroImagenes
+}
+    `;
+export const FooterPartsFragmentDoc = gql`
+    fragment FooterParts on Footer {
+  __typename
+  descripcion
+  copyright
+  facebook
+  serviciosLinks {
+    __typename
+    label
+    href
+  }
+  empresaLinks {
+    __typename
+    label
+    href
+  }
+  legalLinksIzquierda {
+    __typename
+    label
+    href
+  }
+  legalLinksDerecha {
+    __typename
+    label
+    href
+  }
 }
     `;
 export const HomePartsFragmentDoc = gql`
@@ -1153,6 +1339,63 @@ export const ConfigConnectionDocument = gql`
   }
 }
     ${ConfigPartsFragmentDoc}`;
+export const FooterDocument = gql`
+    query footer($relativePath: String!) {
+  footer(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...FooterParts
+  }
+}
+    ${FooterPartsFragmentDoc}`;
+export const FooterConnectionDocument = gql`
+    query footerConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: FooterFilter) {
+  footerConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...FooterParts
+      }
+    }
+  }
+}
+    ${FooterPartsFragmentDoc}`;
 export const HomeDocument = gql`
     query home($relativePath: String!) {
   home(relativePath: $relativePath) {
@@ -1389,6 +1632,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     configConnection(variables?: ConfigConnectionQueryVariables, options?: C): Promise<{data: ConfigConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ConfigConnectionQueryVariables, query: string}> {
         return requester<{data: ConfigConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ConfigConnectionQueryVariables, query: string}, ConfigConnectionQueryVariables>(ConfigConnectionDocument, variables, options);
+      },
+    footer(variables: FooterQueryVariables, options?: C): Promise<{data: FooterQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FooterQueryVariables, query: string}> {
+        return requester<{data: FooterQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FooterQueryVariables, query: string}, FooterQueryVariables>(FooterDocument, variables, options);
+      },
+    footerConnection(variables?: FooterConnectionQueryVariables, options?: C): Promise<{data: FooterConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FooterConnectionQueryVariables, query: string}> {
+        return requester<{data: FooterConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FooterConnectionQueryVariables, query: string}, FooterConnectionQueryVariables>(FooterConnectionDocument, variables, options);
       },
     home(variables: HomeQueryVariables, options?: C): Promise<{data: HomeQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeQueryVariables, query: string}> {
         return requester<{data: HomeQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeQueryVariables, query: string}, HomeQueryVariables>(HomeDocument, variables, options);

@@ -38,3 +38,10 @@ export async function getSiteConfig() {
     return data.default
   } catch { return null }
 }
+
+export async function getFooterData() {
+  try {
+    const data = await import('../../tina/content/footer.json')
+    return data.default
+  } catch { return null }
+}

@@ -6,8 +6,6 @@ fragment ConfigParts on Config {
     label
     href
   }
-  footerDescripcion
-  footerCopyright
   heroHome {
     __typename
     subtitulo
@@ -33,6 +31,33 @@ fragment ConfigParts on Config {
     pills
   }
   heroImagenes
+}
+
+fragment FooterParts on Footer {
+  __typename
+  descripcion
+  copyright
+  facebook
+  serviciosLinks {
+    __typename
+    label
+    href
+  }
+  empresaLinks {
+    __typename
+    label
+    href
+  }
+  legalLinksIzquierda {
+    __typename
+    label
+    href
+  }
+  legalLinksDerecha {
+    __typename
+    label
+    href
+  }
 }
 
 fragment HomeParts on Home {

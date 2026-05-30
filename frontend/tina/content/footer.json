@@ -1,0 +1,69 @@
+{
+  "descripcion": "Agencia de marketing digital enfocada en resultados reales para tu negocio.",
+  "copyright": "BRAVAS MARKETING • Innovación Digital • Resultados Reales",
+  "facebook": "https://www.facebook.com/bravasmarketing",
+  "serviciosLinks": [
+    {
+      "label": "Lo que hacemos",
+      "href": "/servicios#servicios-intro"
+    },
+    {
+      "label": "Nuestros Servicios",
+      "href": "/servicios#servicios-nuestros"
+    },
+    {
+      "label": "Soluciones Integrales",
+      "href": "/servicios#servicios-integrales"
+    },
+    {
+      "label": "Herramientas",
+      "href": "/servicios#servicios-herramientas"
+    },
+    {
+      "label": "Preguntas Frecuentes",
+      "href": "/servicios#servicios-faq"
+    }
+  ],
+  "empresaLinks": [
+    {
+      "label": "Quiénes Somos",
+      "href": "/nosotros#nosotros-quienes"
+    },
+    {
+      "label": "Misión y Visión",
+      "href": "/nosotros#nosotros-mision"
+    },
+    {
+      "label": "Nuestro Equipo",
+      "href": "/nosotros#nosotros-equipo"
+    },
+    {
+      "label": "Por Qué Elegirnos",
+      "href": "/nosotros#nosotros-porque"
+    },
+    {
+      "label": "Contacto",
+      "href": "/contacto#contacto-form"
+    }
+  ],
+  "legalLinksIzquierda": [
+    {
+      "label": "Política de Privacidad",
+      "href": "/contacto"
+    },
+    {
+      "label": "Cookies",
+      "href": "/contacto"
+    }
+  ],
+  "legalLinksDerecha": [
+    {
+      "label": "Términos y Condiciones",
+      "href": "/contacto"
+    },
+    {
+      "label": "Mapa del Sitio",
+      "href": "/#home"
+    }
+  ]
+}

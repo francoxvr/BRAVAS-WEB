@@ -10,7 +10,7 @@ export default defineConfig({
   schema: {
     collections: [
 
-      // ─── CONFIGURACIÓN GENERAL (Header + Footer + Hero) ──────────
+      // ─── CONFIGURACIÓN GENERAL (Header + Hero) ───────────────────
       {
         name: 'config',
         label: '⚙️ Configuración General',
@@ -36,8 +36,6 @@ export default defineConfig({
               { type: 'string', name: 'href', label: 'Destino (ej: /servicios)' },
             ],
           },
-          { type: 'string', name: 'footerDescripcion', label: '🦶 Descripción del footer', ui: { component: 'textarea' } },
-          { type: 'string', name: 'footerCopyright', label: '©️ Texto del copyright' },
           {
             type: 'object', name: 'heroHome', label: '🏠 Hero — Inicio',
             fields: [
@@ -73,6 +71,53 @@ export default defineConfig({
           {
             type: 'image', name: 'heroImagenes', label: '🖼️ Imágenes del carrusel hero', list: true,
             description: 'Las fotos que rotan en el hero de todas las páginas.',
+          },
+        ],
+      },
+
+      // ─── FOOTER ─────────────────────────────────────────────────
+      {
+        name: 'footer',
+        label: 'Footer',
+        path: 'tina/content',
+        format: 'json',
+        ui: { allowedActions: { create: false, delete: false } },
+        match: { include: 'footer' },
+        fields: [
+          { type: 'string', name: 'descripcion', label: 'Descripcion', ui: { component: 'textarea' } },
+          { type: 'string', name: 'copyright', label: 'Texto del copyright' },
+          { type: 'string', name: 'facebook', label: 'URL de Facebook' },
+          {
+            type: 'object', name: 'serviciosLinks', label: 'Links de Servicios', list: true,
+            ui: { itemProps: (item) => ({ label: item?.label }) },
+            fields: [
+              { type: 'string', name: 'label', label: 'Texto del link' },
+              { type: 'string', name: 'href', label: 'Destino' },
+            ],
+          },
+          {
+            type: 'object', name: 'empresaLinks', label: 'Links de Empresa', list: true,
+            ui: { itemProps: (item) => ({ label: item?.label }) },
+            fields: [
+              { type: 'string', name: 'label', label: 'Texto del link' },
+              { type: 'string', name: 'href', label: 'Destino' },
+            ],
+          },
+          {
+            type: 'object', name: 'legalLinksIzquierda', label: 'Links legales izquierdos', list: true,
+            ui: { itemProps: (item) => ({ label: item?.label }) },
+            fields: [
+              { type: 'string', name: 'label', label: 'Texto del link' },
+              { type: 'string', name: 'href', label: 'Destino' },
+            ],
+          },
+          {
+            type: 'object', name: 'legalLinksDerecha', label: 'Links legales derechos', list: true,
+            ui: { itemProps: (item) => ({ label: item?.label }) },
+            fields: [
+              { type: 'string', name: 'label', label: 'Texto del link' },
+              { type: 'string', name: 'href', label: 'Destino' },
+            ],
           },
         ],
       },
