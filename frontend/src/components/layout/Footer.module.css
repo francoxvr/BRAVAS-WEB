@@ -190,8 +190,29 @@
   font-weight: 500;
 }
 
+.contactItem a {
+  position: relative;
+  display: inline-block;
+}
+
+.contactItem a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: #4e1a6b;
+  transition: width 0.3s ease;
+}
+
 .contactItem a:hover {
   color: #4e1a6b;
+  transform: translateX(4px);
+}
+
+.contactItem a:hover::after {
+  width: 100%;
 }
 
 .footerLogoSmall {
