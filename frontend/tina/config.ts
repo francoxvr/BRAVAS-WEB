@@ -248,6 +248,51 @@ export default defineConfig({
         ],
       },
 
+      // ─── LEGAL ───────────────────────────────────────────────────
+      {
+        name: 'legal',
+        label: '📋 Legal',
+        path: 'tina/content/pages',
+        format: 'json',
+        ui: { allowedActions: { create: false, delete: false } },
+        match: { include: 'legal' },
+        fields: [
+          {
+            type: 'object', name: 'privacidad', label: '🔒 Política de Privacidad',
+            fields: [{
+              type: 'object', name: 'bloques', label: 'Bloques', list: true,
+              ui: { itemProps: (item) => ({ label: item?.titulo }) },
+              fields: [
+                { type: 'string', name: 'titulo', label: 'Título del bloque' },
+                { type: 'string', name: 'contenido', label: 'Contenido', ui: { component: 'textarea' } },
+              ],
+            }],
+          },
+          {
+            type: 'object', name: 'cookies', label: '🍪 Política de Cookies',
+            fields: [{
+              type: 'object', name: 'bloques', label: 'Bloques', list: true,
+              ui: { itemProps: (item) => ({ label: item?.titulo }) },
+              fields: [
+                { type: 'string', name: 'titulo', label: 'Título del bloque' },
+                { type: 'string', name: 'contenido', label: 'Contenido', ui: { component: 'textarea' } },
+              ],
+            }],
+          },
+          {
+            type: 'object', name: 'terminos', label: '📄 Términos y Condiciones',
+            fields: [{
+              type: 'object', name: 'bloques', label: 'Bloques', list: true,
+              ui: { itemProps: (item) => ({ label: item?.titulo }) },
+              fields: [
+                { type: 'string', name: 'titulo', label: 'Título del bloque' },
+                { type: 'string', name: 'contenido', label: 'Contenido', ui: { component: 'textarea' } },
+              ],
+            }],
+          },
+        ],
+      },
+
       // ─── CONTACTO ────────────────────────────────────────────────
       {
         name: 'contacto',

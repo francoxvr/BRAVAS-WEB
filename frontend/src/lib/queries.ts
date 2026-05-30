@@ -45,3 +45,10 @@ export async function getFooterData() {
     return data.default
   } catch { return null }
 }
+
+export async function getLegalData() {
+  try {
+    const data = await import('../../tina/content/pages/legal.json')
+    return data.default
+  } catch { return null }
+}

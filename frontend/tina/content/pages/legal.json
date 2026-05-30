@@ -1,0 +1,66 @@
+{
+  "privacidad": {
+    "bloques": [
+      {
+        "titulo": "1. Información que recopilamos",
+        "contenido": "Bravas Marketing recopila la información que usted nos proporciona voluntariamente a través del formulario de contacto de nuestro sitio web, incluyendo: nombre y apellido, dirección de correo electrónico, número de teléfono, nombre de empresa y el mensaje que nos envía."
+      },
+      {
+        "titulo": "2. Uso de la información",
+        "contenido": "La información recopilada se utiliza exclusivamente para responder a sus consultas, brindarle información sobre nuestros servicios y establecer una relación comercial con usted. No compartimos, vendemos ni cedemos sus datos personales a terceros sin su consentimiento expreso."
+      },
+      {
+        "titulo": "3. Almacenamiento y seguridad",
+        "contenido": "Sus datos son procesados de forma segura a través de nuestros sistemas. Implementamos medidas técnicas y organizativas razonables para proteger su información contra accesos no autorizados, pérdida o alteración."
+      },
+      {
+        "titulo": "4. Sus derechos",
+        "contenido": "Usted tiene derecho a acceder, rectificar, cancelar u oponerse al tratamiento de sus datos personales. Para ejercer estos derechos, puede contactarnos en bravasmarketingintegral@gmail.com."
+      },
+      {
+        "titulo": "5. Contacto",
+        "contenido": "Si tiene preguntas sobre esta política de privacidad, puede comunicarse con nosotros a través de nuestro formulario de contacto o al correo electrónico indicado."
+      }
+    ]
+  },
+  "cookies": {
+    "bloques": [
+      {
+        "titulo": "¿Qué son las cookies?",
+        "contenido": "Las cookies son pequeños archivos de texto que se almacenan en su dispositivo cuando visita un sitio web. Nos permiten recordar sus preferencias y mejorar su experiencia de navegación."
+      },
+      {
+        "titulo": "Cookies que utilizamos",
+        "contenido": "Cookies técnicas: necesarias para el funcionamiento básico del sitio. Cookies de análisis: nos ayudan a entender cómo los usuarios interactúan con el sitio (Google Analytics). Cookies de preferencias: recuerdan sus ajustes, como el modo oscuro o claro."
+      },
+      {
+        "titulo": "Control de cookies",
+        "contenido": "Puede configurar su navegador para rechazar todas las cookies o para que le avise cuando se envía una cookie. Sin embargo, si deshabilita las cookies, algunas funcionalidades del sitio pueden no estar disponibles."
+      }
+    ]
+  },
+  "terminos": {
+    "bloques": [
+      {
+        "titulo": "1. Aceptación de los términos",
+        "contenido": "Al acceder y utilizar el sitio web de Bravas Marketing, usted acepta cumplir con estos términos y condiciones. Si no está de acuerdo con alguno de ellos, le solicitamos que no utilice nuestro sitio."
+      },
+      {
+        "titulo": "2. Servicios",
+        "contenido": "Bravas Marketing ofrece servicios de marketing digital, incluyendo estrategia digital, publicidad en redes sociales, branding, contenido y analítica. Los detalles específicos de cada servicio son acordados individualmente con cada cliente mediante contrato escrito."
+      },
+      {
+        "titulo": "3. Propiedad intelectual",
+        "contenido": "Todo el contenido de este sitio web (textos, imágenes, logotipos, diseños) es propiedad de Bravas Marketing o de sus respectivos titulares, y está protegido por las leyes de propiedad intelectual aplicables en la República Argentina."
+      },
+      {
+        "titulo": "4. Limitación de responsabilidad",
+        "contenido": "Bravas Marketing no se responsabiliza por daños directos o indirectos derivados del uso o imposibilidad de uso de este sitio web, ni de los resultados obtenidos a través de los servicios contratados más allá de lo establecido en cada contrato."
+      },
+      {
+        "titulo": "5. Legislación aplicable",
+        "contenido": "Estos términos se rigen por las leyes de la República Argentina. Cualquier controversia será sometida a los tribunales competentes de la ciudad de Córdoba, Argentina."
+      }
+    ]
+  }
+}
