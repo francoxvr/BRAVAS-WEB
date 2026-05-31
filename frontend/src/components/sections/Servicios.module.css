@@ -52,6 +52,13 @@
 
 .iconSparkle svg { animation: sparkle 1.8s ease-in-out infinite; transform-origin: center; }
 
+@keyframes swingPalette {
+  0%, 100% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+}
+
+.iconPalette svg { animation: swingPalette 2s ease-in-out infinite; transform-origin: center; }
+
 :global(.app-container.dark) .nuestrosSection,
 :global(.app-container.dark) .integralSection,
 :global(.app-container.dark) .herramientasSection {
