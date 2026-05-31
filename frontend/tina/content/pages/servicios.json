@@ -12,13 +12,14 @@
       ]
     },
     {
-      "titulo": "Publicidad Paga",
-      "descripcion": "Campañas rentables en Google, Meta y más plataformas.",
+      "titulo": "Publicidad & Medios",
+      "descripcion": "Campañas integradas para conectar marcas con audiencias.",
       "items": [
         "Google Ads",
         "Meta Ads",
         "TikTok Ads",
-        "Retargeting"
+        "Mercado Ads",
+        "DV360(YouTube, Display, CTV, Audio)"
       ]
     },
     {
