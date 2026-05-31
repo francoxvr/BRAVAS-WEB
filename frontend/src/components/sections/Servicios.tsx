@@ -1,20 +1,12 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Activity, Sun, ArrowUpRight } from 'lucide-react';
+import { Activity, Sun, ArrowUpRight, TrendingUp } from 'lucide-react';
 import PageHero from './PageHero';
 import styles from './Servicios.module.css';
 import { getServiciosData } from '@/lib/queries';
 
-function ClockIcon() {
-  return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4e1a6b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" /><line x1="12" y1="12" x2="9" y2="8" /><line x1="12" y1="12" x2="12" y2="5" />
-    </svg>
-  );
-}
-
 const iconConfig = [
-  { iconBg: '#f0e8fa', iconClass: '', icon: <ClockIcon /> },
+  { iconBg: '#f0e8fa', iconClass: styles.iconTrend, icon: <TrendingUp size={26} color="#4e1a6b" /> },
   { iconBg: '#fef5dc', iconClass: styles.iconPulse, icon: <Activity size={26} color="#b45309" /> },
   { iconBg: '#fce7f3', iconClass: styles.iconSun, icon: <Sun size={26} color="#9d174d" /> },
   { iconBg: '#d1fae5', iconClass: styles.iconArrow, icon: <ArrowUpRight size={26} color="#065f46" /> },

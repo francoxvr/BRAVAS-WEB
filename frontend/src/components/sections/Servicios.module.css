@@ -38,6 +38,13 @@
 
 .iconArrow svg { animation: arrowDiagonal 1.5s ease-in-out infinite; transform-origin: center; }
 
+@keyframes trendUp {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.1); }
+}
+
+.iconTrend svg { animation: trendUp 1.5s ease-in-out infinite; transform-origin: center; }
+
 :global(.app-container.dark) .nuestrosSection,
 :global(.app-container.dark) .integralSection,
 :global(.app-container.dark) .herramientasSection {
