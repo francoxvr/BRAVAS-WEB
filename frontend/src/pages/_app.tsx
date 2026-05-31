@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import Script from 'next/script'
 import '@/styles/globals.css'
 import { ThemeProvider } from '@/context/ThemeContext'
 import Header from '@/components/layout/Header'
@@ -26,6 +27,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/pwa/logo192.png" />
         <link rel="apple-touch-icon" href="/assets/icons/pwa/logo192.png" />
       </Head>
+
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-SF3KX3R5C2" strategy="afterInteractive" />
+      <Script id="google-analytics" strategy="afterInteractive">{`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SF3KX3R5C2');
+      `}</Script>
 
       <ThemeProvider>
         <Header />
