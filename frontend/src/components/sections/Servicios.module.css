@@ -45,6 +45,13 @@
 
 .iconTrend svg { animation: trendUp 1.5s ease-in-out infinite; transform-origin: center; }
 
+@keyframes sparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.2) rotate(20deg); opacity: 0.7; }
+}
+
+.iconSparkle svg { animation: sparkle 1.8s ease-in-out infinite; transform-origin: center; }
+
 :global(.app-container.dark) .nuestrosSection,
 :global(.app-container.dark) .integralSection,
 :global(.app-container.dark) .herramientasSection {

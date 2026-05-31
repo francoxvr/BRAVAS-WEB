@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Activity, Sun, ArrowUpRight, TrendingUp } from 'lucide-react';
+import { Activity, Sun, Sparkles, TrendingUp } from 'lucide-react';
 import PageHero from './PageHero';
 import styles from './Servicios.module.css';
 import { getServiciosData } from '@/lib/queries';
@@ -9,7 +9,7 @@ const iconConfig = [
   { iconBg: '#f0e8fa', iconClass: styles.iconTrend, icon: <TrendingUp size={26} color="#4e1a6b" /> },
   { iconBg: '#fef5dc', iconClass: styles.iconPulse, icon: <Activity size={26} color="#b45309" /> },
   { iconBg: '#fce7f3', iconClass: styles.iconSun, icon: <Sun size={26} color="#9d174d" /> },
-  { iconBg: '#d1fae5', iconClass: styles.iconArrow, icon: <ArrowUpRight size={26} color="#065f46" /> },
+  { iconBg: '#d1fae5', iconClass: styles.iconSparkle, icon: <Sparkles size={26} color="#065f46" /> },
 ];
 
 const DEFAULT_SERVICIOS = [
