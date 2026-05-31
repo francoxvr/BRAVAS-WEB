@@ -1,15 +1,15 @@
 {
   "quienesTitulo": "Somos BRAVAS",
-  "quienesDesc1": "Somos una agencia de marketing digital nacida en Córdoba con una misión clara: ayudar a las marcas a crecer de verdad en el mundo digital.",
-  "quienesDesc2": "Combinamos estrategia, creatividad y tecnología para crear soluciones que generan resultados medibles y sostenibles.",
+  "quienesDesc1": "BRAVAS nació con una idea clara: Ayudar a las marcas a crecer a través de estrategias pensadas para generar resultados reales.",
+  "quienesDesc2": "Trabajamos junto a empresas, emprendedores y organizaciones para construir estrategias de comunicación que generen impacto y resultados. Creemos que cada marca tiene una historia única por eso desarrollamos soluciones a medida que integran branding, publicidad, tecnología y análisis de datos.",
   "quienesImagen": "/uploads/branding.png",
-  "statProyectos": "+150",
+  "statProyectos": "+30",
   "statSatisfaccion": "92%",
-  "statAnios": "5+",
-  "misionTitulo": "Nuestra Misión",
-  "misionDesc": "Impulsar el crecimiento digital de nuestros clientes con estrategias creativas, datos reales y un equipo comprometido con los resultados.",
-  "visionTitulo": "Nuestra Visión",
-  "visionDesc": "Ser la agencia de referencia en marketing digital de Latinoamérica, reconocida por transformar marcas en referentes de su industria.",
+  "statAnios": "10+",
+  "misionTitulo": "Estrategia que vende",
+  "misionDesc": "Creemos que las mejores campañas nacen de entender el negocio, las personas y los objetivos detrás de cada marca.",
+  "visionTitulo": "Más que publicidad",
+  "visionDesc": "Buscamos construir relaciones duraderas con nuestros clientes, acompañándolos en cada etapa de crecimiento.",
   "porqueItems": [
     "Equipo especializado en cada área digital",
     "Estrategias personalizadas para cada cliente",
@@ -20,9 +20,9 @@
   ],
   "teamMembers": [
     {
-      "nombre": "Franco Xavier Scarlata",
-      "rol": "Presidente Ejecutivo",
-      "descripcion": "Lidera la visión creativa de cada proyecto con más de 8 años de experiencia en branding y comunicación digital.",
+      "nombre": "Celeste Santillan",
+      "rol": "Co-Founder & Strategic Media Planner",
+      "descripcion": "Especialista en planificación estratégica y medios.",
       "foto": "/uploads/branding.png",
       "linkedin": "https://www.linkedin.com/in/franco-scarlata-204b162a2"
     },
