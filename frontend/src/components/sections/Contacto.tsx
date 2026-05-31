@@ -25,7 +25,7 @@ interface ContactoData {
 
 const DEFAULT_CONTACTO: ContactoData = {
   email: 'info@bravas.com',
-  whatsapp: '5493511234567',
+  whatsapp: '5493518564677',
   instagram: 'bravasmarketing',
   linkedin: 'https://www.linkedin.com/company/bravas-marketing',
   direccion: 'Córdoba, Argentina',

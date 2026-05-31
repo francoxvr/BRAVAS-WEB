@@ -30,7 +30,7 @@ interface FooterData {
 
 const DEFAULT_CONTACTO: ContactoData = {
   email: 'info@bravas.com',
-  whatsapp: '5493511234567',
+  whatsapp: '5493518564677',
   instagram: 'bravasmarketing',
   linkedin: 'https://www.linkedin.com/company/bravas-marketing',
   direccion: 'Córdoba, Argentina',
@@ -98,7 +98,7 @@ export default function Footer() {
   }, []);
 
   const instagramUrl = `https://www.instagram.com/${contacto.instagram ?? 'bravasmarketing'}`;
-  const whatsappUrl = `https://wa.me/${contacto.whatsapp ?? '5493511234567'}`;
+  const whatsappUrl = `https://wa.me/${contacto.whatsapp ?? '5493518564677'}`;
   const linkedinUrl = contacto.linkedin ?? 'https://www.linkedin.com/company/bravas-marketing';
 
   return (

@@ -1,5 +1,5 @@
 export default function WhatsAppButton() {
-  const whatsappNumber = '5493511234567';
+  const whatsappNumber = '5493518564677';
   const message = encodeURIComponent(
     '¡Hola! Me interesa conocer más sobre sus servicios de marketing digital.'
   );
