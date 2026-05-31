@@ -51,7 +51,7 @@ export default function Contacto() {
     setEnviando(true);
     setErrorMsg('');
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contacto`, {
+      const res = await fetch('/api/contacto', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
