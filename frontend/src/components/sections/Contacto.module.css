@@ -258,8 +258,8 @@
   justify-content: center;
 }
 
-.successMsg h3 { color: #4e1a6b; font-size: 1.4rem; font-weight: 900; margin: 0; }
-.successMsg p { color: rgba(78,26,107,0.75); margin: 0; }
+.successMsg h3 { color: #eecb7c; font-size: 1.4rem; font-weight: 900; margin: 0; }
+.successMsg p { color: #eecb7c; opacity: 0.85; margin: 0; }
 
 :global(.app-container.dark) .leftPanel { background: #2d0f45; }
 :global(.app-container.dark) .rightPanel { background: #3d1254; }
