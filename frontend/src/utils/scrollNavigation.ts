@@ -1,4 +1,4 @@
-const SCROLL_MARGIN = -94;
+const SCROLL_MARGIN = 10;
 const HOME_SECTION_IDS = ['home', 'propuesta', 'enfoque', 'crecimiento', 'proceso', 'innovacion'];
 const SERVICES_SECTION_IDS = [
   'servicios',
