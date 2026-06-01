@@ -1,6 +1,8 @@
 .headerSticky {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   background: #e8dcc2;
   transition: all 0.3s ease;
