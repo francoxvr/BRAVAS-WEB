@@ -152,7 +152,7 @@ export default function Nosotros() {
                     src={member.foto ?? '/assets/images/marketing/redes4.png'}
                     alt={member.rol}
                     fill
-                    style={{ objectFit: 'cover' }}
+                    style={{ objectFit: 'cover', objectPosition: 'top' }}
                   />
                 </div>
               </a>
