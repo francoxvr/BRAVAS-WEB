@@ -6,6 +6,10 @@
   padding: 0;
 }
 
+[id] {
+  scroll-margin-top: 90px;
+}
+
 :root {
   --purple-600: #4e1a6b;
   --purple-700: #3d1454;
