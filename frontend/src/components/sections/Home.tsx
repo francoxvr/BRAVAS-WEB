@@ -8,11 +8,11 @@ interface CrecimientoCard { titulo: string; descripcion: string; imagenes?: stri
 interface ProcesoStep { titulo: string; descripcion: string; }
 interface InnovacionFeature { emoji: string; titulo: string; descripcion: string; }
 interface HomeData {
-  propuestaTitulo?: string; propuestaSubtitulo?: string; propuestaItems?: string[];
-  enfoqueSubtitulo?: string; enfoqueCards?: EnfoqueCard[];
+  propuestaTag?: string; propuestaTitulo?: string; propuestaSubtitulo?: string; propuestaItems?: string[];
+  enfoqueHeader?: string; enfoqueSubtitulo?: string; enfoqueCards?: EnfoqueCard[];
   crecimientoTitulo?: string; crecimientoSubtitulo?: string; crecimientoCards?: CrecimientoCard[];
-  procesoSubtitulo?: string; procesoSteps?: ProcesoStep[];
-  innovacionSubtitulo?: string; innovacionFeatures?: InnovacionFeature[]; innovacionImagenes?: string[];
+  procesoHeader?: string; procesoSubtitulo?: string; procesoSteps?: ProcesoStep[];
+  innovacionHeader?: string; innovacionSubtitulo?: string; innovacionFeatures?: InnovacionFeature[]; innovacionImagenes?: string[];
 }
 
 const DEFAULT_DATA: HomeData = {
@@ -91,7 +91,7 @@ export default function Home() {
 
       <section id="propuesta" data-animate className={styles.propuestaSection}>
         <div className={styles.propuestaOrbe1} /><div className={styles.propuestaOrbe2} /><div className={styles.propuestaSheen} />
-        <span className={styles.propuestaTag}>¿Qué hacemos?</span>
+        <span className={styles.propuestaTag}>{data.propuestaTag ?? '¿Qué hacemos?'}</span>
         <h2 className={styles.propuestaTitulo}>{data.propuestaTitulo}</h2>
         <p className={styles.propuestaSubtitle}>{data.propuestaSubtitulo}</p>
         <div className={styles.propuestaGrid}>
@@ -106,7 +106,7 @@ export default function Home() {
 
       <section id="enfoque" data-animate className={styles.enfoqueSection}>
         <div className={styles.enfoqueHeader} id="enfoque-target">
-          <h2 className={styles.enfoqueTitle}>Nuestro Enfoque</h2>
+          <h2 className={styles.enfoqueTitle}>{data.enfoqueHeader ?? 'Nuestro Enfoque'}</h2>
           <p className={styles.enfoqueSubtitle}>{data.enfoqueSubtitulo}</p>
         </div>
         <div className={styles.cardsGrid}>
@@ -149,7 +149,7 @@ export default function Home() {
 
       <section id="proceso" className={styles.procesoSection} data-animate>
         <div className={styles.procesoHeader} id="proceso-target">
-          <h2 className={styles.procesoTitle}>Nuestro Proceso de Trabajo</h2>
+          <h2 className={styles.procesoTitle}>{data.procesoHeader ?? 'Nuestro Proceso de Trabajo'}</h2>
           <p className={styles.procesoSubtitle}>{data.procesoSubtitulo}</p>
         </div>
         <div className={styles.procesoTimeline}>
@@ -165,7 +165,7 @@ export default function Home() {
 
       <section id="innovacion" className={styles.innovacionSection} data-animate>
         <div className={styles.innovacionHeader} id="innovacion-target">
-          <h2 className={styles.innovacionHeaderTitle}>Innovación Constante</h2>
+          <h2 className={styles.innovacionHeaderTitle}>{data.innovacionHeader ?? 'Innovación Constante'}</h2>
           <p className={styles.innovacionHeaderSubtitle}>{data.innovacionSubtitulo}</p>
         </div>
         <div className={styles.innovacionContainer}>

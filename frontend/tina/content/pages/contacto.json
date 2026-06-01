@@ -1,4 +1,8 @@
 {
+  "panelTag": "Hablemos",
+  "panelTitulo": "Contanos sobre tu proyecto.",
+  "panelDescripcion": "Completá el formulario y nos ponemos en contacto en menos de 24 horas para arrancar juntos.",
+  "panelItems": ["Respuesta en menos de 24hs", "Primera consulta sin costo", "Estrategia personalizada para tu negocio"],
   "email": "bravasmarketingintegral@gmail.com",
   "whatsapp": "5493518564677",
   "direccion": "Córdoba, Argentina",

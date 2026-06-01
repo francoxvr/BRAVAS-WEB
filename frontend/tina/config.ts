@@ -132,10 +132,12 @@ export default defineConfig({
         match: { include: 'home' },
         fields: [
           // Propuesta
+          { type: 'string', name: 'propuestaTag', label: '1️⃣ Etiqueta sección (ej: ¿Qué hacemos?)' },
           { type: 'string', name: 'propuestaTitulo', label: '1️⃣ Título principal' },
           { type: 'string', name: 'propuestaSubtitulo', label: '1️⃣ Subtítulo', ui: { component: 'textarea' } },
           { type: 'string', name: 'propuestaItems', label: '1️⃣ Lista de servicios', list: true },
           // Enfoque
+          { type: 'string', name: 'enfoqueHeader', label: '2️⃣ Título sección enfoque' },
           { type: 'string', name: 'enfoqueSubtitulo', label: '2️⃣ Subtítulo del enfoque', ui: { component: 'textarea' } },
           {
             type: 'object', name: 'enfoqueCards', label: '2️⃣ Cards de enfoque', list: true,
@@ -159,6 +161,7 @@ export default defineConfig({
             ],
           },
           // Proceso
+          { type: 'string', name: 'procesoHeader', label: '4️⃣ Título sección proceso' },
           { type: 'string', name: 'procesoSubtitulo', label: '4️⃣ Subtítulo del proceso' },
           {
             type: 'object', name: 'procesoSteps', label: '4️⃣ Pasos del proceso', list: true,
@@ -169,6 +172,7 @@ export default defineConfig({
             ],
           },
           // Innovación
+          { type: 'string', name: 'innovacionHeader', label: '5️⃣ Título sección innovación' },
           { type: 'string', name: 'innovacionSubtitulo', label: '5️⃣ Subtítulo innovación', ui: { component: 'textarea' } },
           {
             type: 'object', name: 'innovacionFeatures', label: '5️⃣ Cards de innovación', list: true,
@@ -192,6 +196,14 @@ export default defineConfig({
         ui: { allowedActions: { create: false, delete: false } },
         match: { include: 'servicios' },
         fields: [
+          { type: 'string', name: 'introTitulo', label: '0️⃣ Intro — Título "Lo que hacemos"' },
+          { type: 'string', name: 'introSubtitulo', label: '0️⃣ Intro — Subtítulo', ui: { component: 'textarea' } },
+          { type: 'string', name: 'introDesc', label: '0️⃣ Intro — Descripción', ui: { component: 'textarea' } },
+          { type: 'string', name: 'introPorqueTitulo', label: '0️⃣ Intro — "Por qué Bravas" título' },
+          { type: 'string', name: 'introPorqueSubtitulo', label: '0️⃣ Intro — "Por qué Bravas" subtítulo', ui: { component: 'textarea' } },
+          { type: 'string', name: 'introPorqueDesc', label: '0️⃣ Intro — "Por qué Bravas" descripción', ui: { component: 'textarea' } },
+          { type: 'string', name: 'nuestrosServiciosTitulo', label: '1️⃣ Título "Nuestros Servicios"' },
+          { type: 'string', name: 'nuestrosServiciosSubtitulo', label: '1️⃣ Subtítulo "Nuestros Servicios"', ui: { component: 'textarea' } },
           {
             type: 'object', name: 'servicios', label: '1️⃣ Nuestros Servicios', list: true,
             ui: { itemProps: (item) => ({ label: item?.titulo }) },
@@ -201,7 +213,11 @@ export default defineConfig({
               { type: 'string', name: 'items', label: 'Ítems incluidos', list: true },
             ],
           },
+          { type: 'string', name: 'integralTitulo', label: '2️⃣ Título Soluciones Integrales' },
+          { type: 'string', name: 'integralSubtitulo', label: '2️⃣ Subtítulo Soluciones Integrales', ui: { component: 'textarea' } },
           { type: 'image', name: 'integralImagenPrincipal', label: '2️⃣ Imagen Soluciones Integrales' },
+          { type: 'string', name: 'herramientasTitulo', label: '3️⃣ Título Herramientas' },
+          { type: 'string', name: 'herramientasSubtitulo', label: '3️⃣ Subtítulo Herramientas', ui: { component: 'textarea' } },
           {
             type: 'object', name: 'faqItems', label: '3️⃣ Preguntas Frecuentes', list: true,
             ui: { itemProps: (item) => ({ label: item?.pregunta }) },
@@ -222,6 +238,7 @@ export default defineConfig({
         ui: { allowedActions: { create: false, delete: false } },
         match: { include: 'nosotros' },
         fields: [
+          { type: 'string', name: 'quienesTag', label: '1️⃣ Etiqueta sección (ej: Quiénes somos)' },
           { type: 'string', name: 'quienesTitulo', label: '1️⃣ Título principal' },
           { type: 'string', name: 'quienesDesc1', label: '1️⃣ Párrafo 1', ui: { component: 'textarea' } },
           { type: 'string', name: 'quienesDesc2', label: '1️⃣ Párrafo 2', ui: { component: 'textarea' } },
@@ -233,6 +250,10 @@ export default defineConfig({
           { type: 'string', name: 'misionDesc', label: '2️⃣ Descripción de la Misión', ui: { component: 'textarea' } },
           { type: 'string', name: 'visionTitulo', label: '2️⃣ Título de la Visión' },
           { type: 'string', name: 'visionDesc', label: '2️⃣ Descripción de la Visión', ui: { component: 'textarea' } },
+          { type: 'string', name: 'equipoSubtitulo', label: '4️⃣ Subtítulo sección Equipo' },
+          { type: 'string', name: 'porqueTag', label: '3️⃣ Etiqueta sección (ej: ¿Por qué elegirnos?)' },
+          { type: 'string', name: 'porqueTitulo', label: '3️⃣ Título sección' },
+          { type: 'string', name: 'porqueSubtitulo', label: '3️⃣ Subtítulo sección', ui: { component: 'textarea' } },
           { type: 'string', name: 'porqueItems', label: '3️⃣ Razones para elegirnos', list: true },
           {
             type: 'object', name: 'teamMembers', label: '4️⃣ Equipo', list: true,
@@ -302,6 +323,10 @@ export default defineConfig({
         ui: { allowedActions: { create: false, delete: false } },
         match: { include: 'contacto' },
         fields: [
+          { type: 'string', name: 'panelTag', label: '🏷️ Etiqueta panel izquierdo (ej: Hablemos)' },
+          { type: 'string', name: 'panelTitulo', label: '📝 Título panel izquierdo' },
+          { type: 'string', name: 'panelDescripcion', label: '📝 Descripción panel izquierdo', ui: { component: 'textarea' } },
+          { type: 'string', name: 'panelItems', label: '✅ Puntos destacados', list: true },
           { type: 'string', name: 'email', label: '📧 Email de contacto' },
           { type: 'string', name: 'whatsapp', label: '📱 Número de WhatsApp (con código de país, ej: 5493511234567)' },
           { type: 'string', name: 'direccion', label: '📍 Dirección o ciudad' },

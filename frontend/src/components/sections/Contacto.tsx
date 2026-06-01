@@ -16,6 +16,10 @@ const serviciosOpciones = [
 ];
 
 interface ContactoData {
+  panelTag?: string;
+  panelTitulo?: string;
+  panelDescripcion?: string;
+  panelItems?: string[];
   email?: string;
   whatsapp?: string;
   instagram?: string;
@@ -83,13 +87,13 @@ export default function Contacto() {
       <section className={styles.contactoSection} data-animate id="contacto-form">
         <div className={styles.sheen} />
         <div className={styles.leftPanel}>
-          <span className={styles.leftTag}>Hablemos</span>
-          <h2 className={styles.leftTitle}>Contanos sobre tu proyecto.</h2>
-          <p className={styles.leftDesc}>Completá el formulario y nos ponemos en contacto en menos de 24 horas para arrancar juntos.</p>
+          <span className={styles.leftTag}>{contacto.panelTag ?? 'Hablemos'}</span>
+          <h2 className={styles.leftTitle}>{contacto.panelTitulo ?? 'Contanos sobre tu proyecto.'}</h2>
+          <p className={styles.leftDesc}>{contacto.panelDescripcion ?? 'Completá el formulario y nos ponemos en contacto en menos de 24 horas para arrancar juntos.'}</p>
           <div className={styles.leftItems}>
-            <div className={styles.leftItem}><span className={styles.leftItemDot} /><span>Respuesta en menos de 24hs</span></div>
-            <div className={styles.leftItem}><span className={styles.leftItemDot} /><span>Primera consulta sin costo</span></div>
-            <div className={styles.leftItem}><span className={styles.leftItemDot} /><span>Estrategia personalizada para tu negocio</span></div>
+            {(contacto.panelItems?.length ? contacto.panelItems : ['Respuesta en menos de 24hs', 'Primera consulta sin costo', 'Estrategia personalizada para tu negocio']).map((item, i) => (
+              <div key={i} className={styles.leftItem}><span className={styles.leftItemDot} /><span>{item}</span></div>
+            ))}
           </div>
           {/* Datos de contacto editables desde Tina */}
           <div className={styles.leftItems} style={{ marginTop: '1.5rem' }}>

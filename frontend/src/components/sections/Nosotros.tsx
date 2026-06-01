@@ -6,6 +6,7 @@ import styles from './Nosotros.module.css';
 import { getNosotrosData } from '@/lib/queries';
 
 interface NosotrosData {
+  quienesTag?: string;
   quienesTitulo?: string;
   quienesDesc1?: string;
   quienesDesc2?: string;
@@ -17,6 +18,10 @@ interface NosotrosData {
   misionDesc?: string;
   visionTitulo?: string;
   visionDesc?: string;
+  equipoSubtitulo?: string;
+  porqueTag?: string;
+  porqueTitulo?: string;
+  porqueSubtitulo?: string;
   porqueItems?: string[];
   teamMembers?: TeamMember[];
 }
@@ -85,7 +90,7 @@ export default function Nosotros() {
         <div className={styles.quienesOrbe2} />
         <div className={styles.quienesSheen} />
         <div className={styles.quienesText}>
-          <span className={styles.quienesTag}>Quiénes somos</span>
+          <span className={styles.quienesTag}>{data.quienesTag ?? 'Quiénes somos'}</span>
           <h2 className={styles.quienesTitle}>
             {tituloLines.map((line, i) => (
               <span key={i}>{line}{i < tituloLines.length - 1 && <br />}</span>
@@ -136,7 +141,7 @@ export default function Nosotros() {
       <section className={styles.nosSection} data-animate id="nosotros-equipo">
         <div className={homeStyles.enfoqueHeader} id="nosotros-equipo-target">
           <h2 className={homeStyles.enfoqueTitle}>Nuestro Equipo</h2>
-          <p className={homeStyles.enfoqueSubtitle}>Las personas detrás de cada estrategia que transforma marcas.</p>
+          <p className={homeStyles.enfoqueSubtitle}>{data.equipoSubtitulo ?? 'Las personas detrás de cada estrategia que transforma marcas.'}</p>
         </div>
         <div className={styles.teamGrid}>
           {team.map((member, i) => (
@@ -168,9 +173,9 @@ export default function Nosotros() {
 
       <section className={styles.porqueSection} data-animate id="nosotros-porque">
         <div className={styles.porqueSheen} />
-        <span className={styles.porqueTag}>¿Por qué elegirnos?</span>
-        <h2 className={styles.porqueTitulo}>Diferente desde<br />el primer día.</h2>
-        <p className={styles.porqueSubtitle}>No somos una agencia más. Estas son las razones.</p>
+        <span className={styles.porqueTag}>{data.porqueTag ?? '¿Por qué elegirnos?'}</span>
+        <h2 className={styles.porqueTitulo}>{data.porqueTitulo ?? 'Diferente desde el primer día.'}</h2>
+        <p className={styles.porqueSubtitle}>{data.porqueSubtitulo ?? 'No somos una agencia más. Estas son las razones.'}</p>
         <div className={styles.porqueGrid}>
           {(data.porqueItems ?? []).map((texto, i) => (
             <div key={i} className={styles.porqueItem}>

@@ -1,4 +1,16 @@
 {
+  "introTitulo": "Lo que hacemos",
+  "introSubtitulo": "Estrategias digitales que mueven tu negocio.",
+  "introDesc": "Combinamos creatividad, tecnología y datos para diseñar soluciones que generan resultados reales y medibles para tu marca.",
+  "introPorqueTitulo": "Por qué Bravas",
+  "introPorqueSubtitulo": "Marketing claro, efectivo y orientado a resultados.",
+  "introPorqueDesc": "No trabajamos con plantillas genéricas. Cada estrategia se diseña desde cero pensando en tu negocio, tu audiencia y tus objetivos.",
+  "nuestrosServiciosTitulo": "Nuestros Servicios",
+  "nuestrosServiciosSubtitulo": "Soluciones digitales completas diseñadas para hacer crecer tu negocio.",
+  "integralTitulo": "Soluciones Integrales de Marketing",
+  "integralSubtitulo": "Todo lo que tu marca necesita en un solo lugar para crecer de forma sostenible.",
+  "herramientasTitulo": "Herramientas que potencian tu marca",
+  "herramientasSubtitulo": "Trabajamos con las plataformas líderes del mercado para garantizar resultados reales.",
   "servicios": [
     {
       "titulo": "Estrategia & Branding",

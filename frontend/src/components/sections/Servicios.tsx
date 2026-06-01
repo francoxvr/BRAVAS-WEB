@@ -62,6 +62,23 @@ const herramientas = [
 
 interface ServicioItem { titulo: string; descripcion: string; items: string[]; }
 interface FaqItem { pregunta: string; respuesta: string; }
+interface ServiciosData {
+  servicios?: ServicioItem[];
+  faqItems?: FaqItem[];
+  integralImagenPrincipal?: string;
+  introTitulo?: string;
+  introSubtitulo?: string;
+  introDesc?: string;
+  introPorqueTitulo?: string;
+  introPorqueSubtitulo?: string;
+  introPorqueDesc?: string;
+  nuestrosServiciosTitulo?: string;
+  nuestrosServiciosSubtitulo?: string;
+  integralTitulo?: string;
+  integralSubtitulo?: string;
+  herramientasTitulo?: string;
+  herramientasSubtitulo?: string;
+}
 
 function FaqSection({ faqs }: { faqs: FaqItem[] }) {
   const [abierto, setAbierto] = useState<number | null>(null);
@@ -90,12 +107,15 @@ export default function Servicios() {
   const [servicios, setServicios] = useState<ServicioItem[]>(DEFAULT_SERVICIOS);
   const [integralImg, setIntegralImg] = useState<string>("/assets/images/marketing/marketing10.jpg");
   const [faqs, setFaqs] = useState<FaqItem[]>(DEFAULT_FAQS);
+  const [textos, setTextos] = useState<ServiciosData>({});
 
   useEffect(() => {
-    getServiciosData().then((d: { servicios?: ServicioItem[]; faqItems?: FaqItem[]; integralImagenPrincipal?: string } | null) => {
-      if (d?.servicios?.length) setServicios(d.servicios);
-      if (d?.faqItems?.length) setFaqs(d.faqItems);
-      if (d?.integralImagenPrincipal) setIntegralImg(d.integralImagenPrincipal);
+    getServiciosData().then((d: ServiciosData | null) => {
+      if (!d) return;
+      if (d.servicios?.length) setServicios(d.servicios);
+      if (d.faqItems?.length) setFaqs(d.faqItems);
+      if (d.integralImagenPrincipal) setIntegralImg(d.integralImagenPrincipal);
+      setTextos(d);
     });
   }, []);
 
@@ -107,21 +127,21 @@ export default function Servicios() {
 
       <section id="servicios-intro" className={styles.introSection} data-animate>
         <div className={styles.introLeft}>
-          <span className={styles.introTag}>Lo que hacemos</span>
-          <h2 className={styles.introTitle}>Estrategias digitales que mueven tu negocio.</h2>
-          <p className={styles.introDesc}>Combinamos creatividad, tecnología y datos para diseñar soluciones que generan resultados reales y medibles para tu marca.</p>
+          <span className={styles.introTag}>{textos.introTitulo ?? 'Lo que hacemos'}</span>
+          <h2 className={styles.introTitle}>{textos.introSubtitulo ?? 'Estrategias digitales que mueven tu negocio.'}</h2>
+          <p className={styles.introDesc}>{textos.introDesc ?? 'Combinamos creatividad, tecnología y datos para diseñar soluciones que generan resultados reales y medibles para tu marca.'}</p>
         </div>
         <div className={styles.introRight}>
-          <span className={styles.introTagDark}>Por qué Bravas</span>
-          <h2 className={styles.introTitleDark}>Marketing claro, efectivo y orientado a resultados.</h2>
-          <p className={styles.introDescDark}>No trabajamos con plantillas genéricas. Cada estrategia se diseña desde cero pensando en tu negocio, tu audiencia y tus objetivos.</p>
+          <span className={styles.introTagDark}>{textos.introPorqueTitulo ?? 'Por qué Bravas'}</span>
+          <h2 className={styles.introTitleDark}>{textos.introPorqueSubtitulo ?? 'Marketing claro, efectivo y orientado a resultados.'}</h2>
+          <p className={styles.introDescDark}>{textos.introPorqueDesc ?? 'No trabajamos con plantillas genéricas. Cada estrategia se diseña desde cero pensando en tu negocio, tu audiencia y tus objetivos.'}</p>
         </div>
       </section>
 
       <section id="servicios-nuestros" className={styles.nuestrosSection} data-animate>
         <div className={styles.nuestrosHeader} id="servicios-nuestros-target">
-          <h2>Nuestros Servicios</h2>
-          <p>Soluciones digitales completas diseñadas para hacer crecer tu negocio y alcanzar tus objetivos.</p>
+          <h2>{textos.nuestrosServiciosTitulo ?? 'Nuestros Servicios'}</h2>
+          <p>{textos.nuestrosServiciosSubtitulo ?? 'Soluciones digitales completas diseñadas para hacer crecer tu negocio.'}</p>
         </div>
         <div className={styles.nuestrosGrid}>
           {servicios.map((s, i) => {
@@ -139,8 +159,8 @@ export default function Servicios() {
 
       <section id="servicios-integrales" className={styles.integralSection} data-animate>
         <div className={styles.integralHeader} id="servicios-integrales-target">
-          <h2>Soluciones Integrales de Marketing</h2>
-          <p>Todo lo que tu marca necesita en un solo lugar para crecer de forma sostenible.</p>
+          <h2>{textos.integralTitulo ?? 'Soluciones Integrales de Marketing'}</h2>
+          <p>{textos.integralSubtitulo ?? 'Todo lo que tu marca necesita en un solo lugar para crecer de forma sostenible.'}</p>
         </div>
         <div className={styles.integralGrid}>
           <div className={styles.integralCardBig}>
@@ -166,8 +186,8 @@ export default function Servicios() {
 
       <section id="servicios-herramientas" className={styles.herramientasSection} data-animate>
         <div className={styles.herramientasHeader} id="servicios-herramientas-target">
-          <h2>Herramientas que potencian tu marca</h2>
-          <p>Trabajamos con las plataformas líderes del mercado para garantizar resultados reales</p>
+          <h2>{textos.herramientasTitulo ?? 'Herramientas que potencian tu marca'}</h2>
+          <p>{textos.herramientasSubtitulo ?? 'Trabajamos con las plataformas líderes del mercado para garantizar resultados reales.'}</p>
         </div>
         <div className={styles.herramientasGrid}>
           {herramientas.map((cat) => (
