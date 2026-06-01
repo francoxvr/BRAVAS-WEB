@@ -52,6 +52,20 @@
 
 .iconSparkle svg { animation: sparkle 1.8s ease-in-out infinite; transform-origin: center; }
 
+@keyframes spinGlobe {
+  0%, 100% { transform: rotate(-15deg) scale(1); }
+  50% { transform: rotate(15deg) scale(1.1); }
+}
+
+.iconGlobe svg { animation: spinGlobe 2.5s ease-in-out infinite; transform-origin: center; }
+
+@keyframes barGrow {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.15); }
+}
+
+.iconBar svg { animation: barGrow 1.5s ease-in-out infinite; transform-origin: bottom center; }
+
 @keyframes swingPalette {
   0%, 100% { transform: rotate(-10deg); }
   50% { transform: rotate(10deg); }
