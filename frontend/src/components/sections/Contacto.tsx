@@ -7,12 +7,14 @@ import { getContactoData } from '@/lib/queries';
 
 const serviciosOpciones = [
   { value: '', label: 'Seleccioná una opción' },
-  { value: 'estrategia', label: 'Estrategia digital integral' },
-  { value: 'ads', label: 'Publicidad & performance (Google, Meta…)' },
-  { value: 'branding', label: 'Branding e identidad' },
-  { value: 'contenido', label: 'Contenido y redes sociales' },
-  { value: 'analitica', label: 'Analítica, métricas y growth' },
-  { value: 'otro', label: 'Otro / aún no lo definí' },
+  { value: 'branding', label: 'Estrategia & Branding' },
+  { value: 'digital', label: 'Publicidad Digital (Meta, Google, TikTok, Mercado Ads)' },
+  { value: '360', label: 'Publicidad 360° (TV, Radio, Vía Pública, DOOH)' },
+  { value: 'web', label: 'Desarrollo Web & Landing Pages' },
+  { value: 'email', label: 'Email Marketing & Automatización' },
+  { value: 'analitica', label: 'Analítica, Reportes & Optimización' },
+  { value: 'integral', label: 'Quiero una estrategia integral' },
+  { value: 'otro', label: 'Otro / Aún no lo definí' },
 ];
 
 interface ContactoData {
