@@ -9,76 +9,76 @@
   "nuestrosServiciosSubtitulo": "Soluciones digitales completas diseñadas para hacer crecer tu negocio.",
   "integralTitulo": "Soluciones Integrales de Marketing",
   "integralSubtitulo": "Todo lo que tu marca necesita en un solo lugar para crecer de forma sostenible.",
+  "integralImagenPrincipal": "",
+  "integralCards": [
+    { "titulo": "Gestión de Contenidos & Redes", "descripcion": "Creación de contenido estratégico y ejecución en plataformas sociales para engagement real y comunidades activas." },
+    { "titulo": "Analítica y Growth", "descripcion": "Monitoreo de KPIs clave para optimizar decisiones y escalar resultados de forma continua." },
+    { "titulo": "Estrategia de Crecimiento", "descripcion": "Seguimiento continuo y estrategias para escalar tu negocio de forma sostenible y medible." },
+    { "titulo": "Branding & Identidad", "descripcion": "Desarrollo de identidad visual y de marca sólida que conecta emocionalmente con tu audiencia." },
+    { "titulo": "Análisis & Métricas", "descripcion": "Evaluación de datos y reportes de rendimiento para tomar decisiones inteligentes." },
+    { "titulo": "SEO & Posicionamiento", "descripcion": "Mejora de visibilidad orgánica en motores de búsqueda para atraer más clientes." }
+  ],
   "herramientasTitulo": "Herramientas que potencian tu marca",
   "herramientasSubtitulo": "Trabajamos con las plataformas líderes del mercado para garantizar resultados reales.",
+  "herramientasCategorias": [
+    { "categoria": "Publicidad", "color": "#4ade80", "herramientas": [
+      { "nombre": "Google Ads", "descripcion": "Campañas de búsqueda y display", "emoji": "🔍", "bg": "#e8f0fe" },
+      { "nombre": "Meta Ads", "descripcion": "Facebook e Instagram Ads", "emoji": "📘", "bg": "#e7f3ff" },
+      { "nombre": "LinkedIn Ads", "descripcion": "Publicidad B2B profesional", "emoji": "💼", "bg": "#f0f9ff" }
+    ]},
+    { "categoria": "Analítica", "color": "#60a5fa", "herramientas": [
+      { "nombre": "Google Analytics 4", "descripcion": "Métricas y comportamiento web", "emoji": "📊", "bg": "#fff3e0" },
+      { "nombre": "Semrush", "descripcion": "SEO, keywords y competencia", "emoji": "🔎", "bg": "#fce4ec" },
+      { "nombre": "Search Console", "descripcion": "Posicionamiento orgánico", "emoji": "📈", "bg": "#e8f5e9" }
+    ]},
+    { "categoria": "Diseño & Contenido", "color": "#f472b6", "herramientas": [
+      { "nombre": "Canva", "descripcion": "Diseño visual y branding", "emoji": "🎨", "bg": "#fff0f6" },
+      { "nombre": "Adobe Creative", "descripcion": "Photoshop, Illustrator, Premiere", "emoji": "✏️", "bg": "#fdf4ff" },
+      { "nombre": "Later / Buffer", "descripcion": "Programación de contenido", "emoji": "📅", "bg": "#f0fdf4" }
+    ]},
+    { "categoria": "Gestión & Redes", "color": "#a78bfa", "herramientas": [
+      { "nombre": "Meta Business Suite", "descripcion": "Gestión de Facebook e Instagram", "emoji": "📱", "bg": "#f0f0ff" },
+      { "nombre": "Later", "descripcion": "Programación de contenido", "emoji": "⏰", "bg": "#f5f0ff" },
+      { "nombre": "Hootsuite", "descripcion": "Gestión multi-plataforma", "emoji": "🛠️", "bg": "#fff0f0" }
+    ]},
+    { "categoria": "Automatización", "color": "#34d399", "herramientas": [
+      { "nombre": "Zapier", "descripcion": "Automatización entre apps", "emoji": "⚡", "bg": "#fff7f0" },
+      { "nombre": "Make (Integromat)", "descripcion": "Flujos de trabajo automáticos", "emoji": "🔄", "bg": "#f0fff8" },
+      { "nombre": "n8n", "descripcion": "Automatización open source", "emoji": "🧩", "bg": "#f5fff0" }
+    ]},
+    { "categoria": "Email & CRM", "color": "#fb923c", "herramientas": [
+      { "nombre": "Mailchimp", "descripcion": "Email marketing y automatización", "emoji": "📧", "bg": "#fff8e1" },
+      { "nombre": "HubSpot", "descripcion": "CRM y automatización de marketing", "emoji": "🏆", "bg": "#fff5f0" },
+      { "nombre": "ActiveCampaign", "descripcion": "Automatización avanzada de emails", "emoji": "🚀", "bg": "#f0fff4" }
+    ]}
+  ],
   "servicios": [
     {
       "titulo": "Estrategia & Branding",
       "descripcion": "Construimos marcas con identidad, posicionamiento y objetivos claros.",
-      "items": [
-        "Estrategia de marca",
-        "Branding & Diseño",
-        "Identidad Visual",
-        "Posicionamiento",
-        "Consultoría Estratégica"
-      ]
+      "items": ["Estrategia de marca", "Branding & Diseño", "Identidad Visual", "Posicionamiento", "Consultoría Estratégica"]
     },
     {
       "titulo": "Publicidad & Medios",
       "descripcion": "Campañas integradas para conectar marcas con audiencias.",
-      "items": [
-        "Google Ads",
-        "Meta Ads",
-        "TikTok Ads",
-        "Mercado Ads",
-        "DV360(YouTube, Display, CTV, Audio)",
-        "TV, Radio & Vía Pública"
-      ]
+      "items": ["Google Ads", "Meta Ads", "TikTok Ads", "Mercado Ads", "DV360(YouTube, Display, CTV, Audio)", "TV, Radio & Vía Pública"]
     },
     {
       "titulo": "Ecosistema Digital",
       "descripcion": "Desarrollamos herramientas y experiencias digitales para potenciar tu negocio.",
-      "items": [
-        "Desarrollo Web ",
-        "Landing Pages",
-        "Email Marketing",
-        "Automatizaciones",
-        "CRM & Bases de Datos"
-      ]
+      "items": ["Desarrollo Web", "Landing Pages", "Email Marketing", "Automatizaciones", "CRM & Bases de Datos"]
     },
     {
       "titulo": "Performance & Analítica",
       "descripcion": "Medimos, optimizamos y escalamos resultados.",
-      "items": [
-        "Reporting Personalizado",
-        "Analítica Web",
-        "Optimización de Campañas",
-        "Remarketing",
-        "Performance Marketing"
-      ]
+      "items": ["Reporting Personalizado", "Analítica Web", "Optimización de Campañas", "Remarketing", "Performance Marketing"]
     }
   ],
-  "integralImagenPrincipal": "",
   "faqItems": [
-    {
-      "pregunta": "¿Que servicios ofrece BRAVAS?",
-      "respuesta": "Bravas es una agencia de publicidad y marketing 360°. Trabajamos estrategias de marca, branding, publicidad digital, medios tradicionales, desarrollo web, email marketing, automatización, analítica y optimización de campañas."
-    },
-    {
-      "pregunta": "¿Trabajan con empresas de cualquier tamaño?",
-      "respuesta": "Sí, trabajamos con emprendedores, PyMEs y grandes empresas, adaptando la estrategia a los objetivos y presupuesto de cada proyecto."
-    },
-    {
-      "pregunta": "¿Cuánto tiempo lleva ver resultados?",
-      "respuesta": "Depende de los objetivos y del tipo de estrategia implementada. Algunas campañas pueden generar resultados en pocas semanas, mientras que acciones de branding y posicionamiento requieren una visión de mediano y largo plazo."
-    },
-    {
-      "pregunta": "¿Tambien realizan publicidad tradicional?",
-      "respuesta": "Sí. Planificamos y ejecutamos campañas en TV, Radio, Vía pública, DOOH y otros medios tradicionales, integrándolos con acciones digitales para maximizar resultados."
-    },
-    {
-      "pregunta": "¿Puedo contratar un solo servicio o debo tomar un paquete completo?",
-      "respuesta": "Por supuesto. Podemos trabajar en proyectos puntuales como campañas publicitarias, branding, desarrollo web o email marketing, o acompañarte con una estrategia integral."
-    }
+    { "pregunta": "¿Que servicios ofrece BRAVAS?", "respuesta": "Bravas es una agencia de publicidad y marketing 360°. Trabajamos estrategias de marca, branding, publicidad digital, medios tradicionales, desarrollo web, email marketing, automatización, analítica y optimización de campañas." },
+    { "pregunta": "¿Trabajan con empresas de cualquier tamaño?", "respuesta": "Sí, trabajamos con emprendedores, PyMEs y grandes empresas, adaptando la estrategia a los objetivos y presupuesto de cada proyecto." },
+    { "pregunta": "¿Cuánto tiempo lleva ver resultados?", "respuesta": "Depende de los objetivos y del tipo de estrategia implementada. Algunas campañas pueden generar resultados en pocas semanas, mientras que acciones de branding y posicionamiento requieren una visión de mediano y largo plazo." },
+    { "pregunta": "¿Tambien realizan publicidad tradicional?", "respuesta": "Sí. Planificamos y ejecutamos campañas en TV, Radio, Vía pública, DOOH y otros medios tradicionales, integrándolos con acciones digitales para maximizar resultados." },
+    { "pregunta": "¿Puedo contratar un solo servicio o debo tomar un paquete completo?", "respuesta": "Por supuesto. Podemos trabajar en proyectos puntuales como campañas publicitarias, branding, desarrollo web o email marketing, o acompañarte con una estrategia integral." }
   ]
 }

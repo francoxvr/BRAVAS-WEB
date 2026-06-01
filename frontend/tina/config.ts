@@ -215,9 +215,35 @@ export default defineConfig({
           },
           { type: 'string', name: 'integralTitulo', label: '2️⃣ Título Soluciones Integrales' },
           { type: 'string', name: 'integralSubtitulo', label: '2️⃣ Subtítulo Soluciones Integrales', ui: { component: 'textarea' } },
-          { type: 'image', name: 'integralImagenPrincipal', label: '2️⃣ Imagen Soluciones Integrales' },
+          { type: 'image', name: 'integralImagenPrincipal', label: '2️⃣ Imagen card principal' },
+          {
+            type: 'object', name: 'integralCards', label: '2️⃣ Cards Soluciones Integrales', list: true,
+            ui: { itemProps: (item) => ({ label: item?.titulo }) },
+            fields: [
+              { type: 'string', name: 'titulo', label: 'Título' },
+              { type: 'string', name: 'descripcion', label: 'Descripción', ui: { component: 'textarea' } },
+            ],
+          },
           { type: 'string', name: 'herramientasTitulo', label: '3️⃣ Título Herramientas' },
           { type: 'string', name: 'herramientasSubtitulo', label: '3️⃣ Subtítulo Herramientas', ui: { component: 'textarea' } },
+          {
+            type: 'object', name: 'herramientasCategorias', label: '3️⃣ Categorías de Herramientas', list: true,
+            ui: { itemProps: (item) => ({ label: item?.categoria }) },
+            fields: [
+              { type: 'string', name: 'categoria', label: 'Nombre de la categoría' },
+              { type: 'string', name: 'color', label: 'Color del punto (ej: #4ade80)' },
+              {
+                type: 'object', name: 'herramientas', label: 'Herramientas', list: true,
+                ui: { itemProps: (item) => ({ label: item?.nombre }) },
+                fields: [
+                  { type: 'string', name: 'nombre', label: 'Nombre' },
+                  { type: 'string', name: 'descripcion', label: 'Descripción' },
+                  { type: 'string', name: 'emoji', label: 'Emoji del ícono (ej: 🎯)' },
+                  { type: 'string', name: 'bg', label: 'Color de fondo (ej: #e8f0fe)' },
+                ],
+              },
+            ],
+          },
           {
             type: 'object', name: 'faqItems', label: '3️⃣ Preguntas Frecuentes', list: true,
             ui: { itemProps: (item) => ({ label: item?.pregunta }) },

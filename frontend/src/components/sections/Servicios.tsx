@@ -27,45 +27,18 @@ const DEFAULT_FAQS = [
   { pregunta: '¿Puedo ver reportes del trabajo que hacen?', respuesta: 'Sí, todos los clientes reciben reportes mensuales detallados con métricas clave, análisis de resultados y recomendaciones. También tenés acceso a dashboards en tiempo real según el servicio contratado.' },
 ];
 
-const herramientas = [
-  { categoria: 'Publicidad', color: '#4ade80', tools: [
-    { nombre: 'Google Ads', desc: 'Campañas de búsqueda y display', bg: '#e8f0fe', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#1a73e8" strokeWidth="2" strokeLinecap="round" /></svg> },
-    { nombre: 'Meta Ads', desc: 'Facebook e Instagram Ads', bg: '#e7f3ff', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="#1877f2" /><path d="M16 8h-2a1 1 0 00-1 1v2h3l-.5 3H13v7h-3v-7H8v-3h2V9a4 4 0 014-4h2v3z" fill="white" /></svg> },
-    { nombre: 'LinkedIn Ads', desc: 'Publicidad B2B profesional', bg: '#f0f9ff', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#0077b5" /><path d="M6 8a2 2 0 100-4 2 2 0 000 4zm-2 2h4v10H4V10zm7 0h3.6v1.4c.5-.9 1.7-1.8 3.4-1.8C18.5 9.6 20 11 20 14v6h-4v-5.3c0-1.3-.5-2.2-1.6-2.2-.9 0-1.4.6-1.6 1.2-.1.2-.1.5-.1.8V20h-4V10z" fill="white" /></svg> },
-  ]},
-  { categoria: 'Analítica', color: '#60a5fa', tools: [
-    { nombre: 'Google Analytics 4', desc: 'Métricas y comportamiento web', bg: '#fff3e0', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="2" fill="#f57c00" /><path d="M7 15l3-3 3 3 4-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg> },
-    { nombre: 'Semrush', desc: 'SEO, keywords y competencia', bg: '#fce4ec', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#e91e63" /><path d="M12 4l2 5h5l-4 3 1.5 5L12 14l-4.5 3 1.5-5L5 9h5z" fill="white" /></svg> },
-    { nombre: 'Search Console', desc: 'Posicionamiento orgánico', bg: '#e8f5e9', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#4caf50" /><path d="M5 19h14M5 12h4v7H5zm5-5h4v12h-4zm5-3h4v15h-4z" stroke="white" strokeWidth="1.5" strokeLinecap="round" /></svg> },
-  ]},
-  { categoria: 'Diseño & Contenido', color: '#f472b6', tools: [
-    { nombre: 'Canva', desc: 'Diseño visual y branding', bg: '#fff0f6', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#7c3aed" /><circle cx="12" cy="12" r="5" stroke="white" strokeWidth="2" /><circle cx="12" cy="12" r="2" fill="white" /></svg> },
-    { nombre: 'Adobe Creative', desc: 'Photoshop, Illustrator, Premiere', bg: '#fdf4ff', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#ff7262" /><path d="M8 8h8M8 12h8M8 16h5" stroke="white" strokeWidth="2" strokeLinecap="round" /></svg> },
-    { nombre: 'Later / Buffer', desc: 'Programación de contenido', bg: '#f0fdf4', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#00c875" /><path d="M7 12l3 3 7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg> },
-  ]},
-  { categoria: 'Gestión & Redes', color: '#a78bfa', tools: [
-    { nombre: 'Meta Business Suite', desc: 'Gestión de Facebook e Instagram', bg: '#f0f0ff', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#1877f2" /><path d="M16 8h-2a1 1 0 00-1 1v2h3l-.5 3H13v7h-3v-7H8v-3h2V9a4 4 0 014-4h2v3z" fill="white" /></svg> },
-    { nombre: 'Later', desc: 'Programación de contenido', bg: '#f5f0ff', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#7c3aed" /><circle cx="12" cy="12" r="4" stroke="white" strokeWidth="2" /><path d="M12 8v4l2 2" stroke="white" strokeWidth="1.5" strokeLinecap="round" /></svg> },
-    { nombre: 'Hootsuite', desc: 'Gestión multi-plataforma', bg: '#fff0f0', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#ef4444" /><path d="M7 12h10M7 8h10M7 16h6" stroke="white" strokeWidth="2" strokeLinecap="round" /></svg> },
-  ]},
-  { categoria: 'Automatización', color: '#34d399', tools: [
-    { nombre: 'Zapier', desc: 'Automatización entre apps', bg: '#fff7f0', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#ff4a00" /><path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z" fill="white" /></svg> },
-    { nombre: 'Make (Integromat)', desc: 'Flujos de trabajo automáticos', bg: '#f0fff8', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#00c9a7" /><circle cx="8" cy="12" r="2" fill="white" /><circle cx="16" cy="12" r="2" fill="white" /><path d="M10 12h4" stroke="white" strokeWidth="2" /></svg> },
-    { nombre: 'n8n', desc: 'Automatización open source', bg: '#f5fff0', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#22c55e" /><path d="M8 12h8M12 8v8" stroke="white" strokeWidth="2" strokeLinecap="round" /></svg> },
-  ]},
-  { categoria: 'Email & CRM', color: '#fb923c', tools: [
-    { nombre: 'Mailchimp', desc: 'Email marketing y automatización', bg: '#fff8e1', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#ffe01b" /><path d="M4 8l8 5 8-5M4 8v10h16V8M4 8h16" stroke="#1f1f1f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg> },
-    { nombre: 'HubSpot', desc: 'CRM y automatización de marketing', bg: '#fff5f0', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#ff7a59" /><circle cx="12" cy="12" r="4" fill="white" /><circle cx="12" cy="12" r="2" fill="#ff7a59" /></svg> },
-    { nombre: 'ActiveCampaign', desc: 'Automatización avanzada de emails', bg: '#f0fff4', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#356ae6" /><path d="M5 12h14M12 5l7 7-7 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg> },
-  ]},
-];
 
 interface ServicioItem { titulo: string; descripcion: string; items: string[]; }
 interface FaqItem { pregunta: string; respuesta: string; }
+interface IntegralCard { titulo: string; descripcion: string; }
+interface Herramienta { nombre: string; descripcion: string; emoji: string; bg: string; }
+interface HerramientaCategoria { categoria: string; color: string; herramientas: Herramienta[]; }
 interface ServiciosData {
   servicios?: ServicioItem[];
   faqItems?: FaqItem[];
   integralImagenPrincipal?: string;
+  integralCards?: IntegralCard[];
+  herramientasCategorias?: HerramientaCategoria[];
   introTitulo?: string;
   introSubtitulo?: string;
   introDesc?: string;
@@ -79,6 +52,48 @@ interface ServiciosData {
   herramientasTitulo?: string;
   herramientasSubtitulo?: string;
 }
+
+const DEFAULT_INTEGRAL_CARDS: IntegralCard[] = [
+  { titulo: 'Gestión de Contenidos & Redes', descripcion: 'Creación de contenido estratégico y ejecución en plataformas sociales para engagement real y comunidades activas.' },
+  { titulo: 'Analítica y Growth', descripcion: 'Monitoreo de KPIs clave para optimizar decisiones y escalar resultados de forma continua.' },
+  { titulo: 'Estrategia de Crecimiento', descripcion: 'Seguimiento continuo y estrategias para escalar tu negocio de forma sostenible y medible.' },
+  { titulo: 'Branding & Identidad', descripcion: 'Desarrollo de identidad visual y de marca sólida que conecta emocionalmente con tu audiencia.' },
+  { titulo: 'Análisis & Métricas', descripcion: 'Evaluación de datos y reportes de rendimiento para tomar decisiones inteligentes.' },
+  { titulo: 'SEO & Posicionamiento', descripcion: 'Mejora de visibilidad orgánica en motores de búsqueda para atraer más clientes.' },
+];
+
+const DEFAULT_HERRAMIENTAS: HerramientaCategoria[] = [
+  { categoria: 'Publicidad', color: '#4ade80', herramientas: [
+    { nombre: 'Google Ads', descripcion: 'Campañas de búsqueda y display', emoji: '🔍', bg: '#e8f0fe' },
+    { nombre: 'Meta Ads', descripcion: 'Facebook e Instagram Ads', emoji: '📘', bg: '#e7f3ff' },
+    { nombre: 'LinkedIn Ads', descripcion: 'Publicidad B2B profesional', emoji: '💼', bg: '#f0f9ff' },
+  ]},
+  { categoria: 'Analítica', color: '#60a5fa', herramientas: [
+    { nombre: 'Google Analytics 4', descripcion: 'Métricas y comportamiento web', emoji: '📊', bg: '#fff3e0' },
+    { nombre: 'Semrush', descripcion: 'SEO, keywords y competencia', emoji: '🔎', bg: '#fce4ec' },
+    { nombre: 'Search Console', descripcion: 'Posicionamiento orgánico', emoji: '📈', bg: '#e8f5e9' },
+  ]},
+  { categoria: 'Diseño & Contenido', color: '#f472b6', herramientas: [
+    { nombre: 'Canva', descripcion: 'Diseño visual y branding', emoji: '🎨', bg: '#fff0f6' },
+    { nombre: 'Adobe Creative', descripcion: 'Photoshop, Illustrator, Premiere', emoji: '✏️', bg: '#fdf4ff' },
+    { nombre: 'Later / Buffer', descripcion: 'Programación de contenido', emoji: '📅', bg: '#f0fdf4' },
+  ]},
+  { categoria: 'Gestión & Redes', color: '#a78bfa', herramientas: [
+    { nombre: 'Meta Business Suite', descripcion: 'Gestión de Facebook e Instagram', emoji: '📱', bg: '#f0f0ff' },
+    { nombre: 'Later', descripcion: 'Programación de contenido', emoji: '⏰', bg: '#f5f0ff' },
+    { nombre: 'Hootsuite', descripcion: 'Gestión multi-plataforma', emoji: '🛠️', bg: '#fff0f0' },
+  ]},
+  { categoria: 'Automatización', color: '#34d399', herramientas: [
+    { nombre: 'Zapier', descripcion: 'Automatización entre apps', emoji: '⚡', bg: '#fff7f0' },
+    { nombre: 'Make (Integromat)', descripcion: 'Flujos de trabajo automáticos', emoji: '🔄', bg: '#f0fff8' },
+    { nombre: 'n8n', descripcion: 'Automatización open source', emoji: '🧩', bg: '#f5fff0' },
+  ]},
+  { categoria: 'Email & CRM', color: '#fb923c', herramientas: [
+    { nombre: 'Mailchimp', descripcion: 'Email marketing y automatización', emoji: '📧', bg: '#fff8e1' },
+    { nombre: 'HubSpot', descripcion: 'CRM y automatización de marketing', emoji: '🏆', bg: '#fff5f0' },
+    { nombre: 'ActiveCampaign', descripcion: 'Automatización avanzada de emails', emoji: '🚀', bg: '#f0fff4' },
+  ]},
+];
 
 function FaqSection({ faqs }: { faqs: FaqItem[] }) {
   const [abierto, setAbierto] = useState<number | null>(null);
@@ -106,6 +121,8 @@ function FaqSection({ faqs }: { faqs: FaqItem[] }) {
 export default function Servicios() {
   const [servicios, setServicios] = useState<ServicioItem[]>(DEFAULT_SERVICIOS);
   const [integralImg, setIntegralImg] = useState<string>("/assets/images/marketing/marketing10.jpg");
+  const [integralCards, setIntegralCards] = useState<IntegralCard[]>(DEFAULT_INTEGRAL_CARDS);
+  const [herramientas, setHerramientas] = useState<HerramientaCategoria[]>(DEFAULT_HERRAMIENTAS);
   const [faqs, setFaqs] = useState<FaqItem[]>(DEFAULT_FAQS);
   const [textos, setTextos] = useState<ServiciosData>({});
 
@@ -115,6 +132,8 @@ export default function Servicios() {
       if (d.servicios?.length) setServicios(d.servicios);
       if (d.faqItems?.length) setFaqs(d.faqItems);
       if (d.integralImagenPrincipal) setIntegralImg(d.integralImagenPrincipal);
+      if (d.integralCards?.length) setIntegralCards(d.integralCards);
+      if (d.herramientasCategorias?.length) setHerramientas(d.herramientasCategorias);
       setTextos(d);
     });
   }, []);
@@ -165,21 +184,22 @@ export default function Servicios() {
         <div className={styles.integralGrid}>
           <div className={styles.integralCardBig}>
             <div className={styles.integralCardBigImg}>
-              <Image src={integralImg} alt="Gestión de Contenidos" width={500} height={180} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <Image src={integralImg || "/assets/images/marketing/marketing10.jpg"} alt={integralCards[0]?.titulo ?? ''} width={500} height={180} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div className={styles.integralCardBigBody}>
-              <h3>Gestión de Contenidos & Redes</h3>
-              <p>Creación de contenido estratégico y ejecución en plataformas sociales para engagement real y comunidades activas.</p>
+              <h3>{integralCards[0]?.titulo}</h3>
+              <p>{integralCards[0]?.descripcion}</p>
             </div>
           </div>
           <div className={styles.integralCardRight}>
-            <div className={styles.integralCardSm}><h3>Analítica y Growth</h3><p>Monitoreo de KPIs clave para optimizar decisiones y escalar resultados de forma continua.</p></div>
-            <div className={styles.integralCardSm}><h3>Estrategia de Crecimiento</h3><p>Seguimiento continuo y estrategias para escalar tu negocio de forma sostenible y medible.</p></div>
+            {integralCards.slice(1, 3).map((c, i) => (
+              <div key={i} className={styles.integralCardSm}><h3>{c.titulo}</h3><p>{c.descripcion}</p></div>
+            ))}
           </div>
           <div className={styles.integralRowBottom}>
-            <div className={styles.integralCardBot}><h3>Branding & Identidad</h3><p>Desarrollo de identidad visual y de marca sólida que conecta emocionalmente con tu audiencia.</p></div>
-            <div className={styles.integralCardBot}><h3>Análisis & Métricas</h3><p>Evaluación de datos y reportes de rendimiento para tomar decisiones inteligentes.</p></div>
-            <div className={styles.integralCardBot}><h3>SEO & Posicionamiento</h3><p>Mejora de visibilidad orgánica en motores de búsqueda para atraer más clientes.</p></div>
+            {integralCards.slice(3, 6).map((c, i) => (
+              <div key={i} className={styles.integralCardBot}><h3>{c.titulo}</h3><p>{c.descripcion}</p></div>
+            ))}
           </div>
         </div>
       </section>
@@ -197,12 +217,12 @@ export default function Servicios() {
                 <span className={styles.herCatName}>{cat.categoria}</span>
               </div>
               <div className={styles.herTools}>
-                {cat.tools.map((tool) => (
+                {cat.herramientas.map((tool) => (
                   <div key={tool.nombre} className={styles.herTool}>
-                    <div className={styles.herToolIcon} style={{ background: tool.bg }}>{tool.icon}</div>
+                    <div className={styles.herToolIcon} style={{ background: tool.bg, fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{tool.emoji}</div>
                     <div className={styles.herToolInfo}>
                       <p className={styles.herToolName}>{tool.nombre}</p>
-                      <p className={styles.herToolDesc}>{tool.desc}</p>
+                      <p className={styles.herToolDesc}>{tool.descripcion}</p>
                     </div>
                   </div>
                 ))}
