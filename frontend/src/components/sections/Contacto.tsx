@@ -13,6 +13,7 @@ const serviciosOpciones = [
   { value: 'web', label: 'Desarrollo Web & Landing Pages' },
   { value: 'email', label: 'Email Marketing & Automatización' },
   { value: 'analitica', label: 'Analítica, Reportes & Optimización' },
+  { value: 'tradicional', label: 'Marketing Tradicional (TV, Radio, Vía Pública)' },
   { value: 'integral', label: 'Quiero una estrategia integral' },
   { value: 'otro', label: 'Otro / Aún no lo definí' },
 ];
