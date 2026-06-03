@@ -1,5 +1,6 @@
 import { defineConfig } from 'tinacms'
 
+// Schema version: 2
 export default defineConfig({
   clientId: '9d19bec7-8aea-435a-8adb-a081ce91aab9',
   branch: 'main',
