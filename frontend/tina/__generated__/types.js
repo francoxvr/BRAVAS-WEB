@@ -72,9 +72,11 @@ export const FooterPartsFragmentDoc = gql`
 export const HomePartsFragmentDoc = gql`
     fragment HomeParts on Home {
   __typename
+  propuestaTag
   propuestaTitulo
   propuestaSubtitulo
   propuestaItems
+  enfoqueHeader
   enfoqueSubtitulo
   enfoqueCards {
     __typename
@@ -90,12 +92,14 @@ export const HomePartsFragmentDoc = gql`
     descripcion
     imagenes
   }
+  procesoHeader
   procesoSubtitulo
   procesoSteps {
     __typename
     titulo
     descripcion
   }
+  innovacionHeader
   innovacionSubtitulo
   innovacionFeatures {
     __typename
@@ -109,13 +113,42 @@ export const HomePartsFragmentDoc = gql`
 export const ServiciosPartsFragmentDoc = gql`
     fragment ServiciosParts on Servicios {
   __typename
+  introTitulo
+  introSubtitulo
+  introDesc
+  introPorqueTitulo
+  introPorqueSubtitulo
+  introPorqueDesc
+  nuestrosServiciosTitulo
+  nuestrosServiciosSubtitulo
   servicios {
     __typename
     titulo
     descripcion
     items
   }
+  integralTitulo
+  integralSubtitulo
   integralImagenPrincipal
+  integralCards {
+    __typename
+    titulo
+    descripcion
+  }
+  herramientasTitulo
+  herramientasSubtitulo
+  herramientasCategorias {
+    __typename
+    categoria
+    color
+    herramientas {
+      __typename
+      nombre
+      descripcion
+      emoji
+      bg
+    }
+  }
   faqItems {
     __typename
     pregunta
@@ -126,6 +159,7 @@ export const ServiciosPartsFragmentDoc = gql`
 export const NosotrosPartsFragmentDoc = gql`
     fragment NosotrosParts on Nosotros {
   __typename
+  quienesTag
   quienesTitulo
   quienesDesc1
   quienesDesc2
@@ -137,6 +171,10 @@ export const NosotrosPartsFragmentDoc = gql`
   misionDesc
   visionTitulo
   visionDesc
+  equipoSubtitulo
+  porqueTag
+  porqueTitulo
+  porqueSubtitulo
   porqueItems
   teamMembers {
     __typename
@@ -148,9 +186,42 @@ export const NosotrosPartsFragmentDoc = gql`
   }
 }
     `;
+export const LegalPartsFragmentDoc = gql`
+    fragment LegalParts on Legal {
+  __typename
+  privacidad {
+    __typename
+    bloques {
+      __typename
+      titulo
+      contenido
+    }
+  }
+  cookies {
+    __typename
+    bloques {
+      __typename
+      titulo
+      contenido
+    }
+  }
+  terminos {
+    __typename
+    bloques {
+      __typename
+      titulo
+      contenido
+    }
+  }
+}
+    `;
 export const ContactoPartsFragmentDoc = gql`
     fragment ContactoParts on Contacto {
   __typename
+  panelTag
+  panelTitulo
+  panelDescripcion
+  panelItems
   email
   whatsapp
   direccion
@@ -443,6 +514,63 @@ export const NosotrosConnectionDocument = gql`
   }
 }
     ${NosotrosPartsFragmentDoc}`;
+export const LegalDocument = gql`
+    query legal($relativePath: String!) {
+  legal(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...LegalParts
+  }
+}
+    ${LegalPartsFragmentDoc}`;
+export const LegalConnectionDocument = gql`
+    query legalConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: LegalFilter) {
+  legalConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...LegalParts
+      }
+    }
+  }
+}
+    ${LegalPartsFragmentDoc}`;
 export const ContactoDocument = gql`
     query contacto($relativePath: String!) {
   contacto(relativePath: $relativePath) {
@@ -531,6 +659,12 @@ export function getSdk(requester) {
     },
     nosotrosConnection(variables, options) {
       return requester(NosotrosConnectionDocument, variables, options);
+    },
+    legal(variables, options) {
+      return requester(LegalDocument, variables, options);
+    },
+    legalConnection(variables, options) {
+      return requester(LegalConnectionDocument, variables, options);
     },
     contacto(variables, options) {
       return requester(ContactoDocument, variables, options);

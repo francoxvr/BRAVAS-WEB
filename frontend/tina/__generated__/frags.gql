@@ -62,9 +62,11 @@ fragment FooterParts on Footer {
 
 fragment HomeParts on Home {
   __typename
+  propuestaTag
   propuestaTitulo
   propuestaSubtitulo
   propuestaItems
+  enfoqueHeader
   enfoqueSubtitulo
   enfoqueCards {
     __typename
@@ -80,12 +82,14 @@ fragment HomeParts on Home {
     descripcion
     imagenes
   }
+  procesoHeader
   procesoSubtitulo
   procesoSteps {
     __typename
     titulo
     descripcion
   }
+  innovacionHeader
   innovacionSubtitulo
   innovacionFeatures {
     __typename
@@ -98,13 +102,42 @@ fragment HomeParts on Home {
 
 fragment ServiciosParts on Servicios {
   __typename
+  introTitulo
+  introSubtitulo
+  introDesc
+  introPorqueTitulo
+  introPorqueSubtitulo
+  introPorqueDesc
+  nuestrosServiciosTitulo
+  nuestrosServiciosSubtitulo
   servicios {
     __typename
     titulo
     descripcion
     items
   }
+  integralTitulo
+  integralSubtitulo
   integralImagenPrincipal
+  integralCards {
+    __typename
+    titulo
+    descripcion
+  }
+  herramientasTitulo
+  herramientasSubtitulo
+  herramientasCategorias {
+    __typename
+    categoria
+    color
+    herramientas {
+      __typename
+      nombre
+      descripcion
+      emoji
+      bg
+    }
+  }
   faqItems {
     __typename
     pregunta
@@ -114,6 +147,7 @@ fragment ServiciosParts on Servicios {
 
 fragment NosotrosParts on Nosotros {
   __typename
+  quienesTag
   quienesTitulo
   quienesDesc1
   quienesDesc2
@@ -125,6 +159,10 @@ fragment NosotrosParts on Nosotros {
   misionDesc
   visionTitulo
   visionDesc
+  equipoSubtitulo
+  porqueTag
+  porqueTitulo
+  porqueSubtitulo
   porqueItems
   teamMembers {
     __typename
@@ -136,8 +174,40 @@ fragment NosotrosParts on Nosotros {
   }
 }
 
+fragment LegalParts on Legal {
+  __typename
+  privacidad {
+    __typename
+    bloques {
+      __typename
+      titulo
+      contenido
+    }
+  }
+  cookies {
+    __typename
+    bloques {
+      __typename
+      titulo
+      contenido
+    }
+  }
+  terminos {
+    __typename
+    bloques {
+      __typename
+      titulo
+      contenido
+    }
+  }
+}
+
 fragment ContactoParts on Contacto {
   __typename
+  panelTag
+  panelTitulo
+  panelDescripcion
+  panelItems
   email
   whatsapp
   direccion

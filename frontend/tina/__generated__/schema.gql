@@ -64,6 +64,8 @@ type Query {
   serviciosConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ServiciosFilter): ServiciosConnection!
   nosotros(relativePath: String): Nosotros!
   nosotrosConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: NosotrosFilter): NosotrosConnection!
+  legal(relativePath: String): Legal!
+  legalConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: LegalFilter): LegalConnection!
   contacto(relativePath: String): Contacto!
   contactoConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ContactoFilter): ContactoConnection!
 }
@@ -74,6 +76,7 @@ input DocumentFilter {
   home: HomeFilter
   servicios: ServiciosFilter
   nosotros: NosotrosFilter
+  legal: LegalFilter
   contacto: ContactoFilter
 }
 
@@ -100,7 +103,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Config | Footer | Home | Servicios | Nosotros | Contacto | Folder
+union DocumentNode = Config | Footer | Home | Servicios | Nosotros | Legal | Contacto | Folder
 
 type ConfigNav {
   label: String
@@ -306,16 +309,20 @@ type HomeInnovacionFeatures {
 }
 
 type Home implements Node & Document {
+  propuestaTag: String
   propuestaTitulo: String
   propuestaSubtitulo: String
   propuestaItems: [String]
+  enfoqueHeader: String
   enfoqueSubtitulo: String
   enfoqueCards: [HomeEnfoqueCards]
   crecimientoTitulo: String
   crecimientoSubtitulo: String
   crecimientoCards: [HomeCrecimientoCards]
+  procesoHeader: String
   procesoSubtitulo: String
   procesoSteps: [HomeProcesoSteps]
+  innovacionHeader: String
   innovacionSubtitulo: String
   innovacionFeatures: [HomeInnovacionFeatures]
   innovacionImagenes: [String]
@@ -348,16 +355,20 @@ input HomeInnovacionFeaturesFilter {
 }
 
 input HomeFilter {
+  propuestaTag: StringFilter
   propuestaTitulo: StringFilter
   propuestaSubtitulo: StringFilter
   propuestaItems: StringFilter
+  enfoqueHeader: StringFilter
   enfoqueSubtitulo: StringFilter
   enfoqueCards: HomeEnfoqueCardsFilter
   crecimientoTitulo: StringFilter
   crecimientoSubtitulo: StringFilter
   crecimientoCards: HomeCrecimientoCardsFilter
+  procesoHeader: StringFilter
   procesoSubtitulo: StringFilter
   procesoSteps: HomeProcesoStepsFilter
+  innovacionHeader: StringFilter
   innovacionSubtitulo: StringFilter
   innovacionFeatures: HomeInnovacionFeaturesFilter
   innovacionImagenes: ImageFilter
@@ -380,14 +391,46 @@ type ServiciosServicios {
   items: [String]
 }
 
+type ServiciosIntegralCards {
+  titulo: String
+  descripcion: String
+}
+
+type ServiciosHerramientasCategoriasHerramientas {
+  nombre: String
+  descripcion: String
+  emoji: String
+  bg: String
+}
+
+type ServiciosHerramientasCategorias {
+  categoria: String
+  color: String
+  herramientas: [ServiciosHerramientasCategoriasHerramientas]
+}
+
 type ServiciosFaqItems {
   pregunta: String
   respuesta: String
 }
 
 type Servicios implements Node & Document {
+  introTitulo: String
+  introSubtitulo: String
+  introDesc: String
+  introPorqueTitulo: String
+  introPorqueSubtitulo: String
+  introPorqueDesc: String
+  nuestrosServiciosTitulo: String
+  nuestrosServiciosSubtitulo: String
   servicios: [ServiciosServicios]
+  integralTitulo: String
+  integralSubtitulo: String
   integralImagenPrincipal: String
+  integralCards: [ServiciosIntegralCards]
+  herramientasTitulo: String
+  herramientasSubtitulo: String
+  herramientasCategorias: [ServiciosHerramientasCategorias]
   faqItems: [ServiciosFaqItems]
   id: ID!
   _sys: SystemInfo!
@@ -400,14 +443,46 @@ input ServiciosServiciosFilter {
   items: StringFilter
 }
 
+input ServiciosIntegralCardsFilter {
+  titulo: StringFilter
+  descripcion: StringFilter
+}
+
+input ServiciosHerramientasCategoriasHerramientasFilter {
+  nombre: StringFilter
+  descripcion: StringFilter
+  emoji: StringFilter
+  bg: StringFilter
+}
+
+input ServiciosHerramientasCategoriasFilter {
+  categoria: StringFilter
+  color: StringFilter
+  herramientas: ServiciosHerramientasCategoriasHerramientasFilter
+}
+
 input ServiciosFaqItemsFilter {
   pregunta: StringFilter
   respuesta: StringFilter
 }
 
 input ServiciosFilter {
+  introTitulo: StringFilter
+  introSubtitulo: StringFilter
+  introDesc: StringFilter
+  introPorqueTitulo: StringFilter
+  introPorqueSubtitulo: StringFilter
+  introPorqueDesc: StringFilter
+  nuestrosServiciosTitulo: StringFilter
+  nuestrosServiciosSubtitulo: StringFilter
   servicios: ServiciosServiciosFilter
+  integralTitulo: StringFilter
+  integralSubtitulo: StringFilter
   integralImagenPrincipal: ImageFilter
+  integralCards: ServiciosIntegralCardsFilter
+  herramientasTitulo: StringFilter
+  herramientasSubtitulo: StringFilter
+  herramientasCategorias: ServiciosHerramientasCategoriasFilter
   faqItems: ServiciosFaqItemsFilter
 }
 
@@ -431,6 +506,7 @@ type NosotrosTeamMembers {
 }
 
 type Nosotros implements Node & Document {
+  quienesTag: String
   quienesTitulo: String
   quienesDesc1: String
   quienesDesc2: String
@@ -442,6 +518,10 @@ type Nosotros implements Node & Document {
   misionDesc: String
   visionTitulo: String
   visionDesc: String
+  equipoSubtitulo: String
+  porqueTag: String
+  porqueTitulo: String
+  porqueSubtitulo: String
   porqueItems: [String]
   teamMembers: [NosotrosTeamMembers]
   id: ID!
@@ -458,6 +538,7 @@ input NosotrosTeamMembersFilter {
 }
 
 input NosotrosFilter {
+  quienesTag: StringFilter
   quienesTitulo: StringFilter
   quienesDesc1: StringFilter
   quienesDesc2: StringFilter
@@ -469,6 +550,10 @@ input NosotrosFilter {
   misionDesc: StringFilter
   visionTitulo: StringFilter
   visionDesc: StringFilter
+  equipoSubtitulo: StringFilter
+  porqueTag: StringFilter
+  porqueTitulo: StringFilter
+  porqueSubtitulo: StringFilter
   porqueItems: StringFilter
   teamMembers: NosotrosTeamMembersFilter
 }
@@ -484,7 +569,91 @@ type NosotrosConnection implements Connection {
   edges: [NosotrosConnectionEdges]
 }
 
+type LegalPrivacidadBloques {
+  titulo: String
+  contenido: String
+}
+
+type LegalPrivacidad {
+  bloques: [LegalPrivacidadBloques]
+}
+
+type LegalCookiesBloques {
+  titulo: String
+  contenido: String
+}
+
+type LegalCookies {
+  bloques: [LegalCookiesBloques]
+}
+
+type LegalTerminosBloques {
+  titulo: String
+  contenido: String
+}
+
+type LegalTerminos {
+  bloques: [LegalTerminosBloques]
+}
+
+type Legal implements Node & Document {
+  privacidad: LegalPrivacidad
+  cookies: LegalCookies
+  terminos: LegalTerminos
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input LegalPrivacidadBloquesFilter {
+  titulo: StringFilter
+  contenido: StringFilter
+}
+
+input LegalPrivacidadFilter {
+  bloques: LegalPrivacidadBloquesFilter
+}
+
+input LegalCookiesBloquesFilter {
+  titulo: StringFilter
+  contenido: StringFilter
+}
+
+input LegalCookiesFilter {
+  bloques: LegalCookiesBloquesFilter
+}
+
+input LegalTerminosBloquesFilter {
+  titulo: StringFilter
+  contenido: StringFilter
+}
+
+input LegalTerminosFilter {
+  bloques: LegalTerminosBloquesFilter
+}
+
+input LegalFilter {
+  privacidad: LegalPrivacidadFilter
+  cookies: LegalCookiesFilter
+  terminos: LegalTerminosFilter
+}
+
+type LegalConnectionEdges {
+  cursor: String!
+  node: Legal
+}
+
+type LegalConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [LegalConnectionEdges]
+}
+
 type Contacto implements Node & Document {
+  panelTag: String
+  panelTitulo: String
+  panelDescripcion: String
+  panelItems: [String]
   email: String
   whatsapp: String
   direccion: String
@@ -496,6 +665,10 @@ type Contacto implements Node & Document {
 }
 
 input ContactoFilter {
+  panelTag: StringFilter
+  panelTitulo: StringFilter
+  panelDescripcion: StringFilter
+  panelItems: StringFilter
   email: StringFilter
   whatsapp: StringFilter
   direccion: StringFilter
@@ -530,6 +703,8 @@ type Mutation {
   createServicios(relativePath: String!, params: ServiciosMutation!): Servicios!
   updateNosotros(relativePath: String!, params: NosotrosMutation!): Nosotros!
   createNosotros(relativePath: String!, params: NosotrosMutation!): Nosotros!
+  updateLegal(relativePath: String!, params: LegalMutation!): Legal!
+  createLegal(relativePath: String!, params: LegalMutation!): Legal!
   updateContacto(relativePath: String!, params: ContactoMutation!): Contacto!
   createContacto(relativePath: String!, params: ContactoMutation!): Contacto!
 }
@@ -540,6 +715,7 @@ input DocumentUpdateMutation {
   home: HomeMutation
   servicios: ServiciosMutation
   nosotros: NosotrosMutation
+  legal: LegalMutation
   contacto: ContactoMutation
   relativePath: String
 }
@@ -550,6 +726,7 @@ input DocumentMutation {
   home: HomeMutation
   servicios: ServiciosMutation
   nosotros: NosotrosMutation
+  legal: LegalMutation
   contacto: ContactoMutation
 }
 
@@ -646,16 +823,20 @@ input HomeInnovacionFeaturesMutation {
 }
 
 input HomeMutation {
+  propuestaTag: String
   propuestaTitulo: String
   propuestaSubtitulo: String
   propuestaItems: [String]
+  enfoqueHeader: String
   enfoqueSubtitulo: String
   enfoqueCards: [HomeEnfoqueCardsMutation]
   crecimientoTitulo: String
   crecimientoSubtitulo: String
   crecimientoCards: [HomeCrecimientoCardsMutation]
+  procesoHeader: String
   procesoSubtitulo: String
   procesoSteps: [HomeProcesoStepsMutation]
+  innovacionHeader: String
   innovacionSubtitulo: String
   innovacionFeatures: [HomeInnovacionFeaturesMutation]
   innovacionImagenes: [String]
@@ -667,14 +848,46 @@ input ServiciosServiciosMutation {
   items: [String]
 }
 
+input ServiciosIntegralCardsMutation {
+  titulo: String
+  descripcion: String
+}
+
+input ServiciosHerramientasCategoriasHerramientasMutation {
+  nombre: String
+  descripcion: String
+  emoji: String
+  bg: String
+}
+
+input ServiciosHerramientasCategoriasMutation {
+  categoria: String
+  color: String
+  herramientas: [ServiciosHerramientasCategoriasHerramientasMutation]
+}
+
 input ServiciosFaqItemsMutation {
   pregunta: String
   respuesta: String
 }
 
 input ServiciosMutation {
+  introTitulo: String
+  introSubtitulo: String
+  introDesc: String
+  introPorqueTitulo: String
+  introPorqueSubtitulo: String
+  introPorqueDesc: String
+  nuestrosServiciosTitulo: String
+  nuestrosServiciosSubtitulo: String
   servicios: [ServiciosServiciosMutation]
+  integralTitulo: String
+  integralSubtitulo: String
   integralImagenPrincipal: String
+  integralCards: [ServiciosIntegralCardsMutation]
+  herramientasTitulo: String
+  herramientasSubtitulo: String
+  herramientasCategorias: [ServiciosHerramientasCategoriasMutation]
   faqItems: [ServiciosFaqItemsMutation]
 }
 
@@ -687,6 +900,7 @@ input NosotrosTeamMembersMutation {
 }
 
 input NosotrosMutation {
+  quienesTag: String
   quienesTitulo: String
   quienesDesc1: String
   quienesDesc2: String
@@ -698,11 +912,52 @@ input NosotrosMutation {
   misionDesc: String
   visionTitulo: String
   visionDesc: String
+  equipoSubtitulo: String
+  porqueTag: String
+  porqueTitulo: String
+  porqueSubtitulo: String
   porqueItems: [String]
   teamMembers: [NosotrosTeamMembersMutation]
 }
 
+input LegalPrivacidadBloquesMutation {
+  titulo: String
+  contenido: String
+}
+
+input LegalPrivacidadMutation {
+  bloques: [LegalPrivacidadBloquesMutation]
+}
+
+input LegalCookiesBloquesMutation {
+  titulo: String
+  contenido: String
+}
+
+input LegalCookiesMutation {
+  bloques: [LegalCookiesBloquesMutation]
+}
+
+input LegalTerminosBloquesMutation {
+  titulo: String
+  contenido: String
+}
+
+input LegalTerminosMutation {
+  bloques: [LegalTerminosBloquesMutation]
+}
+
+input LegalMutation {
+  privacidad: LegalPrivacidadMutation
+  cookies: LegalCookiesMutation
+  terminos: LegalTerminosMutation
+}
+
 input ContactoMutation {
+  panelTag: String
+  panelTitulo: String
+  panelDescripcion: String
+  panelItems: [String]
   email: String
   whatsapp: String
   direccion: String

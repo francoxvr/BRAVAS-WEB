@@ -92,6 +92,8 @@ export type Query = {
   serviciosConnection: ServiciosConnection;
   nosotros: Nosotros;
   nosotrosConnection: NosotrosConnection;
+  legal: Legal;
+  legalConnection: LegalConnection;
   contacto: Contacto;
   contactoConnection: ContactoConnection;
 };
@@ -193,6 +195,21 @@ export type QueryNosotrosConnectionArgs = {
 };
 
 
+export type QueryLegalArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryLegalConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<LegalFilter>;
+};
+
+
 export type QueryContactoArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -213,6 +230,7 @@ export type DocumentFilter = {
   home?: InputMaybe<HomeFilter>;
   servicios?: InputMaybe<ServiciosFilter>;
   nosotros?: InputMaybe<NosotrosFilter>;
+  legal?: InputMaybe<LegalFilter>;
   contacto?: InputMaybe<ContactoFilter>;
 };
 
@@ -253,7 +271,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Config | Footer | Home | Servicios | Nosotros | Contacto | Folder;
+export type DocumentNode = Config | Footer | Home | Servicios | Nosotros | Legal | Contacto | Folder;
 
 export type ConfigNav = {
   __typename?: 'ConfigNav';
@@ -479,16 +497,20 @@ export type HomeInnovacionFeatures = {
 
 export type Home = Node & Document & {
   __typename?: 'Home';
+  propuestaTag?: Maybe<Scalars['String']['output']>;
   propuestaTitulo?: Maybe<Scalars['String']['output']>;
   propuestaSubtitulo?: Maybe<Scalars['String']['output']>;
   propuestaItems?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  enfoqueHeader?: Maybe<Scalars['String']['output']>;
   enfoqueSubtitulo?: Maybe<Scalars['String']['output']>;
   enfoqueCards?: Maybe<Array<Maybe<HomeEnfoqueCards>>>;
   crecimientoTitulo?: Maybe<Scalars['String']['output']>;
   crecimientoSubtitulo?: Maybe<Scalars['String']['output']>;
   crecimientoCards?: Maybe<Array<Maybe<HomeCrecimientoCards>>>;
+  procesoHeader?: Maybe<Scalars['String']['output']>;
   procesoSubtitulo?: Maybe<Scalars['String']['output']>;
   procesoSteps?: Maybe<Array<Maybe<HomeProcesoSteps>>>;
+  innovacionHeader?: Maybe<Scalars['String']['output']>;
   innovacionSubtitulo?: Maybe<Scalars['String']['output']>;
   innovacionFeatures?: Maybe<Array<Maybe<HomeInnovacionFeatures>>>;
   innovacionImagenes?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
@@ -521,16 +543,20 @@ export type HomeInnovacionFeaturesFilter = {
 };
 
 export type HomeFilter = {
+  propuestaTag?: InputMaybe<StringFilter>;
   propuestaTitulo?: InputMaybe<StringFilter>;
   propuestaSubtitulo?: InputMaybe<StringFilter>;
   propuestaItems?: InputMaybe<StringFilter>;
+  enfoqueHeader?: InputMaybe<StringFilter>;
   enfoqueSubtitulo?: InputMaybe<StringFilter>;
   enfoqueCards?: InputMaybe<HomeEnfoqueCardsFilter>;
   crecimientoTitulo?: InputMaybe<StringFilter>;
   crecimientoSubtitulo?: InputMaybe<StringFilter>;
   crecimientoCards?: InputMaybe<HomeCrecimientoCardsFilter>;
+  procesoHeader?: InputMaybe<StringFilter>;
   procesoSubtitulo?: InputMaybe<StringFilter>;
   procesoSteps?: InputMaybe<HomeProcesoStepsFilter>;
+  innovacionHeader?: InputMaybe<StringFilter>;
   innovacionSubtitulo?: InputMaybe<StringFilter>;
   innovacionFeatures?: InputMaybe<HomeInnovacionFeaturesFilter>;
   innovacionImagenes?: InputMaybe<ImageFilter>;
@@ -556,6 +582,27 @@ export type ServiciosServicios = {
   items?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
 
+export type ServiciosIntegralCards = {
+  __typename?: 'ServiciosIntegralCards';
+  titulo?: Maybe<Scalars['String']['output']>;
+  descripcion?: Maybe<Scalars['String']['output']>;
+};
+
+export type ServiciosHerramientasCategoriasHerramientas = {
+  __typename?: 'ServiciosHerramientasCategoriasHerramientas';
+  nombre?: Maybe<Scalars['String']['output']>;
+  descripcion?: Maybe<Scalars['String']['output']>;
+  emoji?: Maybe<Scalars['String']['output']>;
+  bg?: Maybe<Scalars['String']['output']>;
+};
+
+export type ServiciosHerramientasCategorias = {
+  __typename?: 'ServiciosHerramientasCategorias';
+  categoria?: Maybe<Scalars['String']['output']>;
+  color?: Maybe<Scalars['String']['output']>;
+  herramientas?: Maybe<Array<Maybe<ServiciosHerramientasCategoriasHerramientas>>>;
+};
+
 export type ServiciosFaqItems = {
   __typename?: 'ServiciosFaqItems';
   pregunta?: Maybe<Scalars['String']['output']>;
@@ -564,8 +611,22 @@ export type ServiciosFaqItems = {
 
 export type Servicios = Node & Document & {
   __typename?: 'Servicios';
+  introTitulo?: Maybe<Scalars['String']['output']>;
+  introSubtitulo?: Maybe<Scalars['String']['output']>;
+  introDesc?: Maybe<Scalars['String']['output']>;
+  introPorqueTitulo?: Maybe<Scalars['String']['output']>;
+  introPorqueSubtitulo?: Maybe<Scalars['String']['output']>;
+  introPorqueDesc?: Maybe<Scalars['String']['output']>;
+  nuestrosServiciosTitulo?: Maybe<Scalars['String']['output']>;
+  nuestrosServiciosSubtitulo?: Maybe<Scalars['String']['output']>;
   servicios?: Maybe<Array<Maybe<ServiciosServicios>>>;
+  integralTitulo?: Maybe<Scalars['String']['output']>;
+  integralSubtitulo?: Maybe<Scalars['String']['output']>;
   integralImagenPrincipal?: Maybe<Scalars['String']['output']>;
+  integralCards?: Maybe<Array<Maybe<ServiciosIntegralCards>>>;
+  herramientasTitulo?: Maybe<Scalars['String']['output']>;
+  herramientasSubtitulo?: Maybe<Scalars['String']['output']>;
+  herramientasCategorias?: Maybe<Array<Maybe<ServiciosHerramientasCategorias>>>;
   faqItems?: Maybe<Array<Maybe<ServiciosFaqItems>>>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
@@ -578,14 +639,46 @@ export type ServiciosServiciosFilter = {
   items?: InputMaybe<StringFilter>;
 };
 
+export type ServiciosIntegralCardsFilter = {
+  titulo?: InputMaybe<StringFilter>;
+  descripcion?: InputMaybe<StringFilter>;
+};
+
+export type ServiciosHerramientasCategoriasHerramientasFilter = {
+  nombre?: InputMaybe<StringFilter>;
+  descripcion?: InputMaybe<StringFilter>;
+  emoji?: InputMaybe<StringFilter>;
+  bg?: InputMaybe<StringFilter>;
+};
+
+export type ServiciosHerramientasCategoriasFilter = {
+  categoria?: InputMaybe<StringFilter>;
+  color?: InputMaybe<StringFilter>;
+  herramientas?: InputMaybe<ServiciosHerramientasCategoriasHerramientasFilter>;
+};
+
 export type ServiciosFaqItemsFilter = {
   pregunta?: InputMaybe<StringFilter>;
   respuesta?: InputMaybe<StringFilter>;
 };
 
 export type ServiciosFilter = {
+  introTitulo?: InputMaybe<StringFilter>;
+  introSubtitulo?: InputMaybe<StringFilter>;
+  introDesc?: InputMaybe<StringFilter>;
+  introPorqueTitulo?: InputMaybe<StringFilter>;
+  introPorqueSubtitulo?: InputMaybe<StringFilter>;
+  introPorqueDesc?: InputMaybe<StringFilter>;
+  nuestrosServiciosTitulo?: InputMaybe<StringFilter>;
+  nuestrosServiciosSubtitulo?: InputMaybe<StringFilter>;
   servicios?: InputMaybe<ServiciosServiciosFilter>;
+  integralTitulo?: InputMaybe<StringFilter>;
+  integralSubtitulo?: InputMaybe<StringFilter>;
   integralImagenPrincipal?: InputMaybe<ImageFilter>;
+  integralCards?: InputMaybe<ServiciosIntegralCardsFilter>;
+  herramientasTitulo?: InputMaybe<StringFilter>;
+  herramientasSubtitulo?: InputMaybe<StringFilter>;
+  herramientasCategorias?: InputMaybe<ServiciosHerramientasCategoriasFilter>;
   faqItems?: InputMaybe<ServiciosFaqItemsFilter>;
 };
 
@@ -613,6 +706,7 @@ export type NosotrosTeamMembers = {
 
 export type Nosotros = Node & Document & {
   __typename?: 'Nosotros';
+  quienesTag?: Maybe<Scalars['String']['output']>;
   quienesTitulo?: Maybe<Scalars['String']['output']>;
   quienesDesc1?: Maybe<Scalars['String']['output']>;
   quienesDesc2?: Maybe<Scalars['String']['output']>;
@@ -624,6 +718,10 @@ export type Nosotros = Node & Document & {
   misionDesc?: Maybe<Scalars['String']['output']>;
   visionTitulo?: Maybe<Scalars['String']['output']>;
   visionDesc?: Maybe<Scalars['String']['output']>;
+  equipoSubtitulo?: Maybe<Scalars['String']['output']>;
+  porqueTag?: Maybe<Scalars['String']['output']>;
+  porqueTitulo?: Maybe<Scalars['String']['output']>;
+  porqueSubtitulo?: Maybe<Scalars['String']['output']>;
   porqueItems?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   teamMembers?: Maybe<Array<Maybe<NosotrosTeamMembers>>>;
   id: Scalars['ID']['output'];
@@ -640,6 +738,7 @@ export type NosotrosTeamMembersFilter = {
 };
 
 export type NosotrosFilter = {
+  quienesTag?: InputMaybe<StringFilter>;
   quienesTitulo?: InputMaybe<StringFilter>;
   quienesDesc1?: InputMaybe<StringFilter>;
   quienesDesc2?: InputMaybe<StringFilter>;
@@ -651,6 +750,10 @@ export type NosotrosFilter = {
   misionDesc?: InputMaybe<StringFilter>;
   visionTitulo?: InputMaybe<StringFilter>;
   visionDesc?: InputMaybe<StringFilter>;
+  equipoSubtitulo?: InputMaybe<StringFilter>;
+  porqueTag?: InputMaybe<StringFilter>;
+  porqueTitulo?: InputMaybe<StringFilter>;
+  porqueSubtitulo?: InputMaybe<StringFilter>;
   porqueItems?: InputMaybe<StringFilter>;
   teamMembers?: InputMaybe<NosotrosTeamMembersFilter>;
 };
@@ -668,8 +771,101 @@ export type NosotrosConnection = Connection & {
   edges?: Maybe<Array<Maybe<NosotrosConnectionEdges>>>;
 };
 
+export type LegalPrivacidadBloques = {
+  __typename?: 'LegalPrivacidadBloques';
+  titulo?: Maybe<Scalars['String']['output']>;
+  contenido?: Maybe<Scalars['String']['output']>;
+};
+
+export type LegalPrivacidad = {
+  __typename?: 'LegalPrivacidad';
+  bloques?: Maybe<Array<Maybe<LegalPrivacidadBloques>>>;
+};
+
+export type LegalCookiesBloques = {
+  __typename?: 'LegalCookiesBloques';
+  titulo?: Maybe<Scalars['String']['output']>;
+  contenido?: Maybe<Scalars['String']['output']>;
+};
+
+export type LegalCookies = {
+  __typename?: 'LegalCookies';
+  bloques?: Maybe<Array<Maybe<LegalCookiesBloques>>>;
+};
+
+export type LegalTerminosBloques = {
+  __typename?: 'LegalTerminosBloques';
+  titulo?: Maybe<Scalars['String']['output']>;
+  contenido?: Maybe<Scalars['String']['output']>;
+};
+
+export type LegalTerminos = {
+  __typename?: 'LegalTerminos';
+  bloques?: Maybe<Array<Maybe<LegalTerminosBloques>>>;
+};
+
+export type Legal = Node & Document & {
+  __typename?: 'Legal';
+  privacidad?: Maybe<LegalPrivacidad>;
+  cookies?: Maybe<LegalCookies>;
+  terminos?: Maybe<LegalTerminos>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type LegalPrivacidadBloquesFilter = {
+  titulo?: InputMaybe<StringFilter>;
+  contenido?: InputMaybe<StringFilter>;
+};
+
+export type LegalPrivacidadFilter = {
+  bloques?: InputMaybe<LegalPrivacidadBloquesFilter>;
+};
+
+export type LegalCookiesBloquesFilter = {
+  titulo?: InputMaybe<StringFilter>;
+  contenido?: InputMaybe<StringFilter>;
+};
+
+export type LegalCookiesFilter = {
+  bloques?: InputMaybe<LegalCookiesBloquesFilter>;
+};
+
+export type LegalTerminosBloquesFilter = {
+  titulo?: InputMaybe<StringFilter>;
+  contenido?: InputMaybe<StringFilter>;
+};
+
+export type LegalTerminosFilter = {
+  bloques?: InputMaybe<LegalTerminosBloquesFilter>;
+};
+
+export type LegalFilter = {
+  privacidad?: InputMaybe<LegalPrivacidadFilter>;
+  cookies?: InputMaybe<LegalCookiesFilter>;
+  terminos?: InputMaybe<LegalTerminosFilter>;
+};
+
+export type LegalConnectionEdges = {
+  __typename?: 'LegalConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Legal>;
+};
+
+export type LegalConnection = Connection & {
+  __typename?: 'LegalConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<LegalConnectionEdges>>>;
+};
+
 export type Contacto = Node & Document & {
   __typename?: 'Contacto';
+  panelTag?: Maybe<Scalars['String']['output']>;
+  panelTitulo?: Maybe<Scalars['String']['output']>;
+  panelDescripcion?: Maybe<Scalars['String']['output']>;
+  panelItems?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   email?: Maybe<Scalars['String']['output']>;
   whatsapp?: Maybe<Scalars['String']['output']>;
   direccion?: Maybe<Scalars['String']['output']>;
@@ -681,6 +877,10 @@ export type Contacto = Node & Document & {
 };
 
 export type ContactoFilter = {
+  panelTag?: InputMaybe<StringFilter>;
+  panelTitulo?: InputMaybe<StringFilter>;
+  panelDescripcion?: InputMaybe<StringFilter>;
+  panelItems?: InputMaybe<StringFilter>;
   email?: InputMaybe<StringFilter>;
   whatsapp?: InputMaybe<StringFilter>;
   direccion?: InputMaybe<StringFilter>;
@@ -718,6 +918,8 @@ export type Mutation = {
   createServicios: Servicios;
   updateNosotros: Nosotros;
   createNosotros: Nosotros;
+  updateLegal: Legal;
+  createLegal: Legal;
   updateContacto: Contacto;
   createContacto: Contacto;
 };
@@ -816,6 +1018,18 @@ export type MutationCreateNosotrosArgs = {
 };
 
 
+export type MutationUpdateLegalArgs = {
+  relativePath: Scalars['String']['input'];
+  params: LegalMutation;
+};
+
+
+export type MutationCreateLegalArgs = {
+  relativePath: Scalars['String']['input'];
+  params: LegalMutation;
+};
+
+
 export type MutationUpdateContactoArgs = {
   relativePath: Scalars['String']['input'];
   params: ContactoMutation;
@@ -833,6 +1047,7 @@ export type DocumentUpdateMutation = {
   home?: InputMaybe<HomeMutation>;
   servicios?: InputMaybe<ServiciosMutation>;
   nosotros?: InputMaybe<NosotrosMutation>;
+  legal?: InputMaybe<LegalMutation>;
   contacto?: InputMaybe<ContactoMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -843,6 +1058,7 @@ export type DocumentMutation = {
   home?: InputMaybe<HomeMutation>;
   servicios?: InputMaybe<ServiciosMutation>;
   nosotros?: InputMaybe<NosotrosMutation>;
+  legal?: InputMaybe<LegalMutation>;
   contacto?: InputMaybe<ContactoMutation>;
 };
 
@@ -939,16 +1155,20 @@ export type HomeInnovacionFeaturesMutation = {
 };
 
 export type HomeMutation = {
+  propuestaTag?: InputMaybe<Scalars['String']['input']>;
   propuestaTitulo?: InputMaybe<Scalars['String']['input']>;
   propuestaSubtitulo?: InputMaybe<Scalars['String']['input']>;
   propuestaItems?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  enfoqueHeader?: InputMaybe<Scalars['String']['input']>;
   enfoqueSubtitulo?: InputMaybe<Scalars['String']['input']>;
   enfoqueCards?: InputMaybe<Array<InputMaybe<HomeEnfoqueCardsMutation>>>;
   crecimientoTitulo?: InputMaybe<Scalars['String']['input']>;
   crecimientoSubtitulo?: InputMaybe<Scalars['String']['input']>;
   crecimientoCards?: InputMaybe<Array<InputMaybe<HomeCrecimientoCardsMutation>>>;
+  procesoHeader?: InputMaybe<Scalars['String']['input']>;
   procesoSubtitulo?: InputMaybe<Scalars['String']['input']>;
   procesoSteps?: InputMaybe<Array<InputMaybe<HomeProcesoStepsMutation>>>;
+  innovacionHeader?: InputMaybe<Scalars['String']['input']>;
   innovacionSubtitulo?: InputMaybe<Scalars['String']['input']>;
   innovacionFeatures?: InputMaybe<Array<InputMaybe<HomeInnovacionFeaturesMutation>>>;
   innovacionImagenes?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -960,14 +1180,46 @@ export type ServiciosServiciosMutation = {
   items?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type ServiciosIntegralCardsMutation = {
+  titulo?: InputMaybe<Scalars['String']['input']>;
+  descripcion?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ServiciosHerramientasCategoriasHerramientasMutation = {
+  nombre?: InputMaybe<Scalars['String']['input']>;
+  descripcion?: InputMaybe<Scalars['String']['input']>;
+  emoji?: InputMaybe<Scalars['String']['input']>;
+  bg?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ServiciosHerramientasCategoriasMutation = {
+  categoria?: InputMaybe<Scalars['String']['input']>;
+  color?: InputMaybe<Scalars['String']['input']>;
+  herramientas?: InputMaybe<Array<InputMaybe<ServiciosHerramientasCategoriasHerramientasMutation>>>;
+};
+
 export type ServiciosFaqItemsMutation = {
   pregunta?: InputMaybe<Scalars['String']['input']>;
   respuesta?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ServiciosMutation = {
+  introTitulo?: InputMaybe<Scalars['String']['input']>;
+  introSubtitulo?: InputMaybe<Scalars['String']['input']>;
+  introDesc?: InputMaybe<Scalars['String']['input']>;
+  introPorqueTitulo?: InputMaybe<Scalars['String']['input']>;
+  introPorqueSubtitulo?: InputMaybe<Scalars['String']['input']>;
+  introPorqueDesc?: InputMaybe<Scalars['String']['input']>;
+  nuestrosServiciosTitulo?: InputMaybe<Scalars['String']['input']>;
+  nuestrosServiciosSubtitulo?: InputMaybe<Scalars['String']['input']>;
   servicios?: InputMaybe<Array<InputMaybe<ServiciosServiciosMutation>>>;
+  integralTitulo?: InputMaybe<Scalars['String']['input']>;
+  integralSubtitulo?: InputMaybe<Scalars['String']['input']>;
   integralImagenPrincipal?: InputMaybe<Scalars['String']['input']>;
+  integralCards?: InputMaybe<Array<InputMaybe<ServiciosIntegralCardsMutation>>>;
+  herramientasTitulo?: InputMaybe<Scalars['String']['input']>;
+  herramientasSubtitulo?: InputMaybe<Scalars['String']['input']>;
+  herramientasCategorias?: InputMaybe<Array<InputMaybe<ServiciosHerramientasCategoriasMutation>>>;
   faqItems?: InputMaybe<Array<InputMaybe<ServiciosFaqItemsMutation>>>;
 };
 
@@ -980,6 +1232,7 @@ export type NosotrosTeamMembersMutation = {
 };
 
 export type NosotrosMutation = {
+  quienesTag?: InputMaybe<Scalars['String']['input']>;
   quienesTitulo?: InputMaybe<Scalars['String']['input']>;
   quienesDesc1?: InputMaybe<Scalars['String']['input']>;
   quienesDesc2?: InputMaybe<Scalars['String']['input']>;
@@ -991,11 +1244,52 @@ export type NosotrosMutation = {
   misionDesc?: InputMaybe<Scalars['String']['input']>;
   visionTitulo?: InputMaybe<Scalars['String']['input']>;
   visionDesc?: InputMaybe<Scalars['String']['input']>;
+  equipoSubtitulo?: InputMaybe<Scalars['String']['input']>;
+  porqueTag?: InputMaybe<Scalars['String']['input']>;
+  porqueTitulo?: InputMaybe<Scalars['String']['input']>;
+  porqueSubtitulo?: InputMaybe<Scalars['String']['input']>;
   porqueItems?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   teamMembers?: InputMaybe<Array<InputMaybe<NosotrosTeamMembersMutation>>>;
 };
 
+export type LegalPrivacidadBloquesMutation = {
+  titulo?: InputMaybe<Scalars['String']['input']>;
+  contenido?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type LegalPrivacidadMutation = {
+  bloques?: InputMaybe<Array<InputMaybe<LegalPrivacidadBloquesMutation>>>;
+};
+
+export type LegalCookiesBloquesMutation = {
+  titulo?: InputMaybe<Scalars['String']['input']>;
+  contenido?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type LegalCookiesMutation = {
+  bloques?: InputMaybe<Array<InputMaybe<LegalCookiesBloquesMutation>>>;
+};
+
+export type LegalTerminosBloquesMutation = {
+  titulo?: InputMaybe<Scalars['String']['input']>;
+  contenido?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type LegalTerminosMutation = {
+  bloques?: InputMaybe<Array<InputMaybe<LegalTerminosBloquesMutation>>>;
+};
+
+export type LegalMutation = {
+  privacidad?: InputMaybe<LegalPrivacidadMutation>;
+  cookies?: InputMaybe<LegalCookiesMutation>;
+  terminos?: InputMaybe<LegalTerminosMutation>;
+};
+
 export type ContactoMutation = {
+  panelTag?: InputMaybe<Scalars['String']['input']>;
+  panelTitulo?: InputMaybe<Scalars['String']['input']>;
+  panelDescripcion?: InputMaybe<Scalars['String']['input']>;
+  panelItems?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   email?: InputMaybe<Scalars['String']['input']>;
   whatsapp?: InputMaybe<Scalars['String']['input']>;
   direccion?: InputMaybe<Scalars['String']['input']>;
@@ -1007,13 +1301,15 @@ export type ConfigPartsFragment = { __typename: 'Config', logo?: string | null, 
 
 export type FooterPartsFragment = { __typename: 'Footer', descripcion?: string | null, copyright?: string | null, facebook?: string | null, serviciosLinks?: Array<{ __typename: 'FooterServiciosLinks', label?: string | null, href?: string | null } | null> | null, empresaLinks?: Array<{ __typename: 'FooterEmpresaLinks', label?: string | null, href?: string | null } | null> | null, legalLinksIzquierda?: Array<{ __typename: 'FooterLegalLinksIzquierda', label?: string | null, href?: string | null } | null> | null, legalLinksDerecha?: Array<{ __typename: 'FooterLegalLinksDerecha', label?: string | null, href?: string | null } | null> | null };
 
-export type HomePartsFragment = { __typename: 'Home', propuestaTitulo?: string | null, propuestaSubtitulo?: string | null, propuestaItems?: Array<string | null> | null, enfoqueSubtitulo?: string | null, crecimientoTitulo?: string | null, crecimientoSubtitulo?: string | null, procesoSubtitulo?: string | null, innovacionSubtitulo?: string | null, innovacionImagenes?: Array<string | null> | null, enfoqueCards?: Array<{ __typename: 'HomeEnfoqueCards', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null, crecimientoCards?: Array<{ __typename: 'HomeCrecimientoCards', titulo?: string | null, descripcion?: string | null, imagenes?: Array<string | null> | null } | null> | null, procesoSteps?: Array<{ __typename: 'HomeProcesoSteps', titulo?: string | null, descripcion?: string | null } | null> | null, innovacionFeatures?: Array<{ __typename: 'HomeInnovacionFeatures', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null };
+export type HomePartsFragment = { __typename: 'Home', propuestaTag?: string | null, propuestaTitulo?: string | null, propuestaSubtitulo?: string | null, propuestaItems?: Array<string | null> | null, enfoqueHeader?: string | null, enfoqueSubtitulo?: string | null, crecimientoTitulo?: string | null, crecimientoSubtitulo?: string | null, procesoHeader?: string | null, procesoSubtitulo?: string | null, innovacionHeader?: string | null, innovacionSubtitulo?: string | null, innovacionImagenes?: Array<string | null> | null, enfoqueCards?: Array<{ __typename: 'HomeEnfoqueCards', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null, crecimientoCards?: Array<{ __typename: 'HomeCrecimientoCards', titulo?: string | null, descripcion?: string | null, imagenes?: Array<string | null> | null } | null> | null, procesoSteps?: Array<{ __typename: 'HomeProcesoSteps', titulo?: string | null, descripcion?: string | null } | null> | null, innovacionFeatures?: Array<{ __typename: 'HomeInnovacionFeatures', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null };
 
-export type ServiciosPartsFragment = { __typename: 'Servicios', integralImagenPrincipal?: string | null, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null };
+export type ServiciosPartsFragment = { __typename: 'Servicios', introTitulo?: string | null, introSubtitulo?: string | null, introDesc?: string | null, introPorqueTitulo?: string | null, introPorqueSubtitulo?: string | null, introPorqueDesc?: string | null, nuestrosServiciosTitulo?: string | null, nuestrosServiciosSubtitulo?: string | null, integralTitulo?: string | null, integralSubtitulo?: string | null, integralImagenPrincipal?: string | null, herramientasTitulo?: string | null, herramientasSubtitulo?: string | null, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, integralCards?: Array<{ __typename: 'ServiciosIntegralCards', titulo?: string | null, descripcion?: string | null } | null> | null, herramientasCategorias?: Array<{ __typename: 'ServiciosHerramientasCategorias', categoria?: string | null, color?: string | null, herramientas?: Array<{ __typename: 'ServiciosHerramientasCategoriasHerramientas', nombre?: string | null, descripcion?: string | null, emoji?: string | null, bg?: string | null } | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null };
 
-export type NosotrosPartsFragment = { __typename: 'Nosotros', quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null, linkedin?: string | null } | null> | null };
+export type NosotrosPartsFragment = { __typename: 'Nosotros', quienesTag?: string | null, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, equipoSubtitulo?: string | null, porqueTag?: string | null, porqueTitulo?: string | null, porqueSubtitulo?: string | null, porqueItems?: Array<string | null> | null, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null, linkedin?: string | null } | null> | null };
 
-export type ContactoPartsFragment = { __typename: 'Contacto', email?: string | null, whatsapp?: string | null, direccion?: string | null, instagram?: string | null, linkedin?: string | null };
+export type LegalPartsFragment = { __typename: 'Legal', privacidad?: { __typename: 'LegalPrivacidad', bloques?: Array<{ __typename: 'LegalPrivacidadBloques', titulo?: string | null, contenido?: string | null } | null> | null } | null, cookies?: { __typename: 'LegalCookies', bloques?: Array<{ __typename: 'LegalCookiesBloques', titulo?: string | null, contenido?: string | null } | null> | null } | null, terminos?: { __typename: 'LegalTerminos', bloques?: Array<{ __typename: 'LegalTerminosBloques', titulo?: string | null, contenido?: string | null } | null> | null } | null };
+
+export type ContactoPartsFragment = { __typename: 'Contacto', panelTag?: string | null, panelTitulo?: string | null, panelDescripcion?: string | null, panelItems?: Array<string | null> | null, email?: string | null, whatsapp?: string | null, direccion?: string | null, instagram?: string | null, linkedin?: string | null };
 
 export type ConfigQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1058,7 +1354,7 @@ export type HomeQueryVariables = Exact<{
 }>;
 
 
-export type HomeQuery = { __typename?: 'Query', home: { __typename: 'Home', id: string, propuestaTitulo?: string | null, propuestaSubtitulo?: string | null, propuestaItems?: Array<string | null> | null, enfoqueSubtitulo?: string | null, crecimientoTitulo?: string | null, crecimientoSubtitulo?: string | null, procesoSubtitulo?: string | null, innovacionSubtitulo?: string | null, innovacionImagenes?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, enfoqueCards?: Array<{ __typename: 'HomeEnfoqueCards', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null, crecimientoCards?: Array<{ __typename: 'HomeCrecimientoCards', titulo?: string | null, descripcion?: string | null, imagenes?: Array<string | null> | null } | null> | null, procesoSteps?: Array<{ __typename: 'HomeProcesoSteps', titulo?: string | null, descripcion?: string | null } | null> | null, innovacionFeatures?: Array<{ __typename: 'HomeInnovacionFeatures', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null } };
+export type HomeQuery = { __typename?: 'Query', home: { __typename: 'Home', id: string, propuestaTag?: string | null, propuestaTitulo?: string | null, propuestaSubtitulo?: string | null, propuestaItems?: Array<string | null> | null, enfoqueHeader?: string | null, enfoqueSubtitulo?: string | null, crecimientoTitulo?: string | null, crecimientoSubtitulo?: string | null, procesoHeader?: string | null, procesoSubtitulo?: string | null, innovacionHeader?: string | null, innovacionSubtitulo?: string | null, innovacionImagenes?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, enfoqueCards?: Array<{ __typename: 'HomeEnfoqueCards', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null, crecimientoCards?: Array<{ __typename: 'HomeCrecimientoCards', titulo?: string | null, descripcion?: string | null, imagenes?: Array<string | null> | null } | null> | null, procesoSteps?: Array<{ __typename: 'HomeProcesoSteps', titulo?: string | null, descripcion?: string | null } | null> | null, innovacionFeatures?: Array<{ __typename: 'HomeInnovacionFeatures', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null } };
 
 export type HomeConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1070,14 +1366,14 @@ export type HomeConnectionQueryVariables = Exact<{
 }>;
 
 
-export type HomeConnectionQuery = { __typename?: 'Query', homeConnection: { __typename?: 'HomeConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomeConnectionEdges', cursor: string, node?: { __typename: 'Home', id: string, propuestaTitulo?: string | null, propuestaSubtitulo?: string | null, propuestaItems?: Array<string | null> | null, enfoqueSubtitulo?: string | null, crecimientoTitulo?: string | null, crecimientoSubtitulo?: string | null, procesoSubtitulo?: string | null, innovacionSubtitulo?: string | null, innovacionImagenes?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, enfoqueCards?: Array<{ __typename: 'HomeEnfoqueCards', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null, crecimientoCards?: Array<{ __typename: 'HomeCrecimientoCards', titulo?: string | null, descripcion?: string | null, imagenes?: Array<string | null> | null } | null> | null, procesoSteps?: Array<{ __typename: 'HomeProcesoSteps', titulo?: string | null, descripcion?: string | null } | null> | null, innovacionFeatures?: Array<{ __typename: 'HomeInnovacionFeatures', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null } | null } | null> | null } };
+export type HomeConnectionQuery = { __typename?: 'Query', homeConnection: { __typename?: 'HomeConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomeConnectionEdges', cursor: string, node?: { __typename: 'Home', id: string, propuestaTag?: string | null, propuestaTitulo?: string | null, propuestaSubtitulo?: string | null, propuestaItems?: Array<string | null> | null, enfoqueHeader?: string | null, enfoqueSubtitulo?: string | null, crecimientoTitulo?: string | null, crecimientoSubtitulo?: string | null, procesoHeader?: string | null, procesoSubtitulo?: string | null, innovacionHeader?: string | null, innovacionSubtitulo?: string | null, innovacionImagenes?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, enfoqueCards?: Array<{ __typename: 'HomeEnfoqueCards', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null, crecimientoCards?: Array<{ __typename: 'HomeCrecimientoCards', titulo?: string | null, descripcion?: string | null, imagenes?: Array<string | null> | null } | null> | null, procesoSteps?: Array<{ __typename: 'HomeProcesoSteps', titulo?: string | null, descripcion?: string | null } | null> | null, innovacionFeatures?: Array<{ __typename: 'HomeInnovacionFeatures', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null } | null } | null> | null } };
 
 export type ServiciosQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type ServiciosQuery = { __typename?: 'Query', servicios: { __typename: 'Servicios', id: string, integralImagenPrincipal?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null } };
+export type ServiciosQuery = { __typename?: 'Query', servicios: { __typename: 'Servicios', id: string, introTitulo?: string | null, introSubtitulo?: string | null, introDesc?: string | null, introPorqueTitulo?: string | null, introPorqueSubtitulo?: string | null, introPorqueDesc?: string | null, nuestrosServiciosTitulo?: string | null, nuestrosServiciosSubtitulo?: string | null, integralTitulo?: string | null, integralSubtitulo?: string | null, integralImagenPrincipal?: string | null, herramientasTitulo?: string | null, herramientasSubtitulo?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, integralCards?: Array<{ __typename: 'ServiciosIntegralCards', titulo?: string | null, descripcion?: string | null } | null> | null, herramientasCategorias?: Array<{ __typename: 'ServiciosHerramientasCategorias', categoria?: string | null, color?: string | null, herramientas?: Array<{ __typename: 'ServiciosHerramientasCategoriasHerramientas', nombre?: string | null, descripcion?: string | null, emoji?: string | null, bg?: string | null } | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null } };
 
 export type ServiciosConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1089,14 +1385,14 @@ export type ServiciosConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ServiciosConnectionQuery = { __typename?: 'Query', serviciosConnection: { __typename?: 'ServiciosConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ServiciosConnectionEdges', cursor: string, node?: { __typename: 'Servicios', id: string, integralImagenPrincipal?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null } | null } | null> | null } };
+export type ServiciosConnectionQuery = { __typename?: 'Query', serviciosConnection: { __typename?: 'ServiciosConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ServiciosConnectionEdges', cursor: string, node?: { __typename: 'Servicios', id: string, introTitulo?: string | null, introSubtitulo?: string | null, introDesc?: string | null, introPorqueTitulo?: string | null, introPorqueSubtitulo?: string | null, introPorqueDesc?: string | null, nuestrosServiciosTitulo?: string | null, nuestrosServiciosSubtitulo?: string | null, integralTitulo?: string | null, integralSubtitulo?: string | null, integralImagenPrincipal?: string | null, herramientasTitulo?: string | null, herramientasSubtitulo?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, integralCards?: Array<{ __typename: 'ServiciosIntegralCards', titulo?: string | null, descripcion?: string | null } | null> | null, herramientasCategorias?: Array<{ __typename: 'ServiciosHerramientasCategorias', categoria?: string | null, color?: string | null, herramientas?: Array<{ __typename: 'ServiciosHerramientasCategoriasHerramientas', nombre?: string | null, descripcion?: string | null, emoji?: string | null, bg?: string | null } | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null } | null } | null> | null } };
 
 export type NosotrosQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type NosotrosQuery = { __typename?: 'Query', nosotros: { __typename: 'Nosotros', id: string, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null, linkedin?: string | null } | null> | null } };
+export type NosotrosQuery = { __typename?: 'Query', nosotros: { __typename: 'Nosotros', id: string, quienesTag?: string | null, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, equipoSubtitulo?: string | null, porqueTag?: string | null, porqueTitulo?: string | null, porqueSubtitulo?: string | null, porqueItems?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null, linkedin?: string | null } | null> | null } };
 
 export type NosotrosConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1108,14 +1404,33 @@ export type NosotrosConnectionQueryVariables = Exact<{
 }>;
 
 
-export type NosotrosConnectionQuery = { __typename?: 'Query', nosotrosConnection: { __typename?: 'NosotrosConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'NosotrosConnectionEdges', cursor: string, node?: { __typename: 'Nosotros', id: string, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, porqueItems?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null, linkedin?: string | null } | null> | null } | null } | null> | null } };
+export type NosotrosConnectionQuery = { __typename?: 'Query', nosotrosConnection: { __typename?: 'NosotrosConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'NosotrosConnectionEdges', cursor: string, node?: { __typename: 'Nosotros', id: string, quienesTag?: string | null, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, equipoSubtitulo?: string | null, porqueTag?: string | null, porqueTitulo?: string | null, porqueSubtitulo?: string | null, porqueItems?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null, linkedin?: string | null } | null> | null } | null } | null> | null } };
+
+export type LegalQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type LegalQuery = { __typename?: 'Query', legal: { __typename: 'Legal', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, privacidad?: { __typename: 'LegalPrivacidad', bloques?: Array<{ __typename: 'LegalPrivacidadBloques', titulo?: string | null, contenido?: string | null } | null> | null } | null, cookies?: { __typename: 'LegalCookies', bloques?: Array<{ __typename: 'LegalCookiesBloques', titulo?: string | null, contenido?: string | null } | null> | null } | null, terminos?: { __typename: 'LegalTerminos', bloques?: Array<{ __typename: 'LegalTerminosBloques', titulo?: string | null, contenido?: string | null } | null> | null } | null } };
+
+export type LegalConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<LegalFilter>;
+}>;
+
+
+export type LegalConnectionQuery = { __typename?: 'Query', legalConnection: { __typename?: 'LegalConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'LegalConnectionEdges', cursor: string, node?: { __typename: 'Legal', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, privacidad?: { __typename: 'LegalPrivacidad', bloques?: Array<{ __typename: 'LegalPrivacidadBloques', titulo?: string | null, contenido?: string | null } | null> | null } | null, cookies?: { __typename: 'LegalCookies', bloques?: Array<{ __typename: 'LegalCookiesBloques', titulo?: string | null, contenido?: string | null } | null> | null } | null, terminos?: { __typename: 'LegalTerminos', bloques?: Array<{ __typename: 'LegalTerminosBloques', titulo?: string | null, contenido?: string | null } | null> | null } | null } | null } | null> | null } };
 
 export type ContactoQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type ContactoQuery = { __typename?: 'Query', contacto: { __typename: 'Contacto', id: string, email?: string | null, whatsapp?: string | null, direccion?: string | null, instagram?: string | null, linkedin?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type ContactoQuery = { __typename?: 'Query', contacto: { __typename: 'Contacto', id: string, panelTag?: string | null, panelTitulo?: string | null, panelDescripcion?: string | null, panelItems?: Array<string | null> | null, email?: string | null, whatsapp?: string | null, direccion?: string | null, instagram?: string | null, linkedin?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type ContactoConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1127,7 +1442,7 @@ export type ContactoConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ContactoConnectionQuery = { __typename?: 'Query', contactoConnection: { __typename?: 'ContactoConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ContactoConnectionEdges', cursor: string, node?: { __typename: 'Contacto', id: string, email?: string | null, whatsapp?: string | null, direccion?: string | null, instagram?: string | null, linkedin?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type ContactoConnectionQuery = { __typename?: 'Query', contactoConnection: { __typename?: 'ContactoConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ContactoConnectionEdges', cursor: string, node?: { __typename: 'Contacto', id: string, panelTag?: string | null, panelTitulo?: string | null, panelDescripcion?: string | null, panelItems?: Array<string | null> | null, email?: string | null, whatsapp?: string | null, direccion?: string | null, instagram?: string | null, linkedin?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const ConfigPartsFragmentDoc = gql`
     fragment ConfigParts on Config {
@@ -1196,9 +1511,11 @@ export const FooterPartsFragmentDoc = gql`
 export const HomePartsFragmentDoc = gql`
     fragment HomeParts on Home {
   __typename
+  propuestaTag
   propuestaTitulo
   propuestaSubtitulo
   propuestaItems
+  enfoqueHeader
   enfoqueSubtitulo
   enfoqueCards {
     __typename
@@ -1214,12 +1531,14 @@ export const HomePartsFragmentDoc = gql`
     descripcion
     imagenes
   }
+  procesoHeader
   procesoSubtitulo
   procesoSteps {
     __typename
     titulo
     descripcion
   }
+  innovacionHeader
   innovacionSubtitulo
   innovacionFeatures {
     __typename
@@ -1233,13 +1552,42 @@ export const HomePartsFragmentDoc = gql`
 export const ServiciosPartsFragmentDoc = gql`
     fragment ServiciosParts on Servicios {
   __typename
+  introTitulo
+  introSubtitulo
+  introDesc
+  introPorqueTitulo
+  introPorqueSubtitulo
+  introPorqueDesc
+  nuestrosServiciosTitulo
+  nuestrosServiciosSubtitulo
   servicios {
     __typename
     titulo
     descripcion
     items
   }
+  integralTitulo
+  integralSubtitulo
   integralImagenPrincipal
+  integralCards {
+    __typename
+    titulo
+    descripcion
+  }
+  herramientasTitulo
+  herramientasSubtitulo
+  herramientasCategorias {
+    __typename
+    categoria
+    color
+    herramientas {
+      __typename
+      nombre
+      descripcion
+      emoji
+      bg
+    }
+  }
   faqItems {
     __typename
     pregunta
@@ -1250,6 +1598,7 @@ export const ServiciosPartsFragmentDoc = gql`
 export const NosotrosPartsFragmentDoc = gql`
     fragment NosotrosParts on Nosotros {
   __typename
+  quienesTag
   quienesTitulo
   quienesDesc1
   quienesDesc2
@@ -1261,6 +1610,10 @@ export const NosotrosPartsFragmentDoc = gql`
   misionDesc
   visionTitulo
   visionDesc
+  equipoSubtitulo
+  porqueTag
+  porqueTitulo
+  porqueSubtitulo
   porqueItems
   teamMembers {
     __typename
@@ -1272,9 +1625,42 @@ export const NosotrosPartsFragmentDoc = gql`
   }
 }
     `;
+export const LegalPartsFragmentDoc = gql`
+    fragment LegalParts on Legal {
+  __typename
+  privacidad {
+    __typename
+    bloques {
+      __typename
+      titulo
+      contenido
+    }
+  }
+  cookies {
+    __typename
+    bloques {
+      __typename
+      titulo
+      contenido
+    }
+  }
+  terminos {
+    __typename
+    bloques {
+      __typename
+      titulo
+      contenido
+    }
+  }
+}
+    `;
 export const ContactoPartsFragmentDoc = gql`
     fragment ContactoParts on Contacto {
   __typename
+  panelTag
+  panelTitulo
+  panelDescripcion
+  panelItems
   email
   whatsapp
   direccion
@@ -1567,6 +1953,63 @@ export const NosotrosConnectionDocument = gql`
   }
 }
     ${NosotrosPartsFragmentDoc}`;
+export const LegalDocument = gql`
+    query legal($relativePath: String!) {
+  legal(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...LegalParts
+  }
+}
+    ${LegalPartsFragmentDoc}`;
+export const LegalConnectionDocument = gql`
+    query legalConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: LegalFilter) {
+  legalConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...LegalParts
+      }
+    }
+  }
+}
+    ${LegalPartsFragmentDoc}`;
 export const ContactoDocument = gql`
     query contacto($relativePath: String!) {
   contacto(relativePath: $relativePath) {
@@ -1656,6 +2099,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     nosotrosConnection(variables?: NosotrosConnectionQueryVariables, options?: C): Promise<{data: NosotrosConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: NosotrosConnectionQueryVariables, query: string}> {
         return requester<{data: NosotrosConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: NosotrosConnectionQueryVariables, query: string}, NosotrosConnectionQueryVariables>(NosotrosConnectionDocument, variables, options);
+      },
+    legal(variables: LegalQueryVariables, options?: C): Promise<{data: LegalQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: LegalQueryVariables, query: string}> {
+        return requester<{data: LegalQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: LegalQueryVariables, query: string}, LegalQueryVariables>(LegalDocument, variables, options);
+      },
+    legalConnection(variables?: LegalConnectionQueryVariables, options?: C): Promise<{data: LegalConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: LegalConnectionQueryVariables, query: string}> {
+        return requester<{data: LegalConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: LegalConnectionQueryVariables, query: string}, LegalConnectionQueryVariables>(LegalConnectionDocument, variables, options);
       },
     contacto(variables: ContactoQueryVariables, options?: C): Promise<{data: ContactoQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactoQueryVariables, query: string}> {
         return requester<{data: ContactoQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactoQueryVariables, query: string}, ContactoQueryVariables>(ContactoDocument, variables, options);
