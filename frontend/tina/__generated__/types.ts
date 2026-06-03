@@ -582,27 +582,6 @@ export type ServiciosServicios = {
   items?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
 
-export type ServiciosIntegralCards = {
-  __typename?: 'ServiciosIntegralCards';
-  titulo?: Maybe<Scalars['String']['output']>;
-  descripcion?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServiciosHerramientasCategoriasHerramientas = {
-  __typename?: 'ServiciosHerramientasCategoriasHerramientas';
-  nombre?: Maybe<Scalars['String']['output']>;
-  descripcion?: Maybe<Scalars['String']['output']>;
-  emoji?: Maybe<Scalars['String']['output']>;
-  bg?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServiciosHerramientasCategorias = {
-  __typename?: 'ServiciosHerramientasCategorias';
-  categoria?: Maybe<Scalars['String']['output']>;
-  color?: Maybe<Scalars['String']['output']>;
-  herramientas?: Maybe<Array<Maybe<ServiciosHerramientasCategoriasHerramientas>>>;
-};
-
 export type ServiciosFaqItems = {
   __typename?: 'ServiciosFaqItems';
   pregunta?: Maybe<Scalars['String']['output']>;
@@ -623,10 +602,8 @@ export type Servicios = Node & Document & {
   integralTitulo?: Maybe<Scalars['String']['output']>;
   integralSubtitulo?: Maybe<Scalars['String']['output']>;
   integralImagenPrincipal?: Maybe<Scalars['String']['output']>;
-  integralCards?: Maybe<Array<Maybe<ServiciosIntegralCards>>>;
   herramientasTitulo?: Maybe<Scalars['String']['output']>;
   herramientasSubtitulo?: Maybe<Scalars['String']['output']>;
-  herramientasCategorias?: Maybe<Array<Maybe<ServiciosHerramientasCategorias>>>;
   faqItems?: Maybe<Array<Maybe<ServiciosFaqItems>>>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
@@ -637,24 +614,6 @@ export type ServiciosServiciosFilter = {
   titulo?: InputMaybe<StringFilter>;
   descripcion?: InputMaybe<StringFilter>;
   items?: InputMaybe<StringFilter>;
-};
-
-export type ServiciosIntegralCardsFilter = {
-  titulo?: InputMaybe<StringFilter>;
-  descripcion?: InputMaybe<StringFilter>;
-};
-
-export type ServiciosHerramientasCategoriasHerramientasFilter = {
-  nombre?: InputMaybe<StringFilter>;
-  descripcion?: InputMaybe<StringFilter>;
-  emoji?: InputMaybe<StringFilter>;
-  bg?: InputMaybe<StringFilter>;
-};
-
-export type ServiciosHerramientasCategoriasFilter = {
-  categoria?: InputMaybe<StringFilter>;
-  color?: InputMaybe<StringFilter>;
-  herramientas?: InputMaybe<ServiciosHerramientasCategoriasHerramientasFilter>;
 };
 
 export type ServiciosFaqItemsFilter = {
@@ -675,10 +634,8 @@ export type ServiciosFilter = {
   integralTitulo?: InputMaybe<StringFilter>;
   integralSubtitulo?: InputMaybe<StringFilter>;
   integralImagenPrincipal?: InputMaybe<ImageFilter>;
-  integralCards?: InputMaybe<ServiciosIntegralCardsFilter>;
   herramientasTitulo?: InputMaybe<StringFilter>;
   herramientasSubtitulo?: InputMaybe<StringFilter>;
-  herramientasCategorias?: InputMaybe<ServiciosHerramientasCategoriasFilter>;
   faqItems?: InputMaybe<ServiciosFaqItemsFilter>;
 };
 
@@ -1180,24 +1137,6 @@ export type ServiciosServiciosMutation = {
   items?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type ServiciosIntegralCardsMutation = {
-  titulo?: InputMaybe<Scalars['String']['input']>;
-  descripcion?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServiciosHerramientasCategoriasHerramientasMutation = {
-  nombre?: InputMaybe<Scalars['String']['input']>;
-  descripcion?: InputMaybe<Scalars['String']['input']>;
-  emoji?: InputMaybe<Scalars['String']['input']>;
-  bg?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServiciosHerramientasCategoriasMutation = {
-  categoria?: InputMaybe<Scalars['String']['input']>;
-  color?: InputMaybe<Scalars['String']['input']>;
-  herramientas?: InputMaybe<Array<InputMaybe<ServiciosHerramientasCategoriasHerramientasMutation>>>;
-};
-
 export type ServiciosFaqItemsMutation = {
   pregunta?: InputMaybe<Scalars['String']['input']>;
   respuesta?: InputMaybe<Scalars['String']['input']>;
@@ -1216,10 +1155,8 @@ export type ServiciosMutation = {
   integralTitulo?: InputMaybe<Scalars['String']['input']>;
   integralSubtitulo?: InputMaybe<Scalars['String']['input']>;
   integralImagenPrincipal?: InputMaybe<Scalars['String']['input']>;
-  integralCards?: InputMaybe<Array<InputMaybe<ServiciosIntegralCardsMutation>>>;
   herramientasTitulo?: InputMaybe<Scalars['String']['input']>;
   herramientasSubtitulo?: InputMaybe<Scalars['String']['input']>;
-  herramientasCategorias?: InputMaybe<Array<InputMaybe<ServiciosHerramientasCategoriasMutation>>>;
   faqItems?: InputMaybe<Array<InputMaybe<ServiciosFaqItemsMutation>>>;
 };
 
@@ -1303,7 +1240,7 @@ export type FooterPartsFragment = { __typename: 'Footer', descripcion?: string |
 
 export type HomePartsFragment = { __typename: 'Home', propuestaTag?: string | null, propuestaTitulo?: string | null, propuestaSubtitulo?: string | null, propuestaItems?: Array<string | null> | null, enfoqueHeader?: string | null, enfoqueSubtitulo?: string | null, crecimientoTitulo?: string | null, crecimientoSubtitulo?: string | null, procesoHeader?: string | null, procesoSubtitulo?: string | null, innovacionHeader?: string | null, innovacionSubtitulo?: string | null, innovacionImagenes?: Array<string | null> | null, enfoqueCards?: Array<{ __typename: 'HomeEnfoqueCards', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null, crecimientoCards?: Array<{ __typename: 'HomeCrecimientoCards', titulo?: string | null, descripcion?: string | null, imagenes?: Array<string | null> | null } | null> | null, procesoSteps?: Array<{ __typename: 'HomeProcesoSteps', titulo?: string | null, descripcion?: string | null } | null> | null, innovacionFeatures?: Array<{ __typename: 'HomeInnovacionFeatures', emoji?: string | null, titulo?: string | null, descripcion?: string | null } | null> | null };
 
-export type ServiciosPartsFragment = { __typename: 'Servicios', introTitulo?: string | null, introSubtitulo?: string | null, introDesc?: string | null, introPorqueTitulo?: string | null, introPorqueSubtitulo?: string | null, introPorqueDesc?: string | null, nuestrosServiciosTitulo?: string | null, nuestrosServiciosSubtitulo?: string | null, integralTitulo?: string | null, integralSubtitulo?: string | null, integralImagenPrincipal?: string | null, herramientasTitulo?: string | null, herramientasSubtitulo?: string | null, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, integralCards?: Array<{ __typename: 'ServiciosIntegralCards', titulo?: string | null, descripcion?: string | null } | null> | null, herramientasCategorias?: Array<{ __typename: 'ServiciosHerramientasCategorias', categoria?: string | null, color?: string | null, herramientas?: Array<{ __typename: 'ServiciosHerramientasCategoriasHerramientas', nombre?: string | null, descripcion?: string | null, emoji?: string | null, bg?: string | null } | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null };
+export type ServiciosPartsFragment = { __typename: 'Servicios', introTitulo?: string | null, introSubtitulo?: string | null, introDesc?: string | null, introPorqueTitulo?: string | null, introPorqueSubtitulo?: string | null, introPorqueDesc?: string | null, nuestrosServiciosTitulo?: string | null, nuestrosServiciosSubtitulo?: string | null, integralTitulo?: string | null, integralSubtitulo?: string | null, integralImagenPrincipal?: string | null, herramientasTitulo?: string | null, herramientasSubtitulo?: string | null, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null };
 
 export type NosotrosPartsFragment = { __typename: 'Nosotros', quienesTag?: string | null, quienesTitulo?: string | null, quienesDesc1?: string | null, quienesDesc2?: string | null, quienesImagen?: string | null, statProyectos?: string | null, statSatisfaccion?: string | null, statAnios?: string | null, misionTitulo?: string | null, misionDesc?: string | null, visionTitulo?: string | null, visionDesc?: string | null, equipoSubtitulo?: string | null, porqueTag?: string | null, porqueTitulo?: string | null, porqueSubtitulo?: string | null, porqueItems?: Array<string | null> | null, teamMembers?: Array<{ __typename: 'NosotrosTeamMembers', nombre?: string | null, rol?: string | null, descripcion?: string | null, foto?: string | null, linkedin?: string | null } | null> | null };
 
@@ -1373,7 +1310,7 @@ export type ServiciosQueryVariables = Exact<{
 }>;
 
 
-export type ServiciosQuery = { __typename?: 'Query', servicios: { __typename: 'Servicios', id: string, introTitulo?: string | null, introSubtitulo?: string | null, introDesc?: string | null, introPorqueTitulo?: string | null, introPorqueSubtitulo?: string | null, introPorqueDesc?: string | null, nuestrosServiciosTitulo?: string | null, nuestrosServiciosSubtitulo?: string | null, integralTitulo?: string | null, integralSubtitulo?: string | null, integralImagenPrincipal?: string | null, herramientasTitulo?: string | null, herramientasSubtitulo?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, integralCards?: Array<{ __typename: 'ServiciosIntegralCards', titulo?: string | null, descripcion?: string | null } | null> | null, herramientasCategorias?: Array<{ __typename: 'ServiciosHerramientasCategorias', categoria?: string | null, color?: string | null, herramientas?: Array<{ __typename: 'ServiciosHerramientasCategoriasHerramientas', nombre?: string | null, descripcion?: string | null, emoji?: string | null, bg?: string | null } | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null } };
+export type ServiciosQuery = { __typename?: 'Query', servicios: { __typename: 'Servicios', id: string, introTitulo?: string | null, introSubtitulo?: string | null, introDesc?: string | null, introPorqueTitulo?: string | null, introPorqueSubtitulo?: string | null, introPorqueDesc?: string | null, nuestrosServiciosTitulo?: string | null, nuestrosServiciosSubtitulo?: string | null, integralTitulo?: string | null, integralSubtitulo?: string | null, integralImagenPrincipal?: string | null, herramientasTitulo?: string | null, herramientasSubtitulo?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null } };
 
 export type ServiciosConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1385,7 +1322,7 @@ export type ServiciosConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ServiciosConnectionQuery = { __typename?: 'Query', serviciosConnection: { __typename?: 'ServiciosConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ServiciosConnectionEdges', cursor: string, node?: { __typename: 'Servicios', id: string, introTitulo?: string | null, introSubtitulo?: string | null, introDesc?: string | null, introPorqueTitulo?: string | null, introPorqueSubtitulo?: string | null, introPorqueDesc?: string | null, nuestrosServiciosTitulo?: string | null, nuestrosServiciosSubtitulo?: string | null, integralTitulo?: string | null, integralSubtitulo?: string | null, integralImagenPrincipal?: string | null, herramientasTitulo?: string | null, herramientasSubtitulo?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, integralCards?: Array<{ __typename: 'ServiciosIntegralCards', titulo?: string | null, descripcion?: string | null } | null> | null, herramientasCategorias?: Array<{ __typename: 'ServiciosHerramientasCategorias', categoria?: string | null, color?: string | null, herramientas?: Array<{ __typename: 'ServiciosHerramientasCategoriasHerramientas', nombre?: string | null, descripcion?: string | null, emoji?: string | null, bg?: string | null } | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null } | null } | null> | null } };
+export type ServiciosConnectionQuery = { __typename?: 'Query', serviciosConnection: { __typename?: 'ServiciosConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ServiciosConnectionEdges', cursor: string, node?: { __typename: 'Servicios', id: string, introTitulo?: string | null, introSubtitulo?: string | null, introDesc?: string | null, introPorqueTitulo?: string | null, introPorqueSubtitulo?: string | null, introPorqueDesc?: string | null, nuestrosServiciosTitulo?: string | null, nuestrosServiciosSubtitulo?: string | null, integralTitulo?: string | null, integralSubtitulo?: string | null, integralImagenPrincipal?: string | null, herramientasTitulo?: string | null, herramientasSubtitulo?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, servicios?: Array<{ __typename: 'ServiciosServicios', titulo?: string | null, descripcion?: string | null, items?: Array<string | null> | null } | null> | null, faqItems?: Array<{ __typename: 'ServiciosFaqItems', pregunta?: string | null, respuesta?: string | null } | null> | null } | null } | null> | null } };
 
 export type NosotrosQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1569,25 +1506,8 @@ export const ServiciosPartsFragmentDoc = gql`
   integralTitulo
   integralSubtitulo
   integralImagenPrincipal
-  integralCards {
-    __typename
-    titulo
-    descripcion
-  }
   herramientasTitulo
   herramientasSubtitulo
-  herramientasCategorias {
-    __typename
-    categoria
-    color
-    herramientas {
-      __typename
-      nombre
-      descripcion
-      emoji
-      bg
-    }
-  }
   faqItems {
     __typename
     pregunta

@@ -249,43 +249,8 @@ var config_default = defineConfig({
           { type: "string", name: "integralTitulo", label: "2\uFE0F\u20E3 T\xEDtulo Soluciones Integrales" },
           { type: "string", name: "integralSubtitulo", label: "2\uFE0F\u20E3 Subt\xEDtulo Soluciones Integrales", ui: { component: "textarea" } },
           { type: "image", name: "integralImagenPrincipal", label: "2\uFE0F\u20E3 Imagen card principal" },
-          {
-            type: "object",
-            name: "integralCards",
-            label: "2\uFE0F\u20E3 Cards Soluciones Integrales",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.titulo }) },
-            fields: [
-              { type: "string", name: "titulo", label: "T\xEDtulo" },
-              { type: "string", name: "descripcion", label: "Descripci\xF3n", ui: { component: "textarea" } }
-            ]
-          },
           { type: "string", name: "herramientasTitulo", label: "3\uFE0F\u20E3 T\xEDtulo Herramientas" },
           { type: "string", name: "herramientasSubtitulo", label: "3\uFE0F\u20E3 Subt\xEDtulo Herramientas", ui: { component: "textarea" } },
-          {
-            type: "object",
-            name: "herramientasCategorias",
-            label: "3\uFE0F\u20E3 Categor\xEDas de Herramientas",
-            list: true,
-            ui: { itemProps: (item) => ({ label: item?.categoria }) },
-            fields: [
-              { type: "string", name: "categoria", label: "Nombre de la categor\xEDa" },
-              { type: "string", name: "color", label: "Color del punto (ej: #4ade80)" },
-              {
-                type: "object",
-                name: "herramientas",
-                label: "Herramientas",
-                list: true,
-                ui: { itemProps: (item) => ({ label: item?.nombre }) },
-                fields: [
-                  { type: "string", name: "nombre", label: "Nombre" },
-                  { type: "string", name: "descripcion", label: "Descripci\xF3n" },
-                  { type: "string", name: "emoji", label: "Emoji del \xEDcono (ej: \u{1F3AF})" },
-                  { type: "string", name: "bg", label: "Color de fondo (ej: #e8f0fe)" }
-                ]
-              }
-            ]
-          },
           {
             type: "object",
             name: "faqItems",

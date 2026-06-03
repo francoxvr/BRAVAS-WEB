@@ -130,25 +130,8 @@ export const ServiciosPartsFragmentDoc = gql`
   integralTitulo
   integralSubtitulo
   integralImagenPrincipal
-  integralCards {
-    __typename
-    titulo
-    descripcion
-  }
   herramientasTitulo
   herramientasSubtitulo
-  herramientasCategorias {
-    __typename
-    categoria
-    color
-    herramientas {
-      __typename
-      nombre
-      descripcion
-      emoji
-      bg
-    }
-  }
   faqItems {
     __typename
     pregunta

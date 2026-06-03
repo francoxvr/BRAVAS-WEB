@@ -391,24 +391,6 @@ type ServiciosServicios {
   items: [String]
 }
 
-type ServiciosIntegralCards {
-  titulo: String
-  descripcion: String
-}
-
-type ServiciosHerramientasCategoriasHerramientas {
-  nombre: String
-  descripcion: String
-  emoji: String
-  bg: String
-}
-
-type ServiciosHerramientasCategorias {
-  categoria: String
-  color: String
-  herramientas: [ServiciosHerramientasCategoriasHerramientas]
-}
-
 type ServiciosFaqItems {
   pregunta: String
   respuesta: String
@@ -427,10 +409,8 @@ type Servicios implements Node & Document {
   integralTitulo: String
   integralSubtitulo: String
   integralImagenPrincipal: String
-  integralCards: [ServiciosIntegralCards]
   herramientasTitulo: String
   herramientasSubtitulo: String
-  herramientasCategorias: [ServiciosHerramientasCategorias]
   faqItems: [ServiciosFaqItems]
   id: ID!
   _sys: SystemInfo!
@@ -441,24 +421,6 @@ input ServiciosServiciosFilter {
   titulo: StringFilter
   descripcion: StringFilter
   items: StringFilter
-}
-
-input ServiciosIntegralCardsFilter {
-  titulo: StringFilter
-  descripcion: StringFilter
-}
-
-input ServiciosHerramientasCategoriasHerramientasFilter {
-  nombre: StringFilter
-  descripcion: StringFilter
-  emoji: StringFilter
-  bg: StringFilter
-}
-
-input ServiciosHerramientasCategoriasFilter {
-  categoria: StringFilter
-  color: StringFilter
-  herramientas: ServiciosHerramientasCategoriasHerramientasFilter
 }
 
 input ServiciosFaqItemsFilter {
@@ -479,10 +441,8 @@ input ServiciosFilter {
   integralTitulo: StringFilter
   integralSubtitulo: StringFilter
   integralImagenPrincipal: ImageFilter
-  integralCards: ServiciosIntegralCardsFilter
   herramientasTitulo: StringFilter
   herramientasSubtitulo: StringFilter
-  herramientasCategorias: ServiciosHerramientasCategoriasFilter
   faqItems: ServiciosFaqItemsFilter
 }
 
@@ -848,24 +808,6 @@ input ServiciosServiciosMutation {
   items: [String]
 }
 
-input ServiciosIntegralCardsMutation {
-  titulo: String
-  descripcion: String
-}
-
-input ServiciosHerramientasCategoriasHerramientasMutation {
-  nombre: String
-  descripcion: String
-  emoji: String
-  bg: String
-}
-
-input ServiciosHerramientasCategoriasMutation {
-  categoria: String
-  color: String
-  herramientas: [ServiciosHerramientasCategoriasHerramientasMutation]
-}
-
 input ServiciosFaqItemsMutation {
   pregunta: String
   respuesta: String
@@ -884,10 +826,8 @@ input ServiciosMutation {
   integralTitulo: String
   integralSubtitulo: String
   integralImagenPrincipal: String
-  integralCards: [ServiciosIntegralCardsMutation]
   herramientasTitulo: String
   herramientasSubtitulo: String
-  herramientasCategorias: [ServiciosHerramientasCategoriasMutation]
   faqItems: [ServiciosFaqItemsMutation]
 }
 
