@@ -940,15 +940,8 @@
   pointer-events: none;
 }
 
-.crecimientoCard:hover .crecimientoCardImage::after {
-  animation: shineIn 0.9s ease forwards;
-}
-
-.crecimientoCard:not(:hover) .crecimientoCardImage::after {
-  animation: shineOut 0.9s ease forwards;
-}
-
-.crecimientoCard:not(:hover) .crecimientoCardImage.sheenPlay::after {
+.crecimientoCard:hover .crecimientoCardImage::after,
+.crecimientoCardImage.sheenPlay::after {
   animation: shineIn 0.9s ease forwards;
 }
 
@@ -1675,11 +1668,6 @@
 @keyframes shineIn {
   from { left: -120%; }
   to { left: 140%; }
-}
-
-@keyframes shineOut {
-  from { left: 140%; opacity: 1; }
-  to { left: -120%; opacity: 1; }
 }
 
 :global(.app-container.light) .innovacionSection {

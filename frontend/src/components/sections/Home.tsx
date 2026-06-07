@@ -72,7 +72,7 @@ export default function Home() {
     const intervals = [0, 1, 2].map((i) =>
       setInterval(() => {
         setCarouselIndexes((prev) => { const next = [...prev]; next[i] = (next[i] + 1) % 2; return next; });
-      }, 5000 + i * 200)
+      }, 8000 + i * 200)
     );
     return () => intervals.forEach(clearInterval);
   }, []);
