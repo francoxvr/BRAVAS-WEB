@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { Activity, Globe, BarChart3, TrendingUp } from 'lucide-react';
 import PageHero from './PageHero';
 import styles from './Servicios.module.css';
@@ -29,7 +30,7 @@ const DEFAULT_FAQS = [
 
 interface ServicioItem { titulo: string; descripcion: string; items: string[]; }
 interface FaqItem { pregunta: string; respuesta: string; }
-interface IntegralCard { titulo: string; descripcion: string; imagenes?: string[]; }
+interface IntegralCard { titulo: string; descripcion: string; }
 interface Herramienta { nombre: string; descripcion: string; emoji: string; bg: string; }
 interface HerramientaCategoria { categoria: string; color: string; herramientas: Herramienta[]; }
 interface ServiciosData {
@@ -55,14 +56,10 @@ interface ServiciosData {
 const DEFAULT_INTEGRAL_CARDS: IntegralCard[] = [
   { titulo: 'Gestión de Contenidos & Redes', descripcion: 'Creación de contenido estratégico y ejecución en plataformas sociales para engagement real y comunidades activas.' },
   { titulo: 'Analítica y Growth', descripcion: 'Monitoreo de KPIs clave para optimizar decisiones y escalar resultados de forma continua.' },
+  { titulo: 'Estrategia de Crecimiento', descripcion: 'Seguimiento continuo y estrategias para escalar tu negocio de forma sostenible y medible.' },
   { titulo: 'Branding & Identidad', descripcion: 'Desarrollo de identidad visual y de marca sólida que conecta emocionalmente con tu audiencia.' },
   { titulo: 'Análisis & Métricas', descripcion: 'Evaluación de datos y reportes de rendimiento para tomar decisiones inteligentes.' },
   { titulo: 'SEO & Posicionamiento', descripcion: 'Mejora de visibilidad orgánica en motores de búsqueda para atraer más clientes.' },
-];
-
-const localIntegralImages = [
-  ['/assets/images/marketing/redes.png', '/assets/images/marketing/redes2.png'],
-  ['/assets/images/marketing/estadistica1.png', '/assets/images/marketing/estadistica2.png'],
 ];
 
 const DEFAULT_HERRAMIENTAS: HerramientaCategoria[] = [
@@ -123,37 +120,18 @@ function FaqSection({ faqs }: { faqs: FaqItem[] }) {
 
 export default function Servicios() {
   const [servicios, setServicios] = useState<ServicioItem[]>(DEFAULT_SERVICIOS);
+  const [integralImg, setIntegralImg] = useState<string>("/assets/images/marketing/marketing10.jpg");
   const [integralCards, setIntegralCards] = useState<IntegralCard[]>(DEFAULT_INTEGRAL_CARDS);
   const [herramientas, setHerramientas] = useState<HerramientaCategoria[]>(DEFAULT_HERRAMIENTAS);
   const [faqs, setFaqs] = useState<FaqItem[]>(DEFAULT_FAQS);
   const [textos, setTextos] = useState<ServiciosData>({});
-  const [integralCarouselIndexes, setIntegralCarouselIndexes] = useState([0, 0]);
-  const [integralSheenPlay, setIntegralSheenPlay] = useState([false, false]);
-  const prevIntegralCarouselIndexes = useRef(integralCarouselIndexes);
-
-  useEffect(() => {
-    const intervals = [0, 1].map((i) =>
-      setInterval(() => {
-        setIntegralCarouselIndexes((prev) => { const next = [...prev]; next[i] = (next[i] + 1) % 2; return next; });
-      }, 8000 + i * 200)
-    );
-    return () => intervals.forEach(clearInterval);
-  }, []);
-
-  useEffect(() => {
-    const changed = integralCarouselIndexes.map((value, i) => value !== prevIntegralCarouselIndexes.current[i]);
-    prevIntegralCarouselIndexes.current = integralCarouselIndexes;
-    if (!changed.some(Boolean)) return;
-    setIntegralSheenPlay(changed);
-    const stop = setTimeout(() => setIntegralSheenPlay([false, false]), 900);
-    return () => clearTimeout(stop);
-  }, [integralCarouselIndexes]);
 
   useEffect(() => {
     getServiciosData().then((d: ServiciosData | null) => {
       if (!d) return;
       if (d.servicios?.length) setServicios(d.servicios);
       if (d.faqItems?.length) setFaqs(d.faqItems);
+      if (d.integralImagenPrincipal) setIntegralImg(d.integralImagenPrincipal);
       if (d.integralCards?.length) setIntegralCards(d.integralCards);
       if (d.herramientasCategorias?.length) setHerramientas(d.herramientasCategorias);
       setTextos(d);
@@ -204,25 +182,22 @@ export default function Servicios() {
           <p>{textos.integralSubtitulo ?? 'Todo lo que tu marca necesita en un solo lugar para crecer de forma sostenible.'}</p>
         </div>
         <div className={styles.integralGrid}>
-          {integralCards.slice(0, 2).map((card, i) => {
-            const images = card.imagenes?.length ? card.imagenes : localIntegralImages[i] ?? [];
-            return (
-              <div key={i} className={styles.integralCardBig}>
-                <div className={`${styles.integralCardBigImg} ${integralSheenPlay[i] ? styles.sheenPlay : ''}`}>
-                  {images.map((image, j) => (
-                    <img key={j} src={image} alt={`${card.titulo} ${j + 1}`}
-                      className={`${styles.integralCarouselImage} ${j === integralCarouselIndexes[i] ? styles.active : ''}`} />
-                  ))}
-                </div>
-                <div className={styles.integralCardBigBody}>
-                  <h3>{card.titulo}</h3>
-                  <p>{card.descripcion}</p>
-                </div>
-              </div>
-            );
-          })}
+          <div className={styles.integralCardBig}>
+            <div className={styles.integralCardBigImg}>
+              <Image src={integralImg || "/assets/images/marketing/marketing10.jpg"} alt={integralCards[0]?.titulo ?? ''} width={500} height={180} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
+            <div className={styles.integralCardBigBody}>
+              <h3>{integralCards[0]?.titulo}</h3>
+              <p>{integralCards[0]?.descripcion}</p>
+            </div>
+          </div>
+          <div className={styles.integralCardRight}>
+            {integralCards.slice(1, 3).map((c, i) => (
+              <div key={i} className={styles.integralCardSm}><h3>{c.titulo}</h3><p>{c.descripcion}</p></div>
+            ))}
+          </div>
           <div className={styles.integralRowBottom}>
-            {integralCards.slice(2, 5).map((c, i) => (
+            {integralCards.slice(3, 6).map((c, i) => (
               <div key={i} className={styles.integralCardBot}><h3>{c.titulo}</h3><p>{c.descripcion}</p></div>
             ))}
           </div>

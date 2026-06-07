@@ -88,6 +88,7 @@
 
 :global(.app-container.dark) .nuestroCard,
 :global(.app-container.dark) .integralCardBig,
+:global(.app-container.dark) .integralCardSm,
 :global(.app-container.dark) .integralCardBot,
 :global(.app-container.dark) .herCat {
   background: rgba(78,26,107,0.16);
@@ -98,6 +99,7 @@
 
 :global(.app-container.dark) .nuestroCard h3,
 :global(.app-container.dark) .integralCardBigBody h3,
+:global(.app-container.dark) .integralCardSm h3,
 :global(.app-container.dark) .integralCardBot h3,
 :global(.app-container.dark) .herCatName,
 :global(.app-container.dark) .herToolName {
@@ -107,6 +109,7 @@
 :global(.app-container.dark) .nuestroCard p,
 :global(.app-container.dark) .nuestroCard ul,
 :global(.app-container.dark) .integralCardBigBody p,
+:global(.app-container.dark) .integralCardSm p,
 :global(.app-container.dark) .integralCardBot p,
 :global(.app-container.dark) .herToolDesc {
   color: #cbd5e1;
@@ -218,6 +221,7 @@
 
 .nuestroCard::before,
 .integralCardBig::before,
+.integralCardSm::before,
 .integralCardBot::before {
   content: '';
   position: absolute;
@@ -232,6 +236,7 @@
 
 .nuestroCard::after,
 .integralCardBig::after,
+.integralCardSm::after,
 .integralCardBot::after {
   content: '';
   position: absolute;
@@ -249,6 +254,7 @@
 
 .nuestroCard:hover,
 .integralCardBig:hover,
+.integralCardSm:hover,
 .integralCardBot:hover {
   transform: translateY(-10px);
   box-shadow: 0 25px 50px rgba(78,26,107,0.15);
@@ -256,12 +262,14 @@
 
 .nuestroCard:hover::before,
 .integralCardBig:hover::before,
+.integralCardSm:hover::before,
 .integralCardBot:hover::before {
   left: 100%;
 }
 
 .nuestroCard:hover::after,
 .integralCardBig:hover::after,
+.integralCardSm:hover::after,
 .integralCardBot:hover::after {
   opacity: 0.3;
 }
@@ -367,6 +375,7 @@
 }
 
 .integralCardBig {
+  grid-column: 1;
   grid-row: 1;
   background: white;
   border-radius: 14px;
@@ -380,7 +389,7 @@
   cursor: default;
 }
 
-.integralCardBigImg { width: 100%; height: 150px; overflow: hidden; position: relative; }
+.integralCardBigImg { width: 100%; height: 150px; overflow: hidden; }
 
 .integralCardBigBody {
   padding: 12px 18px;
@@ -389,6 +398,7 @@
 }
 
 .integralCardBigBody h3,
+.integralCardSm h3,
 .integralCardBot h3 {
   color: #4e1a6b;
   font-size: 0.95rem;
@@ -400,6 +410,7 @@
 }
 
 .integralCardBigBody p,
+.integralCardSm p,
 .integralCardBot p {
   color: #64748b;
   font-size: 0.74rem;
@@ -409,45 +420,27 @@
   z-index: 2;
 }
 
-.integralCarouselImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  z-index: 1;
+.integralCardRight {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
-.integralCarouselImage.active {
-  opacity: 1;
-  z-index: 2;
-}
-
-.integralCardBigImg::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-  transform: skewX(-20deg);
-  z-index: 3;
-  pointer-events: none;
-}
-
-.integralCardBig:hover .integralCardBigImg::after,
-.integralCardBigImg.sheenPlay::after {
-  animation: integralShine 0.9s ease forwards;
-}
-
-@keyframes integralShine {
-  from { left: -120%; }
-  to { left: 140%; }
+.integralCardSm {
+  background: white;
+  border-radius: 14px;
+  padding: 12px 18px;
+  border: 2px solid transparent;
+  border-top: 3px solid #4e1a6b;
+  background-clip: padding-box;
+  box-shadow: 0 4px 20px rgba(78,26,107,0.08);
+  flex: 1;
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
 }
 
 .integralRowBottom {
@@ -656,6 +649,7 @@
   .herramientasGrid { grid-template-columns: repeat(2, 1fr); }
   .integralGrid { grid-template-columns: 1fr; }
   .integralCardBig { grid-column: 1; grid-row: auto; }
+  .integralCardRight { grid-column: 1; grid-row: auto; flex-direction: row; }
   .integralRowBottom { grid-column: 1; grid-row: auto; }
 }
 
@@ -675,6 +669,7 @@
   .nuestrosSection { padding: 50px 15px; }
   .nuestrosGrid { grid-template-columns: repeat(2, 1fr); }
   .integralSection { padding: 50px 15px; }
+  .integralCardRight { flex-direction: column; }
   .integralRowBottom { grid-template-columns: 1fr; }
   .herramientasSection { padding: 50px 15px; }
   .herramientasGrid { grid-template-columns: 1fr; }
