@@ -442,11 +442,12 @@
   .heroImageWrapper {
     position: static;
     transform: none;
-    margin: -36px auto 0;
+    margin: -15px auto 0;
     max-width: 100%;
     padding: 0 15px;
     width: 100%;
     box-sizing: border-box;
+    
   }
 
   :global(body.scroll-animations-ready) .heroImageWrapper[data-animate="fade-left"] {
@@ -460,6 +461,7 @@
   .heroImageCard {
     max-width: 340px;
     margin: 0 auto;
+    aspect-ratio: 14 / 13;
   }
 
   .carouselIndicators {
