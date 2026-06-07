@@ -8,8 +8,19 @@ import { buildConfig, type CollectionConfig, type Field, type GlobalConfig } fro
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+type RequestUser = { id?: unknown; role?: string } | null | undefined
+
 const publicRead = () => true
 const loggedInOnly = ({ req }: { req: { user?: unknown } }) => Boolean(req.user)
+const isAdmin = ({ req }: { req: { user?: RequestUser } }) => req.user?.role === 'admin'
+
+// Los administradores pueden gestionar cualquier usuario; los editores solo
+// pueden ver/actualizar su propia cuenta (para cambiar su contraseña, etc.)
+const isAdminOrSelf = ({ req }: { req: { user?: RequestUser } }) => {
+  if (!req.user) return false
+  if (req.user.role === 'admin') return true
+  return { id: { equals: req.user.id } }
+}
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -18,12 +29,28 @@ const Users: CollectionConfig = {
     useAsTitle: 'email',
   },
   access: {
-    read: loggedInOnly,
-    create: loggedInOnly,
-    update: loggedInOnly,
-    delete: loggedInOnly,
+    read: isAdminOrSelf,
+    create: isAdmin,
+    update: isAdminOrSelf,
+    delete: isAdmin,
   },
-  fields: [],
+  fields: [
+    {
+      name: 'role',
+      type: 'select',
+      label: 'Rol',
+      defaultValue: 'editor',
+      options: [
+        { label: 'Administrador', value: 'admin' },
+        { label: 'Editor', value: 'editor' },
+      ],
+      access: {
+        // Solo un administrador puede asignar o cambiar roles (evita que un
+        // editor se autopromueva a administrador).
+        update: isAdmin,
+      },
+    },
+  ],
 }
 
 const Media: CollectionConfig = {
@@ -119,7 +146,7 @@ const bloquesGroup = (name: string, label: string): Field => ({
 const SiteConfig: GlobalConfig = {
   slug: 'site-config',
   label: 'Configuracion general',
-  access: { read: publicRead, update: loggedInOnly },
+  access: { read: publicRead, update: isAdmin },
   fields: [
     image('logo', 'Logo'),
     linkArray('nav', 'Menu de navegacion'),
