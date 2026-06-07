@@ -4,6 +4,7 @@ import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { buildConfig, type CollectionConfig, type Field, type GlobalConfig } from 'payload'
+import { vercelBlobStorage } from './src/lib/vercelBlobStorage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -447,6 +448,12 @@ const db = databaseUri.startsWith('postgres')
   ? postgresAdapter({ pool: { connectionString: databaseUri } })
   : sqliteAdapter({ client: { url: databaseUri || 'file:./payload.db' } })
 
+// El sistema de archivos de Vercel es de solo lectura en runtime, asi que las
+// imagenes subidas desde el admin en produccion necesitan ir a un storage
+// externo (Vercel Blob, autenticado via OIDC). En local, sin BLOB_STORE_ID
+// configurado, se usa el disco.
+const plugins = process.env.BLOB_STORE_ID ? [vercelBlobStorage([Media.slug])] : []
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -459,6 +466,7 @@ export default buildConfig({
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'bravas-local-payload-secret-change-me',
   db,
+  plugins,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

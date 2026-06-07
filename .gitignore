@@ -13,3 +13,6 @@ frontend/.env.*
 /*.png
 *.log
 *.err
+
+.vercel
+.env*
