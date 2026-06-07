@@ -948,6 +948,10 @@
   animation: shineOut 0.9s ease forwards;
 }
 
+.crecimientoCardImage.sheenPlay::after {
+  animation: shineIn 0.9s ease forwards;
+}
+
 .crecimientoCardImage img {
   width: 100%;
   height: 100%;
@@ -1619,20 +1623,23 @@
   transform: skewX(-20deg);
   z-index: 2;
   pointer-events: none;
+  animation: shineLoop 5s ease-in-out infinite;
 }
+
+.gridImage:nth-child(2)::after { animation-delay: 0.6s; }
+.gridImage:nth-child(3)::after { animation-delay: 1.2s; }
+.gridImage:nth-child(4)::after { animation-delay: 1.8s; }
 
 .gridImage:hover {
   transform: scale(1.05);
   box-shadow: 0 20px 40px rgba(78, 26, 107, 0.25);
 }
 
-.gridImage:hover::after {
-  animation: shineIn 0.9s ease forwards;
+@keyframes shineLoop {
+  0%, 60% { left: -120%; }
+  85%, 100% { left: 140%; }
 }
 
-.gridImage:not(:hover)::after {
-  animation: shineOut 0.9s ease forwards;
-}
 
 .gridCarouselImage {
   width: 100%;

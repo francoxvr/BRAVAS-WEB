@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PageHero from './PageHero';
 import styles from './Home.module.css';
 import { getHomeData } from '@/lib/queries';
@@ -61,6 +61,8 @@ const localInnovacionImages = [
 export default function Home() {
   const [data, setData] = useState<HomeData>(DEFAULT_DATA);
   const [carouselIndexes, setCarouselIndexes] = useState([0, 0, 0]);
+  const [sheenPlay, setSheenPlay] = useState([false, false, false]);
+  const prevCarouselIndexes = useRef(carouselIndexes);
 
   useEffect(() => {
     getHomeData().then((d: HomeData | null) => { if (d) setData({ ...DEFAULT_DATA, ...d }); });
@@ -74,6 +76,15 @@ export default function Home() {
     );
     return () => intervals.forEach(clearInterval);
   }, []);
+
+  useEffect(() => {
+    const changed = carouselIndexes.map((value, i) => value !== prevCarouselIndexes.current[i]);
+    prevCarouselIndexes.current = carouselIndexes;
+    if (!changed.some(Boolean)) return;
+    setSheenPlay(changed);
+    const stop = setTimeout(() => setSheenPlay([false, false, false]), 900);
+    return () => clearTimeout(stop);
+  }, [carouselIndexes]);
 
   const crecimientoCards = data.crecimientoCards?.length
     ? data.crecimientoCards
@@ -131,7 +142,7 @@ export default function Home() {
             const images = tinaImages?.length ? tinaImages : localCrecimientoImages[i] ?? [];
             return (
               <div key={i} className={styles.crecimientoCard}>
-                <div className={styles.crecimientoCardImage}>
+                <div className={`${styles.crecimientoCardImage} ${sheenPlay[i] ? styles.sheenPlay : ''}`}>
                   {images.map((image, j) => (
                     <img key={j} src={image} alt={`${card.titulo} ${j + 1}`}
                       className={`${styles.crecimientoImage} ${j === carouselIndexes[i] ? styles.active : ''}`} />
