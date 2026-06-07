@@ -62,9 +62,9 @@ const textarea = (name: string, label: string): Field => ({
 
 const textList = (name: string, label: string): Field => ({
   name,
-  type: 'text',
+  type: 'array',
   label,
-  hasMany: true,
+  fields: [text('texto', 'Texto')],
 })
 
 const image = (name: string, label: string): Field => ({

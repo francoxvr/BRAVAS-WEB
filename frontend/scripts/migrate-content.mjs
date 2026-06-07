@@ -39,14 +39,26 @@ function readJSON(relPath) {
 
 // ---- Per-global transforms --------------------------------------------------
 
+// Los campos de tipo "lista de items" pasaron de string[] a array de { texto }
+// para que cada elemento se pueda editar como una caja de texto en el admin.
+function toTextItems(values) {
+  if (!Array.isArray(values)) return []
+  return values.map((texto) => ({ texto }))
+}
+
+function transformHeroGroup(hero) {
+  if (!hero) return hero
+  return { ...hero, pills: toTextItems(hero.pills) }
+}
+
 function transformSiteConfig(src) {
   return {
     logo: mediaId(src.logo),
     nav: src.nav,
-    heroHome: src.heroHome,
-    heroServicios: src.heroServicios,
-    heroNosotros: src.heroNosotros,
-    heroContacto: src.heroContacto,
+    heroHome: transformHeroGroup(src.heroHome),
+    heroServicios: transformHeroGroup(src.heroServicios),
+    heroNosotros: transformHeroGroup(src.heroNosotros),
+    heroContacto: transformHeroGroup(src.heroContacto),
     heroImagenes: mediaIds(src.heroImagenes),
   }
 }
@@ -58,6 +70,7 @@ function transformFooter(src) {
 function transformHome(src) {
   return {
     ...src,
+    propuestaItems: toTextItems(src.propuestaItems),
     crecimientoCards: (src.crecimientoCards ?? []).map((card) => ({
       ...card,
       imagenes: mediaIds(card.imagenes),
@@ -70,6 +83,7 @@ function transformServicios(src) {
   return {
     ...src,
     integralImagenPrincipal: mediaId(src.integralImagenPrincipal),
+    servicios: (src.servicios ?? []).map((s) => ({ ...s, items: toTextItems(s.items) })),
   }
 }
 
@@ -81,11 +95,15 @@ function transformNosotros(src) {
       ...member,
       foto: mediaId(member.foto),
     })),
+    porqueItems: toTextItems(src.porqueItems),
   }
 }
 
 function transformContacto(src) {
-  return { ...src }
+  return {
+    ...src,
+    panelItems: toTextItems(src.panelItems),
+  }
 }
 
 function transformLegal(src) {

@@ -34,10 +34,26 @@ function mediaUrls(values: any): string[] {
   return values.map(mediaUrl).filter(Boolean)
 }
 
+// Las "listas de items" se guardan como array de { texto } para que sean
+// editables fila por fila en el admin. Los componentes esperan string[].
+function textItems(values: any): string[] {
+  if (!Array.isArray(values)) return []
+  return values.map((item: any) => (typeof item === 'string' ? item : item?.texto ?? '')).filter(Boolean)
+}
+
+function flattenHeroGroup(hero: any) {
+  if (!hero) return hero
+  return { ...hero, pills: textItems(hero.pills) }
+}
+
 function flattenSiteConfig(data: any) {
   return {
     ...data,
     logo: mediaUrl(data.logo),
+    heroHome: flattenHeroGroup(data.heroHome),
+    heroServicios: flattenHeroGroup(data.heroServicios),
+    heroNosotros: flattenHeroGroup(data.heroNosotros),
+    heroContacto: flattenHeroGroup(data.heroContacto),
     heroImagenes: mediaUrls(data.heroImagenes),
   }
 }
@@ -45,6 +61,7 @@ function flattenSiteConfig(data: any) {
 function flattenHome(data: any) {
   return {
     ...data,
+    propuestaItems: textItems(data.propuestaItems),
     crecimientoCards: (data.crecimientoCards ?? []).map((card: any) => ({
       ...card,
       imagenes: mediaUrls(card.imagenes),
@@ -57,6 +74,7 @@ function flattenServicios(data: any) {
   return {
     ...data,
     integralImagenPrincipal: mediaUrl(data.integralImagenPrincipal),
+    servicios: (data.servicios ?? []).map((s: any) => ({ ...s, items: textItems(s.items) })),
   }
 }
 
@@ -68,6 +86,14 @@ function flattenNosotros(data: any) {
       ...member,
       foto: mediaUrl(member.foto),
     })),
+    porqueItems: textItems(data.porqueItems),
+  }
+}
+
+function flattenContacto(data: any) {
+  return {
+    ...data,
+    panelItems: textItems(data.panelItems),
   }
 }
 
@@ -103,7 +129,7 @@ export async function getServiciosData() {
 
 export async function getContactoData() {
   const payloadData = await getPayloadGlobal('contacto')
-  if (payloadData) return payloadData
+  if (payloadData) return flattenContacto(payloadData)
 
   try {
     const data = await import('../../tina/content/pages/contacto.json')
