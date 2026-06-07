@@ -249,6 +249,15 @@
   left: 140%;
 }
 
+@keyframes heroSheenSweep {
+  from { left: -120%; }
+  to { left: 140%; }
+}
+
+.heroImageCard.sheenPlay::before {
+  animation: heroSheenSweep 0.9s ease-in-out;
+}
+
 .heroImage {
   width: 100%;
   height: 100%;

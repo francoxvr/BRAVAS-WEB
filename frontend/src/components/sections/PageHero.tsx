@@ -28,6 +28,7 @@ export default function PageHero({
   const [images, setImages] = useState<string[]>(LOCAL_HERO_IMAGES);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [heroConfig, setHeroConfig] = useState<HeroConfig>({});
+  const [sheenPlay, setSheenPlay] = useState(false);
 
   useEffect(() => {
     getSiteConfig().then((d: (Record<string, HeroConfig> & { heroImagenes?: string[] }) | null) => {
@@ -46,6 +47,16 @@ export default function PageHero({
     }, 6000);
     return () => clearInterval(interval);
   }, [images.length]);
+
+  useEffect(() => {
+    setSheenPlay(false);
+    const restart = requestAnimationFrame(() => setSheenPlay(true));
+    const stop = setTimeout(() => setSheenPlay(false), 900);
+    return () => {
+      cancelAnimationFrame(restart);
+      clearTimeout(stop);
+    };
+  }, [currentImageIndex]);
 
   const finalSubtitle = heroConfig.subtitulo ?? subtitle ?? 'Transformamos tu presencia digital con estrategias innovadoras que hacen brillar tu marca.';
   const finalCta = heroConfig.ctaTexto ?? ctaText;
@@ -76,7 +87,7 @@ export default function PageHero({
         </div>
       </section>
       <div className={styles.heroImageWrapper} data-animate="fade-left" data-animate-delay="1">
-        <div className={styles.heroImageCard}>
+        <div className={`${styles.heroImageCard} ${sheenPlay ? styles.sheenPlay : ''}`}>
           {images.map((image, index) => (
             <img key={index} src={image} alt={`Marketing Digital ${index + 1}`}
               className={`${styles.heroImage} ${index === currentImageIndex ? styles.active : ''}`} />
