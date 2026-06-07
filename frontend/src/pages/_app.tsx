@@ -46,7 +46,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
       <ThemeProvider>
         <Header />
-        <main style={{ paddingTop: '80px' }}>
+        <main className="mainContent">
           <Component {...pageProps} />
         </main>
         <Footer />

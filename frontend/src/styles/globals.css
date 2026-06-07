@@ -67,6 +67,25 @@ body {
   position: relative;
 }
 
+/* El header es position: fixed; este padding evita que tape el contenido.
+   En mobile el header pasa a layout en columna (logo + menu apilados) y
+   ocupa mas alto, asi que necesita mas espacio de separacion. */
+.mainContent {
+  padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding-top: 132px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding-top: 116px;
+  }
+}
+
 .app-container {
   min-height: 100vh;
   display: flex;
