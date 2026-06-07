@@ -48,6 +48,7 @@ const adapter: Adapter = ({ prefix = '' }) => {
     await put(fileKey, file.buffer, {
       access: 'public',
       addRandomSuffix: false,
+      allowOverwrite: true,
       contentType: file.mimeType,
     })
     return data
