@@ -57,6 +57,24 @@
   overflow: hidden;
 }
 
+.teamPhoto::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+  transform: skewX(-20deg);
+  z-index: 2;
+  pointer-events: none;
+  animation: shineLoop 6s ease-in-out infinite;
+}
+
+.teamCard:nth-child(2) .teamPhoto::after {
+  animation-delay: 1s;
+}
+
 .teamBody {
   padding: 16px;
   position: relative;
