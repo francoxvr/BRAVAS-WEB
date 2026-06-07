@@ -48,18 +48,16 @@ const Media: CollectionConfig = {
 
 // ---- Reusable field helpers -------------------------------------------------
 
-const text = (name: string, label: string, opts: Partial<Field> = {}): Field => ({
+const text = (name: string, label: string): Field => ({
   name,
   type: 'text',
   label,
-  ...opts,
 })
 
-const textarea = (name: string, label: string, opts: Partial<Field> = {}): Field => ({
+const textarea = (name: string, label: string): Field => ({
   name,
   type: 'textarea',
   label,
-  ...opts,
 })
 
 const textList = (name: string, label: string): Field => ({
