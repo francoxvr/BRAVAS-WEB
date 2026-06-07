@@ -74,6 +74,10 @@ function flattenServicios(data: any) {
   return {
     ...data,
     integralImagenPrincipal: mediaUrl(data.integralImagenPrincipal),
+    integralCards: (data.integralCards ?? []).map((card: any) => ({
+      ...card,
+      imagenes: mediaUrls(card.imagenes),
+    })),
     servicios: (data.servicios ?? []).map((s: any) => ({ ...s, items: textItems(s.items) })),
   }
 }
