@@ -222,21 +222,21 @@
 }
 
 .footerLogoSmall img {
-  width: 70px;
-  height: 63px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(78, 26, 107, 0.15);
+  width: 78px;
+  height: 70px;
+  border-radius: 12px;
+  filter: brightness(1.15) contrast(1.2);
+  box-shadow: 0 4px 12px rgba(78, 26, 107, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
-  overflow: hidden;
 }
 
 .footerLogoSmall img:hover {
-  transform: scale(1.06) rotate(2deg);
+  transform: scale(1.1);
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.12),
     0 0 18px rgba(255, 255, 255, 0.18),
-    0 4px 12px rgba(78, 26, 107, 0.15);
+    0 4px 12px rgba(78, 26, 107, 0.2);
 }
 
 .footerSocialSection {
@@ -470,7 +470,7 @@
   }
 
   .footerLogoSmall img {
-    width: 65px;
+    width: 64px;
     height: 58px;
   }
 
@@ -527,7 +527,7 @@
   }
 
   .footerLogoSmall img {
-    width: 55px;
+    width: 56px;
     height: 50px;
   }
 
