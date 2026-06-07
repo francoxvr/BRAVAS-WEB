@@ -948,7 +948,7 @@
   animation: shineOut 0.9s ease forwards;
 }
 
-.crecimientoCardImage.sheenPlay::after {
+.crecimientoCard:not(:hover) .crecimientoCardImage.sheenPlay::after {
   animation: shineIn 0.9s ease forwards;
 }
 
