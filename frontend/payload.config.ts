@@ -295,7 +295,7 @@ const Servicios: GlobalConfig = {
           name: 'integralCards',
           type: 'array',
           label: 'Tarjetas',
-          fields: [text('titulo', 'Titulo'), textarea('descripcion', 'Descripcion')],
+          fields: [text('titulo', 'Titulo'), textarea('descripcion', 'Descripcion'), imageList('imagenes', 'Imagenes')],
         },
       ],
     },
